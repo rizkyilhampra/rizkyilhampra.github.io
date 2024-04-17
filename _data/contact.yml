@@ -5,9 +5,10 @@
 
 # - type: twitter
 #   icon: "fa-brands fa-x-twitter"
+
 - type: instagram
   icon: "fab fa-square-instagram"
-  url: 'https://instagram.com/rizkyihampra'
+  url: 'https://instagram.com/rizkyilhampra'
 
 - type: email
   icon: "fas fa-envelope"
