@@ -11,18 +11,18 @@
 
 ## How to run
 1. Clone the repository
-  ```bash
-  git clone https://github.com/rizkyilhampra/rizkyilhampra.github.io.git
-  ```
+    ```bash
+    git clone https://github.com/rizkyilhampra/rizkyilhampra.github.io.git
+    ```
 2. Open the project
-  ```bash
-  cd rizkyilhampra.github.io
-  ```
+    ```bash
+    cd rizkyilhampra.github.io
+    ```
 3. Install the dependencies
-  ```bash
-  bundle
-  ```
+    ```bash
+    bundle
+    ```
 4. Run the project
-  ```bash
-  bundle exec jekyll serve
-  ```
+    ```bash
+    bundle exec jekyll serve
+    ```
