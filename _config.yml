@@ -16,10 +16,10 @@ timezone: Asia/Makassar
 
 title: Rizky Ilham Pratama # the main title
 
-tagline: My personal website for portfolio and blog  # it will display as the sub-title
+tagline: Personal website for portfolio and blog
 
 description: >- # used by seo meta and the atom feed
-  Rizky Ilham Pratama personal website for portfolio and blog
+  Rizky Ilham Pratama's personal website for portfolio and blog
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -67,7 +67,7 @@ goatcounter:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode: [light] # [light | dark]
+theme_mode: # [light | dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
