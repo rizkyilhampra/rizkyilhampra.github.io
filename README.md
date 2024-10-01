@@ -1,13 +1,11 @@
-# Farm + TypeScript
-
-This template should help you start developing using TypeScript in Farm.
+# rizkyilhampra.github.io
 
 ## Setup
 
 Install the dependencies:
 
 ```bash
-pnpm install
+bun install
 ```
 
 ## Get Started
@@ -15,23 +13,5 @@ pnpm install
 Start the dev server:
 
 ```bash
-pnpm start
-```
-
-Build the app for production:
-
-```bash
-pnpm build
-```
-
-Preview the Production build product:
-
-```bash
-pnpm preview
-```
-
-Clear persistent cache local files
-
-```bash
-pnpm clean
+bun run dev
 ```
