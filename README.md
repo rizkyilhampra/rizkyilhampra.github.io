@@ -1,28 +1,37 @@
-# Aquila's Personal Website
-## Prerequisites
-1. Ruby
-2. RubyGems
-3. Bundler (via gems)
-4. Jekyll (via gems)
-5. Git
-6. `make`
-7. `gcc`
-8. `g++`
+# Farm + TypeScript
 
-## How to run
-1. Clone the repository
-    ```bash
-    git clone https://github.com/rizkyilhampra/rizkyilhampra.github.io.git
-    ```
-2. Open the project
-    ```bash
-    cd rizkyilhampra.github.io
-    ```
-3. Install the dependencies
-    ```bash
-    bundle
-    ```
-4. Run the project
-    ```bash
-    bundle exec jekyll serve
-    ```
+This template should help you start developing using TypeScript in Farm.
+
+## Setup
+
+Install the dependencies:
+
+```bash
+pnpm install
+```
+
+## Get Started
+
+Start the dev server:
+
+```bash
+pnpm start
+```
+
+Build the app for production:
+
+```bash
+pnpm build
+```
+
+Preview the Production build product:
+
+```bash
+pnpm preview
+```
+
+Clear persistent cache local files
+
+```bash
+pnpm clean
+```
