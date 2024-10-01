@@ -1,11 +1,10 @@
-import './style.css';
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
-  <div>
+document.querySelector("#app").innerHTML = `
+  <div >
     <h1>Farm + TypeScript</h1>
-    <p class="bg-sky-50">
+    <p class="">
       Click on the Farm and TypeScript logos to learn more
     </p>
   </div>
 `;
-
