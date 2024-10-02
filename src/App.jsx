@@ -73,7 +73,7 @@ export default function App() {
         <span>
           © {new Date().getFullYear()}{" "}
           <a
-            href="https:/github.com/rizkyilhampra/rizkyilhampra.github.io"
+            href="https://github.com/rizkyilhampra/rizkyilhampra.github.io"
             target="_blank"
             className="text-blue-600 underline hover:text-blue-800"
           >
