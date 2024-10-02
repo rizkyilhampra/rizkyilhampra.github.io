@@ -1,9 +1,20 @@
-import { defineConfig } from '@farmfe/core';
-import farmPostcssPlugin from '@farmfe/js-plugin-postcss';
+import { defineConfig } from "@farmfe/core";
+import farmPostcssPlugin from "@farmfe/js-plugin-postcss";
 
 export default defineConfig({
   compilation: {
-    presetEnv: false
+    presetEnv: false,
   },
-  plugins: [farmPostcssPlugin()]
+  plugins: [
+    farmPostcssPlugin(),
+    [
+      "@farmfe/plugin-react",
+      {
+        runtime: "automatic",
+      },
+    ],
+  ],
+  server: {
+    cors: true,
+  },
 });

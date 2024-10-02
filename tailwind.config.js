@@ -9,5 +9,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@catppuccin/tailwindcss")({
+      defaultFlavour: "latte",
+    }),
+  ],
 };
