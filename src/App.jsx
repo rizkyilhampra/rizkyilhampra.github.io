@@ -84,7 +84,7 @@ export default function App() {
           Built with{" "}
           <a
             href="https://www.farmfe.org/"
-            className="underline text-blue-600 hover:text-blue-600"
+            className="underline text-blue-600 hover:text-blue-800"
             target="_blank"
           >
             Farm
@@ -92,7 +92,7 @@ export default function App() {
           ,{" "}
           <a
             href="https://bun.sh"
-            className="underline text-blue-600 hover:text-blue-600"
+            className="underline text-blue-600 hover:text-blue-800"
             target="_blank"
           >
             Bun
@@ -100,7 +100,7 @@ export default function App() {
           ,{" "}
           <a
             href="https://tailwindcss.com/"
-            className="underline text-blue-600 hover:text-blue-600"
+            className="underline text-blue-600 hover:text-blue-800"
             target="_blank"
           >
             TailwindCSS
@@ -108,7 +108,7 @@ export default function App() {
           ,{" "}
           <a
             href="https://react.dev/"
-            className="underline text-blue-600 hover:text-blue-600"
+            className="underline text-blue-600 hover:text-blue-800"
             target="_blank"
           >
             <s>React</s>
@@ -116,7 +116,7 @@ export default function App() {
           , and served by{" "}
           <a
             href="https://pages.github.com/"
-            className="underline text-blue-600 hover:text-blue-600"
+            className="underline text-blue-600 hover:text-blue-800"
           >
             Github Pages
           </a>
