@@ -21,14 +21,11 @@ export default function App() {
           <li>
             <a
               className="text-blue-600 underline hover:text-blue-800"
-              href="https://rizkyilhampra.hashnode.dev"
+              href="https://blog.rizkyilhampra.me"
               target="_blank"
             >
-              rizkyilhampra.hashnode.dev
-            </a>{" "}
-            <span className="font-normal">
-              (<i>where i wrote some blog post</i>)
-            </span>
+              blog.rizkyilhampra.me
+            </a>
           </li>
           <li>
             <a
