@@ -1,4 +1,34 @@
+import Footer from "./Footer";
+import LinkList from "./LinkList";
+
 export default function App() {
+  const links = [
+    {
+      href: "https://spdhtc.rizkyilhampra.me",
+      children: "spdhtc.rizkyilhampra.me",
+    },
+    {
+      href: "https://blog.rizkyilhampra.me",
+      children: "blog.rizkyilhampra.me",
+    },
+    {
+      href: "https://github.com/rizkyilhampra",
+      children: "github.com/rizkyilhampra",
+    },
+    {
+      href: "https://instagram.com/rizkyilhampra",
+      children: "instagram.com/rizkyilhampra",
+    },
+    {
+      href: "https://x.com/rizkyilhampra",
+      children: "x.com/rizkyilhampra",
+    },
+    {
+      href: "https://www.linkedin.com/in/rizkyilhampra",
+      children: "linkedin.com/in/rizkyilhampra",
+    },
+  ];
+
   return (
     <div
       className="flex min-h-screen flex-col items-center bg-base p-6 font-sans
@@ -9,116 +39,16 @@ export default function App() {
           Rizky Ilham Pratama
         </h1>
 
-        <ul class="list-inside list-disc  pt-2 font-medium text-subtext1  lg:text-xl ">
-          <li>
-            <a
-              className="text-blue-600 underline hover:text-blue-800"
-              href="https://spdhtc.rizkyilhampra.me"
-            >
-              spdhtc.rizkyilhampra.me
-            </a>
-          </li>
-          <li>
-            <a
-              className="text-blue-600 underline hover:text-blue-800"
-              href="https://blog.rizkyilhampra.me"
-              target="_blank"
-            >
-              blog.rizkyilhampra.me
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/rizkyilhampra"
-              className="text-blue-600 underline hover:text-blue-800"
-              target="_blank"
-            >
-              github.com/rizkyilhampra
-            </a>
-          </li>
-          <li>
-            <a
-              className="text-blue-600 underline hover:text-blue-800"
-              href="https://instagram.com/rizkyilhampra"
-              target="_blank"
-            >
-              instagram.com/rizkyilhampra
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://x.com/rizkyilhampra"
-              className="text-blue-600 underline hover:text-blue-800"
-              target="_blank"
-            >
-              x.com/rizkyilhampra
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.linkedin.com/in/rizkyilhampra"
-              className="text-blue-600 underline hover:text-blue-800"
-              target="_blank"
-            >
-              linkedin.com/in/rizkyilhampra
-            </a>
-          </li>
+        <ul className="list-inside list-disc  pt-2 font-medium text-subtext1 lg:text-xl ">
+          {links.map((link, index) => (
+            <li key={index}>
+              <LinkList href={link.href}>{link.children}</LinkList>
+            </li>
+          ))}
         </ul>
       </main>
 
-      <footer className="mt-16 text-xs lg:text-sm xl:text-[1rem]  text-text  text-center">
-        <span>
-          © {new Date().getFullYear()}{" "}
-          <a
-            href="https://github.com/rizkyilhampra/rizkyilhampra.github.io"
-            target="_blank"
-            className="text-blue-600 underline hover:text-blue-800"
-          >
-            rizkyilhampra.github.io
-          </a>
-        </span>
-        <span className="block">
-          Built with{" "}
-          <a
-            href="https://www.farmfe.org/"
-            className="underline text-blue-600 hover:text-blue-800"
-            target="_blank"
-          >
-            Farm
-          </a>
-          ,{" "}
-          <a
-            href="https://bun.sh"
-            className="underline text-blue-600 hover:text-blue-800"
-            target="_blank"
-          >
-            Bun
-          </a>
-          ,{" "}
-          <a
-            href="https://tailwindcss.com/"
-            className="underline text-blue-600 hover:text-blue-800"
-            target="_blank"
-          >
-            TailwindCSS
-          </a>
-          ,{" "}
-          <a
-            href="https://react.dev/"
-            className="underline text-blue-600 hover:text-blue-800"
-            target="_blank"
-          >
-            <s>React</s>
-          </a>
-          , and served by{" "}
-          <a
-            href="https://pages.github.com/"
-            className="underline text-blue-600 hover:text-blue-800"
-          >
-            Github Pages
-          </a>
-        </span>
-      </footer>
+      <Footer />
     </div>
   );
 }
