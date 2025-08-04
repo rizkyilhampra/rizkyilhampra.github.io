@@ -29,21 +29,16 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mt-16 text-xs lg:text-sm xl:text-[1rem] text-text text-center">
-      <span>
-        © {new Date().getFullYear()}{" "}
-        <LinkList href={links[0].href}>{links[0].children}</LinkList>
-      </span>
-      <div>
-        Built with{" "}
-        {links.slice(1).map((link, index, array) => (
-          <span key={index}>
-            {index === array.length - 1 && "and served by "}
-            <LinkList href={link.href}>{link.children}</LinkList>
-            {index < array.length - 1 && ", "}
-          </span>
-        ))}
-      </div>
-    </footer>
+    <div className="text-muted-foreground text-sm space-y-2">
+      <p>© {new Date().getFullYear()} Rizky Ilham Pratama</p>
+      <p className="flex items-center justify-center space-x-2 text-xs">
+        <span>Built with</span>
+        <LinkList href={links[1].href}>{links[1].children}</LinkList>
+        <span>•</span>
+        <LinkList href={links[4].href}>{links[4].children}</LinkList>
+        <span>•</span>
+        <LinkList href={links[3].href}>{links[3].children}</LinkList>
+      </p>
+    </div>
   );
 }

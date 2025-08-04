@@ -1,6 +1,6 @@
 export default function LinkList({ href, children }) {
   return (
-    <a className="text-blue-600 underline hover:text-blue-800" href={href}>
+    <a className="text-primary underline hover:text-primary/80 transition-colors" href={href}>
       {children}
     </a>
   );
