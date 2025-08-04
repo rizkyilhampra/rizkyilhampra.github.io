@@ -80,4 +80,11 @@ This is a personal portfolio/landing page built with React and Farm.js, deployed
 - **LinkList component**: Uses `text-primary` for theme-aware link colors instead of hardcoded blue
 - **Animation delays**: Use `animationFillMode: 'both'` to prevent flickering during staggered animations
 - **Theme toggle**: Manually manages theme state and DOM classes for Farm.js compatibility
-- **Floating elements**: Positioned absolutely with different animation delays for organic movement
+- **Floating elements**: Enhanced animation system with organic movement and mobile optimization
+  - **Organic animations**: Custom `float-organic-1/2/3` keyframes with subtle rotation (1-3deg) and multi-directional movement
+  - **Responsive scaling**: Elements scale down on mobile (`w-8 sm:w-12`, `blur-sm sm:blur-md`) for better performance
+  - **Reduced opacity on mobile**: Lower opacity values on small screens to reduce visual weight
+  - **Motion-reduce compliance**: All animations disabled with `motion-reduce:animate-none` for accessibility
+  - **Nested div architecture**: Separates entrance animations (outer) from continuous movement (inner) to prevent CSS conflicts
+  - **Flicker-free loops**: Only seamless infinite animations used, avoiding position jumps at keyframe boundaries
+  - **Performance optimized**: Uses CSS transforms and opacity for hardware acceleration, no layout thrashing
