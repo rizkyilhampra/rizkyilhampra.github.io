@@ -20,7 +20,7 @@ This is a personal portfolio/landing page built with React and Farm.js, deployed
 - **Framework**: React 18 with JSX
 - **Styling**: Tailwind CSS with enhanced Catppuccin theme (light/dark mode support)
 - **Icons**: Lucide React for modern iconography
-- **Font**: Iosevka (loaded via @fontsource)
+- **Typography**: Inter (body text) and Iosevka (headers) loaded via @fontsource
 - **Structure**: Modern component-based architecture with animations
   - `App.jsx`: Main component with animated layout and social links
   - `SocialLink.jsx`: Enhanced link cards with icons and hover effects
@@ -35,14 +35,17 @@ This is a personal portfolio/landing page built with React and Farm.js, deployed
 - **lucide-react**: Modern icon library
 - **tailwindcss-animate**: Enhanced animations and transitions
 - **clsx**: Conditional class management utility
+- **@fontsource/inter**: Inter font for body text (weights: 300, 400, 500)
+- **@fontsource/iosevka**: Iosevka font for headers (weights: 500, 600)
 
 ## Key Configuration
 
 - **Farm.js**: Configured with PostCSS plugin and React plugin with automatic runtime
-- **Tailwind**: Enhanced with custom animations, design tokens, and dark mode support
+- **Tailwind**: Enhanced with custom animations, design tokens, typography, and dark mode support
   - Custom animations: float, glow, fade-in-up, scale-in
   - Design system colors with CSS custom properties
   - Catppuccin color palette for both light (latte) and dark (mocha) themes
+  - Font families: `font-sans` (Inter for body), `font-header` (Iosevka for headers)
 - **PostCSS**: Configured with Autoprefixer for CSS compatibility
 - **Theme System**: CSS custom properties with light/dark mode switching
 
@@ -70,6 +73,10 @@ This is a personal portfolio/landing page built with React and Farm.js, deployed
 
 ## Implementation Notes
 
+- **Typography Strategy**: 
+  - Header Font: Iosevka (main name "Rizky Ilham Pratama" uses `font-header` class)
+  - Body Font: Inter (all other text elements use default `font-sans`)
+  - Weight hierarchy: Light (300), Regular (400), Medium (500), SemiBold (600)
 - **LinkList component**: Uses `text-primary` for theme-aware link colors instead of hardcoded blue
 - **Animation delays**: Use `animationFillMode: 'both'` to prevent flickering during staggered animations
 - **Theme toggle**: Manually manages theme state and DOM classes for Farm.js compatibility

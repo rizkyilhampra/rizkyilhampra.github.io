@@ -64,7 +64,7 @@ export default function App() {
             {/* </div> */}
           </div>
           
-          <h1 className="text-6xl md:text-7xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in" style={{ 
+          <h1 className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in" style={{ 
             animationDelay: '0.1s',
             animationFillMode: 'both' 
           }}>

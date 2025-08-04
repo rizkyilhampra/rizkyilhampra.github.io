@@ -13,7 +13,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Iosevka", ...defaultTheme.fontFamily.sans],
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+        header: ["Iosevka", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         border: 'hsl(var(--border))',

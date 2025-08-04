@@ -1,4 +1,6 @@
-import "@fontsource/iosevka/400.css";
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
 import "@fontsource/iosevka/500.css";
 import "@fontsource/iosevka/600.css";
 import "./style.css";
