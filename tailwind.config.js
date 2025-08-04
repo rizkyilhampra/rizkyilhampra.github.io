@@ -230,6 +230,48 @@ export default {
           '0%, 20%': { transform: 'translate(0px, 0px)' },
           '40%, 60%': { transform: 'translate(-40px, 60px)' },
           '80%, 100%': { transform: 'translate(20px, -20px)' }
+        },
+        'float-organic-1': {
+          '0%, 100%': { 
+            transform: 'translateY(0px) translateX(0px) rotate(0deg)' 
+          },
+          '25%': { 
+            transform: 'translateY(-8px) translateX(6px) rotate(2deg)' 
+          },
+          '50%': { 
+            transform: 'translateY(-15px) translateX(-4px) rotate(-1deg)' 
+          },
+          '75%': { 
+            transform: 'translateY(-5px) translateX(10px) rotate(3deg)' 
+          }
+        },
+        'float-organic-2': {
+          '0%, 100%': { 
+            transform: 'translateY(0px) translateX(0px) rotate(0deg)' 
+          },
+          '33%': { 
+            transform: 'translateY(-12px) translateX(-8px) rotate(-2deg)' 
+          },
+          '66%': { 
+            transform: 'translateY(8px) translateX(12px) rotate(1.5deg)' 
+          }
+        },
+        'float-organic-3': {
+          '0%, 100%': { 
+            transform: 'translateY(0px) translateX(0px) rotate(0deg)' 
+          },
+          '20%': { 
+            transform: 'translateY(-6px) translateX(4px) rotate(1deg)' 
+          },
+          '40%': { 
+            transform: 'translateY(-18px) translateX(-6px) rotate(-2.5deg)' 
+          },
+          '60%': { 
+            transform: 'translateY(-10px) translateX(8px) rotate(1.5deg)' 
+          },
+          '80%': { 
+            transform: 'translateY(2px) translateX(-3px) rotate(-0.5deg)' 
+          }
         }
       },
       animation: {
@@ -251,7 +293,10 @@ export default {
         'fade-in-float': 'fade-in-float 0.8s ease-out forwards',
         'scale-in-float': 'scale-in-float 0.6s ease-out forwards',
         'position-shift-slow': 'position-shift-slow 45s ease-in-out infinite',
-        'position-shift-medium': 'position-shift-medium 35s ease-in-out infinite'
+        'position-shift-medium': 'position-shift-medium 35s ease-in-out infinite',
+        'float-organic-1': 'float-organic-1 7s ease-in-out infinite',
+        'float-organic-2': 'float-organic-2 9s ease-in-out infinite',
+        'float-organic-3': 'float-organic-3 5.5s ease-in-out infinite'
       }
     },
   },
