@@ -8,13 +8,13 @@ import Footer from "./Footer";
 export default function App() {
   const socialLinks = [
     {
-      href: "https://spdhtc.rizkyilhampra.me",
+      href: "https://spdhtc.rizkyilhampra.dev",
       icon: Globe,
       label: "Personal Website",
       description: "My main portfolio and blog"
     },
     {
-      href: "https://blog.rizkyilhampra.me",
+      href: "https://blog.rizkyilhampra.dev",
       icon: FileText,
       label: "Blog",
       description: "Thoughts and tutorials"
@@ -76,7 +76,8 @@ export default function App() {
               texts={[
                 "Developer, Creator, and Digital Enthusiast",
                 "Building digital experiences with passion and precision",
-                "Turning ideas into interactive solutions"
+                "Turning ideas into interactive solutions",
+                "Use VIM and Arch Linux BTW"
               ]}
               typingSpeed={100}
               deletingSpeed={60}
