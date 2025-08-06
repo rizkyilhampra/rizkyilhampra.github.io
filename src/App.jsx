@@ -71,7 +71,7 @@ export default function App() {
             Rizky Ilham Pratama
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8">
+          <div className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8 min-h-[4rem] sm:min-h-[3rem] md:min-h-[4rem] flex items-center justify-center">
             <TypewriterText 
               texts={[
                 "Developer, Creator, and Digital Enthusiast",
@@ -82,7 +82,7 @@ export default function App() {
               deletingSpeed={60}
               pauseDuration={3000}
             />
-          </p>
+          </div>
           
           <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in" style={{ 
             animationDelay: '0.2s',

@@ -44,8 +44,10 @@ export function TypewriterText({
   }, [currentText, currentTextIndex, isDeleting, isPaused, texts, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className={className}>
-      {currentText}
+    <span className={`${className} inline-block min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem]`}>
+      <span className="sm:whitespace-nowrap">
+        {currentText}
+      </span>
       <span className="animate-cursor-blink">|</span>
     </span>
   );
