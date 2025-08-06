@@ -14,6 +14,17 @@ This is a personal portfolio/landing page built with React and Farm.js, deployed
 - **Preview production build**: `bun run preview`
 - **Clean build artifacts**: `bun run clean`
 
+## Development Notes
+
+- Uses modern ES modules (`type: "module"` in package.json)
+- React components use function syntax with modern hooks patterns
+- Tailwind classes follow responsive design patterns (sm:, md:, lg:)
+- Enhanced design system with CSS custom properties for theming
+- Animation system with staggered delays and proper fill modes
+- Theme persistence using localStorage
+- Responsive grid layout for social links (md:grid-cols-2 lg:grid-cols-3)
+- Don't need to test and run `bun run dev`
+
 ## Architecture
 
 - **Build Tool**: Farm.js (modern Rust-based bundler)
@@ -48,16 +59,6 @@ This is a personal portfolio/landing page built with React and Farm.js, deployed
   - Font families: `font-sans` (Inter for body), `font-header` (Iosevka for headers)
 - **PostCSS**: Configured with Autoprefixer for CSS compatibility
 - **Theme System**: CSS custom properties with light/dark mode switching
-
-## Development Notes
-
-- Uses modern ES modules (`type: "module"` in package.json)
-- React components use function syntax with modern hooks patterns
-- Tailwind classes follow responsive design patterns (sm:, md:, lg:)
-- Enhanced design system with CSS custom properties for theming
-- Animation system with staggered delays and proper fill modes
-- Theme persistence using localStorage
-- Responsive grid layout for social links (md:grid-cols-2 lg:grid-cols-3)
 
 ## Design System Colors
 
