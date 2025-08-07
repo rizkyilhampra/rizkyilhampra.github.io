@@ -10,8 +10,8 @@ export default function App() {
     {
       href: "https://spdhtc.rizkyilhampra.dev",
       icon: Globe,
-      label: "Personal Website",
-      description: "My main portfolio and blog"
+      label: "SPDHTC",
+      description: "Another app I made"
     },
     {
       href: "https://blog.rizkyilhampra.dev",
