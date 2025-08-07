@@ -1,4 +1,4 @@
-import { Github, Instagram, Linkedin, Twitter, Globe, FileText } from "lucide-react";
+import { Github, Instagram, Linkedin, Twitter, Globe, FileText, Mail } from "lucide-react";
 import { SocialLink } from "./SocialLink";
 import { FloatingElements } from "./FloatingElements";
 import { ThemeToggle } from "./ThemeToggle";
@@ -7,6 +7,12 @@ import Footer from "./Footer";
 
 export default function App() {
   const socialLinks = [
+    {
+      href: "mailto:rizkyilhampra@rizkyilhampra.dev",
+      icon: Mail,
+      label: "Email",
+      description: "Get in touch directly"
+    },
     {
       href: "https://spdhtc.rizkyilhampra.dev",
       icon: Globe,
