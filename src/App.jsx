@@ -62,7 +62,7 @@ export default function App() {
       
       <div className="relative z-10 container mx-auto px-6 py-20">
         {/* Hero Section */}
-        <div className="text-center mb-16 animate-fade-in-up" style={{ animationFillMode: 'both' }}>
+        <div className="text-center mb-16 animate-fade-in-up motion-reduce:animate-none" style={{ animationFillMode: 'both' }}>
           <div className="relative inline-block mb-8">
             <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-glow" />
             {/* <div className="relative w-32 h-32 bg-gradient-primary rounded-full mx-auto flex items-center justify-center shadow-glow"> */}
@@ -70,7 +70,7 @@ export default function App() {
             {/* </div> */}
           </div>
           
-          <h1 className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in" style={{ 
+          <h1 className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in motion-reduce:animate-none" style={{ 
             animationDelay: '0.1s',
             animationFillMode: 'both' 
           }}>
@@ -91,7 +91,7 @@ export default function App() {
             />
           </div>
           
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in" style={{ 
+          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in motion-reduce:animate-none" style={{ 
             animationDelay: '0.2s',
             animationFillMode: 'both' 
           }} />
@@ -103,9 +103,9 @@ export default function App() {
             {socialLinks.map((link, index) => (
               <div 
                 key={link.href} 
-                className="animate-scale-in"
+                className="animate-scale-in motion-reduce:animate-none"
                 style={{ 
-                  animationDelay: `${0.3 + index * 0.1}s`,
+                  animationDelay: `${0.3 + (index % 3) * 0.1 + Math.floor(index / 3) * 0.1}s`,
                   animationFillMode: 'both'
                 }}
               >
@@ -116,7 +116,7 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-20 animate-fade-in-up" style={{ 
+        <div className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none" style={{ 
           animationDelay: '1.2s',
           animationFillMode: 'both' 
         }}>
