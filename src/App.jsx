@@ -1,4 +1,12 @@
-import { Github, Instagram, Linkedin, Twitter, Globe, FileText, Mail } from "lucide-react";
+import {
+  Github,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Globe,
+  FileText,
+  Mail,
+} from "lucide-react";
 import { SocialLink } from "./SocialLink";
 import { FloatingElements } from "./FloatingElements";
 import { ThemeToggle } from "./ThemeToggle";
@@ -11,50 +19,68 @@ export default function App() {
       href: "mailto:rizkyilhampra@rizkyilhampra.dev",
       icon: Mail,
       label: "Email",
-      description: "Get in touch directly"
+      description: "Get in touch directly",
+      ariaLabel: "Send an email to Rizky Ilham Pratama",
+      title: "Send an email to Rizky Ilham Pratama",
     },
     {
       href: "https://spdhtc.rizkyilhampra.dev",
       icon: Globe,
       label: "SPDHTC",
-      description: "Expert system for chili diseases—fast diagnosis with step-by-step fixes"
+      description:
+        "Expert system for chili diseases—fast diagnosis with step-by-step fixes",
+      ariaLabel:
+        "Open SPDHTC — expert system for chili diseases; fast diagnosis with step-by-step fixes",
+      title: "SPDHTC — expert system for chili diseases",
     },
     {
       href: "https://instagram.com/apainilala",
       icon: Instagram,
-      label: "Instagram",
-      description: "The muse behind many lines of code ❤️"
+      label: "Instagram · @apainilala",
+      description: "The muse behind many lines of code ❤️",
+      ariaLabel: "Open Instagram profile @apainilala (beloved person)",
+      title: "Instagram: @apainilala",
     },
     {
       href: "https://blog.rizkyilhampra.dev",
       icon: FileText,
       label: "Blog",
-      description: "Thoughts and tutorials"
+      description: "Thoughts and tutorials",
+      ariaLabel: "Read posts on Rizky Ilham Pratama’s blog",
+      title: "Rizky Ilham Pratama — Blog",
     },
     {
       href: "https://github.com/rizkyilhampra",
       icon: Github,
-      label: "GitHub",
-      description: "Open source projects and code"
+      label: "GitHub · @rizkyilhampra",
+      description: "Open source projects and code",
+      ariaLabel: "Open GitHub profile @rizkyilhampra",
+      title: "GitHub: @rizkyilhampra",
     },
     {
       href: "https://instagram.com/rizkyilhampra",
       icon: Instagram,
-      label: "Instagram",
-      description: "Life updates and moments"
+      label: "Instagram · @rizkyilhampra",
+      description: "Life updates and moments",
+      ariaLabel: "Open Instagram profile @rizkyilhampra",
+      title: "Instagram: @rizkyilhampra",
     },
     {
       href: "https://x.com/rizkyilhampra",
       icon: Twitter,
-      label: "X (Twitter)",
-      description: "Quick thoughts and updates"
+      label: "X · @rizkyilhampra",
+      description: "Quick thoughts and updates",
+      ariaLabel: "Open X profile @rizkyilhampra",
+      title: "X (Twitter): @rizkyilhampra",
     },
     {
       href: "https://www.linkedin.com/in/rizkyilhampra",
       icon: Linkedin,
-      label: "LinkedIn",
-      description: "Professional network"
-    }
+      label: "LinkedIn · rizkyilhampra",
+      description: "Professional network",
+      ariaLabel: "Open LinkedIn profile rizkyilhampra",
+      title: "LinkedIn: rizkyilhampra",
+    },
   ];
 
   return (
@@ -68,7 +94,10 @@ export default function App() {
 
       <div className="relative z-10 container mx-auto px-6 py-20">
         {/* Hero Section */}
-        <div className="text-center mb-16 animate-fade-in-up motion-reduce:animate-none" style={{ animationFillMode: 'both' }}>
+        <div
+          className="text-center mb-16 animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationFillMode: "both" }}
+        >
           <div className="relative inline-block mb-8">
             <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-glow" />
             {/* <div className="relative w-32 h-32 bg-gradient-primary rounded-full mx-auto flex items-center justify-center shadow-glow"> */}
@@ -76,10 +105,10 @@ export default function App() {
             {/* </div> */}
           </div>
 
-          <h1 className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in motion-reduce:animate-none" style={{
-            animationDelay: '0.1s',
-            animationFillMode: 'both'
-          }}>
+          <h1
+            className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in motion-reduce:animate-none"
+            style={{ animationDelay: "0.1s", animationFillMode: "both" }}
+          >
             Rizky Ilham Pratama
           </h1>
 
@@ -89,7 +118,7 @@ export default function App() {
                 "Developer, Creator, and Digital Enthusiast",
                 "Building digital experiences with passion and precision",
                 "Turning ideas into interactive solutions",
-                "Use VIM and Arch Linux BTW"
+                "Use VIM and Arch Linux BTW",
               ]}
               typingSpeed={100}
               deletingSpeed={60}
@@ -97,10 +126,10 @@ export default function App() {
             />
           </div>
 
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in motion-reduce:animate-none" style={{
-            animationDelay: '0.2s',
-            animationFillMode: 'both'
-          }} />
+          <div
+            className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in motion-reduce:animate-none"
+            style={{ animationDelay: "0.2s", animationFillMode: "both" }}
+          />
         </div>
 
         {/* Links Grid */}
@@ -111,8 +140,10 @@ export default function App() {
                 key={link.href}
                 className="animate-scale-in motion-reduce:animate-none"
                 style={{
-                  animationDelay: `${0.3 + (index % 3) * 0.1 + Math.floor(index / 3) * 0.1}s`,
-                  animationFillMode: 'both'
+                  animationDelay: `${
+                    0.3 + (index % 3) * 0.1 + Math.floor(index / 3) * 0.1
+                  }s`,
+                  animationFillMode: "both",
                 }}
               >
                 <SocialLink {...link} />
@@ -122,10 +153,10 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none" style={{
-          animationDelay: '1.2s',
-          animationFillMode: 'both'
-        }}>
+        <div
+          className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationDelay: "1.2s", animationFillMode: "both" }}
+        >
           <Footer />
         </div>
       </div>
