@@ -24,7 +24,7 @@
     "@farmfe/core": "^1.7.11",
     "@farmfe/js-plugin-postcss": "^1.12.0",
     "@farmfe/plugin-react": "^1.2.6",
-    "@types/react": "^18.3.23",
+    "@types/react": "^18.3.24",
     "@types/react-dom": "^18.3.7",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
