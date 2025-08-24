@@ -17,7 +17,13 @@ export default function App() {
       href: "https://spdhtc.rizkyilhampra.dev",
       icon: Globe,
       label: "SPDHTC",
-      description: "Another app I made"
+      description: "Expert system for chili diseases—fast diagnosis with step-by-step fixes"
+    },
+    {
+      href: "https://instagram.com/apainilala",
+      icon: Instagram,
+      label: "Instagram",
+      description: "The muse behind many lines of code ❤️"
     },
     {
       href: "https://blog.rizkyilhampra.dev",
@@ -54,12 +60,12 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
       <FloatingElements />
-      
+
       {/* Theme Toggle */}
       <div className="absolute top-6 right-6 z-20">
         <ThemeToggle />
       </div>
-      
+
       <div className="relative z-10 container mx-auto px-6 py-20">
         {/* Hero Section */}
         <div className="text-center mb-16 animate-fade-in-up motion-reduce:animate-none" style={{ animationFillMode: 'both' }}>
@@ -69,16 +75,16 @@ export default function App() {
             {/*   <span className="text-4xl font-bold text-primary-foreground">RP</span> */}
             {/* </div> */}
           </div>
-          
-          <h1 className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in motion-reduce:animate-none" style={{ 
+
+          <h1 className="text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-scale-in motion-reduce:animate-none" style={{
             animationDelay: '0.1s',
-            animationFillMode: 'both' 
+            animationFillMode: 'both'
           }}>
             Rizky Ilham Pratama
           </h1>
-          
+
           <div className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8 min-h-[4rem] sm:min-h-[3rem] md:min-h-[4rem] flex items-center justify-center">
-            <TypewriterText 
+            <TypewriterText
               texts={[
                 "Developer, Creator, and Digital Enthusiast",
                 "Building digital experiences with passion and precision",
@@ -90,10 +96,10 @@ export default function App() {
               pauseDuration={3000}
             />
           </div>
-          
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in motion-reduce:animate-none" style={{ 
+
+          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full animate-scale-in motion-reduce:animate-none" style={{
             animationDelay: '0.2s',
-            animationFillMode: 'both' 
+            animationFillMode: 'both'
           }} />
         </div>
 
@@ -101,10 +107,10 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {socialLinks.map((link, index) => (
-              <div 
-                key={link.href} 
+              <div
+                key={link.href}
                 className="animate-scale-in motion-reduce:animate-none"
-                style={{ 
+                style={{
                   animationDelay: `${0.3 + (index % 3) * 0.1 + Math.floor(index / 3) * 0.1}s`,
                   animationFillMode: 'both'
                 }}
@@ -116,9 +122,9 @@ export default function App() {
         </div>
 
         {/* Footer */}
-        <div className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none" style={{ 
+        <div className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none" style={{
           animationDelay: '1.2s',
-          animationFillMode: 'both' 
+          animationFillMode: 'both'
         }}>
           <Footer />
         </div>
