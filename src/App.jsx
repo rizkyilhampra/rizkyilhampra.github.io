@@ -133,7 +133,7 @@ export default function App() {
         </div>
 
         {/* Links Grid */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {socialLinks.map((link, index) => (
               <div

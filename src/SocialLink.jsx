@@ -50,11 +50,16 @@ export const SocialLink = ({
 
         {/* Text content with animation */}
         <div className="flex-1 min-w-0 py-0.5">
-          <h3 className="font-semibold text-foreground group-hover:text-primary break-words hyphens-auto transform transition duration-300 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none">
+          <h3 className="font-semibold text-foreground group-hover:text-primary md:truncate md:tracking-tight [hyphens:none] transform transition duration-300 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none">
             {label}
           </h3>
           {description && (
-            <p className="text-sm text-muted-foreground mt-1 break-words hyphens-auto opacity-80 group-hover:opacity-100 transform transition duration-300 group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none">
+            <p
+              className="text-sm text-muted-foreground mt-1 text-pretty [hyphens:none]
+             opacity-80 group-hover:opacity-100 transform transition duration-300
+             group-hover:translate-x-1 motion-reduce:transform-none motion-reduce:transition-none
+             overflow-hidden [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]"
+            >
               {description}
             </p>
           )}
