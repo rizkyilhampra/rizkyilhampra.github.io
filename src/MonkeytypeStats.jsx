@@ -33,9 +33,9 @@ export default function MonkeytypeStats() {
   }, []);
 
   return (
-    <section aria-labelledby="typing-stats-title" className="mt-16">
-      <div className="text-center mb-6">
-        <h2 id="typing-stats-title" className="text-2xl font-semibold">
+    <section aria-labelledby="typing-stats-title" className="mt-16 md:mt-20">
+      <div className="text-center mb-8">
+        <h2 id="typing-stats-title" className="text-3xl md:text-4xl font-header font-semibold tracking-tight mb-2">
           Typing Stats
           {/* {data?.profile?.data?.name && ( */}
           {/*   <> */}
@@ -51,6 +51,7 @@ export default function MonkeytypeStats() {
           {/*   </> */}
           {/* )} */}
         </h2>
+        <div className="w-16 h-1 bg-gradient-primary mx-auto rounded-full mb-4" />
         {/* {data?.profile?.data?.name && ( */}
         {/*   <p className="text-sm text-muted-foreground mb-1"> */}
         {/*     <a  */}
@@ -81,7 +82,7 @@ export default function MonkeytypeStats() {
         )}
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {loading && (
           <SkeletonCard title="Best 60s WPM" />
         )}
@@ -125,7 +126,7 @@ function StatCard({ label, value, sub, children }) {
   return (
     <div className="p-4 bg-card border border-border rounded-lg shadow-sm">
       <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">{label}</div>
-      <div className="text-3xl font-semibold">{value}</div>
+      <div className="text-3xl md:text-4xl font-semibold">{value}</div>
       {sub && <div className="text-sm text-muted-foreground mt-1">{sub}</div>}
       {children && <div className="mt-3">{children}</div>}
     </div>
@@ -219,4 +220,3 @@ function formatTimeAgo(date) {
 
   return date.toLocaleDateString();
 }
-
