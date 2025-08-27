@@ -12,6 +12,7 @@ import { FloatingElements } from "./FloatingElements";
 import { ThemeToggle } from "./ThemeToggle";
 import { TypewriterText } from "./TypewriterText";
 import Footer from "./Footer";
+import MonkeytypeStats from "./MonkeytypeStats";
 
 export default function App() {
   const socialLinks = [
@@ -150,6 +151,11 @@ export default function App() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Typing Stats */}
+        <div className="max-w-6xl mx-auto">
+          <MonkeytypeStats />
         </div>
 
         {/* Footer */}

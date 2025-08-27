@@ -1,0 +1,20 @@
+{
+  "profile": {
+    "name": "your-username",
+    "id": "user-id"
+  },
+  "summary": {
+    "tests": 1234,
+    "timeTyping": 456789
+  },
+  "pbs": {
+    "time15": { "wpm": 155, "acc": 0.975, "timestamp": "2024-11-01T12:00:00Z" },
+    "time60": { "wpm": 142, "acc": 0.968, "timestamp": "2024-12-17T09:00:00Z" }
+  },
+  "recent": [
+    { "wpm": 136, "acc": 0.972, "mode": "time", "time": 60, "language": "english", "timestamp": "2024-12-20T10:00:00Z" },
+    { "wpm": 141, "acc": 0.965, "mode": "time", "time": 60, "language": "english", "timestamp": "2024-12-20T09:30:00Z" },
+    { "wpm": 138, "acc": 0.971, "mode": "time", "time": 60, "language": "english", "timestamp": "2024-12-20T08:50:00Z" }
+  ]
+}
+
