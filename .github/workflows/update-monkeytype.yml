@@ -33,19 +33,27 @@ jobs:
       - name: Verify changes
         id: verify
         run: |
-          if git diff --quiet; then
-            echo "No changes to commit"
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            # Only check monkeytype.json was modified
-            if git diff --name-only | grep -q '^monkeytype\.json$'; then
-              echo "Monkeytype data updated"
-              echo "changed=true" >> $GITHUB_OUTPUT
+          # Check if monkeytype.json exists and has changes (or is new)
+          if [[ -f "monkeytype.json" ]]; then
+            # Check if it's a new file or has changes
+            if git ls-files --error-unmatch monkeytype.json >/dev/null 2>&1; then
+              # File is tracked, check for changes
+              if git diff --quiet monkeytype.json; then
+                echo "No changes to monkeytype.json"
+                echo "changed=false" >> $GITHUB_OUTPUT
+              else
+                echo "Monkeytype data updated (existing file)"
+                echo "changed=true" >> $GITHUB_OUTPUT
+              fi
             else
-              echo "Unexpected file changes detected"
-              git diff --name-only
-              exit 1
+              # File is untracked (new)
+              echo "Monkeytype data created (new file)"
+              echo "changed=true" >> $GITHUB_OUTPUT
             fi
+          else
+            echo "monkeytype.json not found"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 1
           fi
 
       - name: Commit and push if changed
