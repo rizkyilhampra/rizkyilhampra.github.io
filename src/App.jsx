@@ -154,7 +154,10 @@ export default function App() {
         </div>
 
         {/* Typing Stats */}
-        <div className="max-w-6xl mx-auto">
+        <div
+          className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationDelay: "1.0s", animationFillMode: "both" }}
+        >
           <MonkeytypeStats />
         </div>
 

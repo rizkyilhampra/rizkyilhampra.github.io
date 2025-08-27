@@ -11,7 +11,7 @@ import fs from 'node:fs/promises';
 
 const API_KEY = process.env.MONKEYTYPE_API_KEY;
 const OUT_PATH = process.env.MONKEYTYPE_OUT_PATH || 'monkeytype.json';
-const USERNAME = process.env.MONKEYTYPE_USERNAME || 'rizkyilhampra';
+const USERNAME = process.env.MONKEYTYPE_USERNAME || 'rizkyilhamp';
 
 if (!API_KEY) {
   console.error('MONKEYTYPE_API_KEY not set. Writing sample file instead.');
@@ -41,19 +41,23 @@ async function api(path, init = {}) {
 }
 
 try {
-  // Use official MonkeyType API endpoints from https://api.monkeytype.com/docs
+  // First get results to extract the UID for profile lookup
+  const recentRaw = await tryAny([
+    () => api(`/results`),  // Official endpoint: /results (returns up to 1000 recent results)
+  ]).catch(() => null);
+
+  // Extract UID from results for profile lookup
+  const uid = recentRaw?.data?.[0]?.uid || null;
   const u = encodeURIComponent(USERNAME);
 
   const profile = await tryAny([
-    () => api(`/users/${u}/profile`),  // Official endpoint: /users/{uidOrName}/profile
+    () => uid ? api(`/users/${uid}/profile`) : null,  // Use UID from results if available
+    () => api(`/users/${u}/profile`),  // Fallback to username
   ]).catch(() => null);
 
+  // Personal bests requires mode parameter (time, words, quote, custom, zen)
   const pbsRaw = await tryAny([
-    () => api(`/users/personalBests`),  // Official endpoint: /users/personalBests
-  ]).catch(() => null);
-
-  const recentRaw = await tryAny([
-    () => api(`/results`),  // Official endpoint: /results (returns up to 1000 recent results)
+    () => api(`/users/personalBests?mode=time`),  // Get time-based personal bests
   ]).catch(() => null);
 
   // If all network calls fail, fall back to sample structure.
@@ -106,14 +110,26 @@ function normalize(raw) {
 }
 
 function normalizePBs(pbsRaw) {
-  // Attempt to extract time 15s and 60s PBs.
+  // Handle MonkeyType personal bests API response structure
   const findPB = (secs) => {
-    // handle formats: array of entries or object keyed by time
     if (!pbsRaw) return null;
+
+    // Check direct key access for MonkeyType API structure
+    const timeData = pbsRaw.data?.[secs] || pbsRaw[secs];
+    if (Array.isArray(timeData) && timeData.length > 0) {
+      // Get the best entry (first one should be the best)
+      const best = timeData[0];
+      return {
+        wpm: Math.round(best.wpm || 0),
+        acc: normalizeAcc((best.acc || 0) / 100), // MonkeyType returns acc as percentage
+        timestamp: best.timestamp || null
+      };
+    }
+
+    // Fallback: handle other possible formats
     let candidates = [];
     if (Array.isArray(pbsRaw)) candidates = pbsRaw;
-    if (pbsRaw.time15 || pbsRaw.time60) return pbsRaw[`time${secs}`] || null;
-    if (pbsRaw.time) candidates = pbsRaw.time; // nested
+    if (pbsRaw.time) candidates = pbsRaw.time;
     candidates = candidates || [];
 
     const isMatch = (e) =>

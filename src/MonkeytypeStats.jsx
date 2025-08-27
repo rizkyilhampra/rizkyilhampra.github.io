@@ -4,6 +4,7 @@ export default function MonkeytypeStats() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -12,6 +13,13 @@ export default function MonkeytypeStats() {
         const res = await fetch("/monkeytype.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
+        
+        // Get last-modified header to show when data was updated
+        const lastModified = res.headers.get('last-modified');
+        if (lastModified) {
+          setLastUpdated(new Date(lastModified));
+        }
+        
         if (!cancelled) setData(json);
       } catch (e) {
         if (!cancelled) setError(e);
@@ -28,7 +36,34 @@ export default function MonkeytypeStats() {
     <section aria-labelledby="typing-stats-title" className="mt-16">
       <div className="text-center mb-6">
         <h2 id="typing-stats-title" className="text-2xl font-semibold">Typing Stats</h2>
-        <p className="text-sm text-muted-foreground">Powered by Monkeytype</p>
+        {data?.profile?.data?.name && (
+          <p className="text-sm text-muted-foreground mb-1">
+            <a 
+              href={`https://monkeytype.com/profile/${data.profile.data.name}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              @{data.profile.data.name}
+            </a>
+          </p>
+        )}
+        <p className="text-sm text-muted-foreground">
+          Powered by{' '}
+          <a 
+            href="https://monkeytype.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            MonkeyType
+          </a>
+        </p>
+        {lastUpdated && (
+          <p className="text-xs text-muted-foreground mt-1">
+            Updated {formatTimeAgo(lastUpdated)} • Updates every 12 hours
+          </p>
+        )}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -106,7 +141,9 @@ function ConnectCard() {
 
 function fmtAcc(acc) {
   if (acc === undefined || acc === null) return "—";
-  const pct = typeof acc === "number" && acc <= 1 ? acc * 100 : acc;
+  const numAcc = typeof acc === "string" ? parseFloat(acc) : acc;
+  if (typeof numAcc !== "number" || isNaN(numAcc)) return "—";
+  const pct = numAcc <= 1 ? numAcc * 100 : numAcc;
   return `${pct.toFixed(1)}%`;
 }
 
@@ -120,7 +157,7 @@ function avgAcc(results) {
   if (!Array.isArray(results) || results.length === 0) return null;
   const sum = results.reduce((s, r) => s + (r.acc || 0), 0);
   const avg = sum / results.length;
-  return fmtAcc(avg);
+  return avg;
 }
 
 function fmtDuration(seconds) {
@@ -151,5 +188,20 @@ function Sparkline({ points = [] }) {
       <path d={d} fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
     </svg>
   );
+}
+
+function formatTimeAgo(date) {
+  const now = new Date();
+  const diffMs = now - date;
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffMinutes < 1) return "just now";
+  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
+  if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
+  if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
+  
+  return date.toLocaleDateString();
 }
 

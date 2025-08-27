@@ -23,7 +23,7 @@ jobs:
         env:
           MONKEYTYPE_API_KEY: ${{ secrets.MONKEYTYPE_API_KEY }}
           MONKEYTYPE_OUT_PATH: monkeytype.json
-          MONKEYTYPE_USERNAME: ${{ vars.MONKEYTYPE_USERNAME || 'rizkyilhampra' }}
+          MONKEYTYPE_USERNAME: ${{ vars.MONKEYTYPE_USERNAME || 'rizkyilhamp' }}
         run: |
           if ! node scripts/fetch-monkeytype.mjs; then
             echo "Failed to fetch Monkeytype data"
