@@ -22,7 +22,7 @@ jobs:
       - name: Fetch Monkeytype data
         env:
           MONKEYTYPE_API_KEY: ${{ secrets.MONKEYTYPE_API_KEY }}
-          MONKEYTYPE_OUT_PATH: monkeytype.json
+          MONKEYTYPE_OUT_PATH: public/monkeytype.json
           MONKEYTYPE_USERNAME: ${{ vars.MONKEYTYPE_USERNAME || 'rizkyilhamp' }}
         run: |
           if ! node scripts/fetch-monkeytype.mjs; then
@@ -33,13 +33,13 @@ jobs:
       - name: Verify changes
         id: verify
         run: |
-          # Check if monkeytype.json exists and has changes (or is new)
-          if [[ -f "monkeytype.json" ]]; then
+          # Check if public/monkeytype.json exists and has changes (or is new)
+          if [[ -f "public/monkeytype.json" ]]; then
             # Check if it's a new file or has changes
-            if git ls-files --error-unmatch monkeytype.json >/dev/null 2>&1; then
+            if git ls-files --error-unmatch public/monkeytype.json >/dev/null 2>&1; then
               # File is tracked, check for changes
-              if git diff --quiet monkeytype.json; then
-                echo "No changes to monkeytype.json"
+              if git diff --quiet public/monkeytype.json; then
+                echo "No changes to public/monkeytype.json"
                 echo "changed=false" >> $GITHUB_OUTPUT
               else
                 echo "Monkeytype data updated (existing file)"
@@ -51,7 +51,7 @@ jobs:
               echo "changed=true" >> $GITHUB_OUTPUT
             fi
           else
-            echo "monkeytype.json not found"
+            echo "public/monkeytype.json not found"
             echo "changed=false" >> $GITHUB_OUTPUT
             exit 1
           fi
@@ -61,6 +61,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add monkeytype.json
+          git add public/monkeytype.json
           git commit -m "chore(monkeytype): update stats [skip ci]"
           git push

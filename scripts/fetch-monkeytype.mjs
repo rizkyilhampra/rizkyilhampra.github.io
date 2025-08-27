@@ -10,7 +10,7 @@
 import fs from 'node:fs/promises';
 
 const API_KEY = process.env.MONKEYTYPE_API_KEY;
-const OUT_PATH = process.env.MONKEYTYPE_OUT_PATH || 'monkeytype.json';
+const OUT_PATH = process.env.MONKEYTYPE_OUT_PATH || 'public/monkeytype.json';
 const USERNAME = process.env.MONKEYTYPE_USERNAME || 'rizkyilhamp';
 
 if (!API_KEY) {
