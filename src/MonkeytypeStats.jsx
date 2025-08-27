@@ -13,13 +13,13 @@ export default function MonkeytypeStats() {
         const res = await fetch("/monkeytype.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-        
+
         // Get last-modified header to show when data was updated
         const lastModified = res.headers.get('last-modified');
         if (lastModified) {
           setLastUpdated(new Date(lastModified));
         }
-        
+
         if (!cancelled) setData(json);
       } catch (e) {
         if (!cancelled) setError(e);
@@ -35,24 +35,39 @@ export default function MonkeytypeStats() {
   return (
     <section aria-labelledby="typing-stats-title" className="mt-16">
       <div className="text-center mb-6">
-        <h2 id="typing-stats-title" className="text-2xl font-semibold">Typing Stats</h2>
-        {data?.profile?.data?.name && (
-          <p className="text-sm text-muted-foreground mb-1">
-            <a 
-              href={`https://monkeytype.com/profile/${data.profile.data.name}`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              @{data.profile.data.name}
-            </a>
-          </p>
-        )}
+        <h2 id="typing-stats-title" className="text-2xl font-semibold">
+          Typing Stats
+          {/* {data?.profile?.data?.name && ( */}
+          {/*   <> */}
+          {/*     {' — '} */}
+          {/*     <a */}
+          {/*       href={`https://monkeytype.com/profile/${data.profile.data.name}`} */}
+          {/*       target="_blank" */}
+          {/*       rel="noopener noreferrer" */}
+          {/*       className="text-primary hover:underline" */}
+          {/*     > */}
+          {/*       @{data.profile.data.name} */}
+          {/*     </a> */}
+          {/*   </> */}
+          {/* )} */}
+        </h2>
+        {/* {data?.profile?.data?.name && ( */}
+        {/*   <p className="text-sm text-muted-foreground mb-1"> */}
+        {/*     <a  */}
+        {/*       href={`https://monkeytype.com/profile/${data.profile.data.name}`} */}
+        {/*       target="_blank"  */}
+        {/*       rel="noopener noreferrer" */}
+        {/*       className="text-primary hover:underline" */}
+        {/*     > */}
+        {/*       @{data.profile.data.name} */}
+        {/*     </a> */}
+        {/*   </p> */}
+        {/* )} */}
         <p className="text-sm text-muted-foreground">
           Powered by{' '}
-          <a 
-            href="https://monkeytype.com" 
-            target="_blank" 
+          <a
+            href="https://monkeytype.com"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"
           >
@@ -201,7 +216,7 @@ function formatTimeAgo(date) {
   if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes !== 1 ? 's' : ''} ago`;
   if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? 's' : ''} ago`;
   if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? 's' : ''} ago`;
-  
+
   return date.toLocaleDateString();
 }
 
