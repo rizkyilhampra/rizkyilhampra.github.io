@@ -106,7 +106,10 @@ function normalize(raw) {
   const pbs = normalizePBs(raw.pbs || raw.personalBests || raw.best || raw);
   const summary = normalizeSummary(raw.summary || raw.stats || raw, recent);
 
-  return { profile, summary, pbs, recent: normalizeRecent(recent) };
+  // Include a fetchedAt timestamp so the site can reflect
+  // the last successful sync even when values don't change.
+  const fetchedAt = new Date().toISOString();
+  return { profile, summary, pbs, recent: normalizeRecent(recent), fetchedAt };
 }
 
 function normalizePBs(pbsRaw) {

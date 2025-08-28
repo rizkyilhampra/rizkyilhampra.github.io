@@ -14,10 +14,15 @@ export default function MonkeytypeStats() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
 
-        // Get last-modified header to show when data was updated
-        const lastModified = res.headers.get('last-modified');
-        if (lastModified) {
-          setLastUpdated(new Date(lastModified));
+        // Prefer explicit timestamp from payload; fallback to Last-Modified header
+        const fetchedAt = json?.fetchedAt;
+        if (fetchedAt) {
+          setLastUpdated(new Date(fetchedAt));
+        } else {
+          const lastModified = res.headers.get('last-modified');
+          if (lastModified) {
+            setLastUpdated(new Date(lastModified));
+          }
         }
 
         if (!cancelled) setData(json);
