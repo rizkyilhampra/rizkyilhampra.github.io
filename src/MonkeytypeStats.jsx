@@ -108,13 +108,29 @@ export default function MonkeytypeStats() {
               value={data?.pbs?.time15?.wpm ?? "—"}
               sub={`${fmtAcc(data?.pbs?.time15?.acc)} acc`}
             />
-            <StatCard
+            {(() => {
+              const recent = data?.recent || [];
+              const wpmPoints = recent.map(r => r.wpm).filter(n => typeof n === 'number');
+              const avg = avgWpm(recent);
+              const last = wpmPoints.length ? wpmPoints[wpmPoints.length - 1] : null;
+              const delta = last != null && avg != null ? last - avg : null;
+              const tooltip = last != null && avg != null
+                ? `Last WPM ${last}, ${fmtDelta(delta)} vs avg (${avg})`
+                : undefined;
+              const domain = normalizeDomain(wpmPoints);
+              return (
+                <StatCard
               label="Avg WPM (last 20)"
               value={avgWpm(data?.recent) ?? "—"}
               sub={`${fmtAcc(avgAcc(data?.recent))} acc`}
+              meta={<DeltaBadge delta={delta} title={tooltip} />}
             >
-              <Sparkline points={(data?.recent || []).map(r => r.wpm)} />
+              <span title={tooltip} tabIndex={0} className="outline-none focus:ring-2 focus:ring-primary/40 rounded-sm">
+                <Sparkline points={wpmPoints} min={domain?.[0]} max={domain?.[1]} />
+              </span>
             </StatCard>
+              );
+            })()}
             <StatCard
               label="Total Tests"
               value={data?.summary?.tests ?? "—"}
@@ -127,13 +143,22 @@ export default function MonkeytypeStats() {
   );
 }
 
-function StatCard({ label, value, sub, children }) {
+function StatCard({ label, value, sub, children, meta }) {
   return (
     <div className="p-4 bg-card border border-border rounded-lg shadow-sm">
       <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">{label}</div>
-      <div className="text-3xl md:text-4xl font-semibold">{value}</div>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="text-3xl md:text-4xl font-semibold">{value}</div>
+          {meta}
+        </div>
+        {children && (
+          <div className="ml-2 shrink-0" aria-hidden>
+            {children}
+          </div>
+        )}
+      </div>
       {sub && <div className="text-sm text-muted-foreground mt-1">{sub}</div>}
-      {children && <div className="mt-3">{children}</div>}
     </div>
   );
 }
@@ -189,25 +214,79 @@ function fmtDuration(seconds) {
   return `${m}m`;
 }
 
-function Sparkline({ points = [] }) {
+function fmtDelta(delta) {
+  if (delta == null || Number.isNaN(delta)) return "—";
+  const sign = delta > 0 ? "+" : "";
+  return `${sign}${Math.round(delta)}`;
+}
+
+function normalizeDomain(points) {
+  if (!points || points.length === 0) return null;
+  let min = Math.min(...points);
+  let max = Math.max(...points);
+  if (!isFinite(min) || !isFinite(max)) return null;
+  if (min === max) {
+    // pad a bit so the line isn't flat against edges
+    const pad = Math.max(1, Math.round(max * 0.05));
+    min = max - pad;
+    max = max + pad;
+  }
+  return [min, max];
+}
+
+function Sparkline({ points = [], min: forcedMin, max: forcedMax }) {
   if (!points.length) return null;
   const width = 120;
-  const height = 32;
-  const min = Math.min(...points);
-  const max = Math.max(...points);
+  const height = 24;
+  const min = forcedMin != null ? forcedMin : Math.min(...points);
+  const max = forcedMax != null ? forcedMax : Math.max(...points);
   const range = Math.max(1, max - min);
   const step = width / Math.max(1, points.length - 1);
-  const d = points
+
+  // Build the line path
+  const line = points
     .map((p, i) => {
       const x = i * step;
       const y = height - ((p - min) / range) * height;
       return `${i === 0 ? "M" : "L"}${x.toFixed(1)},${y.toFixed(1)}`;
     })
     .join(" ");
+
+  // Build the area path by closing to baseline
+  const lastX = (points.length - 1) * step;
+  const area = `${line} L ${lastX.toFixed(1)},${height} L 0,${height} Z`;
+
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="text-primary">
-      <path d={d} fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+      className="text-primary"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <path d={area} fill="currentColor" opacity="0.15" />
+      <path d={line} fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
     </svg>
+  );
+}
+
+function DeltaBadge({ delta, title }) {
+  if (delta == null || Number.isNaN(delta) || delta === 0) return null;
+  const positive = delta > 0;
+  const color = positive
+    ? "bg-green-500/10 text-green-700 dark:text-green-400"
+    : "bg-red-500/10 text-red-700 dark:text-red-400";
+  const arrow = positive ? "▲" : "▼";
+  return (
+    <span
+      className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${color}`}
+      title={title}
+    >
+      <span aria-hidden>{arrow}</span>
+      <span>{fmtDelta(delta)}</span>
+      <span className="sr-only"> {positive ? "increase" : "decrease"} vs average</span>
+    </span>
   );
 }
 
