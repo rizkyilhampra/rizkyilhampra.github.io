@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1023,
-        "startedTests": 1717,
-        "timeTyping": 30646.619999999926
+        "completedTests": 1027,
+        "startedTests": 1723,
+        "timeTyping": 30792.039999999924
       },
       "personalBests": {
         "time": {
@@ -159,7 +159,7 @@
           ]
         }
       },
-      "xp": 208100,
+      "xp": 209392,
       "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
@@ -189,6 +189,38 @@
     }
   },
   "recent": [
+    {
+      "wpm": 87,
+      "acc": 0.9690000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756351507000
+    },
+    {
+      "wpm": 96,
+      "acc": 0.9567,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756351470000
+    },
+    {
+      "wpm": 92,
+      "acc": 1,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756351399000
+    },
+    {
+      "wpm": 96,
+      "acc": 0.9643,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756351335000
+    },
     {
       "wpm": 85,
       "acc": 0.9494,
@@ -316,38 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1749449755000
-    },
-    {
-      "wpm": 102,
-      "acc": 0.9813,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1749448096000
-    },
-    {
-      "wpm": 70,
-      "acc": 0.8615,
-      "mode": "words",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1749435598000
-    },
-    {
-      "wpm": 88,
-      "acc": 0.9254000000000001,
-      "mode": "words",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1749435590000
-    },
-    {
-      "wpm": 109,
-      "acc": 1,
-      "mode": "words",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1749435562000
     }
-  ]
+  ],
+  "fetchedAt": "2025-08-28T12:06:58.842Z"
 }
