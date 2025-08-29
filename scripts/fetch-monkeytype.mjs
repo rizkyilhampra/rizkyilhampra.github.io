@@ -104,11 +104,12 @@ function normalize(raw) {
     ? raw.recent
     : unwrapResults(raw.recent) || unwrapResults(raw) || [];
   const pbs = normalizePBs(raw.pbs || raw.personalBests || raw.best || raw);
-  const summary = normalizeSummary(raw.summary || raw.stats || raw, recent);
+  const summary = buildSummary(profile, recent, raw.summary || raw.stats || raw);
 
   // Include a fetchedAt timestamp so the site can reflect
   // the last successful sync even when values don't change.
   const fetchedAt = new Date().toISOString();
+  // Include summary for compatibility; values prefer profile.data.typingStats.
   return { profile, summary, pbs, recent: normalizeRecent(recent), fetchedAt };
 }
 
@@ -169,15 +170,24 @@ function normalizeRecent(list) {
   }));
 }
 
-function normalizeSummary(stats, recent) {
-  const testsFromStats = stats?.tests ?? stats?.testsCompleted ?? null;
-  const timeTyping = stats?.timeTyping ?? stats?.timeTyped ?? null;
-  const tests = testsFromStats ?? (Array.isArray(recent) ? recent.length : 0);
-  let time = timeTyping;
-  if (time == null && Array.isArray(recent)) {
-    time = recent.reduce((s, r) => s + (r.time || r.duration || 0), 0);
+function buildSummary(profile, recent, statsLike) {
+  const typingStats = profile?.data?.typingStats || profile?.typingStats || null;
+  const testsFromProfile = typingStats?.completedTests ?? null;
+  const timeFromProfile = typingStats?.timeTyping ?? null;
+
+  // Secondary sources if present in incoming data
+  const testsFromStats = statsLike?.tests ?? statsLike?.testsCompleted ?? null;
+  const timeFromStats = statsLike?.timeTyping ?? statsLike?.timeTyped ?? null;
+
+  let tests = testsFromProfile ?? testsFromStats ?? null;
+  let timeTyping = timeFromProfile ?? timeFromStats ?? null;
+
+  if (tests == null && Array.isArray(recent)) tests = recent.length;
+  if (timeTyping == null && Array.isArray(recent)) {
+    timeTyping = recent.reduce((s, r) => s + (r.time || r.duration || 0), 0);
   }
-  return { tests, timeTyping: time };
+
+  return { tests, timeTyping };
 }
 
 function normalizeAcc(acc) {
