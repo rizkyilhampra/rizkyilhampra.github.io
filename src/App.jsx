@@ -157,7 +157,7 @@ export default function App() {
         {/* Spotify Stats */}
         <div
           className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
-          style={{ animationDelay: "0.9s", animationFillMode: "both" }}
+          style={{ animationDelay: "1.1s", animationFillMode: "both" }}
         >
           <SpotifyStats />
         </div>
@@ -165,7 +165,7 @@ export default function App() {
         {/* Typing Stats */}
         <div
           className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
-          style={{ animationDelay: "1.0s", animationFillMode: "both" }}
+          style={{ animationDelay: "1.4s", animationFillMode: "both" }}
         >
           <MonkeytypeStats />
         </div>
@@ -173,7 +173,7 @@ export default function App() {
         {/* Footer */}
         <div
           className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none"
-          style={{ animationDelay: "1.2s", animationFillMode: "both" }}
+          style={{ animationDelay: "1.8s", animationFillMode: "both" }}
         >
           <Footer />
         </div>
