@@ -7,6 +7,8 @@
 *   **Typewriter Effect:** A cool typewriter effect for the hero section.
 *   **Theme Toggle:** A theme toggle to switch between light and dark mode.
 *   **Floating Elements:** Some floating elements to make the website more interactive.
+*   **Monkeytype Stats:** Typing stats fetched via a scheduled action.
+*   **Spotify Stats:** Top tracks/artists (6 months, medium_term) synced daily.
 
 ## 🚀 Technologies Used
 
@@ -44,6 +46,25 @@ In the project directory, you can run:
 *   `bun run build`: Builds the app for production.
 *   `bun run preview`: Serves the production build locally.
 *   `bun run clean`: Removes the build cache.
+
+## 🎵 Spotify Integration
+
+This site fetches Spotify top tracks/artists to `public/spotify.json` via a scheduled GitHub Action.
+
+Setup (GitHub repository settings):
+
+1. Create a Spotify App at https://developer.spotify.com/dashboard and note the Client ID/Secret.
+2. Generate a Refresh Token with scope: `user-top-read`.
+   - You can use any OAuth helper locally to perform the Authorization Code flow.
+3. Add GitHub Secrets:
+   - `SPOTIFY_CLIENT_ID`
+   - `SPOTIFY_CLIENT_SECRET`
+   - `SPOTIFY_REFRESH_TOKEN`
+4. The workflow `.github/workflows/update-spotify.yml` runs daily and commits `public/spotify.json` when changed.
+
+Notes:
+- Only medium_term (approx last 6 months) top tracks and artists are fetched.
+- No now playing or recently played is used.
 
 ## 📝 License
 

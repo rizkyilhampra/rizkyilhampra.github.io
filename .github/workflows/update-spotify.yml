@@ -1,0 +1,66 @@
+name: Update Spotify Stats
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 0 * * *' # every 24 hours at 00:00 UTC
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN_PAT }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch Spotify data
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          SPOTIFY_OUT_PATH: public/spotify.json
+        run: |
+          if ! node scripts/fetch-spotify.mjs; then
+            echo "Failed to fetch Spotify data"
+            exit 1
+          fi
+
+      - name: Verify changes
+        id: verify
+        run: |
+          if [[ -f "public/spotify.json" ]]; then
+            if git ls-files --error-unmatch public/spotify.json >/dev/null 2>&1; then
+              if git diff --quiet public/spotify.json; then
+                echo "No changes to public/spotify.json"
+                echo "changed=false" >> $GITHUB_OUTPUT
+              else
+                echo "Spotify data updated (existing file)"
+                echo "changed=true" >> $GITHUB_OUTPUT
+              fi
+            else
+              echo "Spotify data created (new file)"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "public/spotify.json not found"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Commit and push if changed
+        if: steps.verify.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/spotify.json
+          git commit -m "chore(spotify): update stats"
+          git push
+

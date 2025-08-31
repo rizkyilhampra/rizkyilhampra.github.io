@@ -1,0 +1,243 @@
+{
+  "fetchedAt": "2025-08-31T16:54:25.183Z",
+  "top": {
+    "tracks": {
+      "medium_term": [
+        {
+          "id": "6ZwH5ySQkYeI6zUbDnEl1A",
+          "name": "Sedang Langit Gelap",
+          "artists": [
+            {
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
+            },
+            {
+              "id": "23Fl19jB7KhoSS2uQoPX5D",
+              "name": "Zachary H. Evans"
+            },
+            {
+              "id": "6zUE25oS0ZrIuJNd1NAVXF",
+              "name": "Cininta"
+            }
+          ],
+          "album": "Sedang Langit Gelap",
+          "url": "https://open.spotify.com/track/6ZwH5ySQkYeI6zUbDnEl1A",
+          "image": "https://i.scdn.co/image/ab67616d0000b2737e0a71568089d3eab6cb0042",
+          "durationMs": 421529
+        },
+        {
+          "id": "1kuGVB7EU95pJObxwvfwKS",
+          "name": "vampire",
+          "artists": [
+            {
+              "id": "1McMsnEElThX1knmY4oliG",
+              "name": "Olivia Rodrigo"
+            }
+          ],
+          "album": "GUTS",
+          "url": "https://open.spotify.com/track/1kuGVB7EU95pJObxwvfwKS",
+          "image": "https://i.scdn.co/image/ab67616d0000b273e85259a1cae29a8d91f2093d",
+          "durationMs": 219724
+        },
+        {
+          "id": "5CZ40GBx1sQ9agT82CLQCT",
+          "name": "traitor",
+          "artists": [
+            {
+              "id": "1McMsnEElThX1knmY4oliG",
+              "name": "Olivia Rodrigo"
+            }
+          ],
+          "album": "SOUR",
+          "url": "https://open.spotify.com/track/5CZ40GBx1sQ9agT82CLQCT",
+          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
+          "durationMs": 229226
+        },
+        {
+          "id": "0MeuEpNgGbNhA9jlgFsPSi",
+          "name": "What Matters Most",
+          "artists": [
+            {
+              "id": "3zmfs9cQwzJl575W1ZYXeT",
+              "name": "Men I Trust"
+            }
+          ],
+          "album": "Equus Asinus",
+          "url": "https://open.spotify.com/track/0MeuEpNgGbNhA9jlgFsPSi",
+          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
+          "durationMs": 122471
+        },
+        {
+          "id": "6HU7h9RYOaPRFeh0R3UeAr",
+          "name": "deja vu",
+          "artists": [
+            {
+              "id": "1McMsnEElThX1knmY4oliG",
+              "name": "Olivia Rodrigo"
+            }
+          ],
+          "album": "SOUR",
+          "url": "https://open.spotify.com/track/6HU7h9RYOaPRFeh0R3UeAr",
+          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
+          "durationMs": 215506
+        },
+        {
+          "id": "5wANPM4fQCJwkGd4rN57mH",
+          "name": "drivers license",
+          "artists": [
+            {
+              "id": "1McMsnEElThX1knmY4oliG",
+              "name": "Olivia Rodrigo"
+            }
+          ],
+          "album": "SOUR",
+          "url": "https://open.spotify.com/track/5wANPM4fQCJwkGd4rN57mH",
+          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
+          "durationMs": 242013
+        },
+        {
+          "id": "0XlUZXqo7VGLMQgs11KVyO",
+          "name": "I Don't Like Music",
+          "artists": [
+            {
+              "id": "3zmfs9cQwzJl575W1ZYXeT",
+              "name": "Men I Trust"
+            }
+          ],
+          "album": "Equus Asinus",
+          "url": "https://open.spotify.com/track/0XlUZXqo7VGLMQgs11KVyO",
+          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
+          "durationMs": 203823
+        },
+        {
+          "id": "11HRSkKS5nDZB0921Kwne1",
+          "name": "All My Candles",
+          "artists": [
+            {
+              "id": "3zmfs9cQwzJl575W1ZYXeT",
+              "name": "Men I Trust"
+            }
+          ],
+          "album": "Equus Asinus",
+          "url": "https://open.spotify.com/track/11HRSkKS5nDZB0921Kwne1",
+          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
+          "durationMs": 169225
+        },
+        {
+          "id": "199B05lG6hBgawhiiY12Ct",
+          "name": "The Landkeeper",
+          "artists": [
+            {
+              "id": "3zmfs9cQwzJl575W1ZYXeT",
+              "name": "Men I Trust"
+            }
+          ],
+          "album": "Equus Asinus",
+          "url": "https://open.spotify.com/track/199B05lG6hBgawhiiY12Ct",
+          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
+          "durationMs": 224708
+        },
+        {
+          "id": "1afEbbD4hZvdA5orDq1sPj",
+          "name": "Same dream, same mind, same night",
+          "artists": [
+            {
+              "id": "7nqOGRxlXj7N2JYbgNEjYH",
+              "name": "SEVENTEEN"
+            }
+          ],
+          "album": "SEVENTEEN 8th Mini Album 'Your Choice'",
+          "url": "https://open.spotify.com/track/1afEbbD4hZvdA5orDq1sPj",
+          "image": "https://i.scdn.co/image/ab67616d0000b273c1a20972c9a083d5cece9ce5",
+          "durationMs": 247920
+        }
+      ]
+    },
+    "artists": {
+      "medium_term": [
+        {
+          "id": "1McMsnEElThX1knmY4oliG",
+          "name": "Olivia Rodrigo",
+          "url": "https://open.spotify.com/artist/1McMsnEElThX1knmY4oliG",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebe03a98785f3658f0b6461ec4",
+          "genres": []
+        },
+        {
+          "id": "3zmfs9cQwzJl575W1ZYXeT",
+          "name": "Men I Trust",
+          "url": "https://open.spotify.com/artist/3zmfs9cQwzJl575W1ZYXeT",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebfd30ebd7e80dad6b2383aab0",
+          "genres": [
+            "bedroom pop",
+            "indie pop"
+          ]
+        },
+        {
+          "id": "6qqNVTkY8uBg9cP3Jd7DAH",
+          "name": "Billie Eilish",
+          "url": "https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb4a21b4760d2ecb7b0dcdc8da",
+          "genres": []
+        },
+        {
+          "id": "00FQb4jTyendYWaN8pK0wa",
+          "name": "Lana Del Rey",
+          "url": "https://open.spotify.com/artist/00FQb4jTyendYWaN8pK0wa",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb99cacf8acd5378206767261",
+          "genres": []
+        },
+        {
+          "id": "4AK6F7OLvEQ5QYCBNiQWHq",
+          "name": "One Direction",
+          "url": "https://open.spotify.com/artist/4AK6F7OLvEQ5QYCBNiQWHq",
+          "image": "https://i.scdn.co/image/5bb443424a1ad71603c43d67f5af1a04da6bb3c8",
+          "genres": []
+        },
+        {
+          "id": "03uMw43UVu9MsQCcHVSGjX",
+          "name": "Alice Phoebe Lou",
+          "url": "https://open.spotify.com/artist/03uMw43UVu9MsQCcHVSGjX",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb5d2ce0048a6e0974b08ae73e",
+          "genres": []
+        },
+        {
+          "id": "1FdUgjmEeGCpmAxXatjiEG",
+          "name": "Cornelia Murr",
+          "url": "https://open.spotify.com/artist/1FdUgjmEeGCpmAxXatjiEG",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebd9b646d2cab39eab3bab7056",
+          "genres": []
+        },
+        {
+          "id": "3lzTKwFsOqxtp5cLJ2qbSD",
+          "name": "Tokyo Tea Room",
+          "url": "https://open.spotify.com/artist/3lzTKwFsOqxtp5cLJ2qbSD",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebe8d9e3554d20222bad969aa0",
+          "genres": [
+            "dream pop"
+          ]
+        },
+        {
+          "id": "66CXWjxzNUsdJxJ2JdwvnR",
+          "name": "Ariana Grande",
+          "url": "https://open.spotify.com/artist/66CXWjxzNUsdJxJ2JdwvnR",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb6725802588d7dc1aba076ca5",
+          "genres": [
+            "pop"
+          ]
+        },
+        {
+          "id": "0f6TyESD8E1mD2oLJ4TGv1",
+          "name": "For Revenge",
+          "url": "https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb966755ed50b3f4487621b030",
+          "genres": [
+            "indonesian pop",
+            "indonesian indie",
+            "pop punk",
+            "indorock"
+          ]
+        }
+      ]
+    }
+  }
+}

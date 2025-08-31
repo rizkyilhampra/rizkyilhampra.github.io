@@ -13,6 +13,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { TypewriterText } from "./TypewriterText";
 import Footer from "./Footer";
 import MonkeytypeStats from "./MonkeytypeStats";
+import SpotifyStats from "./SpotifyStats";
 
 export default function App() {
   const socialLinks = [
@@ -151,6 +152,14 @@ export default function App() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Spotify Stats */}
+        <div
+          className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationDelay: "0.9s", animationFillMode: "both" }}
+        >
+          <SpotifyStats />
         </div>
 
         {/* Typing Stats */}

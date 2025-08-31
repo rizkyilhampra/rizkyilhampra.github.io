@@ -1,0 +1,31 @@
+{
+  "fetchedAt": "2024-12-20T10:00:00Z",
+  "top": {
+    "tracks": {
+      "medium_term": [
+        {
+          "id": "1abc",
+          "name": "Sample Song A",
+          "artists": [{ "id": "a1", "name": "Artist One" }],
+          "album": "Sample Album",
+          "url": "https://open.spotify.com/track/1abc",
+          "image": "https://i.scdn.co/image/sample",
+          "durationMs": 210000
+        }
+      ]
+    },
+    "artists": {
+      "medium_term": [
+        {
+          "id": "a1",
+          "name": "Artist One",
+          "url": "https://open.spotify.com/artist/a1",
+          "image": "https://i.scdn.co/image/art1",
+          "genres": ["indie", "pop"]
+        }
+      ]
+    }
+  },
+  "features": { "average": null, "sampleSize": 0 },
+  "summary": {}
+}
