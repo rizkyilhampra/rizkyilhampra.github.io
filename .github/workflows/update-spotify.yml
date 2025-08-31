@@ -3,7 +3,7 @@ name: Update Spotify Stats
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 0 * * *' # every 24 hours at 00:00 UTC
+    - cron: '5 0 1 * *' # monthly at 00:05 UTC on the 1st
 
 jobs:
   update:
@@ -63,4 +63,3 @@ jobs:
           git add public/spotify.json
           git commit -m "chore(spotify): update stats"
           git push
-

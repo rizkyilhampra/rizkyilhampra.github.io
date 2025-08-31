@@ -32,11 +32,11 @@ export default function SpotifyStats() {
     <section aria-labelledby="spotify-stats-title" className="mt-16 md:mt-20">
       <div className="text-center mb-8">
         <h2 id="spotify-stats-title" className="text-3xl md:text-4xl font-header font-semibold tracking-tight mb-2">
-          Top Listening (6 months)
+          Listening Highlights · 6 months
         </h2>
         <div className="w-16 h-1 bg-gradient-primary mx-auto rounded-full mb-4" />
         <p className="text-sm text-muted-foreground">
-          Powered by{' '}
+          Source: {' '}
           <a
             href="https://developer.spotify.com/"
             target="_blank"
@@ -48,7 +48,7 @@ export default function SpotifyStats() {
         </p>
         {lastUpdated && (
           <p className="text-xs text-muted-foreground mt-1">
-            Updated {formatTimeAgo(lastUpdated)} • Syncs every 24 hours
+            Updated {formatTimeAgo(lastUpdated)} • Syncs monthly
           </p>
         )}
       </div>
@@ -58,7 +58,7 @@ export default function SpotifyStats() {
       {!loading && !error && (
         <div className="max-w-6xl mx-auto grid gap-6 md:grid-cols-2">
           <div className="p-5 bg-card border border-border rounded-xl shadow-sm">
-            <h3 className="text-sm uppercase tracking-wide text-muted-foreground mb-3">Top Tracks (6 months)</h3>
+            <h3 className="text-sm uppercase tracking-wide text-muted-foreground mb-3">Top Tracks</h3>
             <ol className="space-y-3">
               {tracks.length === 0 && <li className="text-sm text-muted-foreground">No data</li>}
               {tracks.slice(0, 5).map((t, i) => (
@@ -75,7 +75,7 @@ export default function SpotifyStats() {
           </div>
 
           <div className="p-5 bg-card border border-border rounded-xl shadow-sm">
-            <h3 className="text-sm uppercase tracking-wide text-muted-foreground mb-3">Top Artists (6 months)</h3>
+            <h3 className="text-sm uppercase tracking-wide text-muted-foreground mb-3">Top Artists</h3>
             <ol className="space-y-3">
               {artists.length === 0 && <li className="text-sm text-muted-foreground">No data</li>}
               {artists.slice(0, 5).map((a, i) => (
@@ -99,10 +99,10 @@ export default function SpotifyStats() {
 function RankItem({ rank, image, title, subtitle, href }) {
   return (
     <li className="flex items-center gap-3">
-      <div className="w-7 h-7 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium">
+      <div className="w-8 h-8 rounded-full bg-gradient-primary text-primary-foreground flex items-center justify-center text-xs font-semibold shadow-glow ring-1 ring-primary/30">
         {rank}
       </div>
-      <div className="w-10 h-10 rounded overflow-hidden bg-muted shrink-0">
+      <div className="w-12 h-12 rounded overflow-hidden bg-muted shrink-0">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={image} alt="" className="w-full h-full object-cover" loading="lazy" />
@@ -165,8 +165,8 @@ function DualSkeleton() {
               <div className="h-3 w-28 bg-muted rounded" />
               {Array.from({ length: 5 }).map((_, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-full bg-muted" />
-                  <div className="w-10 h-10 rounded bg-muted" />
+                  <div className="w-8 h-8 rounded-full bg-muted" />
+                  <div className="w-12 h-12 rounded bg-muted" />
                   <div className="flex-1">
                     <div className="h-3 w-48 bg-muted rounded" />
                     <div className="h-3 w-32 bg-muted rounded mt-2" />

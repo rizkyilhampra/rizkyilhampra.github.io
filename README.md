@@ -8,7 +8,7 @@
 *   **Theme Toggle:** A theme toggle to switch between light and dark mode.
 *   **Floating Elements:** Some floating elements to make the website more interactive.
 *   **Monkeytype Stats:** Typing stats fetched via a scheduled action.
-*   **Spotify Stats:** Top tracks/artists (6 months, medium_term) synced daily.
+*   **Spotify Stats:** Top tracks/artists (6 months, medium_term) synced monthly.
 
 ## 🚀 Technologies Used
 
@@ -60,7 +60,7 @@ Setup (GitHub repository settings):
    - `SPOTIFY_CLIENT_ID`
    - `SPOTIFY_CLIENT_SECRET`
    - `SPOTIFY_REFRESH_TOKEN`
-4. The workflow `.github/workflows/update-spotify.yml` runs daily and commits `public/spotify.json` when changed.
+4. The workflow `.github/workflows/update-spotify.yml` runs monthly and commits `public/spotify.json` when changed.
 
 Notes:
 - Only medium_term (approx last 6 months) top tracks and artists are fetched.
