@@ -1,46 +1,126 @@
 import { useState, useEffect, useReducer } from 'react';
 
+// Human-like typo generator using QWERTY neighbor keys and common mistakes
 const generateTypoForWord = (word) => {
-  if (word.length < 4) return null; // Skip short words
-  
-  const typoPatterns = [
-    // Double letter typos
-    (w) => {
-      const pos = Math.floor(w.length * 0.4) + Math.floor(Math.random() * Math.floor(w.length * 0.4));
-      return {
-        typo: w.slice(0, pos) + w[pos] + w.slice(pos),
-        backtrackTo: Math.max(2, pos - 1)
-      };
-    },
-    // Wrong letter in middle
-    (w) => {
-      const pos = Math.floor(w.length * 0.3) + Math.floor(Math.random() * Math.floor(w.length * 0.4));
-      const wrongChars = 'qwertyuiopasdfghjklzxcvbnm';
-      let wrongChar = wrongChars[Math.floor(Math.random() * wrongChars.length)];
-      // Ensure wrong char differs from the original
-      const originalChar = w[pos];
-      if (wrongChar === originalChar) {
-        const alt = wrongChars[Math.floor(Math.random() * wrongChars.length)];
-        wrongChar = alt === originalChar ? 'e' : alt;
+  if (!word || word.length < 4) return null; // Skip short words
+
+  // Build a simple QWERTY grid and derive neighbors for letters only
+  const rows = [
+    "qwertyuiop",
+    "asdfghjkl",
+    "zxcvbnm",
+  ];
+
+  const posMap = new Map();
+  rows.forEach((row, r) => {
+    for (let c = 0; c < row.length; c++) {
+      posMap.set(row[c], { r, c });
+    }
+  });
+
+  const neighborsOf = (ch) => {
+    const lower = ch.toLowerCase();
+    const pos = posMap.get(lower);
+    if (!pos) return [];
+    const ns = [];
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        if (dr === 0 && dc === 0) continue;
+        const rr = pos.r + dr;
+        const cc = pos.c + dc;
+        if (rr < 0 || rr >= rows.length) continue;
+        if (cc < 0 || cc >= rows[rr].length) continue;
+        const n = rows[rr][cc];
+        if (/[a-z]/.test(n)) ns.push(n);
       }
+    }
+    // Preserve original case
+    return ns.map((n) => (ch === lower ? n : n.toUpperCase()));
+  };
+
+  // Choose an index with a center bias (typos are rarer at extremes)
+  const letterIndices = [];
+  for (let i = 0; i < word.length; i++) {
+    if (/[A-Za-z]/.test(word[i])) letterIndices.push(i);
+  }
+  if (letterIndices.length === 0) return null;
+
+  const chooseBiasedIndex = () => {
+    // Triangular-ish distribution centered by averaging 2 uniforms
+    const r = (Math.random() + Math.random()) / 2; // [0,1] with center mass
+    const i = Math.floor(r * letterIndices.length);
+    return letterIndices[Math.min(i, letterIndices.length - 1)];
+  };
+
+  const pos = chooseBiasedIndex();
+
+  // Define candidate typo types with weights
+  const hasNeighbors = neighborsOf(word[pos]).length > 0;
+  const canTranspose = pos + 1 < word.length && /[A-Za-z]/.test(word[pos + 1]);
+
+  const candidates = [];
+  if (hasNeighbors) candidates.push({ type: 'neighborSub', weight: 0.5 });
+  if (hasNeighbors) candidates.push({ type: 'neighborInsert', weight: 0.2 });
+  if (canTranspose) candidates.push({ type: 'transpose', weight: 0.15 });
+  candidates.push({ type: 'duplicate', weight: 0.1 });
+  if (word.length >= 6) candidates.push({ type: 'omit', weight: 0.05 });
+
+  if (candidates.length === 0) return null;
+
+  const total = candidates.reduce((s, c) => s + c.weight, 0);
+  let pick = Math.random() * total;
+  let chosen = candidates[0].type;
+  for (const c of candidates) {
+    if (pick < c.weight) { chosen = c.type; break; }
+    pick -= c.weight;
+  }
+
+  const charAt = (i) => word[i];
+  const slice = (a, b) => word.slice(a, b);
+
+  switch (chosen) {
+    case 'neighborSub': {
+      const ns = neighborsOf(charAt(pos));
+      if (!ns.length) return null;
+      const repl = ns[Math.floor(Math.random() * ns.length)];
       return {
-        typo: w.slice(0, pos) + wrongChar + w.slice(pos + 1),
-        backtrackTo: Math.max(2, pos - 1)
-      };
-    },
-    // Extra letter
-    (w) => {
-      const pos = Math.floor(w.length * 0.2) + Math.floor(Math.random() * Math.floor(w.length * 0.5));
-      const extraChar = w[pos] || 'e';
-      return {
-        typo: w.slice(0, pos + 1) + extraChar + w.slice(pos + 1),
-        backtrackTo: Math.max(2, pos)
+        typo: slice(0, pos) + repl + slice(pos + 1),
+        backtrackTo: pos,
       };
     }
-  ];
-  
-  const pattern = typoPatterns[Math.floor(Math.random() * typoPatterns.length)];
-  return pattern(word);
+    case 'neighborInsert': {
+      const ns = neighborsOf(charAt(pos));
+      if (!ns.length) return null;
+      const ins = ns[Math.floor(Math.random() * ns.length)];
+      return {
+        typo: slice(0, pos + 1) + ins + slice(pos + 1),
+        backtrackTo: pos + 1,
+      };
+    }
+    case 'transpose': {
+      // Swap pos and pos+1
+      return {
+        typo: slice(0, pos) + charAt(pos + 1) + charAt(pos) + slice(pos + 2),
+        backtrackTo: pos,
+      };
+    }
+    case 'duplicate': {
+      // Double the chosen character
+      return {
+        typo: slice(0, pos + 1) + charAt(pos) + slice(pos + 1),
+        backtrackTo: pos + 1,
+      };
+    }
+    case 'omit': {
+      // Skip the chosen character
+      return {
+        typo: slice(0, pos) + slice(pos + 1),
+        backtrackTo: pos,
+      };
+    }
+    default:
+      return null;
+  }
 };
 
 export function TypewriterText({ 
