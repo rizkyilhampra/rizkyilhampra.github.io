@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1034,
-        "startedTests": 1746,
-        "timeTyping": 31109.019999999924
+        "completedTests": 1037,
+        "startedTests": 1758,
+        "timeTyping": 31260.979999999923
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 211882,
-      "streak": 1,
+      "xp": 213110,
+      "streak": 2,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1034,
-    "timeTyping": 31109.019999999924
+    "tests": 1037,
+    "timeTyping": 31260.979999999923
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 84,
+      "acc": 0.9677,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756776085000
+    },
+    {
+      "wpm": 90,
+      "acc": 0.95,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756773195000
+    },
+    {
+      "wpm": 88,
+      "acc": 0.9458,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1756773162000
+    },
     {
       "wpm": 96,
       "acc": 0.9876999999999999,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1754547392000
-    },
-    {
-      "wpm": 85,
-      "acc": 0.9732,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1754547360000
-    },
-    {
-      "wpm": 82,
-      "acc": 0.9462999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1754547322000
-    },
-    {
-      "wpm": 97,
-      "acc": 0.9959,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1754547277000
     }
   ],
-  "fetchedAt": "2025-09-02T00:17:00.844Z"
+  "fetchedAt": "2025-09-02T12:07:28.865Z"
 }
