@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1043,
-        "startedTests": 1778,
-        "timeTyping": 31523.599999999926
+        "completedTests": 1046,
+        "startedTests": 1788,
+        "timeTyping": 31686.939999999926
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 215532,
-      "streak": 1,
+      "xp": 216828,
+      "streak": 2,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1043,
-    "timeTyping": 31523.599999999926
+    "tests": 1046,
+    "timeTyping": 31686.939999999926
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 91,
+      "acc": 0.966,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757405061000
+    },
+    {
+      "wpm": 90,
+      "acc": 0.9698,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757404294000
+    },
+    {
+      "wpm": 98,
+      "acc": 1,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757404238000
+    },
     {
       "wpm": 84,
       "acc": 0.977,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1756351507000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9567,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756351470000
-    },
-    {
-      "wpm": 92,
-      "acc": 1,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756351399000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9643,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756351335000
     }
   ],
-  "fetchedAt": "2025-09-09T00:17:16.879Z"
+  "fetchedAt": "2025-09-09T12:07:16.244Z"
 }
