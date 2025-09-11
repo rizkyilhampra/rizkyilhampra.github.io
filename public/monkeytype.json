@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1046,
-        "startedTests": 1788,
-        "timeTyping": 31686.939999999926
+        "completedTests": 1053,
+        "startedTests": 1812,
+        "timeTyping": 32022.99999999992
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 216828,
-      "streak": 2,
+      "xp": 218343,
+      "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1046,
-    "timeTyping": 31686.939999999926
+    "tests": 1053,
+    "timeTyping": 32022.99999999992
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,62 @@
     }
   },
   "recent": [
+    {
+      "wpm": 90,
+      "acc": 0.9784,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757575343000
+    },
+    {
+      "wpm": 91,
+      "acc": 0.9787,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757575187000
+    },
+    {
+      "wpm": 92,
+      "acc": 0.9595,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757575155000
+    },
+    {
+      "wpm": 83,
+      "acc": 0.9673999999999999,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757573811000
+    },
+    {
+      "wpm": 95,
+      "acc": 0.9606,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757573752000
+    },
+    {
+      "wpm": 85,
+      "acc": 0.9737,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757562038000
+    },
+    {
+      "wpm": 80,
+      "acc": 0.9534999999999999,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1757561861000
+    },
     {
       "wpm": 91,
       "acc": 0.966,
@@ -292,63 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1756708873000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9681000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756703742000
-    },
-    {
-      "wpm": 86,
-      "acc": 0.9562999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756450726000
-    },
-    {
-      "wpm": 98,
-      "acc": 0.9684999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756450638000
-    },
-    {
-      "wpm": 85,
-      "acc": 0.9492,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756450547000
-    },
-    {
-      "wpm": 84,
-      "acc": 0.9605,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756450513000
-    },
-    {
-      "wpm": 91,
-      "acc": 0.9831,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756450482000
-    },
-    {
-      "wpm": 87,
-      "acc": 0.9690000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1756351507000
     }
   ],
-  "fetchedAt": "2025-09-11T00:16:54.283Z"
+  "fetchedAt": "2025-09-11T12:07:09.199Z"
 }
