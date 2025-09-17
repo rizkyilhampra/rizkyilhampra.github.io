@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1061,
-        "startedTests": 1838,
-        "timeTyping": 32404.559999999918
+        "completedTests": 1064,
+        "startedTests": 1852,
+        "timeTyping": 32584.399999999914
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 220978,
-      "streak": 2,
+      "xp": 222250,
+      "streak": 3,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1061,
-    "timeTyping": 32404.559999999918
+    "tests": 1064,
+    "timeTyping": 32584.399999999914
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 80,
+      "acc": 0.9587,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1758090447000
+    },
+    {
+      "wpm": 99,
+      "acc": 0.988,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1758081308000
+    },
+    {
+      "wpm": 77,
+      "acc": 0.9559000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1758069121000
+    },
     {
       "wpm": 90,
       "acc": 0.97,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1757404294000
-    },
-    {
-      "wpm": 98,
-      "acc": 1,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1757404238000
-    },
-    {
-      "wpm": 84,
-      "acc": 0.977,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1757300551000
-    },
-    {
-      "wpm": 80,
-      "acc": 0.9531000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1757300512000
     }
   ],
-  "fetchedAt": "2025-09-17T00:16:47.141Z"
+  "fetchedAt": "2025-09-17T12:07:16.567Z"
 }
