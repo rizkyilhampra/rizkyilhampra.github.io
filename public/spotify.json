@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2025-09-01T05:19:06.672Z",
+  "fetchedAt": "2025-10-01T00:39:44.075Z",
   "top": {
     "tracks": {
       "medium_term": [
@@ -68,20 +68,6 @@
           "durationMs": 122471
         },
         {
-          "id": "6HU7h9RYOaPRFeh0R3UeAr",
-          "name": "deja vu",
-          "artists": [
-            {
-              "id": "1McMsnEElThX1knmY4oliG",
-              "name": "Olivia Rodrigo"
-            }
-          ],
-          "album": "SOUR",
-          "url": "https://open.spotify.com/track/6HU7h9RYOaPRFeh0R3UeAr",
-          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
-          "durationMs": 215506
-        },
-        {
           "id": "5wANPM4fQCJwkGd4rN57mH",
           "name": "drivers license",
           "artists": [
@@ -94,6 +80,20 @@
           "url": "https://open.spotify.com/track/5wANPM4fQCJwkGd4rN57mH",
           "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
           "durationMs": 242013
+        },
+        {
+          "id": "0PtJbtW50jcvvswNPn3QGd",
+          "name": "Serana",
+          "artists": [
+            {
+              "id": "0f6TyESD8E1mD2oLJ4TGv1",
+              "name": "For Revenge"
+            }
+          ],
+          "album": "Perayaan Patah Hati - Babak 1",
+          "url": "https://open.spotify.com/track/0PtJbtW50jcvvswNPn3QGd",
+          "image": "https://i.scdn.co/image/ab67616d0000b27346f02ffc0922f939ed0fd53f",
+          "durationMs": 250000
         },
         {
           "id": "0XlUZXqo7VGLMQgs11KVyO",
@@ -156,13 +156,6 @@
     "artists": {
       "medium_term": [
         {
-          "id": "1McMsnEElThX1knmY4oliG",
-          "name": "Olivia Rodrigo",
-          "url": "https://open.spotify.com/artist/1McMsnEElThX1knmY4oliG",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebe03a98785f3658f0b6461ec4",
-          "genres": []
-        },
-        {
           "id": "3zmfs9cQwzJl575W1ZYXeT",
           "name": "Men I Trust",
           "url": "https://open.spotify.com/artist/3zmfs9cQwzJl575W1ZYXeT",
@@ -170,6 +163,37 @@
           "genres": [
             "bedroom pop",
             "indie pop"
+          ]
+        },
+        {
+          "id": "1McMsnEElThX1knmY4oliG",
+          "name": "Olivia Rodrigo",
+          "url": "https://open.spotify.com/artist/1McMsnEElThX1knmY4oliG",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebe03a98785f3658f0b6461ec4",
+          "genres": []
+        },
+        {
+          "id": "0f6TyESD8E1mD2oLJ4TGv1",
+          "name": "For Revenge",
+          "url": "https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb966755ed50b3f4487621b030",
+          "genres": [
+            "indonesian pop",
+            "indonesian indie",
+            "pop punk",
+            "indonesian rock",
+            "indorock"
+          ]
+        },
+        {
+          "id": "2TM0qnbJH4QPhGMCdPt7fH",
+          "name": "Neck Deep",
+          "url": "https://open.spotify.com/artist/2TM0qnbJH4QPhGMCdPt7fH",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb2a272be2fa6777404247dc2b",
+          "genres": [
+            "pop punk",
+            "punk",
+            "emo"
           ]
         },
         {
@@ -214,27 +238,6 @@
           "image": "https://i.scdn.co/image/ab6761610000e5ebe8d9e3554d20222bad969aa0",
           "genres": [
             "dream pop"
-          ]
-        },
-        {
-          "id": "66CXWjxzNUsdJxJ2JdwvnR",
-          "name": "Ariana Grande",
-          "url": "https://open.spotify.com/artist/66CXWjxzNUsdJxJ2JdwvnR",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb6725802588d7dc1aba076ca5",
-          "genres": [
-            "pop"
-          ]
-        },
-        {
-          "id": "0f6TyESD8E1mD2oLJ4TGv1",
-          "name": "For Revenge",
-          "url": "https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb966755ed50b3f4487621b030",
-          "genres": [
-            "indonesian pop",
-            "indonesian indie",
-            "pop punk",
-            "indorock"
           ]
         }
       ]
