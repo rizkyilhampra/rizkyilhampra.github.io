@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2025-11-01T00:39:11.594Z",
+  "fetchedAt": "2025-12-01T00:46:11.250Z",
   "top": {
     "tracks": {
       "medium_term": [
@@ -92,7 +92,7 @@
           ],
           "album": "Perayaan Patah Hati - Babak 1",
           "url": "https://open.spotify.com/track/0PtJbtW50jcvvswNPn3QGd",
-          "image": "https://i.scdn.co/image/ab67616d0000b27346f02ffc0922f939ed0fd53f",
+          "image": "https://i.scdn.co/image/ab67616d0000b2731e2bf47fcf24c1b5fdfd0d69",
           "durationMs": 250000
         },
         {
@@ -154,93 +154,7 @@
       ]
     },
     "artists": {
-      "medium_term": [
-        {
-          "id": "3zmfs9cQwzJl575W1ZYXeT",
-          "name": "Men I Trust",
-          "url": "https://open.spotify.com/artist/3zmfs9cQwzJl575W1ZYXeT",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebfd30ebd7e80dad6b2383aab0",
-          "genres": [
-            "bedroom pop",
-            "indie pop"
-          ]
-        },
-        {
-          "id": "1McMsnEElThX1knmY4oliG",
-          "name": "Olivia Rodrigo",
-          "url": "https://open.spotify.com/artist/1McMsnEElThX1knmY4oliG",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebe03a98785f3658f0b6461ec4",
-          "genres": []
-        },
-        {
-          "id": "0f6TyESD8E1mD2oLJ4TGv1",
-          "name": "For Revenge",
-          "url": "https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb966755ed50b3f4487621b030",
-          "genres": [
-            "indonesian pop",
-            "indonesian indie",
-            "pop punk",
-            "indonesian rock",
-            "indorock"
-          ]
-        },
-        {
-          "id": "2TM0qnbJH4QPhGMCdPt7fH",
-          "name": "Neck Deep",
-          "url": "https://open.spotify.com/artist/2TM0qnbJH4QPhGMCdPt7fH",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb2a272be2fa6777404247dc2b",
-          "genres": [
-            "pop punk",
-            "punk",
-            "emo"
-          ]
-        },
-        {
-          "id": "6qqNVTkY8uBg9cP3Jd7DAH",
-          "name": "Billie Eilish",
-          "url": "https://open.spotify.com/artist/6qqNVTkY8uBg9cP3Jd7DAH",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb4a21b4760d2ecb7b0dcdc8da",
-          "genres": []
-        },
-        {
-          "id": "00FQb4jTyendYWaN8pK0wa",
-          "name": "Lana Del Rey",
-          "url": "https://open.spotify.com/artist/00FQb4jTyendYWaN8pK0wa",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebb99cacf8acd5378206767261",
-          "genres": []
-        },
-        {
-          "id": "4AK6F7OLvEQ5QYCBNiQWHq",
-          "name": "One Direction",
-          "url": "https://open.spotify.com/artist/4AK6F7OLvEQ5QYCBNiQWHq",
-          "image": "https://i.scdn.co/image/5bb443424a1ad71603c43d67f5af1a04da6bb3c8",
-          "genres": []
-        },
-        {
-          "id": "03uMw43UVu9MsQCcHVSGjX",
-          "name": "Alice Phoebe Lou",
-          "url": "https://open.spotify.com/artist/03uMw43UVu9MsQCcHVSGjX",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb5d2ce0048a6e0974b08ae73e",
-          "genres": []
-        },
-        {
-          "id": "1FdUgjmEeGCpmAxXatjiEG",
-          "name": "Cornelia Murr",
-          "url": "https://open.spotify.com/artist/1FdUgjmEeGCpmAxXatjiEG",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebd9b646d2cab39eab3bab7056",
-          "genres": []
-        },
-        {
-          "id": "3lzTKwFsOqxtp5cLJ2qbSD",
-          "name": "Tokyo Tea Room",
-          "url": "https://open.spotify.com/artist/3lzTKwFsOqxtp5cLJ2qbSD",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebe8d9e3554d20222bad969aa0",
-          "genres": [
-            "dream pop"
-          ]
-        }
-      ]
+      "medium_term": []
     }
   }
 }
