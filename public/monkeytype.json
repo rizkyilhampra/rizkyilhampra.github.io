@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1132,
-        "startedTests": 2058,
-        "timeTyping": 35547.469999999914
+        "completedTests": 1135,
+        "startedTests": 2065,
+        "timeTyping": 35644.119999999915
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 248027,
-      "streak": 2,
+      "xp": 249249,
+      "streak": 3,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1132,
-    "timeTyping": 35547.469999999914
+    "tests": 1135,
+    "timeTyping": 35644.119999999915
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 87,
+      "acc": 0.9551000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1765258644000
+    },
+    {
+      "wpm": 95,
+      "acc": 1,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1765245174000
+    },
+    {
+      "wpm": 99,
+      "acc": 0.9767,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1765244652000
+    },
     {
       "wpm": 105,
       "acc": 0.9887999999999999,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1764651830000
-    },
-    {
-      "wpm": 59,
-      "acc": 0.9408,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1764651649000
-    },
-    {
-      "wpm": 84,
-      "acc": 0.982,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1764651548000
-    },
-    {
-      "wpm": 94,
-      "acc": 0.9686,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1764649093000
     }
   ],
-  "fetchedAt": "2025-12-09T00:18:31.515Z"
+  "fetchedAt": "2025-12-09T12:07:58.230Z"
 }
