@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1151,
-        "startedTests": 2109,
-        "timeTyping": 36336.68999999991
+        "completedTests": 1154,
+        "startedTests": 2112,
+        "timeTyping": 36426.679999999906
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 254356,
-      "streak": 2,
+      "xp": 255553,
+      "streak": 3,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1151,
-    "timeTyping": 36336.68999999991
+    "tests": 1154,
+    "timeTyping": 36426.679999999906
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 102,
+      "acc": 0.9845999999999999,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1765948820000
+    },
+    {
+      "wpm": 86,
+      "acc": 0.9494,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1765933617000
+    },
+    {
+      "wpm": 85,
+      "acc": 0.9451,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1765933502000
+    },
     {
       "wpm": 101,
       "acc": 0.9662999999999999,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1765258644000
-    },
-    {
-      "wpm": 95,
-      "acc": 1,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1765245174000
-    },
-    {
-      "wpm": 99,
-      "acc": 0.9767,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1765244652000
-    },
-    {
-      "wpm": 105,
-      "acc": 0.9887999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1765173517000
     }
   ],
-  "fetchedAt": "2025-12-17T00:18:19.438Z"
+  "fetchedAt": "2025-12-17T12:07:40.172Z"
 }
