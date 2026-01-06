@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1162,
-        "startedTests": 2130,
-        "timeTyping": 36708.9099999999
+        "completedTests": 1165,
+        "startedTests": 2137,
+        "timeTyping": 36829.4399999999
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 261098,
-      "streak": 1,
+      "xp": 262300,
+      "streak": 2,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1162,
-    "timeTyping": 36708.9099999999
+    "tests": 1165,
+    "timeTyping": 36829.4399999999
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 94,
+      "acc": 0.9712000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1767686225000
+    },
+    {
+      "wpm": 83,
+      "acc": 0.9686,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1767680723000
+    },
+    {
+      "wpm": 84,
+      "acc": 0.9571,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1767680657000
+    },
     {
       "wpm": 104,
       "acc": 0.9962000000000001,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1765763661000
-    },
-    {
-      "wpm": 105,
-      "acc": 0.9677,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1765762852000
-    },
-    {
-      "wpm": 102,
-      "acc": 0.985,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1765518716000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9484,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1765518651000
     }
   ],
-  "fetchedAt": "2026-01-06T00:19:43.138Z"
+  "fetchedAt": "2026-01-06T12:07:57.835Z"
 }
