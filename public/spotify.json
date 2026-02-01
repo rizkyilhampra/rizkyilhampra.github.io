@@ -1,86 +1,8 @@
 {
-  "fetchedAt": "2026-01-01T00:45:09.930Z",
+  "fetchedAt": "2026-02-01T00:56:19.949Z",
   "top": {
     "tracks": {
       "medium_term": [
-        {
-          "id": "6ZwH5ySQkYeI6zUbDnEl1A",
-          "name": "Sedang Langit Gelap",
-          "artists": [
-            {
-              "id": "1EShbEntXfxV95IUszrW8Y",
-              "name": "Elegi"
-            },
-            {
-              "id": "23Fl19jB7KhoSS2uQoPX5D",
-              "name": "Zachary H. Evans"
-            },
-            {
-              "id": "6zUE25oS0ZrIuJNd1NAVXF",
-              "name": "Cininta"
-            }
-          ],
-          "album": "Sedang Langit Gelap",
-          "url": "https://open.spotify.com/track/6ZwH5ySQkYeI6zUbDnEl1A",
-          "image": "https://i.scdn.co/image/ab67616d0000b2737e0a71568089d3eab6cb0042",
-          "durationMs": 421529
-        },
-        {
-          "id": "1kuGVB7EU95pJObxwvfwKS",
-          "name": "vampire",
-          "artists": [
-            {
-              "id": "1McMsnEElThX1knmY4oliG",
-              "name": "Olivia Rodrigo"
-            }
-          ],
-          "album": "GUTS",
-          "url": "https://open.spotify.com/track/1kuGVB7EU95pJObxwvfwKS",
-          "image": "https://i.scdn.co/image/ab67616d0000b273e85259a1cae29a8d91f2093d",
-          "durationMs": 219724
-        },
-        {
-          "id": "5CZ40GBx1sQ9agT82CLQCT",
-          "name": "traitor",
-          "artists": [
-            {
-              "id": "1McMsnEElThX1knmY4oliG",
-              "name": "Olivia Rodrigo"
-            }
-          ],
-          "album": "SOUR",
-          "url": "https://open.spotify.com/track/5CZ40GBx1sQ9agT82CLQCT",
-          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
-          "durationMs": 229226
-        },
-        {
-          "id": "0MeuEpNgGbNhA9jlgFsPSi",
-          "name": "What Matters Most",
-          "artists": [
-            {
-              "id": "3zmfs9cQwzJl575W1ZYXeT",
-              "name": "Men I Trust"
-            }
-          ],
-          "album": "Equus Asinus",
-          "url": "https://open.spotify.com/track/0MeuEpNgGbNhA9jlgFsPSi",
-          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
-          "durationMs": 122471
-        },
-        {
-          "id": "5wANPM4fQCJwkGd4rN57mH",
-          "name": "drivers license",
-          "artists": [
-            {
-              "id": "1McMsnEElThX1knmY4oliG",
-              "name": "Olivia Rodrigo"
-            }
-          ],
-          "album": "SOUR",
-          "url": "https://open.spotify.com/track/5wANPM4fQCJwkGd4rN57mH",
-          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
-          "durationMs": 242013
-        },
         {
           "id": "0PtJbtW50jcvvswNPn3QGd",
           "name": "Serana",
@@ -96,65 +18,213 @@
           "durationMs": 250000
         },
         {
-          "id": "0XlUZXqo7VGLMQgs11KVyO",
-          "name": "I Don't Like Music",
+          "id": "10pK13X1wty80C3uQY0Bea",
+          "name": "Suatu Malam Tepat Di Hari Sebelum Keberangkatanmu Menuju Kota Yang Kau Cintai Lebih Dari Aku",
           "artists": [
             {
-              "id": "3zmfs9cQwzJl575W1ZYXeT",
-              "name": "Men I Trust"
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
             }
           ],
-          "album": "Equus Asinus",
-          "url": "https://open.spotify.com/track/0XlUZXqo7VGLMQgs11KVyO",
-          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
-          "durationMs": 203823
+          "album": "Merayakan Sepi",
+          "url": "https://open.spotify.com/track/10pK13X1wty80C3uQY0Bea",
+          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
+          "durationMs": 159458
         },
         {
-          "id": "11HRSkKS5nDZB0921Kwne1",
-          "name": "All My Candles",
+          "id": "2Ip06TQ2B1G2slrYieYl5b",
+          "name": "Rindu Yang Kita Tangisi",
           "artists": [
             {
-              "id": "3zmfs9cQwzJl575W1ZYXeT",
-              "name": "Men I Trust"
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
             }
           ],
-          "album": "Equus Asinus",
-          "url": "https://open.spotify.com/track/11HRSkKS5nDZB0921Kwne1",
-          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
-          "durationMs": 169225
+          "album": "Rindu Yang Kita Tangisi",
+          "url": "https://open.spotify.com/track/2Ip06TQ2B1G2slrYieYl5b",
+          "image": "https://i.scdn.co/image/ab67616d0000b2738a84956a5ae506cf442f6771",
+          "durationMs": 238458
         },
         {
-          "id": "199B05lG6hBgawhiiY12Ct",
-          "name": "The Landkeeper",
+          "id": "5tlb0AxuzsMWL2GtEppXGX",
+          "name": "Multo",
           "artists": [
             {
-              "id": "3zmfs9cQwzJl575W1ZYXeT",
-              "name": "Men I Trust"
+              "id": "61nn6nOoLWjVC1ER2qFAvN",
+              "name": "Cup of Joe"
             }
           ],
-          "album": "Equus Asinus",
-          "url": "https://open.spotify.com/track/199B05lG6hBgawhiiY12Ct",
-          "image": "https://i.scdn.co/image/ab67616d0000b27343e6d3518b1880f8eaa76cf9",
-          "durationMs": 224708
+          "album": "Silakbo",
+          "url": "https://open.spotify.com/track/5tlb0AxuzsMWL2GtEppXGX",
+          "image": "https://i.scdn.co/image/ab67616d0000b27385a7fd707d00e5d255807add",
+          "durationMs": 237692
         },
         {
-          "id": "1afEbbD4hZvdA5orDq1sPj",
-          "name": "Same dream, same mind, same night",
+          "id": "0Efmh8yhqenqZ6WohgLxR5",
+          "name": "Pulang",
           "artists": [
             {
-              "id": "7nqOGRxlXj7N2JYbgNEjYH",
-              "name": "SEVENTEEN"
+              "id": "0f6TyESD8E1mD2oLJ4TGv1",
+              "name": "For Revenge"
             }
           ],
-          "album": "SEVENTEEN 8th Mini Album 'Your Choice'",
-          "url": "https://open.spotify.com/track/1afEbbD4hZvdA5orDq1sPj",
-          "image": "https://i.scdn.co/image/ab67616d0000b273c1a20972c9a083d5cece9ce5",
-          "durationMs": 247920
+          "album": "Second Chance",
+          "url": "https://open.spotify.com/track/0Efmh8yhqenqZ6WohgLxR5",
+          "image": "https://i.scdn.co/image/ab67616d0000b273089bba6aab23c1e5d89ec369",
+          "durationMs": 273920
+        },
+        {
+          "id": "0dIOvducp7ujHTqj66cQ3X",
+          "name": "Amnesia",
+          "artists": [
+            {
+              "id": "5Rl15oVamLq7FbSb0NNBNy",
+              "name": "5 Seconds of Summer"
+            }
+          ],
+          "album": "5 Seconds Of Summer",
+          "url": "https://open.spotify.com/track/0dIOvducp7ujHTqj66cQ3X",
+          "image": "https://i.scdn.co/image/ab67616d0000b27324dea8a1edf4a5b9a10fb67a",
+          "durationMs": 237247
+        },
+        {
+          "id": "0eNC1TqwPGYqlJ9EX3AcwP",
+          "name": "Penghujan",
+          "artists": [
+            {
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
+            }
+          ],
+          "album": "Merayakan Sepi",
+          "url": "https://open.spotify.com/track/0eNC1TqwPGYqlJ9EX3AcwP",
+          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
+          "durationMs": 68108
+        },
+        {
+          "id": "0jlREJOAyFtUKmW3vAKogF",
+          "name": "Move Along",
+          "artists": [
+            {
+              "id": "5qNRmCwvoxDRNP12wW3s0H",
+              "name": "Summerlane"
+            }
+          ],
+          "album": "Move Along",
+          "url": "https://open.spotify.com/track/0jlREJOAyFtUKmW3vAKogF",
+          "image": "https://i.scdn.co/image/ab67616d0000b27370c4244dcd677a8f8dad5094",
+          "durationMs": 196000
+        },
+        {
+          "id": "0lgiIwUU7Y10uXfKkgXdjk",
+          "name": "In Bloom",
+          "artists": [
+            {
+              "id": "2TM0qnbJH4QPhGMCdPt7fH",
+              "name": "Neck Deep"
+            }
+          ],
+          "album": "The Peace And The Panic",
+          "url": "https://open.spotify.com/track/0lgiIwUU7Y10uXfKkgXdjk",
+          "image": "https://i.scdn.co/image/ab67616d0000b273012600ed0113720188be4dd5",
+          "durationMs": 218054
+        },
+        {
+          "id": "1G69mIxtHGdftgnbNEvlBU",
+          "name": "All I Wanted to Tell You That I'm Missing You",
+          "artists": [
+            {
+              "id": "6U6powfqohOGUunRu0fSw3",
+              "name": "Hoolahoop"
+            }
+          ],
+          "album": "Hari Untuk Berlari",
+          "url": "https://open.spotify.com/track/1G69mIxtHGdftgnbNEvlBU",
+          "image": "https://i.scdn.co/image/ab67616d0000b2733eafcb48bef94c082e4aefe6",
+          "durationMs": 261946
         }
       ]
     },
     "artists": {
-      "medium_term": []
+      "medium_term": [
+        {
+          "id": "0f6TyESD8E1mD2oLJ4TGv1",
+          "name": "For Revenge",
+          "url": "https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebddcce62f716639252e184879",
+          "genres": [
+            "indonesian pop",
+            "indonesian indie",
+            "pop punk",
+            "indorock",
+            "indonesian rock"
+          ]
+        },
+        {
+          "id": "1EShbEntXfxV95IUszrW8Y",
+          "name": "Elegi",
+          "url": "https://open.spotify.com/artist/1EShbEntXfxV95IUszrW8Y",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb4c0b24411b9dbd1abdd1d1b0",
+          "genres": [
+            "indonesian indie"
+          ]
+        },
+        {
+          "id": "2TM0qnbJH4QPhGMCdPt7fH",
+          "name": "Neck Deep",
+          "url": "https://open.spotify.com/artist/2TM0qnbJH4QPhGMCdPt7fH",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb2a272be2fa6777404247dc2b",
+          "genres": [
+            "pop punk",
+            "punk",
+            "emo"
+          ]
+        },
+        {
+          "id": "35l9BRT7MXmM8bv2WDQiyB",
+          "name": "beabadoobee",
+          "url": "https://open.spotify.com/artist/35l9BRT7MXmM8bv2WDQiyB",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebe7c6cea0c83857388127fced",
+          "genres": [
+            "bedroom pop"
+          ]
+        },
+        {
+          "id": "3zmfs9cQwzJl575W1ZYXeT",
+          "name": "Men I Trust",
+          "url": "https://open.spotify.com/artist/3zmfs9cQwzJl575W1ZYXeT",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebfd30ebd7e80dad6b2383aab0",
+          "genres": [
+            "bedroom pop",
+            "indie pop"
+          ]
+        },
+        {
+          "id": "1QAJqy2dA3ihHBFIHRphZj",
+          "name": "Cigarettes After Sex",
+          "url": "https://open.spotify.com/artist/1QAJqy2dA3ihHBFIHRphZj",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb1c312be98c615df97ea79a30",
+          "genres": [
+            "dream pop"
+          ]
+        },
+        {
+          "id": "4Uc8Dsxct0oMqx0P6i60ea",
+          "name": "Conan Gray",
+          "url": "https://open.spotify.com/artist/4Uc8Dsxct0oMqx0P6i60ea",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb4c2b62d4748524454a6f99b0",
+          "genres": []
+        },
+        {
+          "id": "3l0CmX0FuQjFxr8SK7Vqag",
+          "name": "Clairo",
+          "url": "https://open.spotify.com/artist/3l0CmX0FuQjFxr8SK7Vqag",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb4804c4a44c85afea1a72d1bd",
+          "genres": [
+            "bedroom pop"
+          ]
+        }
+      ]
     }
   }
 }
