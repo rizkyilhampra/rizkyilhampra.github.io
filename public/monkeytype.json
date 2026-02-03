@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1198,
-        "startedTests": 2225,
-        "timeTyping": 38210.98999999988
+        "completedTests": 1207,
+        "startedTests": 2248,
+        "timeTyping": 38594.02999999988
       },
       "personalBests": {
         "time": {
@@ -159,8 +159,8 @@
           ]
         }
       },
-      "xp": 275559,
-      "streak": 2,
+      "xp": 277190,
+      "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
       "allTimeLbs": {
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1198,
-    "timeTyping": 38210.98999999988
+    "tests": 1207,
+    "timeTyping": 38594.02999999988
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,78 @@
     }
   },
   "recent": [
+    {
+      "wpm": 83,
+      "acc": 0.9312999999999999,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770100606000
+    },
+    {
+      "wpm": 94,
+      "acc": 0.9715,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770100208000
+    },
+    {
+      "wpm": 98,
+      "acc": 0.9686,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770097858000
+    },
+    {
+      "wpm": 76,
+      "acc": 0.9312,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770097767000
+    },
+    {
+      "wpm": 87,
+      "acc": 0.9631000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770097686000
+    },
+    {
+      "wpm": 90,
+      "acc": 0.9826999999999999,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770097604000
+    },
+    {
+      "wpm": 102,
+      "acc": 0.9883,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770097572000
+    },
+    {
+      "wpm": 86,
+      "acc": 0.9536,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770087424000
+    },
+    {
+      "wpm": 89,
+      "acc": 0.9698,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1770087366000
+    },
     {
       "wpm": 90,
       "acc": 0.9494,
@@ -276,79 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1769756743000
-    },
-    {
-      "wpm": 107,
-      "acc": 0.9576,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769756712000
-    },
-    {
-      "wpm": 90,
-      "acc": 0.9615,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769581408000
-    },
-    {
-      "wpm": 88,
-      "acc": 0.9375,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769581377000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9876999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769580002000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9603,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769579965000
-    },
-    {
-      "wpm": 83,
-      "acc": 0.9407,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769572368000
-    },
-    {
-      "wpm": 95,
-      "acc": 0.9643999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769571470000
-    },
-    {
-      "wpm": 91,
-      "acc": 0.9275,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769568545000
-    },
-    {
-      "wpm": 94,
-      "acc": 0.9632999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1769503758000
     }
   ],
-  "fetchedAt": "2026-02-03T00:24:57.243Z"
+  "fetchedAt": "2026-02-03T12:12:01.913Z"
 }
