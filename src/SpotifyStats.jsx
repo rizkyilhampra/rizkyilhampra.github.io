@@ -99,7 +99,7 @@ export default function SpotifyStats() {
 function RankItem({ rank, image, title, subtitle, href }) {
   return (
     <li className="flex items-center gap-3 min-w-0">
-      <div className="w-7 h-7 rounded-full bg-muted text-muted-foreground flex items-center justify-center text-xs font-medium shrink-0">
+      <div className="w-7 h-7 rounded-full bg-primary/15 text-primary flex items-center justify-center text-xs font-semibold shrink-0">
         {rank}
       </div>
       <div className="w-12 h-12 rounded overflow-hidden bg-muted shrink-0">
@@ -164,7 +164,7 @@ function DualSkeleton() {
           <div className="space-y-3">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="flex items-center gap-3 min-w-0">
-                <div className="w-7 h-7 rounded-full bg-muted shrink-0" />
+                <div className="w-7 h-7 rounded-full bg-primary/10 shrink-0" />
                 <div className="w-12 h-12 rounded bg-muted shrink-0" />
                 <div className="flex-1 min-w-0">
                   <div className="h-3 w-3/4 bg-muted rounded" />
