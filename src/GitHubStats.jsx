@@ -1,44 +1,17 @@
 import { useState, useEffect } from "react";
 import ActivityCalendar from "react-activity-calendar";
 
-const CACHE_KEY = "github_contributions_cache";
-const CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
-const API_URL =
-  "https://github-contributions-api.jogruber.de/v4/rizkyilhampra?y=last";
-
 const catppuccinTheme = {
   light: ["#e6e9ef", "#c5a0e4", "#a374d5", "#8148c4", "#6c3fa3"],
   dark: ["#313244", "#4a3780", "#7047b0", "#9065d8", "#cba6f7"],
 };
-
-function readCache() {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const { data, cachedAt } = JSON.parse(raw);
-    if (Date.now() - cachedAt > CACHE_TTL_MS) return null;
-    return data;
-  } catch {
-    return null;
-  }
-}
-
-function writeCache(data) {
-  try {
-    localStorage.setItem(
-      CACHE_KEY,
-      JSON.stringify({ data, cachedAt: Date.now() })
-    );
-  } catch {
-    // storage quota exceeded — silently skip
-  }
-}
 
 export default function GitHubStats() {
   const [colorScheme, setColorScheme] = useState("light");
   const [contributions, setContributions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   // Sync colorScheme with theme toggle
   useEffect(() => {
@@ -56,25 +29,22 @@ export default function GitHubStats() {
     return () => observer.disconnect();
   }, []);
 
-  // Fetch with 24-hour localStorage cache
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const cached = readCache();
-      if (cached) {
-        if (!cancelled) {
-          setContributions(cached);
-          setLoading(false);
-        }
-        return;
-      }
       try {
-        const res = await fetch(API_URL);
+        const res = await fetch("/github.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-        const data = json.contributions;
-        writeCache(data);
-        if (!cancelled) setContributions(data);
+
+        if (json?.fetchedAt) {
+          setLastUpdated(new Date(json.fetchedAt));
+        } else {
+          const lastModified = res.headers.get("last-modified");
+          if (lastModified) setLastUpdated(new Date(lastModified));
+        }
+
+        if (!cancelled) setContributions(json.contributions);
       } catch (e) {
         if (!cancelled) setError(e);
       } finally {
@@ -107,6 +77,11 @@ export default function GitHubStats() {
             GitHub
           </a>
         </p>
+        {lastUpdated && (
+          <p className="text-xs text-muted-foreground mt-1">
+            Updated {formatTimeAgo(lastUpdated)} • Updates every 24 hours
+          </p>
+        )}
       </div>
       <div className="p-4 sm:p-6 bg-card border border-border rounded-lg overflow-x-auto">
         {error ? (
@@ -127,4 +102,17 @@ export default function GitHubStats() {
       </div>
     </section>
   );
+}
+
+function formatTimeAgo(date) {
+  const diffMs = Date.now() - date;
+  const diffMinutes = Math.floor(diffMs / (1000 * 60));
+  const diffHours = Math.floor(diffMinutes / 60);
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffMinutes < 1) return "just now";
+  if (diffMinutes < 60) return `${diffMinutes} minute${diffMinutes !== 1 ? "s" : ""} ago`;
+  if (diffHours < 24) return `${diffHours} hour${diffHours !== 1 ? "s" : ""} ago`;
+  if (diffDays < 7) return `${diffDays} day${diffDays !== 1 ? "s" : ""} ago`;
+  return date.toLocaleDateString();
 }
