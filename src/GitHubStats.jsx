@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ActivityCalendar from "react-activity-calendar";
+import { ActivityCalendar } from "react-activity-calendar";
 import { formatTimeAgo } from "./utils";
 
 const catppuccinTheme = {
@@ -84,7 +84,7 @@ export default function GitHubStats() {
           </p>
         )}
       </div>
-      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg overflow-x-auto">
+      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg overflow-x-auto flex justify-center">
         {error ? (
           <p className="text-sm text-muted-foreground">
             Could not load GitHub contributions.
