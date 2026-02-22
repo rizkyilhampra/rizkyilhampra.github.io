@@ -132,55 +132,51 @@ export default function GitHubStats() {
         )}
       </div>
 
-      {availableYears.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
-          <button
-            onClick={() => setSelectedYear("last-year")}
-            className={`px-3 py-1 text-sm rounded-full border transition-colors ${
-              selectedYear === "last-year"
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-card text-muted-foreground border-border hover:bg-muted"
-            }`}
-          >
-            Last year
-          </button>
-          {availableYears.map((year) => (
-            <button
-              key={year}
-              onClick={() => setSelectedYear(year)}
-              className={`px-3 py-1 text-sm rounded-full border transition-colors ${
-                selectedYear === year
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-card text-muted-foreground border-border hover:bg-muted"
-              }`}
-            >
-              {year}
-            </button>
-          ))}
+      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg">
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="overflow-x-auto min-w-0 flex-1 flex justify-center">
+            {error ? (
+              <p className="text-sm text-muted-foreground">
+                Could not load GitHub contributions.
+              </p>
+            ) : (
+              <ActivityCalendar
+                data={contributions ?? []}
+                loading={loading}
+                colorScheme={colorScheme}
+                theme={catppuccinTheme}
+                maxLevel={4}
+                showColorLegend
+                labels={{
+                  totalCount:
+                    selectedYear === "last-year"
+                      ? "{{count}} contributions in the last year"
+                      : `{{count}} contributions in ${selectedYear}`,
+                }}
+              />
+            )}
+          </div>
+          {availableYears.length > 0 && (
+            <div className="flex flex-row sm:flex-col gap-1 overflow-x-auto sm:overflow-x-visible shrink-0 sm:border-l sm:border-border sm:pl-4 pb-1 sm:pb-0">
+              {[
+                { label: "Last year", value: "last-year" },
+                ...availableYears.slice(-3).reverse().map((y) => ({ label: String(y), value: y })),
+              ].map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setSelectedYear(value)}
+                  className={`px-3 py-1.5 text-sm rounded-md whitespace-nowrap transition-colors text-left ${
+                    selectedYear === value
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-      )}
-
-      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg overflow-x-auto flex justify-center">
-        {error ? (
-          <p className="text-sm text-muted-foreground">
-            Could not load GitHub contributions.
-          </p>
-        ) : (
-          <ActivityCalendar
-            data={contributions ?? []}
-            loading={loading}
-            colorScheme={colorScheme}
-            theme={catppuccinTheme}
-            maxLevel={4}
-            showColorLegend
-            labels={{
-              totalCount:
-                selectedYear === "last-year"
-                  ? "{{count}} contributions in the last year"
-                  : `{{count}} contributions in ${selectedYear}`,
-            }}
-          />
-        )}
       </div>
     </section>
   );
