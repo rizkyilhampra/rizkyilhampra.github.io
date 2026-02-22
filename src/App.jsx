@@ -15,6 +15,7 @@ import Footer from "./Footer";
 import GitHubStats from "./GitHubStats";
 import MonkeytypeStats from "./MonkeytypeStats";
 import SpotifyStats from "./SpotifyStats";
+import WakatimeStats from "./WakatimeStats";
 
 export default function App() {
   const socialLinks = [
@@ -179,10 +180,18 @@ export default function App() {
           <GitHubStats />
         </div>
 
+        {/* WakaTime Stats */}
+        <div
+          className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
+          style={{ animationDelay: "2.0s", animationFillMode: "both" }}
+        >
+          <WakatimeStats />
+        </div>
+
         {/* Footer */}
         <div
           className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none"
-          style={{ animationDelay: "2.1s", animationFillMode: "both" }}
+          style={{ animationDelay: "2.3s", animationFillMode: "both" }}
         >
           <Footer />
         </div>

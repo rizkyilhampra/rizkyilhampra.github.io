@@ -1,0 +1,67 @@
+name: Update WakaTime Stats
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 */12 * * *' # every 12 hours
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN_PAT }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch WakaTime data
+        env:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_OUT_PATH: public/wakatime.json
+        run: |
+          if ! node scripts/fetch-wakatime.mjs; then
+            echo "Failed to fetch WakaTime data"
+            exit 1
+          fi
+
+      - name: Verify changes
+        id: verify
+        run: |
+          # Check if public/wakatime.json exists and has changes (or is new)
+          if [[ -f "public/wakatime.json" ]]; then
+            # Check if it's a new file or has changes
+            if git ls-files --error-unmatch public/wakatime.json >/dev/null 2>&1; then
+              # File is tracked, check for changes
+              if git diff --quiet public/wakatime.json; then
+                echo "No changes to public/wakatime.json"
+                echo "changed=false" >> $GITHUB_OUTPUT
+              else
+                echo "WakaTime data updated (existing file)"
+                echo "changed=true" >> $GITHUB_OUTPUT
+              fi
+            else
+              # File is untracked (new)
+              echo "WakaTime data created (new file)"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "public/wakatime.json not found"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Commit and push if changed
+        if: steps.verify.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/wakatime.json
+          git commit -m "chore(wakatime): update stats"
+          git push
