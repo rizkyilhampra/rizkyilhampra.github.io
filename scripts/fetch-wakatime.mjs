@@ -6,7 +6,7 @@
  * Auth: Basic base64(API_KEY + ':')
  *
  * Env vars:
- *   WAKATIME_API_KEY   - required for live data; falls back to sample file
+ *   WAKATIME_API_KEY   - required for live data; falls back to empty stub
  *   WAKATIME_OUT_PATH  - output file path (default: public/wakatime.json)
  */
 
@@ -16,9 +16,8 @@ const API_KEY = process.env.WAKATIME_API_KEY;
 const OUT_PATH = process.env.WAKATIME_OUT_PATH || 'public/wakatime.json';
 
 if (!API_KEY) {
-  console.error('WAKATIME_API_KEY not set. Writing sample file instead.');
-  const sample = await fs.readFile('wakatime.sample.json', 'utf8');
-  await fs.writeFile(OUT_PATH, sample);
+  console.error('WAKATIME_API_KEY not set. Writing empty stub instead.');
+  await fs.writeFile(OUT_PATH, JSON.stringify({ fetchedAt: new Date().toISOString(), languages: [] }, null, 2));
   process.exit(0);
 }
 
@@ -53,25 +52,22 @@ function normalize(data) {
   const pick = (arr, limit) =>
     (Array.isArray(arr) ? arr : []).slice(0, limit).map((item) => ({
       name: item.name || 'Unknown',
-      totalSeconds: Math.round(item.total_seconds ?? 0),
       percent: parseFloat((item.percent ?? 0).toFixed(1)),
-      text: item.text || fmtSeconds(Math.round(item.total_seconds ?? 0)),
+      text: fmtSeconds(item.total_seconds ?? 0),
     }));
 
   return {
     fetchedAt: new Date().toISOString(),
-    range: data.range ?? 'last_7_days',
-    totalSeconds: Math.round(data.total_seconds ?? 0),
-    dailyAverageSeconds: Math.round(data.daily_average ?? 0),
     languages: pick(data.languages, 6),
-    projects: pick(data.projects, 4),
-    editors: pick(data.editors, 3),
   };
 }
 
 function fmtSeconds(s) {
+  if (s < 1) return `${(s * 1000).toFixed(0)} ms`;
   const h = Math.floor(s / 3600);
   const m = Math.floor((s % 3600) / 60);
+  const sec = Math.floor(s % 60);
   if (h > 0) return `${h} hr${h !== 1 ? 's' : ''} ${m} min${m !== 1 ? 's' : ''}`;
-  return `${m} min${m !== 1 ? 's' : ''}`;
+  if (m > 0) return `${m} min${m !== 1 ? 's' : ''}`;
+  return `${sec} sec${sec !== 1 ? 's' : ''}`;
 }
