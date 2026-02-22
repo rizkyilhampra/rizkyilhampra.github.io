@@ -134,6 +134,26 @@ export default function GitHubStats() {
 
       <div className="p-4 sm:p-6 bg-card border border-border rounded-lg">
         <div className="flex flex-col sm:flex-row gap-4">
+          {availableYears.length > 0 && (
+            <div className="flex flex-row sm:flex-col gap-1 overflow-x-auto sm:overflow-x-visible shrink-0 sm:order-last sm:border-l sm:border-border sm:pl-4 pb-1 sm:pb-0">
+              {[
+                { label: "Last year", value: "last-year" },
+                ...availableYears.slice(-3).reverse().map((y) => ({ label: String(y), value: y })),
+              ].map(({ label, value }) => (
+                <button
+                  key={value}
+                  onClick={() => setSelectedYear(value)}
+                  className={`px-3 py-1.5 text-sm rounded-md whitespace-nowrap transition-colors text-left ${
+                    selectedYear === value
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
           <div className="overflow-x-auto min-w-0 flex-1 flex justify-center">
             {error ? (
               <p className="text-sm text-muted-foreground">
@@ -156,26 +176,6 @@ export default function GitHubStats() {
               />
             )}
           </div>
-          {availableYears.length > 0 && (
-            <div className="flex flex-row sm:flex-col gap-1 overflow-x-auto sm:overflow-x-visible shrink-0 sm:border-l sm:border-border sm:pl-4 pb-1 sm:pb-0">
-              {[
-                { label: "Last year", value: "last-year" },
-                ...availableYears.slice(-3).reverse().map((y) => ({ label: String(y), value: y })),
-              ].map(({ label, value }) => (
-                <button
-                  key={value}
-                  onClick={() => setSelectedYear(value)}
-                  className={`px-3 py-1.5 text-sm rounded-md whitespace-nowrap transition-colors text-left ${
-                    selectedYear === value
-                      ? "bg-primary/10 text-primary font-medium"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </section>
