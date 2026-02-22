@@ -1,0 +1,66 @@
+{
+  "fetchedAt": "2026-02-22T14:00:35.970Z",
+  "range": "last_7_days",
+  "totalSeconds": 610,
+  "dailyAverageSeconds": 203,
+  "languages": [
+    {
+      "name": "TypeScript",
+      "totalSeconds": 452,
+      "percent": 74.1,
+      "text": "7 mins"
+    },
+    {
+      "name": "YAML",
+      "totalSeconds": 127,
+      "percent": 20.8,
+      "text": "2 mins"
+    },
+    {
+      "name": "JSON",
+      "totalSeconds": 12,
+      "percent": 2,
+      "text": "0 secs"
+    },
+    {
+      "name": "Bash",
+      "totalSeconds": 10,
+      "percent": 1.6,
+      "text": "0 secs"
+    },
+    {
+      "name": "Text",
+      "totalSeconds": 4,
+      "percent": 0.7,
+      "text": "0 secs"
+    },
+    {
+      "name": "INI",
+      "totalSeconds": 3,
+      "percent": 0.5,
+      "text": "0 secs"
+    }
+  ],
+  "projects": [
+    {
+      "name": "picare-v2",
+      "totalSeconds": 600,
+      "percent": 98.4,
+      "text": "10 mins"
+    },
+    {
+      "name": "rizkyilhampra.github.io",
+      "totalSeconds": 10,
+      "percent": 1.6,
+      "text": "0 secs"
+    }
+  ],
+  "editors": [
+    {
+      "name": "Neovim",
+      "totalSeconds": 610,
+      "percent": 100,
+      "text": "10 mins"
+    }
+  ]
+}
