@@ -9,6 +9,8 @@ const catppuccinTheme = {
 
 export default function GitHubStats() {
   const [colorScheme, setColorScheme] = useState("light");
+  const [availableYears, setAvailableYears] = useState([]);
+  const [selectedYear, setSelectedYear] = useState(null);
   const [contributions, setContributions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,21 +32,43 @@ export default function GitHubStats() {
     return () => observer.disconnect();
   }, []);
 
+  // Load manifest on mount
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch("/github.json", { cache: "no-store" });
+        const res = await fetch("/github-manifest.json", { cache: "no-store" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const json = await res.json();
-
-        if (json?.fetchedAt) {
-          setLastUpdated(new Date(json.fetchedAt));
-        } else {
-          const lastModified = res.headers.get("last-modified");
-          if (lastModified) setLastUpdated(new Date(lastModified));
+        if (!cancelled) {
+          setAvailableYears(json.years ?? []);
+          setLastUpdated(json.fetchedAt ? new Date(json.fetchedAt) : null);
+          const currentYear = new Date().getFullYear();
+          const defaultYear = (json.years ?? []).includes(currentYear)
+            ? currentYear
+            : (json.years ?? []).at(-1) ?? null;
+          setSelectedYear(defaultYear);
         }
+      } catch (e) {
+        if (!cancelled) setError(e);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
+  // Load contributions for selected year
+  useEffect(() => {
+    if (selectedYear === null) return;
+    let cancelled = false;
+    setLoading(true);
+    setContributions(null);
+    (async () => {
+      try {
+        const res = await fetch(`/github-${selectedYear}.json`, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
         if (!cancelled) setContributions(json.contributions);
       } catch (e) {
         if (!cancelled) setError(e);
@@ -55,7 +79,7 @@ export default function GitHubStats() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [selectedYear]);
 
   return (
     <section aria-labelledby="github-stats-title" className="mt-16 md:mt-20">
@@ -84,6 +108,25 @@ export default function GitHubStats() {
           </p>
         )}
       </div>
+
+      {availableYears.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
+          {availableYears.map((year) => (
+            <button
+              key={year}
+              onClick={() => setSelectedYear(year)}
+              className={`px-3 py-1 text-sm rounded-full border transition-colors ${
+                selectedYear === year
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-card text-muted-foreground border-border hover:bg-muted"
+              }`}
+            >
+              {year}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="p-4 sm:p-6 bg-card border border-border rounded-lg overflow-x-auto flex justify-center">
         {error ? (
           <p className="text-sm text-muted-foreground">
@@ -97,11 +140,14 @@ export default function GitHubStats() {
             theme={catppuccinTheme}
             maxLevel={4}
             showColorLegend
-            labels={{ totalCount: "{{count}} contributions in the last year" }}
+            labels={{
+              totalCount: selectedYear
+                ? `{{count}} contributions in ${selectedYear}`
+                : "{{count}} contributions",
+            }}
           />
         )}
       </div>
     </section>
   );
 }
-
