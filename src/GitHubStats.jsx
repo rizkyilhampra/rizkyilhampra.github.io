@@ -10,7 +10,7 @@ const catppuccinTheme = {
 export default function GitHubStats() {
   const [colorScheme, setColorScheme] = useState("light");
   const [availableYears, setAvailableYears] = useState([]);
-  const [selectedYear, setSelectedYear] = useState(null);
+  const [selectedYear, setSelectedYear] = useState("last-year");
   const [contributions, setContributions] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -43,11 +43,6 @@ export default function GitHubStats() {
         if (!cancelled) {
           setAvailableYears(json.years ?? []);
           setLastUpdated(json.fetchedAt ? new Date(json.fetchedAt) : null);
-          const currentYear = new Date().getFullYear();
-          const defaultYear = (json.years ?? []).includes(currentYear)
-            ? currentYear
-            : (json.years ?? []).at(-1) ?? null;
-          setSelectedYear(defaultYear);
         }
       } catch (e) {
         if (!cancelled) setError(e);
@@ -58,18 +53,46 @@ export default function GitHubStats() {
     };
   }, []);
 
-  // Load contributions for selected year
+  // Load contributions for selected year (or last-year rolling window)
   useEffect(() => {
-    if (selectedYear === null) return;
+    if (availableYears.length === 0) return;
     let cancelled = false;
     setLoading(true);
     setContributions(null);
     (async () => {
       try {
-        const res = await fetch(`/github-${selectedYear}.json`, { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        if (!cancelled) setContributions(json.contributions);
+        if (selectedYear === "last-year") {
+          const today = new Date();
+          const cutoff = new Date(today);
+          cutoff.setFullYear(cutoff.getFullYear() - 1);
+          const cutoffStr = cutoff.toISOString().slice(0, 10);
+          const todayStr = today.toISOString().slice(0, 10);
+
+          // Fetch only the years that overlap the last-365-day window
+          const relevantYears = availableYears.filter(
+            (y) => y >= cutoff.getFullYear() && y <= today.getFullYear()
+          );
+          const results = await Promise.all(
+            relevantYears.map((y) =>
+              fetch(`/github-${y}.json`, { cache: "no-store" }).then((r) => {
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                return r.json();
+              })
+            )
+          );
+          if (!cancelled) {
+            const merged = results
+              .flatMap((r) => r.contributions)
+              .filter((c) => c.date >= cutoffStr && c.date <= todayStr)
+              .sort((a, b) => a.date.localeCompare(b.date));
+            setContributions(merged);
+          }
+        } else {
+          const res = await fetch(`/github-${selectedYear}.json`, { cache: "no-store" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const json = await res.json();
+          if (!cancelled) setContributions(json.contributions);
+        }
       } catch (e) {
         if (!cancelled) setError(e);
       } finally {
@@ -79,7 +102,7 @@ export default function GitHubStats() {
     return () => {
       cancelled = true;
     };
-  }, [selectedYear]);
+  }, [selectedYear, availableYears]);
 
   return (
     <section aria-labelledby="github-stats-title" className="mt-16 md:mt-20">
@@ -111,6 +134,16 @@ export default function GitHubStats() {
 
       {availableYears.length > 0 && (
         <div className="flex flex-wrap justify-center gap-2 mb-4">
+          <button
+            onClick={() => setSelectedYear("last-year")}
+            className={`px-3 py-1 text-sm rounded-full border transition-colors ${
+              selectedYear === "last-year"
+                ? "bg-primary text-primary-foreground border-primary"
+                : "bg-card text-muted-foreground border-border hover:bg-muted"
+            }`}
+          >
+            Last year
+          </button>
           {availableYears.map((year) => (
             <button
               key={year}
@@ -141,9 +174,10 @@ export default function GitHubStats() {
             maxLevel={4}
             showColorLegend
             labels={{
-              totalCount: selectedYear
-                ? `{{count}} contributions in ${selectedYear}`
-                : "{{count}} contributions",
+              totalCount:
+                selectedYear === "last-year"
+                  ? "{{count}} contributions in the last year"
+                  : `{{count}} contributions in ${selectedYear}`,
             }}
           />
         )}
