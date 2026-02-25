@@ -1,25 +1,25 @@
 {
-  "fetchedAt": "2026-02-24T12:13:50.569Z",
+  "fetchedAt": "2026-02-25T00:20:41.274Z",
   "languages": [
     {
       "name": "TypeScript",
-      "percent": 42.1,
+      "percent": 41.3,
       "text": "41 mins"
     },
     {
       "name": "Markdown",
-      "percent": 32.8,
+      "percent": 32.1,
       "text": "32 mins"
     },
     {
       "name": "Bash",
-      "percent": 19.8,
+      "percent": 19.4,
       "text": "19 mins"
     },
     {
       "name": "YAML",
-      "percent": 5,
-      "text": "4 mins"
+      "percent": 6.9,
+      "text": "6 mins"
     },
     {
       "name": "Docker",
