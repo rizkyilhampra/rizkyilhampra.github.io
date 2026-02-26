@@ -16,7 +16,7 @@
     "lucide-react": "^0.536.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-github-calendar": "^5.0.5",
+    "react-github-calendar": "^5.0.6",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
@@ -27,8 +27,8 @@
     "@farmfe/plugin-react": "^1.2.6",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
-    "autoprefixer": "^10.4.24",
-    "postcss": "^8.5.6",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
     "react-refresh": "^0.14.2",
     "tailwindcss": "^3.4.19"
   }
