@@ -1,24 +1,14 @@
 {
-  "fetchedAt": "2026-03-11T12:10:55.327Z",
+  "fetchedAt": "2026-03-12T00:15:44.531Z",
   "languages": [
     {
-      "name": "YAML",
-      "percent": 52.3,
-      "text": "9 mins"
-    },
-    {
-      "name": "JSON",
-      "percent": 24.3,
-      "text": "4 mins"
-    },
-    {
       "name": "TypeScript",
-      "percent": 23.2,
+      "percent": 99.2,
       "text": "4 mins"
     },
     {
       "name": "Other",
-      "percent": 0.2,
+      "percent": 0.8,
       "text": "2 secs"
     }
   ]
