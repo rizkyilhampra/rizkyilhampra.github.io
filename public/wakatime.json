@@ -1,14 +1,14 @@
 {
-  "fetchedAt": "2026-03-12T12:09:33.010Z",
+  "fetchedAt": "2026-03-13T00:18:29.057Z",
   "languages": [
     {
-      "name": "TypeScript",
-      "percent": 99.2,
-      "text": "4 mins"
+      "name": "Markdown",
+      "percent": 81.8,
+      "text": "9 secs"
     },
     {
       "name": "Other",
-      "percent": 0.8,
+      "percent": 18.2,
       "text": "2 secs"
     }
   ]
