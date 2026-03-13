@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1241,
-        "startedTests": 2345,
-        "timeTyping": 40102.71999999986
+        "completedTests": 1242,
+        "startedTests": 2346,
+        "timeTyping": 40132.71999999986
       },
       "personalBests": {
         "time": {
@@ -159,7 +159,7 @@
           ]
         }
       },
-      "xp": 290717,
+      "xp": 291790,
       "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1241,
-    "timeTyping": 40102.71999999986
+    "tests": 1242,
+    "timeTyping": 40132.71999999986
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,14 @@
     }
   },
   "recent": [
+    {
+      "wpm": 96,
+      "acc": 0.9876,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1773364728000
+    },
     {
       "wpm": 91,
       "acc": 0.9913,
@@ -340,15 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1770782225000
-    },
-    {
-      "wpm": 95,
-      "acc": 0.9721,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1770782161000
     }
   ],
-  "fetchedAt": "2026-03-13T00:24:01.782Z"
+  "fetchedAt": "2026-03-13T12:12:11.265Z"
 }
