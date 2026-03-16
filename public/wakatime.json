@@ -1,14 +1,19 @@
 {
-  "fetchedAt": "2026-03-15T12:08:28.409Z",
+  "fetchedAt": "2026-03-16T00:21:36.179Z",
   "languages": [
     {
+      "name": "Bash",
+      "percent": 96.9,
+      "text": "5 mins"
+    },
+    {
       "name": "Markdown",
-      "percent": 81.8,
+      "percent": 2.5,
       "text": "9 secs"
     },
     {
       "name": "Other",
-      "percent": 18.2,
+      "percent": 0.6,
       "text": "2 secs"
     }
   ]
