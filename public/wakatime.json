@@ -1,19 +1,24 @@
 {
-  "fetchedAt": "2026-03-17T12:15:20.167Z",
+  "fetchedAt": "2026-03-18T00:20:15.727Z",
   "languages": [
     {
       "name": "Bash",
-      "percent": 99.5,
-      "text": "1 hr 1 min"
+      "percent": 77.3,
+      "text": "1 hr 15 mins"
+    },
+    {
+      "name": "JSON",
+      "percent": 22.4,
+      "text": "21 mins"
     },
     {
       "name": "Markdown",
-      "percent": 0.2,
+      "percent": 0.1,
       "text": "9 secs"
     },
     {
       "name": "sh",
-      "percent": 0.2,
+      "percent": 0.1,
       "text": "8 secs"
     }
   ]
