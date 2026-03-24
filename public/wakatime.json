@@ -1,35 +1,35 @@
 {
-  "fetchedAt": "2026-03-23T12:15:11.811Z",
+  "fetchedAt": "2026-03-24T00:17:24.702Z",
   "languages": [
     {
-      "name": "Bash",
-      "percent": 56,
-      "text": "1 hr 9 mins"
-    },
-    {
       "name": "JSON",
-      "percent": 22.4,
+      "percent": 35.7,
       "text": "27 mins"
     },
     {
       "name": "TypeScript",
-      "percent": 12.1,
-      "text": "15 mins"
+      "percent": 23.6,
+      "text": "18 mins"
+    },
+    {
+      "name": "Bash",
+      "percent": 17.8,
+      "text": "13 mins"
+    },
+    {
+      "name": "YAML",
+      "percent": 8.8,
+      "text": "6 mins"
     },
     {
       "name": "sh",
-      "percent": 5.1,
+      "percent": 8.2,
       "text": "6 mins"
     },
     {
       "name": "Markdown",
-      "percent": 2.5,
+      "percent": 4,
       "text": "3 mins"
-    },
-    {
-      "name": "JavaScript",
-      "percent": 1.2,
-      "text": "1 min"
     }
   ]
 }
