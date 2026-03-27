@@ -1,9 +1,9 @@
 {
-  "fetchedAt": "2026-03-26T12:18:27.304Z",
+  "fetchedAt": "2026-03-27T00:21:38.504Z",
   "languages": [
     {
       "name": "JSON",
-      "percent": 39.5,
+      "percent": 39.4,
       "text": "33 mins"
     },
     {
@@ -18,8 +18,8 @@
     },
     {
       "name": "Bash",
-      "percent": 9.3,
-      "text": "7 mins"
+      "percent": 9.4,
+      "text": "8 mins"
     },
     {
       "name": "YAML",
