@@ -1,35 +1,35 @@
 {
-  "fetchedAt": "2026-04-06T12:16:43.216Z",
+  "fetchedAt": "2026-04-07T00:22:53.896Z",
   "languages": [
     {
+      "name": "JSON",
+      "percent": 75,
+      "text": "2 hrs 48 mins"
+    },
+    {
       "name": "TypeScript",
-      "percent": 40.1,
+      "percent": 11.4,
       "text": "25 mins"
     },
     {
-      "name": "YAML",
-      "percent": 28.4,
-      "text": "17 mins"
-    },
-    {
-      "name": "JSON",
-      "percent": 21.2,
-      "text": "13 mins"
+      "name": "Java",
+      "percent": 6.6,
+      "text": "14 mins"
     },
     {
       "name": "JavaScript",
-      "percent": 9.8,
-      "text": "6 mins"
+      "percent": 4.5,
+      "text": "9 mins"
+    },
+    {
+      "name": "Other",
+      "percent": 2.4,
+      "text": "5 mins"
     },
     {
       "name": "HTML",
-      "percent": 0.2,
+      "percent": 0.1,
       "text": "9 secs"
-    },
-    {
-      "name": "gitignore",
-      "percent": 0.2,
-      "text": "7 secs"
     }
   ]
 }
