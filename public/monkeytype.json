@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1264,
-        "startedTests": 2410,
-        "timeTyping": 41068.589999999844
+        "completedTests": 1267,
+        "startedTests": 2425,
+        "timeTyping": 41211.61999999984
       },
       "personalBests": {
         "time": {
@@ -159,7 +159,7 @@
           ]
         }
       },
-      "xp": 303385,
+      "xp": 304601,
       "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1264,
-    "timeTyping": 41068.589999999844
+    "tests": 1267,
+    "timeTyping": 41211.61999999984
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 84,
+      "acc": 0.9689,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1776405243000
+    },
+    {
+      "wpm": 101,
+      "acc": 0.981,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1776405116000
+    },
+    {
+      "wpm": 98,
+      "acc": 0.9843000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1776404864000
+    },
     {
       "wpm": 100,
       "acc": 0.9921,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1774322020000
-    },
-    {
-      "wpm": 98,
-      "acc": 0.9690000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1774321988000
-    },
-    {
-      "wpm": 93,
-      "acc": 0.9756,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1774321917000
-    },
-    {
-      "wpm": 105,
-      "acc": 0.9715,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1774243232000
     }
   ],
-  "fetchedAt": "2026-04-17T00:32:46.721Z"
+  "fetchedAt": "2026-04-17T12:21:45.750Z"
 }
