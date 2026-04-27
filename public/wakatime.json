@@ -1,34 +1,34 @@
 {
-  "fetchedAt": "2026-04-26T12:14:21.433Z",
+  "fetchedAt": "2026-04-27T00:27:57.529Z",
   "languages": [
     {
       "name": "Markdown",
-      "percent": 58.1,
+      "percent": 60.5,
       "text": "3 hrs 55 mins"
     },
     {
       "name": "TypeScript",
-      "percent": 23.8,
-      "text": "1 hr 36 mins"
+      "percent": 22.3,
+      "text": "1 hr 26 mins"
     },
     {
       "name": "Java",
-      "percent": 5.4,
+      "percent": 5.6,
       "text": "21 mins"
     },
     {
       "name": "JavaScript",
-      "percent": 3.6,
+      "percent": 3.8,
       "text": "14 mins"
     },
     {
       "name": "Git Config",
-      "percent": 2.9,
+      "percent": 3,
       "text": "11 mins"
     },
     {
       "name": "sh",
-      "percent": 2.1,
+      "percent": 2.2,
       "text": "8 mins"
     }
   ]
