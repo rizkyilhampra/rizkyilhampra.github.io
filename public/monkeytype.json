@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1268,
-        "startedTests": 2426,
-        "timeTyping": 41241.61999999984
+        "completedTests": 1271,
+        "startedTests": 2433,
+        "timeTyping": 41372.589999999844
       },
       "personalBests": {
         "time": {
@@ -159,7 +159,7 @@
           ]
         }
       },
-      "xp": 305654,
+      "xp": 306924,
       "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1268,
-    "timeTyping": 41241.61999999984
+    "tests": 1271,
+    "timeTyping": 41372.589999999844
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,30 @@
     }
   },
   "recent": [
+    {
+      "wpm": 102,
+      "acc": 0.9961,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1777468163000
+    },
+    {
+      "wpm": 99,
+      "acc": 1,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1777468079000
+    },
+    {
+      "wpm": 100,
+      "acc": 0.9803000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1777467933000
+    },
     {
       "wpm": 88,
       "acc": 0.9419,
@@ -324,31 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1774928630000
-    },
-    {
-      "wpm": 88,
-      "acc": 0.9540000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1774335294000
-    },
-    {
-      "wpm": 88,
-      "acc": 0.9732999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1774335261000
-    },
-    {
-      "wpm": 88,
-      "acc": 0.9431,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1774335209000
     }
   ],
-  "fetchedAt": "2026-04-29T12:34:29.643Z"
+  "fetchedAt": "2026-04-30T00:38:14.860Z"
 }
