@@ -1,35 +1,35 @@
 {
-  "fetchedAt": "2026-04-30T12:31:53.398Z",
+  "fetchedAt": "2026-05-01T00:34:01.734Z",
   "languages": [
     {
       "name": "Markdown",
-      "percent": 50.5,
-      "text": "3 hrs 9 mins"
+      "percent": 47.9,
+      "text": "4 hrs 8 mins"
     },
     {
       "name": "TypeScript",
-      "percent": 14.5,
-      "text": "54 mins"
+      "percent": 19.1,
+      "text": "1 hr 39 mins"
     },
     {
       "name": "JavaScript",
-      "percent": 8.4,
-      "text": "31 mins"
+      "percent": 8.5,
+      "text": "44 mins"
+    },
+    {
+      "name": "Other",
+      "percent": 7.6,
+      "text": "39 mins"
     },
     {
       "name": "Java",
-      "percent": 6.6,
+      "percent": 4.8,
       "text": "24 mins"
     },
     {
       "name": "PHP",
-      "percent": 3.6,
-      "text": "13 mins"
-    },
-    {
-      "name": "Git Config",
-      "percent": 3.1,
-      "text": "11 mins"
+      "percent": 2.3,
+      "text": "12 mins"
     }
   ]
 }
