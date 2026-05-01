@@ -1,22 +1,8 @@
 {
-  "fetchedAt": "2026-04-01T01:00:07.367Z",
+  "fetchedAt": "2026-05-01T01:10:48.908Z",
   "top": {
     "tracks": {
       "medium_term": [
-        {
-          "id": "0PtJbtW50jcvvswNPn3QGd",
-          "name": "Serana",
-          "artists": [
-            {
-              "id": "0f6TyESD8E1mD2oLJ4TGv1",
-              "name": "For Revenge"
-            }
-          ],
-          "album": "Perayaan Patah Hati - Babak 1",
-          "url": "https://open.spotify.com/track/0PtJbtW50jcvvswNPn3QGd",
-          "image": "https://i.scdn.co/image/ab67616d0000b2731e2bf47fcf24c1b5fdfd0d69",
-          "durationMs": 250000
-        },
         {
           "id": "10pK13X1wty80C3uQY0Bea",
           "name": "Suatu Malam Tepat Di Hari Sebelum Keberangkatanmu Menuju Kota Yang Kau Cintai Lebih Dari Aku",
@@ -32,18 +18,18 @@
           "durationMs": 159458
         },
         {
-          "id": "2Ip06TQ2B1G2slrYieYl5b",
-          "name": "Rindu Yang Kita Tangisi",
+          "id": "1w1ukaafTgIthY4lHKCarE",
+          "name": "Bulan Di Margonda",
           "artists": [
             {
               "id": "1EShbEntXfxV95IUszrW8Y",
               "name": "Elegi"
             }
           ],
-          "album": "Rindu Yang Kita Tangisi",
-          "url": "https://open.spotify.com/track/2Ip06TQ2B1G2slrYieYl5b",
-          "image": "https://i.scdn.co/image/ab67616d0000b2738a84956a5ae506cf442f6771",
-          "durationMs": 238458
+          "album": "Merayakan Sepi",
+          "url": "https://open.spotify.com/track/1w1ukaafTgIthY4lHKCarE",
+          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
+          "durationMs": 244304
         },
         {
           "id": "5tlb0AxuzsMWL2GtEppXGX",
@@ -60,34 +46,6 @@
           "durationMs": 237692
         },
         {
-          "id": "0Efmh8yhqenqZ6WohgLxR5",
-          "name": "Pulang",
-          "artists": [
-            {
-              "id": "0f6TyESD8E1mD2oLJ4TGv1",
-              "name": "For Revenge"
-            }
-          ],
-          "album": "Second Chance",
-          "url": "https://open.spotify.com/track/0Efmh8yhqenqZ6WohgLxR5",
-          "image": "https://i.scdn.co/image/ab67616d0000b273089bba6aab23c1e5d89ec369",
-          "durationMs": 273920
-        },
-        {
-          "id": "0dIOvducp7ujHTqj66cQ3X",
-          "name": "Amnesia",
-          "artists": [
-            {
-              "id": "5Rl15oVamLq7FbSb0NNBNy",
-              "name": "5 Seconds of Summer"
-            }
-          ],
-          "album": "5 Seconds Of Summer",
-          "url": "https://open.spotify.com/track/0dIOvducp7ujHTqj66cQ3X",
-          "image": "https://i.scdn.co/image/ab67616d0000b27324dea8a1edf4a5b9a10fb67a",
-          "durationMs": 237247
-        },
-        {
           "id": "0eNC1TqwPGYqlJ9EX3AcwP",
           "name": "Penghujan",
           "artists": [
@@ -102,129 +60,97 @@
           "durationMs": 68108
         },
         {
-          "id": "0jlREJOAyFtUKmW3vAKogF",
-          "name": "Move Along",
+          "id": "2G7WBMsY8soTSra7dQfoRW",
+          "name": "Tafsir Cinta",
           "artists": [
             {
-              "id": "5qNRmCwvoxDRNP12wW3s0H",
-              "name": "Summerlane"
+              "id": "1zJG0BbOnVVijQXfYYibvD",
+              "name": "Panji Sakti"
             }
           ],
-          "album": "Move Along",
-          "url": "https://open.spotify.com/track/0jlREJOAyFtUKmW3vAKogF",
-          "image": "https://i.scdn.co/image/ab67616d0000b27370c4244dcd677a8f8dad5094",
-          "durationMs": 196000
+          "album": "Panji Sakti",
+          "url": "https://open.spotify.com/track/2G7WBMsY8soTSra7dQfoRW",
+          "image": "https://i.scdn.co/image/ab67616d0000b27365301d1de03fcb8b34ca9a66",
+          "durationMs": 190201
         },
         {
-          "id": "0lgiIwUU7Y10uXfKkgXdjk",
-          "name": "In Bloom",
+          "id": "4MUN2Hc6m1kJZjfaUwh8zA",
+          "name": "Sedikit Keluh Malam Ini",
           "artists": [
             {
-              "id": "2TM0qnbJH4QPhGMCdPt7fH",
-              "name": "Neck Deep"
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
             }
           ],
-          "album": "The Peace And The Panic",
-          "url": "https://open.spotify.com/track/0lgiIwUU7Y10uXfKkgXdjk",
-          "image": "https://i.scdn.co/image/ab67616d0000b273012600ed0113720188be4dd5",
-          "durationMs": 218054
+          "album": "Merayakan Sepi",
+          "url": "https://open.spotify.com/track/4MUN2Hc6m1kJZjfaUwh8zA",
+          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
+          "durationMs": 115432
         },
         {
-          "id": "1G69mIxtHGdftgnbNEvlBU",
-          "name": "All I Wanted to Tell You That I'm Missing You",
+          "id": "5NvOZCjZaGGGL597exlQWv",
+          "name": "Line Without a Hook",
           "artists": [
             {
-              "id": "6U6powfqohOGUunRu0fSw3",
-              "name": "Hoolahoop"
+              "id": "0ZUvK7zGdXLd78mQr3t1Tw",
+              "name": "Ricky Montgomery"
             }
           ],
-          "album": "Hari Untuk Berlari",
-          "url": "https://open.spotify.com/track/1G69mIxtHGdftgnbNEvlBU",
-          "image": "https://i.scdn.co/image/ab67616d0000b2733eafcb48bef94c082e4aefe6",
-          "durationMs": 261946
+          "album": "Montgomery Ricky",
+          "url": "https://open.spotify.com/track/5NvOZCjZaGGGL597exlQWv",
+          "image": "https://i.scdn.co/image/ab67616d0000b27367ee332af483acd134fd6fd0",
+          "durationMs": 249586
+        },
+        {
+          "id": "7b89Ffklm3xh4GI37vlZDZ",
+          "name": "Tingin",
+          "artists": [
+            {
+              "id": "61nn6nOoLWjVC1ER2qFAvN",
+              "name": "Cup of Joe"
+            },
+            {
+              "id": "09Xydf4dlkr29dH99DmsvQ",
+              "name": "Janine"
+            }
+          ],
+          "album": "Tingin",
+          "url": "https://open.spotify.com/track/7b89Ffklm3xh4GI37vlZDZ",
+          "image": "https://i.scdn.co/image/ab67616d0000b273406a27b8a253042590ecf713",
+          "durationMs": 222298
+        },
+        {
+          "id": "0cQVqPuHQP4KEwc7ZUQmj6",
+          "name": "Sweater Weather",
+          "artists": [
+            {
+              "id": "77SW9BnxLY8rJ0RciFqkHh",
+              "name": "The Neighbourhood"
+            }
+          ],
+          "album": "I Love You.",
+          "url": "https://open.spotify.com/track/0cQVqPuHQP4KEwc7ZUQmj6",
+          "image": "https://i.scdn.co/image/ab67616d0000b273c91ed3bc3c8d484f532fab2f",
+          "durationMs": 240426
+        },
+        {
+          "id": "4rMNgxEwGWoPHIUcvB5BrB",
+          "name": "It Will Rain",
+          "artists": [
+            {
+              "id": "0du5cEVh5yTK9QJze8zA0C",
+              "name": "Bruno Mars"
+            }
+          ],
+          "album": "It Will Rain",
+          "url": "https://open.spotify.com/track/4rMNgxEwGWoPHIUcvB5BrB",
+          "image": "https://i.scdn.co/image/ab67616d0000b2734c43bd96a211ed67cfe86636",
+          "durationMs": 257847
         }
       ]
     },
     "artists": {
-      "medium_term": [
-        {
-          "id": "0f6TyESD8E1mD2oLJ4TGv1",
-          "name": "For Revenge",
-          "url": "https://open.spotify.com/artist/0f6TyESD8E1mD2oLJ4TGv1",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebddcce62f716639252e184879",
-          "genres": [
-            "indonesian pop",
-            "indonesian indie",
-            "pop punk",
-            "indorock",
-            "indonesian rock"
-          ]
-        },
-        {
-          "id": "1EShbEntXfxV95IUszrW8Y",
-          "name": "Elegi",
-          "url": "https://open.spotify.com/artist/1EShbEntXfxV95IUszrW8Y",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb4c0b24411b9dbd1abdd1d1b0",
-          "genres": [
-            "indonesian indie"
-          ]
-        },
-        {
-          "id": "2TM0qnbJH4QPhGMCdPt7fH",
-          "name": "Neck Deep",
-          "url": "https://open.spotify.com/artist/2TM0qnbJH4QPhGMCdPt7fH",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb2a272be2fa6777404247dc2b",
-          "genres": [
-            "pop punk",
-            "punk",
-            "emo"
-          ]
-        },
-        {
-          "id": "35l9BRT7MXmM8bv2WDQiyB",
-          "name": "beabadoobee",
-          "url": "https://open.spotify.com/artist/35l9BRT7MXmM8bv2WDQiyB",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebf40305a6273b3e0a514cc8da",
-          "genres": [
-            "bedroom pop"
-          ]
-        },
-        {
-          "id": "3zmfs9cQwzJl575W1ZYXeT",
-          "name": "Men I Trust",
-          "url": "https://open.spotify.com/artist/3zmfs9cQwzJl575W1ZYXeT",
-          "image": "https://i.scdn.co/image/ab6761610000e5ebfd30ebd7e80dad6b2383aab0",
-          "genres": [
-            "bedroom pop",
-            "indie pop"
-          ]
-        },
-        {
-          "id": "1QAJqy2dA3ihHBFIHRphZj",
-          "name": "Cigarettes After Sex",
-          "url": "https://open.spotify.com/artist/1QAJqy2dA3ihHBFIHRphZj",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb1c312be98c615df97ea79a30",
-          "genres": [
-            "dream pop"
-          ]
-        },
-        {
-          "id": "4Uc8Dsxct0oMqx0P6i60ea",
-          "name": "Conan Gray",
-          "url": "https://open.spotify.com/artist/4Uc8Dsxct0oMqx0P6i60ea",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb4c2b62d4748524454a6f99b0",
-          "genres": []
-        },
-        {
-          "id": "3l0CmX0FuQjFxr8SK7Vqag",
-          "name": "Clairo",
-          "url": "https://open.spotify.com/artist/3l0CmX0FuQjFxr8SK7Vqag",
-          "image": "https://i.scdn.co/image/ab6761610000e5eb4804c4a44c85afea1a72d1bd",
-          "genres": [
-            "bedroom pop"
-          ]
-        }
-      ]
+      "medium_term": []
     }
   }
 }
