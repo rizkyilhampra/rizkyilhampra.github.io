@@ -1,4 +1,4 @@
-const postCache = new Map();
+const postPromiseCache = new Map();
 
 export const blogPosts = [
   {
@@ -41,18 +41,21 @@ export function findPostBySlug(slug) {
   return blogPosts.find((post) => post.slug === slug);
 }
 
-export async function loadPostBySlug(slug) {
-  const metadata = findPostBySlug(slug);
-  if (!metadata) return null;
-  if (postCache.has(slug)) return postCache.get(slug);
+export function loadPostBySlug(slug) {
+  if (postPromiseCache.has(slug)) return postPromiseCache.get(slug);
 
-  const markdown = await fetch(`/posts/${slug}.md`).then((r) => {
-    if (!r.ok) throw new Error(`Failed to load post: ${slug}`);
-    return r.text();
-  });
-  const result = { ...metadata, content: parsePost(markdown).content };
-  postCache.set(slug, result);
-  return result;
+  const metadata = findPostBySlug(slug);
+  if (!metadata) return Promise.resolve(null);
+
+  const promise = fetch(`/posts/${slug}.md`)
+    .then((r) => {
+      if (!r.ok) throw new Error(`Failed to load post: ${slug}`);
+      return r.text();
+    })
+    .then((markdown) => ({ ...metadata, content: parsePost(markdown).content }));
+
+  postPromiseCache.set(slug, promise);
+  return promise;
 }
 
 function parsePost(markdown) {

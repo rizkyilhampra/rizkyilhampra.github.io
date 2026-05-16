@@ -1,5 +1,5 @@
 import { Check, Copy } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, use, useEffect, useRef, useState } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/prism-light";
 import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
@@ -67,27 +67,10 @@ const catppuccinSyntaxTheme = {
 };
 
 export function BlogPostPage({ post, onNavigateHome, skipEntranceAnimation }) {
-  const [loadedPost, setLoadedPost] = useState(null);
+  const postPromise = loadPostBySlug(post.slug);
   const entranceClass = skipEntranceAnimation
     ? ""
     : "animate-fade-in-up motion-reduce:animate-none";
-
-  useEffect(() => {
-    let cancelled = false;
-    setLoadedPost(null);
-
-    loadPostBySlug(post.slug).then((nextPost) => {
-      if (!cancelled) {
-        setLoadedPost(nextPost);
-      }
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [post.slug]);
-
-  const content = loadedPost?.content ?? [];
 
   return (
     <PageShell mainClassName="relative z-10 container mx-auto px-6 py-16 md:py-20">
@@ -107,11 +90,9 @@ export function BlogPostPage({ post, onNavigateHome, skipEntranceAnimation }) {
           <PostMeta post={post} />
         </header>
 
-        <div className="mt-10 space-y-8">
-          {content.map((block, index) => (
-            <ContentBlock block={block} key={`${block.type}-${index}`} />
-          ))}
-        </div>
+        <Suspense fallback={<PostContentSkeleton />}>
+          <PostContent postPromise={postPromise} />
+        </Suspense>
 
         <hr className="mt-12 border-border" />
       </article>
@@ -120,6 +101,65 @@ export function BlogPostPage({ post, onNavigateHome, skipEntranceAnimation }) {
         <Footer />
       </div>
     </PageShell>
+  );
+}
+
+function PostContent({ postPromise }) {
+  const loadedPost = use(postPromise);
+  const content = loadedPost?.content ?? [];
+
+  return (
+    <div className="mt-10 space-y-8">
+      {content.map((block, index) => (
+        <ContentBlock block={block} key={`${block.type}-${index}`} />
+      ))}
+    </div>
+  );
+}
+
+function SkeletonBar({ className = "" }) {
+  return (
+    <div className={`animate-pulse rounded-md bg-secondary/60 ${className}`} />
+  );
+}
+
+function PostContentSkeleton() {
+  return (
+    <div className="mt-10 space-y-8" aria-hidden="true">
+      <SkeletonBar className="h-6 w-2/5" />
+
+      <div className="space-y-3">
+        <SkeletonBar className="h-4 w-full" />
+        <SkeletonBar className="h-4 w-full" />
+        <SkeletonBar className="h-4 w-3/4" />
+      </div>
+
+      <div className="overflow-hidden rounded-lg border border-border">
+        <div className="border-b border-border bg-secondary/40 px-4 py-3">
+          <SkeletonBar className="h-3 w-16" />
+        </div>
+        <div className="space-y-2 p-4">
+          <SkeletonBar className="h-3 w-3/5" />
+          <SkeletonBar className="h-3 w-4/5" />
+          <SkeletonBar className="h-3 w-2/5" />
+          <SkeletonBar className="h-3 w-3/5" />
+        </div>
+      </div>
+
+      <SkeletonBar className="h-6 w-1/3" />
+
+      <div className="space-y-3">
+        <SkeletonBar className="h-4 w-full" />
+        <SkeletonBar className="h-4 w-5/6" />
+        <SkeletonBar className="h-4 w-full" />
+        <SkeletonBar className="h-4 w-2/3" />
+      </div>
+
+      <div className="space-y-3">
+        <SkeletonBar className="h-4 w-full" />
+        <SkeletonBar className="h-4 w-4/5" />
+      </div>
+    </div>
   );
 }
 
