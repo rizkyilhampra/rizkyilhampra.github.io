@@ -48,8 +48,9 @@ export default function App() {
       );
 
       const nextPath = normalizePath(window.location.pathname || "/");
+      const hasSavedPosition = scrollPositionsRef.current.has(nextPath);
       currentPathRef.current = nextPath;
-      setSkipEntranceAnimation(true);
+      setSkipEntranceAnimation(hasSavedPosition);
       setPath(nextPath);
       restoreScroll(nextPath);
     };
@@ -91,9 +92,10 @@ export default function App() {
   };
 
   const navigateHome = () => {
+    const hasSavedPosition = scrollPositionsRef.current.has("/");
     navigate("/", {
-      restoreScroll: true,
-      skipEntranceAnimation: true,
+      restoreScroll: hasSavedPosition,
+      skipEntranceAnimation: hasSavedPosition,
     });
   };
 
