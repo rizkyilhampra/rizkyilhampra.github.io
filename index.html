@@ -50,6 +50,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function () {
+        var redirect = sessionStorage.getItem("spa-redirect");
+
+        if (redirect) {
+          sessionStorage.removeItem("spa-redirect");
+          history.replaceState(null, "", redirect);
+        }
+      })();
+    </script>
     <script src="./src/index.jsx"></script>
   </body>
 </html>

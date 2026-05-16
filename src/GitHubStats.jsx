@@ -154,7 +154,7 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
               ))}
             </div>
           )}
-          <div className="overflow-x-auto min-w-0 flex-1 flex items-center justify-center">
+          <div className="github-activity-scroll overflow-x-auto min-w-0 flex-1 flex items-center justify-center pb-3">
             {error ? (
               <p className="text-sm text-muted-foreground">
                 Could not load GitHub contributions.
