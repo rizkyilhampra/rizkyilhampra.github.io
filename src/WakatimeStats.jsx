@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { formatTimeAgo } from "./utils";
 
-export default function WakatimeStats() {
+export default function WakatimeStats({ className = "mt-16 md:mt-20" }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const languages = (data?.languages ?? []).slice(0, 5);
 
   useEffect(() => {
     let cancelled = false;
@@ -28,7 +29,7 @@ export default function WakatimeStats() {
   }, []);
 
   return (
-    <section aria-labelledby="wakatime-stats-title" className="mt-16 md:mt-20">
+    <section aria-labelledby="wakatime-stats-title" className={className}>
       <div className="text-center mb-8">
         <h2
           id="wakatime-stats-title"
@@ -58,7 +59,7 @@ export default function WakatimeStats() {
       {loading && <WakatimeSkeleton />}
       {!loading && error && <ConnectCard />}
       {!loading && !error && data && (
-        <div className="p-4 bg-card border border-border rounded-lg shadow-sm">
+        <div className="p-4 bg-card border border-border rounded-lg shadow-sm flex-1">
           <div className="flex items-center justify-between mb-3">
             <div className="text-xs uppercase tracking-wide text-muted-foreground">
               Languages
@@ -67,11 +68,11 @@ export default function WakatimeStats() {
               last 7 days
             </div>
           </div>
-          {(data.languages ?? []).length === 0 && (
+          {languages.length === 0 && (
             <p className="text-sm text-muted-foreground">No data</p>
           )}
           <ul className="space-y-3" role="list">
-            {(data.languages ?? []).map((item) => (
+            {languages.map((item) => (
               <BarRow key={item.name} item={item} />
             ))}
           </ul>
@@ -109,7 +110,7 @@ function BarRow({ item }) {
 
 function WakatimeSkeleton() {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg animate-pulse">
+    <div className="p-4 bg-card border border-border rounded-lg animate-pulse flex-1">
       <div className="h-3 w-20 bg-muted rounded mb-3" aria-hidden="true" />
       <div className="space-y-3">
         {Array.from({ length: 5 }).map((_, i) => (
@@ -128,7 +129,7 @@ function WakatimeSkeleton() {
 
 function ConnectCard() {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg">
+    <div className="p-4 bg-card border border-border rounded-lg flex-1">
       <div className="text-sm font-medium mb-2">WakaTime data unavailable</div>
       <p className="text-sm text-muted-foreground">
         Add a <code className="text-primary">WAKATIME_API_KEY</code> secret to

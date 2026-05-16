@@ -172,26 +172,25 @@ export default function App() {
           <MonkeytypeStats />
         </div>
 
-        {/* GitHub Stats */}
+        {/* Activity Stats */}
         <div
           className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
           style={{ animationDelay: "1.7s", animationFillMode: "both" }}
         >
-          <GitHubStats />
-        </div>
-
-        {/* WakaTime Stats */}
-        <div
-          className="max-w-6xl mx-auto animate-fade-in-up motion-reduce:animate-none"
-          style={{ animationDelay: "2.0s", animationFillMode: "both" }}
-        >
-          <WakatimeStats />
+          <div className="mt-16 md:mt-20 grid gap-x-6 gap-y-16 md:gap-y-20 lg:gap-y-6 lg:grid-cols-2 items-stretch">
+            <div className="min-w-0 flex">
+              <GitHubStats className="mt-0 h-full flex flex-col w-full" />
+            </div>
+            <div className="min-w-0 flex">
+              <WakatimeStats className="mt-0 h-full flex flex-col w-full" />
+            </div>
+          </div>
         </div>
 
         {/* Footer */}
         <div
           className="text-center mt-20 animate-fade-in-up motion-reduce:animate-none"
-          style={{ animationDelay: "2.3s", animationFillMode: "both" }}
+          style={{ animationDelay: "2.0s", animationFillMode: "both" }}
         >
           <Footer />
         </div>

@@ -7,7 +7,7 @@ const catppuccinTheme = {
   dark: ["#313244", "#4a3780", "#7047b0", "#9065d8", "#cba6f7"],
 };
 
-export default function GitHubStats() {
+export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
   const [colorScheme, setColorScheme] = useState("light");
   const [availableYears, setAvailableYears] = useState([]);
   const [selectedYear, setSelectedYear] = useState("last-year");
@@ -105,7 +105,7 @@ export default function GitHubStats() {
   }, [selectedYear, availableYears]);
 
   return (
-    <section aria-labelledby="github-stats-title" className="mt-16 md:mt-20">
+    <section aria-labelledby="github-stats-title" className={className}>
       <div className="text-center mb-8">
         <h2
           id="github-stats-title"
@@ -132,8 +132,8 @@ export default function GitHubStats() {
         )}
       </div>
 
-      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg flex-1">
+        <div className="flex h-full flex-col sm:flex-row gap-4">
           {availableYears.length > 0 && (
             <div className="flex flex-row sm:flex-col gap-1 overflow-x-auto sm:overflow-x-visible shrink-0 sm:order-last sm:border-l sm:border-border sm:pl-4 pb-1 sm:pb-0">
               {[
@@ -154,7 +154,7 @@ export default function GitHubStats() {
               ))}
             </div>
           )}
-          <div className="overflow-x-auto min-w-0 flex-1 flex justify-center">
+          <div className="overflow-x-auto min-w-0 flex-1 flex items-center justify-center">
             {error ? (
               <p className="text-sm text-muted-foreground">
                 Could not load GitHub contributions.
