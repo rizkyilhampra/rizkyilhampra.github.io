@@ -6,6 +6,7 @@ import {
   Globe,
   FileText,
   Mail,
+  Download,
 } from "lucide-react";
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { SocialLink } from "./SocialLink";
@@ -168,6 +169,16 @@ export default function App() {
       ariaLabel:
         "Open SPDHTC — expert system for chili diseases; fast diagnosis with step-by-step fixes",
       title: "SPDHTC — expert system for chili diseases",
+    },
+    {
+      href: "https://tt.rizkyilhampra.dev",
+      icon: Download,
+      label: "TikTok Downloader",
+      description:
+        "Grab TikTok videos in HD/FullHD—no ads, no watermark hassle, with batch concurrent downloads",
+      ariaLabel:
+        "Open TikTok Downloader — save TikTok videos in HD/FullHD with no ads and batch downloads",
+      title: "TikTok Downloader — HD/FullHD, no ads, batch downloads",
     },
     {
       href: "https://instagram.com/apainilala",
