@@ -84,10 +84,9 @@ export function BlogPostPage({ post, onNavigateHome, skipEntranceAnimation }) {
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-5 text-lg leading-8 text-muted-foreground">
-            {post.description}
-          </p>
-          <PostMeta post={post} />
+          <Suspense fallback={<PostHeaderSkeleton />}>
+            <PostHeaderDetails post={post} postPromise={postPromise} />
+          </Suspense>
         </header>
 
         <Suspense fallback={<PostContentSkeleton />}>
@@ -101,6 +100,31 @@ export function BlogPostPage({ post, onNavigateHome, skipEntranceAnimation }) {
         <Footer />
       </div>
     </PageShell>
+  );
+}
+
+function PostHeaderDetails({ post, postPromise }) {
+  const loadedPost = use(postPromise);
+  return (
+    <>
+      <p className="mt-5 text-lg leading-8 text-muted-foreground">
+        {loadedPost.description}
+      </p>
+      <PostMeta post={{ ...post, readingTime: loadedPost.readingTime }} />
+    </>
+  );
+}
+
+function PostHeaderSkeleton() {
+  return (
+    <div className="mt-5 space-y-3" aria-hidden="true">
+      <SkeletonBar className="h-5 w-full" />
+      <SkeletonBar className="h-5 w-4/5" />
+      <div className="mt-6 flex gap-4">
+        <SkeletonBar className="h-4 w-24" />
+        <SkeletonBar className="h-4 w-20" />
+      </div>
+    </div>
   );
 }
 

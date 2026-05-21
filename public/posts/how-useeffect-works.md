@@ -2,13 +2,6 @@
 slug: how-useeffect-works
 title: How useEffect works
 date: 2026-05-16
-readingTime: 5 min read
-description: A practical walkthrough of React effects, dependency arrays, cleanup functions, and when not to reach for useEffect.
-sources:
-  - title: useEffect
-    url: https://react.dev/reference/react/useEffect
-  - title: Synchronizing with Effects
-    url: https://react.dev/learn/synchronizing-with-effects
 ---
 
 ## The job of useEffect

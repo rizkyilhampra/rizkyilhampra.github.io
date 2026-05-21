@@ -2,11 +2,6 @@
 slug: thinking-in-react
 title: Thinking in React, summarized
 date: 2026-05-16
-readingTime: 4 min read
-description: A practical summary of React's component-first workflow: split the UI, find state, and let data flow down.
-sources:
-  - title: Thinking in React
-    url: https://react.dev/learn/thinking-in-react
 ---
 
 ## Start from the interface

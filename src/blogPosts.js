@@ -5,9 +5,6 @@ export const blogPosts = [
     slug: "how-useeffect-works",
     title: "How useEffect works",
     date: "2026-05-16",
-    readingTime: "5 min read",
-    description:
-      "A practical walkthrough of React effects, dependency arrays, cleanup functions, and when not to reach for useEffect.",
     sourceLinks: [
       {
         title: "useEffect",
@@ -23,9 +20,6 @@ export const blogPosts = [
     slug: "thinking-in-react",
     title: "Thinking in React, summarized",
     date: "2026-05-16",
-    readingTime: "4 min read",
-    description:
-      "A practical summary of React's component-first workflow: split the UI, find state, and let data flow down.",
     sourceLinks: [
       {
         title: "Thinking in React",
@@ -52,10 +46,26 @@ export function loadPostBySlug(slug) {
       if (!r.ok) throw new Error(`Failed to load post: ${slug}`);
       return r.text();
     })
-    .then((markdown) => ({ ...metadata, content: parsePost(markdown).content }));
+    .then((markdown) => {
+      const { content, readingTime, description } = parsePost(markdown);
+      return { ...metadata, content, readingTime, description };
+    });
 
   postPromiseCache.set(slug, promise);
   return promise;
+}
+
+function calculateReadingTime(text) {
+  const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(wordCount / 200))} min read`;
+}
+
+function extractDescription(blocks) {
+  const first = blocks.find((b) => b.type === "paragraph");
+  if (!first) return "";
+  const { text } = first;
+  if (text.length <= 160) return text;
+  return text.slice(0, text.lastIndexOf(" ", 160)) + "…";
 }
 
 function parsePost(markdown) {
@@ -68,8 +78,13 @@ function parsePost(markdown) {
     throw new Error("Blog post is missing frontmatter");
   }
 
+  const body = frontmatterMatch[2];
+  const content = parseMarkdownBlocks(body);
+
   return {
-    content: parseMarkdownBlocks(frontmatterMatch[2]),
+    content,
+    readingTime: calculateReadingTime(body),
+    description: extractDescription(content),
   };
 }
 
