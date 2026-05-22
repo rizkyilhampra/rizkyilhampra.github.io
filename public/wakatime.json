@@ -1,35 +1,35 @@
 {
-  "fetchedAt": "2026-05-21T13:05:31.930Z",
+  "fetchedAt": "2026-05-22T00:37:04.124Z",
   "languages": [
     {
       "name": "TypeScript",
-      "percent": 46.3,
-      "text": "5 hrs 36 mins"
+      "percent": 50.2,
+      "text": "6 hrs 2 mins"
     },
     {
       "name": "Markdown",
-      "percent": 24.8,
-      "text": "3 hrs 0 mins"
+      "percent": 23.6,
+      "text": "2 hrs 50 mins"
     },
     {
       "name": "JavaScript",
-      "percent": 19.2,
-      "text": "2 hrs 19 mins"
-    },
-    {
-      "name": "Python",
-      "percent": 3.6,
-      "text": "26 mins"
-    },
-    {
-      "name": "JSON",
-      "percent": 1.7,
-      "text": "12 mins"
+      "percent": 20.1,
+      "text": "2 hrs 25 mins"
     },
     {
       "name": "sh",
       "percent": 1.4,
       "text": "10 mins"
+    },
+    {
+      "name": "Nginx configuration file",
+      "percent": 1.3,
+      "text": "9 mins"
+    },
+    {
+      "name": "HTML",
+      "percent": 1.1,
+      "text": "8 mins"
     }
   ]
 }
