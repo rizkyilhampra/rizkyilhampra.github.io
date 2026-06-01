@@ -1,156 +1,28 @@
 {
-  "fetchedAt": "2026-05-01T01:10:48.908Z",
+  "fetchedAt": "2026-06-01T01:24:13.960Z",
   "top": {
     "tracks": {
-      "medium_term": [
-        {
-          "id": "10pK13X1wty80C3uQY0Bea",
-          "name": "Suatu Malam Tepat Di Hari Sebelum Keberangkatanmu Menuju Kota Yang Kau Cintai Lebih Dari Aku",
-          "artists": [
-            {
-              "id": "1EShbEntXfxV95IUszrW8Y",
-              "name": "Elegi"
-            }
-          ],
-          "album": "Merayakan Sepi",
-          "url": "https://open.spotify.com/track/10pK13X1wty80C3uQY0Bea",
-          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
-          "durationMs": 159458
-        },
-        {
-          "id": "1w1ukaafTgIthY4lHKCarE",
-          "name": "Bulan Di Margonda",
-          "artists": [
-            {
-              "id": "1EShbEntXfxV95IUszrW8Y",
-              "name": "Elegi"
-            }
-          ],
-          "album": "Merayakan Sepi",
-          "url": "https://open.spotify.com/track/1w1ukaafTgIthY4lHKCarE",
-          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
-          "durationMs": 244304
-        },
-        {
-          "id": "5tlb0AxuzsMWL2GtEppXGX",
-          "name": "Multo",
-          "artists": [
-            {
-              "id": "61nn6nOoLWjVC1ER2qFAvN",
-              "name": "Cup of Joe"
-            }
-          ],
-          "album": "Silakbo",
-          "url": "https://open.spotify.com/track/5tlb0AxuzsMWL2GtEppXGX",
-          "image": "https://i.scdn.co/image/ab67616d0000b27385a7fd707d00e5d255807add",
-          "durationMs": 237692
-        },
-        {
-          "id": "0eNC1TqwPGYqlJ9EX3AcwP",
-          "name": "Penghujan",
-          "artists": [
-            {
-              "id": "1EShbEntXfxV95IUszrW8Y",
-              "name": "Elegi"
-            }
-          ],
-          "album": "Merayakan Sepi",
-          "url": "https://open.spotify.com/track/0eNC1TqwPGYqlJ9EX3AcwP",
-          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
-          "durationMs": 68108
-        },
-        {
-          "id": "2G7WBMsY8soTSra7dQfoRW",
-          "name": "Tafsir Cinta",
-          "artists": [
-            {
-              "id": "1zJG0BbOnVVijQXfYYibvD",
-              "name": "Panji Sakti"
-            }
-          ],
-          "album": "Panji Sakti",
-          "url": "https://open.spotify.com/track/2G7WBMsY8soTSra7dQfoRW",
-          "image": "https://i.scdn.co/image/ab67616d0000b27365301d1de03fcb8b34ca9a66",
-          "durationMs": 190201
-        },
-        {
-          "id": "4MUN2Hc6m1kJZjfaUwh8zA",
-          "name": "Sedikit Keluh Malam Ini",
-          "artists": [
-            {
-              "id": "1EShbEntXfxV95IUszrW8Y",
-              "name": "Elegi"
-            }
-          ],
-          "album": "Merayakan Sepi",
-          "url": "https://open.spotify.com/track/4MUN2Hc6m1kJZjfaUwh8zA",
-          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
-          "durationMs": 115432
-        },
-        {
-          "id": "5NvOZCjZaGGGL597exlQWv",
-          "name": "Line Without a Hook",
-          "artists": [
-            {
-              "id": "0ZUvK7zGdXLd78mQr3t1Tw",
-              "name": "Ricky Montgomery"
-            }
-          ],
-          "album": "Montgomery Ricky",
-          "url": "https://open.spotify.com/track/5NvOZCjZaGGGL597exlQWv",
-          "image": "https://i.scdn.co/image/ab67616d0000b27367ee332af483acd134fd6fd0",
-          "durationMs": 249586
-        },
-        {
-          "id": "7b89Ffklm3xh4GI37vlZDZ",
-          "name": "Tingin",
-          "artists": [
-            {
-              "id": "61nn6nOoLWjVC1ER2qFAvN",
-              "name": "Cup of Joe"
-            },
-            {
-              "id": "09Xydf4dlkr29dH99DmsvQ",
-              "name": "Janine"
-            }
-          ],
-          "album": "Tingin",
-          "url": "https://open.spotify.com/track/7b89Ffklm3xh4GI37vlZDZ",
-          "image": "https://i.scdn.co/image/ab67616d0000b273406a27b8a253042590ecf713",
-          "durationMs": 222298
-        },
-        {
-          "id": "0cQVqPuHQP4KEwc7ZUQmj6",
-          "name": "Sweater Weather",
-          "artists": [
-            {
-              "id": "77SW9BnxLY8rJ0RciFqkHh",
-              "name": "The Neighbourhood"
-            }
-          ],
-          "album": "I Love You.",
-          "url": "https://open.spotify.com/track/0cQVqPuHQP4KEwc7ZUQmj6",
-          "image": "https://i.scdn.co/image/ab67616d0000b273c91ed3bc3c8d484f532fab2f",
-          "durationMs": 240426
-        },
-        {
-          "id": "4rMNgxEwGWoPHIUcvB5BrB",
-          "name": "It Will Rain",
-          "artists": [
-            {
-              "id": "0du5cEVh5yTK9QJze8zA0C",
-              "name": "Bruno Mars"
-            }
-          ],
-          "album": "It Will Rain",
-          "url": "https://open.spotify.com/track/4rMNgxEwGWoPHIUcvB5BrB",
-          "image": "https://i.scdn.co/image/ab67616d0000b2734c43bd96a211ed67cfe86636",
-          "durationMs": 257847
-        }
-      ]
+      "medium_term": []
     },
     "artists": {
-      "medium_term": []
+      "medium_term": [
+        {
+          "id": "06HL4z0CvFAxyc27GXpf02",
+          "name": "Taylor Swift",
+          "url": "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebe2e8e7ff002a4afda1c7147e",
+          "genres": []
+        },
+        {
+          "id": "1EShbEntXfxV95IUszrW8Y",
+          "name": "Elegi",
+          "url": "https://open.spotify.com/artist/1EShbEntXfxV95IUszrW8Y",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb4c0b24411b9dbd1abdd1d1b0",
+          "genres": [
+            "indonesian indie"
+          ]
+        }
+      ]
     }
   }
 }
