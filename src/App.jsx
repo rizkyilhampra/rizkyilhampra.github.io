@@ -8,7 +8,7 @@ import {
   Mail,
   Download,
 } from "lucide-react";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { SocialLink } from "./SocialLink";
 import { TypewriterText } from "./TypewriterText";
 import Footer from "./Footer";
@@ -20,12 +20,7 @@ import { InternalHomeLink } from "./InternalHomeLink";
 import { LatestPostPreview } from "./LatestPostPreview";
 import { PageShell } from "./PageShell";
 import { findPostBySlug, latestPosts } from "./blogPosts";
-
-const BlogPostPage = lazy(() =>
-  import("./BlogPostPage").then((module) => ({
-    default: module.BlogPostPage,
-  }))
-);
+import { BlogPostPage, prefetchBlogPostPage } from "./blogPostPageLoader";
 
 const MAX_STORED_SCROLL_POSITIONS = 20;
 
@@ -61,6 +56,14 @@ export default function App() {
       window.history.scrollRestoration = originalScrollRestoration;
       window.removeEventListener("popstate", handlePopState);
     };
+  }, []);
+
+  // Warm the BlogPostPage chunk during idle time so opening a post is instant.
+  useEffect(() => {
+    const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1));
+    const cancel = window.cancelIdleCallback ?? window.clearTimeout;
+    const handle = schedule(() => prefetchBlogPostPage());
+    return () => cancel(handle);
   }, []);
 
   const restoreScroll = (to, fallbackTop = 0) => {

@@ -3,6 +3,7 @@ import { Suspense, use } from "react";
 import { GradientIcon, InteractiveCard } from "./InteractiveCard";
 import { PostMeta } from "./PostMeta";
 import { loadPostBySlug } from "./blogPosts";
+import { prefetchBlogPostPage } from "./blogPostPageLoader";
 
 function PostPreviewCard({ post, onNavigate }) {
   const loadedPost = use(loadPostBySlug(post.slug));
@@ -18,6 +19,9 @@ function PostPreviewCard({ post, onNavigate }) {
       as="a"
       href={href}
       onClick={handleClick}
+      onMouseEnter={prefetchBlogPostPage}
+      onFocus={prefetchBlogPostPage}
+      onTouchStart={prefetchBlogPostPage}
       className="min-h-[260px] p-5 sm:p-6"
     >
       <div className="flex h-full flex-col justify-between gap-8">
