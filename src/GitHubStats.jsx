@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ActivityCalendar } from "react-activity-calendar";
 import { formatTimeAgo } from "./utils";
+import { useWheelHorizontalScroll } from "./useWheelHorizontalScroll";
 
 const catppuccinTheme = {
   light: ["#e6e9ef", "#c5a0e4", "#a374d5", "#8148c4", "#6c3fa3"],
@@ -15,6 +16,7 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const scrollRef = useWheelHorizontalScroll();
 
   // Sync colorScheme with theme toggle
   useEffect(() => {
@@ -154,27 +156,35 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
               ))}
             </div>
           )}
-          <div className="github-activity-scroll overflow-x-auto min-w-0 flex-1 flex items-center justify-center pb-3">
-            {error ? (
-              <p className="text-sm text-muted-foreground">
-                Could not load GitHub contributions.
-              </p>
-            ) : (
-              <ActivityCalendar
-                data={contributions ?? []}
-                loading={loading}
-                colorScheme={colorScheme}
-                theme={catppuccinTheme}
-                maxLevel={4}
-                showColorLegend
-                labels={{
-                  totalCount:
-                    selectedYear === "last-year"
-                      ? "{{count}} contributions in the last year"
-                      : `{{count}} contributions in ${selectedYear}`,
-                }}
-              />
-            )}
+          <div
+            ref={scrollRef}
+            className="github-activity-scroll overflow-x-auto min-w-0 flex-1 pb-3"
+          >
+            {/* w-max + mx-auto centers the calendar when it fits and stays
+                fully scrollable when it overflows (avoids the justify-center
+                horizontal-overflow clipping bug). */}
+            <div className="w-max mx-auto flex items-center min-h-full">
+              {error ? (
+                <p className="text-sm text-muted-foreground">
+                  Could not load GitHub contributions.
+                </p>
+              ) : (
+                <ActivityCalendar
+                  data={contributions ?? []}
+                  loading={loading}
+                  colorScheme={colorScheme}
+                  theme={catppuccinTheme}
+                  maxLevel={4}
+                  showColorLegend
+                  labels={{
+                    totalCount:
+                      selectedYear === "last-year"
+                        ? "{{count}} contributions in the last year"
+                        : `{{count}} contributions in ${selectedYear}`,
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
