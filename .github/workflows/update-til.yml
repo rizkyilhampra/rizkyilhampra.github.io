@@ -1,0 +1,66 @@
+name: Update TIL Notes
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 */12 * * *' # every 12 hours
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN_PAT }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch TIL notes (sparse, til/ only)
+        run: |
+          rm -rf .notes-src
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/rizkyilhampra/aquila-notes.git .notes-src
+          git -C .notes-src sparse-checkout set til
+
+      - name: Transform TIL notes
+        env:
+          GARDEN_SOURCE_DIR: .notes-src/til
+          GARDEN_OUT_DIR: public
+        run: |
+          if ! node scripts/fetch-garden.mjs; then
+            echo "Failed to transform TIL notes"
+            exit 1
+          fi
+          rm -rf .notes-src
+
+      - name: Verify changes
+        id: verify
+        run: |
+          if [[ -f "public/til-manifest.json" ]]; then
+            if git diff --quiet public/til-manifest.json public/til public/sitemap.xml 2>/dev/null; then
+              echo "No changes to TIL notes"
+              echo "changed=false" >> $GITHUB_OUTPUT
+            else
+              echo "TIL notes updated"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "public/til-manifest.json not found"
+            echo "changed=false" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Commit and push if changed
+        if: steps.verify.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/til-manifest.json public/til public/sitemap.xml
+          git commit -m "chore(til): update Today I Learned notes"
+          git push

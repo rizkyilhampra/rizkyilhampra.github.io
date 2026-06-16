@@ -1,0 +1,181 @@
+{
+  "notes": [
+    {
+      "slug": "command-code-ai",
+      "title": "Command Code AI",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "An like SaaS thingy for any AI models inside of it. So you can pay or being subscribe, then you can use like many AI models based on API pricing usage. In…"
+    },
+    {
+      "slug": "openrouter",
+      "title": "OpenRouter",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "The most popular ones. It's include fucking almost every AI models in the world. So basically you are being top up, then you can use the API key on everything."
+    },
+    {
+      "slug": "alishahryar1-free-claude-code",
+      "title": "Alishahryar1 Free Claude Code",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "An just proxy thingy and include everything information how'd like to use another way to pay to use Claude Code for free."
+    },
+    {
+      "slug": "claude-code",
+      "title": "Claude Code",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "An way to leverage Claude models to do something (mainly vibe coding) on your host."
+    },
+    {
+      "slug": "claude",
+      "title": "Claude",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "An LLM provider that's mainly produce or build sort of this model, Sonnet, Opus, Haiku."
+    },
+    {
+      "slug": "claude-code-using-kiro-api",
+      "title": "Claude Code using Kiro API",
+      "date": "2026-06-08",
+      "tags": [
+        "work"
+      ],
+      "description": "Shout out who writing this post https://dev.to/aws-heroes/the-aws-dev-setup-nobody-told-you-about-claude-code-kiro-pro-and-agent-plugins-1c3p by Vivok V. But…"
+    },
+    {
+      "slug": "task-id-bpjs",
+      "title": "Task ID BPJS",
+      "date": "2026-06-08",
+      "tags": [
+        "work",
+        "hospitality"
+      ],
+      "description": "Task ID 1 dan 2 hanya untuk pasien baru BPJS. Umumnya aman atau diperbolehkan (mungkin) jika langsung dimulai dari 3 sampai 6. Untuk 99 adalah untuk pembatalan."
+    },
+    {
+      "slug": "bpjstk-bpu",
+      "title": "BPJSTK BPU (BPJS Ketenagakerjaan Bukan Penerima Upah)",
+      "date": "2026-05-08",
+      "tags": [
+        "personal"
+      ],
+      "description": "Salah satu layanan BPJS untuk mengakomodir orang-orang yang bekerja sebagai wirausaha, freelance, dan paruh waktu. Asuransi ini berguna untuk orang tua yang…"
+    },
+    {
+      "slug": "openwrt",
+      "title": "Openwrt",
+      "date": "2026-05-07",
+      "tags": [
+        "network"
+      ],
+      "description": "Openwrt berdasarkan hasil observasi saya adalah suatu interface untuk pengelolaan jaringan. Seperti jika menggunakan router Indihome yang basisnya adalah Huawei…"
+    },
+    {
+      "slug": "fail2ban",
+      "title": "Fail2ban",
+      "date": "2026-04-27",
+      "tags": [],
+      "description": "Had issue with ssh bruteforce that's make my on-premise server (computer) being uncompromised then caused hang. We can leverage this like service to like ban,…"
+    },
+    {
+      "slug": "steps-i-do-when-extending-or-resizing-a-vm-disk-in-proxmox",
+      "title": "Steps I do when extending or resizing a VM disk in Proxmox",
+      "date": "2025-11-07",
+      "tags": [
+        "proxmox"
+      ],
+      "description": "Go to storage on main node or node you are working on. In my case it's local (server). > server is the node."
+    },
+    {
+      "slug": "akses-local-development-server-dengan-ssh-tunneling",
+      "title": "Akses local development server dengan ssh tunneling",
+      "date": "2025-10-13",
+      "tags": [
+        "ssh",
+        "cheatsheets"
+      ],
+      "description": "Tulisan ini didasari kebutuhan saya untuk mengakses PC kantor yang disana terdapat local development server yang sedang berjalan. Sebelum mengetahui langkah…"
+    },
+    {
+      "slug": "how-to-decompile-an-python-310-program",
+      "title": "How to decompile an python 3.10 program",
+      "date": "2025-09-13",
+      "tags": [],
+      "description": "Saya mulai ini dari di tempat saya bekerja, saya butuh mendapatkan bagaimana caranya suatu aplikasi dengan ektensi .exe bekerja. Ya, dengan meminta bantuan…"
+    },
+    {
+      "slug": "zustand",
+      "title": "Zustand",
+      "date": "2025-08-24",
+      "tags": [
+        "react",
+        "frontend"
+      ],
+      "description": "You maybe had like <App /> component that had 2 components <ProductList /> and <Cart />. How you can handle 'state' of cart management? The native way is define…"
+    },
+    {
+      "slug": "making-a-wsl2-web-service-accessible-on-the-local-network",
+      "title": "Making a WSL2 Web Service Accessible on the Local Network",
+      "date": "2025-05-13",
+      "tags": [],
+      "description": "I’m running a web service inside a Docker container on WSL2 (using Arch Linux). The Docker container publishes port 80. On the Windows host, I can access the…"
+    },
+    {
+      "slug": "setting-up-dns-on-my-arch-linux",
+      "title": "Setting Up DNS on My Arch Linux",
+      "date": "2025-03-19",
+      "tags": [
+        "linux",
+        "dns",
+        "cloudflare",
+        "blocking"
+      ],
+      "description": "[!NOTE] > In my case I didn't use systemd-resolved so do I now enable and start those service"
+    },
+    {
+      "slug": "downgrade-arch-linux-installed-package",
+      "title": "Downgrade Arch Linux Installed Package",
+      "date": "2025-02-16",
+      "tags": [
+        "linux"
+      ],
+      "description": "Ex, downgrade mesa to 24.2.7"
+    },
+    {
+      "slug": "freeze-or-hang-randomly-on-arch-linux-with-hyprland",
+      "title": "Freeze or Hang Randomly on Arch Linux with Hyprland",
+      "date": "2025-02-16",
+      "tags": [
+        "linux"
+      ],
+      "description": "- Arch Wiki - Github Issue"
+    },
+    {
+      "slug": "how-to-combine-two-repository-with-unrelated-history",
+      "title": "How to combine two repository with unrelated history and keep upcoming changes",
+      "date": "2024-11-22",
+      "tags": [],
+      "description": "Do this in the repository that will receive the changes from the other repository."
+    },
+    {
+      "slug": "different-between-shebang-usr-bin-env-bash-and-bin-bash",
+      "title": "Different Between Shebang `/usr/bin/env bash` and `/bin/bash`",
+      "date": "2024-10-24",
+      "tags": [],
+      "description": "Portable. Is check where the bash installed on system."
+    }
+  ],
+  "fetchedAt": "2026-06-16T14:43:00.306Z"
+}

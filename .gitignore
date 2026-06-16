@@ -22,3 +22,6 @@ dist-ssr
 *.sw?
 
 .env
+
+# Temporary sparse clone of the notes repo used by scripts/fetch-garden.mjs
+.notes-src

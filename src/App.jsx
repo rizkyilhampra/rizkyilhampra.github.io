@@ -16,11 +16,11 @@ import GitHubStats from "./GitHubStats";
 import MonkeytypeStats from "./MonkeytypeStats";
 import SpotifyStats from "./SpotifyStats";
 import WakatimeStats from "./WakatimeStats";
-import { InternalHomeLink } from "./InternalHomeLink";
-import { LatestPostPreview } from "./LatestPostPreview";
+import { TilListPreview } from "./TilListPreview";
+import { TilIndexPage } from "./TilIndexPage";
+import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
-import { findPostBySlug, latestPosts } from "./blogPosts";
-import { BlogPostPage, prefetchBlogPostPage } from "./blogPostPageLoader";
+import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
 
 const MAX_STORED_SCROLL_POSITIONS = 20;
 
@@ -31,18 +31,31 @@ export default function App() {
   const [skipEntranceAnimation, setSkipEntranceAnimation] = useState(false);
   const currentPathRef = useRef(path);
   const scrollPositionsRef = useRef(new Map());
+  // Tracks how deep we are in this app's own history stack so the back button
+  // knows whether going back stays in-app (vs leaving the site on a deep link).
+  const historyIndexRef = useRef(0);
 
   useEffect(() => {
     const originalScrollRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
 
-    const handlePopState = () => {
+    // Seed the current entry with an index so back navigation can be detected.
+    if (window.history.state?.index == null) {
+      window.history.replaceState(
+        { ...window.history.state, index: 0 },
+        ""
+      );
+    }
+    historyIndexRef.current = window.history.state?.index ?? 0;
+
+    const handlePopState = (event) => {
       rememberScrollPosition(
         scrollPositionsRef.current,
         currentPathRef.current,
         window.scrollY
       );
 
+      historyIndexRef.current = event.state?.index ?? 0;
       const nextPath = normalizePath(window.location.pathname || "/");
       const hasSavedPosition = scrollPositionsRef.current.has(nextPath);
       currentPathRef.current = nextPath;
@@ -58,11 +71,11 @@ export default function App() {
     };
   }, []);
 
-  // Warm the BlogPostPage chunk during idle time so opening a post is instant.
+  // Warm the TilNotePage chunk during idle time so opening a note is instant.
   useEffect(() => {
     const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1));
     const cancel = window.cancelIdleCallback ?? window.clearTimeout;
-    const handle = schedule(() => prefetchBlogPostPage());
+    const handle = schedule(() => prefetchTilNotePage());
     return () => cancel(handle);
   }, []);
 
@@ -86,7 +99,9 @@ export default function App() {
     );
 
     if (window.location.pathname !== nextPath) {
-      window.history.pushState({}, "", nextPath);
+      const nextIndex = historyIndexRef.current + 1;
+      window.history.pushState({ index: nextIndex }, "", nextPath);
+      historyIndexRef.current = nextIndex;
     }
 
     currentPathRef.current = nextPath;
@@ -103,8 +118,19 @@ export default function App() {
     });
   };
 
-  const blogSlug = getBlogSlug(path);
-  const currentPost = blogSlug ? findPostBySlug(blogSlug) : null;
+  // Go to the previous in-app page. If there's nothing in our stack to go back
+  // to (e.g. the visitor deep-linked straight to a note), fall back to home so
+  // the button never bounces the user off the site.
+  const goBack = () => {
+    if (historyIndexRef.current > 0) {
+      window.history.back();
+    } else {
+      navigateHome();
+    }
+  };
+
+  const tilSlug = getTilSlug(path);
+  const isTilIndex = path === "/til";
   const entranceClass = (className) =>
     skipEntranceAnimation ? "" : className;
 
@@ -114,34 +140,42 @@ export default function App() {
       return;
     }
 
-    if (blogSlug) {
-      document.title = currentPost
-        ? `${currentPost.title} | Rizky Ilham Pratama`
-        : "Post not found | Rizky Ilham Pratama";
+    if (isTilIndex) {
+      document.title = "Today I Learned | Rizky Ilham Pratama";
+      return;
+    }
+
+    // TilNotePage sets its own title once the note resolves (title isn't known
+    // synchronously here), so leave the title alone for /til/<slug> routes.
+    if (tilSlug) {
       return;
     }
 
     document.title = "Page not found | Rizky Ilham Pratama";
-  }, [blogSlug, currentPost, path]);
+  }, [path, isTilIndex, tilSlug]);
 
-  if (blogSlug) {
-    if (currentPost) {
-      return (
-        <Suspense fallback={null}>
-          <BlogPostPage
-            post={currentPost}
-            skipEntranceAnimation={skipEntranceAnimation}
-            onNavigateHome={navigateHome}
-          />
-        </Suspense>
-      );
-    }
-
+  if (isTilIndex) {
     return (
-      <NotFoundPage
-        skipEntranceAnimation={skipEntranceAnimation}
-        onNavigateHome={navigateHome}
-      />
+      <Suspense fallback={null}>
+        <TilIndexPage
+          onNavigate={navigate}
+          onBack={goBack}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
+      </Suspense>
+    );
+  }
+
+  if (tilSlug) {
+    return (
+      <Suspense fallback={null}>
+        <TilNotePage
+          slug={tilSlug}
+          onNavigate={navigate}
+          onBack={goBack}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
+      </Suspense>
     );
   }
 
@@ -149,7 +183,7 @@ export default function App() {
     return (
       <NotFoundPage
         skipEntranceAnimation={skipEntranceAnimation}
-        onNavigateHome={navigateHome}
+        onBack={goBack}
       />
     );
   }
@@ -299,13 +333,14 @@ export default function App() {
         </div>
       </div>
 
+      {/* Today I Learned (digital garden) */}
       <div
         className={`max-w-6xl mx-auto ${
           entranceClass("animate-fade-in-up motion-reduce:animate-none")
         }`}
         style={{ animationDelay: "0.9s", animationFillMode: "both" }}
       >
-        <LatestPostPreview posts={latestPosts} onNavigate={navigate} />
+        <TilListPreview onNavigate={navigate} />
       </div>
 
       {/* Spotify Stats */}
@@ -362,8 +397,8 @@ function normalizePath(path) {
   return path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
 }
 
-function getBlogSlug(path) {
-  return path.startsWith("/blog/") ? path.slice("/blog/".length) : null;
+function getTilSlug(path) {
+  return path.startsWith("/til/") ? path.slice("/til/".length) : null;
 }
 
 function rememberScrollPosition(scrollPositions, path, position) {
@@ -375,27 +410,4 @@ function rememberScrollPosition(scrollPositions, path, position) {
 
   const oldestPath = scrollPositions.keys().next().value;
   scrollPositions.delete(oldestPath);
-}
-
-function NotFoundPage({ onNavigateHome, skipEntranceAnimation }) {
-  const entranceClass = skipEntranceAnimation
-    ? ""
-    : "animate-fade-in-up motion-reduce:animate-none";
-
-  return (
-    <PageShell mainClassName="relative z-10 container mx-auto flex min-h-screen items-center justify-center px-6 py-20">
-      <section className={`max-w-xl text-center ${entranceClass}`}>
-        <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-primary">
-          404
-        </p>
-        <h1 className="font-header text-4xl font-semibold text-foreground sm:text-5xl">
-          Page not found
-        </h1>
-        <p className="mt-5 text-base leading-7 text-muted-foreground">
-          The page you opened does not exist on this site.
-        </p>
-        <InternalHomeLink onNavigateHome={onNavigateHome} className="mt-8" />
-      </section>
-    </PageShell>
-  );
 }
