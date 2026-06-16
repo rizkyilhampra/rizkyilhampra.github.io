@@ -1,42 +1,10 @@
-import { useEffect, useState } from "react";
 import { formatTimeAgo } from "./utils";
+import { useCachedJson } from "./useCachedJson";
+
+const MONKEYTYPE_URL = "/monkeytype.json";
 
 export default function MonkeytypeStats() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("/monkeytype.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-
-        // Prefer explicit timestamp from payload; fallback to Last-Modified header
-        const fetchedAt = json?.fetchedAt;
-        if (fetchedAt) {
-          setLastUpdated(new Date(fetchedAt));
-        } else {
-          const lastModified = res.headers.get('last-modified');
-          if (lastModified) {
-            setLastUpdated(new Date(lastModified));
-          }
-        }
-
-        if (!cancelled) setData(json);
-      } catch (e) {
-        if (!cancelled) setError(e);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { data, error, loading, lastUpdated } = useCachedJson(MONKEYTYPE_URL);
 
   return (
     <section aria-labelledby="typing-stats-title" className="mt-16 md:mt-20">

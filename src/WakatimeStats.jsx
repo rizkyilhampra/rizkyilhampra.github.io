@@ -1,32 +1,11 @@
-import { useEffect, useState } from "react";
 import { formatTimeAgo } from "./utils";
+import { useCachedJson } from "./useCachedJson";
+
+const WAKATIME_URL = "/wakatime.json";
 
 export default function WakatimeStats({ className = "mt-16 md:mt-20" }) {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const { data, error, loading, lastUpdated } = useCachedJson(WAKATIME_URL);
   const languages = (data?.languages ?? []).slice(0, 5);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("/wakatime.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        if (json?.fetchedAt) setLastUpdated(new Date(json.fetchedAt));
-        if (!cancelled) setData(json);
-      } catch (e) {
-        if (!cancelled) setError(e);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   return (
     <section aria-labelledby="wakatime-stats-title" className={className}>

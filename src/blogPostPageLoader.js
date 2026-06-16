@@ -4,7 +4,7 @@ import { lazy } from "react";
 // reuse a single in-flight/resolved chunk promise.
 let modulePromise;
 
-export function importBlogPostPage() {
+function importBlogPostPage() {
   if (!modulePromise) {
     modulePromise = import("./BlogPostPage");
   }

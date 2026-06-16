@@ -2,20 +2,30 @@ import { useState, useEffect } from "react";
 import { ActivityCalendar } from "react-activity-calendar";
 import { formatTimeAgo } from "./utils";
 import { useWheelHorizontalScroll } from "./useWheelHorizontalScroll";
+import { fetchJsonCached, getCached, setCached } from "./statsCache";
 
 const catppuccinTheme = {
   light: ["#e6e9ef", "#c5a0e4", "#a374d5", "#8148c4", "#6c3fa3"],
   dark: ["#313244", "#4a3780", "#7047b0", "#9065d8", "#cba6f7"],
 };
 
+const MANIFEST_URL = "/github-manifest.json";
+const contribKey = (year) => `github-contrib:${year}`;
+
 export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
+  const cachedManifest = getCached(MANIFEST_URL);
+  const cachedContrib = getCached(contribKey("last-year"));
   const [colorScheme, setColorScheme] = useState("light");
-  const [availableYears, setAvailableYears] = useState([]);
+  const [availableYears, setAvailableYears] = useState(
+    cachedManifest?.years ?? []
+  );
   const [selectedYear, setSelectedYear] = useState("last-year");
-  const [contributions, setContributions] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [contributions, setContributions] = useState(cachedContrib ?? null);
+  const [loading, setLoading] = useState(!cachedContrib);
   const [error, setError] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(
+    cachedManifest?.fetchedAt ? new Date(cachedManifest.fetchedAt) : null
+  );
   const scrollRef = useWheelHorizontalScroll();
 
   // Sync colorScheme with theme toggle
@@ -36,12 +46,11 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
 
   // Load manifest on mount
   useEffect(() => {
+    if (getCached(MANIFEST_URL)) return; // already have it — skip the fetch
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch("/github-manifest.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
+        const json = await fetchJsonCached(MANIFEST_URL);
         if (!cancelled) {
           setAvailableYears(json.years ?? []);
           setLastUpdated(json.fetchedAt ? new Date(json.fetchedAt) : null);
@@ -58,6 +67,15 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
   // Load contributions for selected year (or last-year rolling window)
   useEffect(() => {
     if (availableYears.length === 0) return;
+
+    // Serve from cache without flashing the calendar's loading state
+    const hit = getCached(contribKey(selectedYear));
+    if (hit) {
+      setContributions(hit);
+      setLoading(false);
+      return;
+    }
+
     let cancelled = false;
     setLoading(true);
     setContributions(null);
@@ -75,25 +93,22 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
             (y) => y >= cutoff.getFullYear() && y <= today.getFullYear()
           );
           const results = await Promise.all(
-            relevantYears.map((y) =>
-              fetch(`/github-${y}.json`, { cache: "no-store" }).then((r) => {
-                if (!r.ok) throw new Error(`HTTP ${r.status}`);
-                return r.json();
-              })
-            )
+            relevantYears.map((y) => fetchJsonCached(`/github-${y}.json`))
           );
           if (!cancelled) {
             const merged = results
               .flatMap((r) => r.contributions)
               .filter((c) => c.date >= cutoffStr && c.date <= todayStr)
               .sort((a, b) => a.date.localeCompare(b.date));
+            setCached(contribKey(selectedYear), merged);
             setContributions(merged);
           }
         } else {
-          const res = await fetch(`/github-${selectedYear}.json`, { cache: "no-store" });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const json = await res.json();
-          if (!cancelled) setContributions(json.contributions);
+          const json = await fetchJsonCached(`/github-${selectedYear}.json`);
+          if (!cancelled) {
+            setCached(contribKey(selectedYear), json.contributions);
+            setContributions(json.contributions);
+          }
         }
       } catch (e) {
         if (!cancelled) setError(e);

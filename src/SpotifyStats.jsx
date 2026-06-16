@@ -1,30 +1,10 @@
-import { useEffect, useState } from "react";
 import { formatTimeAgo } from "./utils";
+import { useCachedJson } from "./useCachedJson";
+
+const SPOTIFY_URL = "/spotify.json";
 
 export default function SpotifyStats() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [lastUpdated, setLastUpdated] = useState(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("/spotify.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const json = await res.json();
-        const fetchedAt = json?.fetchedAt;
-        if (fetchedAt) setLastUpdated(new Date(fetchedAt));
-        if (!cancelled) setData(json);
-      } catch (e) {
-        if (!cancelled) setError(e);
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => { cancelled = true; };
-  }, []);
+  const { data, error, loading, lastUpdated } = useCachedJson(SPOTIFY_URL);
 
   const tracks = data?.top?.tracks?.medium_term || [];
   const artists = data?.top?.artists?.medium_term || [];
