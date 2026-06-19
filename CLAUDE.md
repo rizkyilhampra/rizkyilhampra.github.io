@@ -6,6 +6,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal portfolio/landing page built with React and Farm.js, deployed to GitHub Pages. It features a modern, animated design with floating elements, theme switching, and enhanced visual effects inspired by canvas-transform-lab.
 
+## Product Vision — TIL is a Digital Garden
+
+The "Today I Learned" (TIL) section is a public **digital garden** with an Obsidian
+Publish / wiki feel: notes are short, interlinked (via `[[wikilinks]]` resolved to
+internal `/til/<slug>` links at build time), fully browsable through the UI, and
+**explorable by tags**. Notes are synced from a separate Obsidian vault by
+`scripts/fetch-garden.mjs` into `public/til/*.md` + `public/til-manifest.json`.
+
+Key garden surfaces:
+- `/til` — index of all notes with search, sort, tag filtering, and date grouping.
+- `/til/tags` — browse all tags (tag cloud with counts).
+- `/til/tags/<tag>` — all notes carrying a tag.
+- `/til/<slug>` — a note, with clickable tags plus "Linked from" (backlinks) and
+  "Related notes" (shared-tag) interconnections.
+
+When adding features in this area, preserve the browsing-and-linking experience:
+keep tags clickable, keep notes interconnected, and keep everything navigable.
+
 ## Development Commands
 
 - **Install dependencies**: `bun install`

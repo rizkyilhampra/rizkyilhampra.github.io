@@ -8,6 +8,7 @@ import {
 const MANIFEST_URL = "/til-manifest.json";
 const notePromiseCache = new Map();
 let manifestNotesPromise;
+let manifestTagsPromise;
 
 // The list of TIL notes is generated at build time (scripts/fetch-garden.mjs)
 // into til-manifest.json. Memoized so `use(loadTilManifest())` sees a stable
@@ -22,6 +23,20 @@ export function loadTilManifest() {
       });
   }
   return manifestNotesPromise;
+}
+
+// The tag aggregate ([{ tag, count }]) is generated alongside the notes manifest.
+// Memoized for stable promise identity under `use(loadTilTags())`.
+export function loadTilTags() {
+  if (!manifestTagsPromise) {
+    manifestTagsPromise = fetchJsonCached(MANIFEST_URL)
+      .then((json) => json.tags ?? [])
+      .catch((err) => {
+        manifestTagsPromise = null;
+        throw err;
+      });
+  }
+  return manifestTagsPromise;
 }
 
 // Synchronous manifest read for hover previews. Returns the note's metadata if

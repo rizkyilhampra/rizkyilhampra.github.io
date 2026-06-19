@@ -18,6 +18,8 @@ import SpotifyStats from "./SpotifyStats";
 import WakatimeStats from "./WakatimeStats";
 import { TilListPreview } from "./TilListPreview";
 import { TilIndexPage } from "./TilIndexPage";
+import { TilTagsPage } from "./TilTagsPage";
+import { TilTagPage } from "./TilTagPage";
 import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
@@ -129,7 +131,11 @@ export default function App() {
     }
   };
 
-  const tilSlug = getTilSlug(path);
+  const isTilTagsIndex = path === "/til/tags";
+  const tilTag = getTilTag(path);
+  // /til/tags and /til/tags/<tag> are matched before the generic /til/<slug> note
+  // route so they aren't mistaken for a note slug.
+  const tilSlug = isTilTagsIndex || tilTag ? null : getTilSlug(path);
   const isTilIndex = path === "/til";
   const entranceClass = (className) =>
     skipEntranceAnimation ? "" : className;
@@ -145,6 +151,16 @@ export default function App() {
       return;
     }
 
+    if (isTilTagsIndex) {
+      document.title = "Browse by tag | Rizky Ilham Pratama";
+      return;
+    }
+
+    if (tilTag) {
+      document.title = `#${tilTag} | Rizky Ilham Pratama`;
+      return;
+    }
+
     // TilNotePage sets its own title once the note resolves (title isn't known
     // synchronously here), so leave the title alone for /til/<slug> routes.
     if (tilSlug) {
@@ -152,12 +168,37 @@ export default function App() {
     }
 
     document.title = "Page not found | Rizky Ilham Pratama";
-  }, [path, isTilIndex, tilSlug]);
+  }, [path, isTilIndex, isTilTagsIndex, tilTag, tilSlug]);
 
   if (isTilIndex) {
     return (
       <Suspense fallback={null}>
         <TilIndexPage
+          onNavigate={navigate}
+          onBack={goBack}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
+      </Suspense>
+    );
+  }
+
+  if (isTilTagsIndex) {
+    return (
+      <Suspense fallback={null}>
+        <TilTagsPage
+          onNavigate={navigate}
+          onBack={goBack}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
+      </Suspense>
+    );
+  }
+
+  if (tilTag) {
+    return (
+      <Suspense fallback={null}>
+        <TilTagPage
+          tag={tilTag}
           onNavigate={navigate}
           onBack={goBack}
           skipEntranceAnimation={skipEntranceAnimation}
@@ -399,6 +440,17 @@ function normalizePath(path) {
 
 function getTilSlug(path) {
   return path.startsWith("/til/") ? path.slice("/til/".length) : null;
+}
+
+function getTilTag(path) {
+  if (!path.startsWith("/til/tags/")) return null;
+  const raw = path.slice("/til/tags/".length);
+  if (!raw) return null;
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
 }
 
 function rememberScrollPosition(scrollPositions, path, position) {

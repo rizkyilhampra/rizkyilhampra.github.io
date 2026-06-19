@@ -90,6 +90,10 @@ const notes = await Promise.all(
     const date = toDate(data.created || data.modified || '');
     const tags = toTagList(data.tags);
     const description = extractDescription(cleanedBody);
+    // Outgoing internal links: every wikilink that resolved to a published note
+    // is now a [text](/til/<slug>) markdown link. Collect them (minus self-links)
+    // so the manifest can expose the backlink graph for the digital-garden UI.
+    const links = collectInternalLinks(cleanedBody, slug);
 
     const frontmatter = [
       '---',
@@ -107,19 +111,45 @@ const notes = await Promise.all(
       `${frontmatter}${cleanedBody}\n`
     );
 
-    return { slug, title, date, tags, description };
+    return { slug, title, date, tags, description, links };
   })
 );
 
 notes.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
-const manifest = { notes, fetchedAt: new Date().toISOString() };
+// Invert the outgoing-link graph into backlinks (which notes link *to* this one),
+// then drop the transient `links` field from the public manifest.
+const backlinksBySlug = new Map();
+for (const note of notes) {
+  for (const target of note.links) {
+    if (!backlinksBySlug.has(target)) backlinksBySlug.set(target, new Set());
+    backlinksBySlug.get(target).add(note.slug);
+  }
+}
+
+const manifestNotes = notes.map(({ links, ...note }) => ({
+  ...note,
+  backlinks: [...(backlinksBySlug.get(note.slug) ?? [])],
+}));
+
+// Tag aggregate (tag -> count), most-used first, for the tag-browsing pages.
+const tagCounts = new Map();
+for (const note of notes) {
+  for (const tag of note.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+const tags = [...tagCounts.entries()]
+  .map(([tag, count]) => ({ tag, count }))
+  .sort((a, b) => (b.count - a.count) || a.tag.localeCompare(b.tag));
+
+const manifest = { notes: manifestNotes, tags, fetchedAt: new Date().toISOString() };
 await fs.writeFile(
   path.join(OUT_DIR, 'til-manifest.json'),
   JSON.stringify(manifest, null, 2)
 );
 
-await writeSitemap(notes);
+await writeSitemap(notes, tags);
 
 console.log(`Wrote ${notes.length} published TIL note(s) to ${TIL_DIR}`);
 console.log(`Wrote manifest to ${path.join(OUT_DIR, 'til-manifest.json')}`);
@@ -128,12 +158,19 @@ console.log(`Wrote sitemap to ${path.join(OUT_DIR, 'sitemap.xml')}`);
 // Regenerate the sitemap so the homepage, the TIL index, and every published
 // note are discoverable. lastmod is tied to note dates, so the file only
 // changes when content does (keeps it in step with the update workflow's diff).
-async function writeSitemap(noteList) {
+async function writeSitemap(noteList, tagList = []) {
   const latest = noteList[0]?.date || new Date().toISOString().slice(0, 10);
 
   const urls = [
     { loc: `${SITE_URL}/`, lastmod: latest, changefreq: 'monthly', priority: '1.0' },
     { loc: `${SITE_URL}/til`, lastmod: latest, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${SITE_URL}/til/tags`, lastmod: latest, changefreq: 'weekly', priority: '0.5' },
+    ...tagList.map(({ tag }) => ({
+      loc: `${SITE_URL}/til/tags/${encodeURIComponent(tag)}`,
+      lastmod: latest,
+      changefreq: 'weekly',
+      priority: '0.5',
+    })),
     ...noteList.map((note) => ({
       loc: `${SITE_URL}/til/${note.slug}`,
       lastmod: note.date || latest,
@@ -237,6 +274,19 @@ function resolveWikilinks(body) {
 
     return slug ? `[${text}](/til/${slug})` : text;
   });
+}
+
+// Collect the unique slugs this note links to via resolved [text](/til/<slug>)
+// markdown links, excluding self-references.
+function collectInternalLinks(body, selfSlug) {
+  const slugs = new Set();
+  const re = /\]\(\/til\/([^)#\s]+)\)/g;
+  let match;
+  while ((match = re.exec(body)) !== null) {
+    const target = match[1];
+    if (target && target !== selfSlug) slugs.add(target);
+  }
+  return [...slugs];
 }
 
 // Splits off a leading `# Heading` in one pass: returns its plain-text (for the

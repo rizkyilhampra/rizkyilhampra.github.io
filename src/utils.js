@@ -1,3 +1,14 @@
+// Builds an onClick handler for an internal <a> that intercepts the click and
+// routes through the SPA navigator instead of doing a full page load. Keeps the
+// `href` working (real link, opens in new tab, no-JS fallback) while upgrading
+// the in-page click. Returns a `(to) => (event) => void` factory.
+export function navHandler(onNavigate) {
+  return (to) => (event) => {
+    event.preventDefault();
+    onNavigate(to);
+  };
+}
+
 export function formatTimeAgo(date) {
   const diffMs = Date.now() - date;
   const diffMinutes = Math.floor(diffMs / (1000 * 60));

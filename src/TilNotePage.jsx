@@ -1,11 +1,12 @@
 import { use, useEffect } from "react";
 import { InternalBackLink } from "./InternalBackLink";
-import { loadTilBySlug } from "./tilNotes";
+import { loadTilBySlug, loadTilManifest } from "./tilNotes";
 import { MarkdownContent } from "./MarkdownContent";
 import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { PostMeta } from "./PostMeta";
 import { TagList } from "./TagList";
+import { NoteConnections } from "./NoteConnections";
 import Footer from "./Footer";
 
 export function TilNotePage({
@@ -15,6 +16,7 @@ export function TilNotePage({
   skipEntranceAnimation,
 }) {
   const note = use(loadTilBySlug(slug));
+  const manifest = use(loadTilManifest());
   const entranceClass = skipEntranceAnimation
     ? ""
     : "animate-fade-in-up motion-reduce:animate-none";
@@ -54,12 +56,19 @@ export function TilNotePage({
             </p>
           ) : null}
           <PostMeta post={note} />
-          <TagList tags={note.tags} size="md" className="mt-5" />
+          <TagList
+            tags={note.tags}
+            size="md"
+            className="mt-5"
+            onNavigate={onNavigate}
+          />
         </header>
 
         <div className="mt-10 space-y-8">
           <MarkdownContent tokens={note.content} onNavigate={onNavigate} />
         </div>
+
+        <NoteConnections slug={slug} manifest={manifest} onNavigate={onNavigate} />
 
         <hr className="mt-12 border-border" />
       </article>

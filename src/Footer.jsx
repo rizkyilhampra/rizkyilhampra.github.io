@@ -24,7 +24,7 @@ export default function Footer() {
       <div className="text-center">
         <p>© {new Date().getFullYear()} Rizky Ilham Pratama</p>
       </div>
-      
+
       <div className="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs">
         <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
           <span>Built with</span>
