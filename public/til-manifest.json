@@ -1,6 +1,28 @@
 {
   "notes": [
     {
+      "slug": "command-code-ai",
+      "title": "Command Code AI",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "An like SaaS thingy for any AI models inside of it. So you can pay or being subscribe, then you can use like many AI models based on API pricing usage. In…",
+      "backlinks": []
+    },
+    {
+      "slug": "openrouter",
+      "title": "OpenRouter",
+      "date": "2026-06-12",
+      "tags": [
+        "ai"
+      ],
+      "description": "The most popular ones. It's include fucking almost every AI models in the world. So basically you are being top up, then you can use the API key on everything.",
+      "backlinks": [
+        "command-code-ai"
+      ]
+    },
+    {
       "slug": "alishahryar1-free-claude-code",
       "title": "Alishahryar1 Free Claude Code",
       "date": "2026-06-12",
@@ -32,28 +54,6 @@
       "description": "An LLM provider that's mainly produce or build sort of this model, Sonnet, Opus, Haiku.",
       "backlinks": [
         "claude-code"
-      ]
-    },
-    {
-      "slug": "command-code-ai",
-      "title": "Command Code AI",
-      "date": "2026-06-12",
-      "tags": [
-        "ai"
-      ],
-      "description": "An like SaaS thingy for any AI models inside of it. So you can pay or being subscribe, then you can use like many AI models based on API pricing usage. In…",
-      "backlinks": []
-    },
-    {
-      "slug": "openrouter",
-      "title": "OpenRouter",
-      "date": "2026-06-12",
-      "tags": [
-        "ai"
-      ],
-      "description": "The most popular ones. It's include fucking almost every AI models in the world. So basically you are being top up, then you can use the API key on everything.",
-      "backlinks": [
-        "command-code-ai"
       ]
     },
     {
@@ -263,5 +263,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-06-19T06:04:08.027Z"
+  "fetchedAt": "2026-06-19T13:12:58.259Z"
 }
