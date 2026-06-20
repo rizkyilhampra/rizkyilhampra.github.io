@@ -8,8 +8,8 @@
         "ai"
       ],
       "description": "An like SaaS thingy for any AI models inside of it. So you can pay or being subscribe, then you can use like many AI models based on API pricing usage. In…",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "openrouter",
@@ -19,10 +19,10 @@
         "ai"
       ],
       "description": "The most popular ones. It's include fucking almost every AI models in the world. So basically you are being top up, then you can use the API key on everything.",
+      "readingTime": "1 min read",
       "backlinks": [
         "command-code-ai"
-      ],
-      "readingTime": "1 min read"
+      ]
     },
     {
       "slug": "alishahryar1-free-claude-code",
@@ -32,8 +32,8 @@
         "ai"
       ],
       "description": "An just proxy thingy and include everything information how'd like to use another way to pay to use Claude Code for free.",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "claude-code",
@@ -43,10 +43,10 @@
         "ai"
       ],
       "description": "An way to leverage Claude models to do something (mainly vibe coding) on your host.",
+      "readingTime": "1 min read",
       "backlinks": [
         "alishahryar1-free-claude-code"
-      ],
-      "readingTime": "1 min read"
+      ]
     },
     {
       "slug": "claude",
@@ -56,10 +56,10 @@
         "ai"
       ],
       "description": "An LLM provider that's mainly produce or build sort of this model, Sonnet, Opus, Haiku.",
+      "readingTime": "1 min read",
       "backlinks": [
         "claude-code"
-      ],
-      "readingTime": "1 min read"
+      ]
     },
     {
       "slug": "claude-code-using-kiro-api",
@@ -69,8 +69,8 @@
         "work"
       ],
       "description": "Shout out who writing this post https://dev.to/aws-heroes/the-aws-dev-setup-nobody-told-you-about-claude-code-kiro-pro-and-agent-plugins-1c3p by Vivok V. But…",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "task-id-bpjs",
@@ -81,8 +81,8 @@
         "hospitality"
       ],
       "description": "Task ID 1 dan 2 hanya untuk pasien baru BPJS. Umumnya aman atau diperbolehkan (mungkin) jika langsung dimulai dari 3 sampai 6. Untuk 99 adalah untuk pembatalan.",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "bpjstk-bpu",
@@ -92,8 +92,8 @@
         "personal"
       ],
       "description": "Salah satu layanan BPJS untuk mengakomodir orang-orang yang bekerja sebagai wirausaha, freelance, dan paruh waktu. Asuransi ini berguna untuk orang tua yang…",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "openwrt",
@@ -103,8 +103,8 @@
         "network"
       ],
       "description": "Openwrt berdasarkan hasil observasi saya adalah suatu interface untuk pengelolaan jaringan. Seperti jika menggunakan router Indihome yang basisnya adalah Huawei…",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "fail2ban",
@@ -112,8 +112,8 @@
       "date": "2026-04-27",
       "tags": [],
       "description": "Had issue with ssh bruteforce that's make my on-premise server (computer) being uncompromised then caused hang. We can leverage this like service to like ban,…",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "steps-i-do-when-extending-or-resizing-a-vm-disk-in-proxmox",
@@ -123,8 +123,8 @@
         "proxmox"
       ],
       "description": "Go to storage on main node or node you are working on. In my case it's local (server). > server is the node.",
-      "backlinks": [],
-      "readingTime": "2 min read"
+      "readingTime": "2 min read",
+      "backlinks": []
     },
     {
       "slug": "akses-local-development-server-dengan-ssh-tunneling",
@@ -135,8 +135,8 @@
         "cheatsheets"
       ],
       "description": "Tulisan ini didasari kebutuhan saya untuk mengakses PC kantor yang disana terdapat local development server yang sedang berjalan. Sebelum mengetahui langkah…",
-      "backlinks": [],
-      "readingTime": "2 min read"
+      "readingTime": "2 min read",
+      "backlinks": []
     },
     {
       "slug": "how-to-decompile-an-python-310-program",
@@ -144,8 +144,8 @@
       "date": "2025-09-13",
       "tags": [],
       "description": "Saya mulai ini dari di tempat saya bekerja, saya butuh mendapatkan bagaimana caranya suatu aplikasi dengan ektensi .exe bekerja. Ya, dengan meminta bantuan…",
-      "backlinks": [],
-      "readingTime": "3 min read"
+      "readingTime": "3 min read",
+      "backlinks": []
     },
     {
       "slug": "zustand",
@@ -156,8 +156,8 @@
         "frontend"
       ],
       "description": "You maybe had like <App /> component that had 2 components <ProductList /> and <Cart />. How you can handle 'state' of cart management? The native way is define…",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "making-a-wsl2-web-service-accessible-on-the-local-network",
@@ -165,8 +165,8 @@
       "date": "2025-05-13",
       "tags": [],
       "description": "I’m running a web service inside a Docker container on WSL2 (using Arch Linux). The Docker container publishes port 80. On the Windows host, I can access the…",
-      "backlinks": [],
-      "readingTime": "2 min read"
+      "readingTime": "2 min read",
+      "backlinks": []
     },
     {
       "slug": "setting-up-dns-on-my-arch-linux",
@@ -179,8 +179,8 @@
         "blocking"
       ],
       "description": "[!NOTE] > In my case I didn't use systemd-resolved so do I now enable and start those service",
-      "backlinks": [],
-      "readingTime": "2 min read"
+      "readingTime": "2 min read",
+      "backlinks": []
     },
     {
       "slug": "downgrade-arch-linux-installed-package",
@@ -190,10 +190,10 @@
         "linux"
       ],
       "description": "Ex, downgrade mesa to 24.2.7",
+      "readingTime": "1 min read",
       "backlinks": [
         "freeze-or-hang-randomly-on-arch-linux-with-hyprland"
-      ],
-      "readingTime": "1 min read"
+      ]
     },
     {
       "slug": "freeze-or-hang-randomly-on-arch-linux-with-hyprland",
@@ -203,8 +203,8 @@
         "linux"
       ],
       "description": "- Arch Wiki - Github Issue",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "how-to-combine-two-repository-with-unrelated-history",
@@ -212,8 +212,8 @@
       "date": "2024-11-22",
       "tags": [],
       "description": "Do this in the repository that will receive the changes from the other repository.",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     },
     {
       "slug": "different-between-shebang-usr-bin-env-bash-and-bin-bash",
@@ -221,8 +221,8 @@
       "date": "2024-10-24",
       "tags": [],
       "description": "Portable. Is check where the bash installed on system.",
-      "backlinks": [],
-      "readingTime": "1 min read"
+      "readingTime": "1 min read",
+      "backlinks": []
     }
   ],
   "tags": [
@@ -283,5 +283,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-06-20T00:46:27.396Z"
+  "fetchedAt": "2026-06-20T12:38:16.891Z"
 }
