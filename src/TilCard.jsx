@@ -24,10 +24,7 @@ export function TilCard({ note, onNavigate, showDate = false }) {
       <div className="flex h-full flex-col justify-between gap-6">
         <div className="flex min-w-0 gap-4">
           <GradientIcon>
-            <Lightbulb
-              className="h-6 w-6 text-primary-foreground"
-              aria-hidden="true"
-            />
+            <Lightbulb className="h-5 w-5" aria-hidden="true" />
           </GradientIcon>
 
           <div className="min-w-0">
@@ -55,25 +52,5 @@ export function TilCard({ note, onNavigate, showDate = false }) {
         </span>
       </div>
     </InteractiveCard>
-  );
-}
-
-export function TilCardSkeleton() {
-  return (
-    <div className="min-h-[220px] animate-pulse rounded-lg border border-border bg-card p-5 sm:p-6">
-      <div className="flex h-full flex-col justify-between gap-6">
-        <div className="flex min-w-0 gap-4">
-          <div className="h-11 w-11 shrink-0 rounded-lg bg-secondary/60" />
-          <div className="min-w-0 flex-1 space-y-3">
-            <div className="h-5 w-3/4 rounded-md bg-secondary/60" />
-            <div className="space-y-2">
-              <div className="h-3 w-full rounded-md bg-secondary/60" />
-              <div className="h-3 w-5/6 rounded-md bg-secondary/60" />
-            </div>
-          </div>
-        </div>
-        <div className="h-4 w-24 rounded-md bg-secondary/60" />
-      </div>
-    </div>
   );
 }

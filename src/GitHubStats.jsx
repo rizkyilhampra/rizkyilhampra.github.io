@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { ActivityCalendar } from "react-activity-calendar";
+import { SectionHeading } from "./SectionHeading";
 import { formatTimeAgo } from "./utils";
 import { useWheelHorizontalScroll } from "./useWheelHorizontalScroll";
 import { fetchJsonCached, getCached, setCached } from "./statsCache";
 
-const catppuccinTheme = {
-  light: ["#e6e9ef", "#c5a0e4", "#a374d5", "#8148c4", "#6c3fa3"],
-  dark: ["#313244", "#4a3780", "#7047b0", "#9065d8", "#cba6f7"],
+// Evergreen contribution ramp matching the "Garden ink" accent.
+const calendarTheme = {
+  light: ["#eceee9", "#bcd9c7", "#86bd9f", "#52996f", "#2f6f4f"],
+  dark: ["#1b1e20", "#274434", "#356b4f", "#4f9a72", "#7fbf9b"],
 };
 
 const MANIFEST_URL = "/github-manifest.json";
@@ -123,33 +125,26 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
 
   return (
     <section aria-labelledby="github-stats-title" className={className}>
-      <div className="text-center mb-8">
-        <h2
-          id="github-stats-title"
-          className="text-3xl md:text-4xl font-header font-semibold tracking-tight mb-2"
+      <SectionHeading
+        eyebrow="~/github"
+        title="GitHub Activity"
+        id="github-stats-title"
+      >
+        Powered by{" "}
+        <a
+          href="https://github.com/rizkyilhampra"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 transition-colors hover:text-primary"
         >
-          GitHub Activity
-        </h2>
-        <div className="w-16 h-1 bg-gradient-primary mx-auto rounded-full mb-4" />
-        <p className="text-sm text-muted-foreground">
-          Powered by{" "}
-          <a
-            href="https://github.com/rizkyilhampra"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            GitHub
-          </a>
-        </p>
+          GitHub
+        </a>
         {lastUpdated && (
-          <p className="text-xs text-muted-foreground mt-1">
-            Updated {formatTimeAgo(lastUpdated)} • Updates every 24 hours
-          </p>
+          <span> · updated {formatTimeAgo(lastUpdated)} · every 24 hours</span>
         )}
-      </div>
+      </SectionHeading>
 
-      <div className="p-4 sm:p-6 bg-card border border-border rounded-lg flex-1">
+      <div className="flex-1">
         <div className="flex h-full flex-col sm:flex-row gap-4">
           {availableYears.length > 0 && (
             <div className="flex flex-row sm:flex-col gap-1 overflow-x-auto sm:overflow-x-visible shrink-0 sm:order-last sm:border-l sm:border-border sm:pl-4 pb-1 sm:pb-0">
@@ -188,7 +183,7 @@ export default function GitHubStats({ className = "mt-16 md:mt-20" }) {
                   data={contributions ?? []}
                   loading={loading}
                   colorScheme={colorScheme}
-                  theme={catppuccinTheme}
+                  theme={calendarTheme}
                   maxLevel={4}
                   showColorLegend
                   labels={{

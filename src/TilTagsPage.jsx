@@ -13,14 +13,12 @@ export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
   const go = navHandler(onNavigate);
 
   return (
-    <PageShell mainClassName="relative z-10 container mx-auto px-6 py-16 md:py-20">
+    <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
       <div className={`mx-auto max-w-5xl ${entranceClass}`}>
         <InternalBackLink onBack={onBack} />
 
         <header className="border-b border-border pb-8">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-primary">
-            Digital garden
-          </p>
+          <p className="mb-4 font-mono text-xs text-primary">~/til/tags</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             Browse by tag
           </h1>

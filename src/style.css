@@ -2,48 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced Catppuccin Design System - Latte & Mocha */
+/* "Garden ink" Design System — minimalist paper/ink with one evergreen accent */
 
 @layer base {
   :root {
-    /* Catppuccin Latte (Light Mode) */
-    --background: 220 23% 95%; /* base */
-    --foreground: 234 16% 35%; /* text */
+    /* Light — warm paper, cool ink, pine accent */
+    --background: 60 20% 98%; /* warm near-white */
+    --foreground: 150 6% 12%; /* near-black ink */
 
-    --card: 220 23% 95%; /* base */
-    --card-foreground: 234 16% 35%; /* text */
+    --card: 60 20% 98%;
+    --card-foreground: 150 6% 12%;
 
-    --popover: 220 23% 95%; /* base */
-    --popover-foreground: 234 16% 35%; /* text */
+    --popover: 60 20% 98%;
+    --popover-foreground: 150 6% 12%;
 
-    --primary: 266 85% 58%; /* mauve */
-    --primary-foreground: 220 23% 95%; /* base */
-    --primary-glow: 316 73% 69%; /* pink */
+    --primary: 152 38% 33%; /* evergreen */
+    --primary-foreground: 60 20% 98%;
+    --primary-glow: 152 38% 33%;
 
-    --secondary: 228 39% 80%; /* surface0 */
-    --secondary-foreground: 234 16% 35%; /* text */
+    --secondary: 60 14% 94%; /* faint hover wash */
+    --secondary-foreground: 150 6% 12%;
 
-    --muted: 223 16% 83%; /* surface1 */
-    --muted-foreground: 233 13% 54%; /* subtext0 */
+    --muted: 60 14% 94%;
+    --muted-foreground: 150 4% 40%;
 
-    --accent: 35 77% 49%; /* yellow */
-    --accent-foreground: 220 23% 95%; /* base */
+    --accent: 152 38% 33%;
+    --accent-foreground: 60 20% 98%;
 
-    --destructive: 347 87% 44%; /* red */
-    --destructive-foreground: 220 23% 95%; /* base */
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 60 20% 98%;
 
-    --border: 220 14% 85%; /* surface0 */
-    --input: 220 14% 85%; /* surface0 */
-    --ring: 266 85% 58%; /* mauve */
+    --border: 48 12% 88%; /* hairline */
+    --input: 48 12% 88%;
+    --ring: 152 38% 33%;
 
-    --radius: 1rem;
+    --radius: 0.375rem;
 
-    /* Custom Design Tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(267 84% 59%), hsl(316 73% 69%));
-    --gradient-secondary: linear-gradient(135deg, hsl(228 39% 80%), hsl(223 16% 83%));
-    --gradient-glow: linear-gradient(135deg, hsl(267 84% 59% / 0.3), hsl(316 73% 69% / 0.3));
-    --shadow-glow: 0 0 50px hsl(266 85% 58% / 0.3);
-    --shadow-card: 0 8px 32px hsl(228 39% 80% / 0.2);
+    /* Decorative tokens neutralized: existing glow usages flatten */
+    --shadow-glow: 0 1px 2px hsl(150 6% 12% / 0.06);
+    --shadow-card: 0 1px 2px hsl(150 6% 12% / 0.05);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --syntax-bg: #eff1f5;
@@ -68,42 +65,39 @@
   }
 
   .dark {
-    /* Catppuccin Mocha (Dark Mode) */
-    --background: 240 21% 15%; /* base */
-    --foreground: 226 64% 88%; /* text */
+    /* Dark — cool charcoal, off-white ink, sage accent */
+    --background: 210 12% 9%;
+    --foreground: 60 8% 90%;
 
-    --card: 240 21% 15%; /* base */
-    --card-foreground: 226 64% 88%; /* text */
+    --card: 210 12% 11%;
+    --card-foreground: 60 8% 90%;
 
-    --popover: 240 21% 15%; /* base */
-    --popover-foreground: 226 64% 88%; /* text */
+    --popover: 210 12% 11%;
+    --popover-foreground: 60 8% 90%;
 
-    --primary: 267 84% 81%; /* mauve */
-    --primary-foreground: 240 21% 15%; /* base */
-    --primary-glow: 316 73% 69%; /* pink */
+    --primary: 152 36% 62%; /* sage */
+    --primary-foreground: 210 12% 9%;
+    --primary-glow: 152 36% 62%;
 
-    --secondary: 240 13% 26%; /* surface0 */
-    --secondary-foreground: 226 64% 88%; /* text */
+    --secondary: 200 8% 16%;
+    --secondary-foreground: 60 8% 90%;
 
-    --muted: 240 9% 31%; /* surface1 */
-    --muted-foreground: 227 27% 72%; /* subtext0 */
+    --muted: 200 8% 16%;
+    --muted-foreground: 150 5% 62%;
 
-    --accent: 35 88% 72%; /* yellow */
-    --accent-foreground: 240 21% 15%; /* base */
+    --accent: 152 36% 62%;
+    --accent-foreground: 210 12% 9%;
 
-    --destructive: 343 81% 75%; /* red */
-    --destructive-foreground: 240 21% 15%; /* base */
+    --destructive: 0 63% 65%;
+    --destructive-foreground: 210 12% 9%;
 
-    --border: 240 13% 26%; /* surface0 */
-    --input: 240 13% 26%; /* surface0 */
-    --ring: 267 84% 81%; /* mauve */
+    --border: 200 8% 18%;
+    --input: 200 8% 18%;
+    --ring: 152 36% 62%;
 
-    /* Dark mode custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(267 84% 81%), hsl(316 73% 69%));
-    --gradient-secondary: linear-gradient(135deg, hsl(240 13% 26%), hsl(240 9% 31%));
-    --gradient-glow: linear-gradient(135deg, hsl(267 84% 81% / 0.3), hsl(316 73% 69% / 0.3));
-    --shadow-glow: 0 0 50px hsl(267 84% 81% / 0.3);
-    --shadow-card: 0 8px 32px hsl(240 13% 26% / 0.3);
+    /* Dark decorative tokens neutralized */
+    --shadow-glow: 0 1px 2px hsl(0 0% 0% / 0.4);
+    --shadow-card: 0 1px 2px hsl(0 0% 0% / 0.3);
 
     --syntax-bg: #1e1e2e;
     --syntax-header: #181825;

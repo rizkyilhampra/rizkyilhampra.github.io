@@ -90,6 +90,7 @@ const notes = await Promise.all(
     const date = toDate(data.created || data.modified || '');
     const tags = toTagList(data.tags);
     const description = extractDescription(cleanedBody);
+    const readingTime = readingTimeOf(cleanedBody);
     // Outgoing internal links: every wikilink that resolved to a published note
     // is now a [text](/til/<slug>) markdown link. Collect them (minus self-links)
     // so the manifest can expose the backlink graph for the digital-garden UI.
@@ -111,7 +112,7 @@ const notes = await Promise.all(
       `${frontmatter}${cleanedBody}\n`
     );
 
-    return { slug, title, date, tags, description, links };
+    return { slug, title, date, tags, description, readingTime, links };
   })
 );
 
@@ -311,6 +312,13 @@ function toTagList(value) {
     return value.split(',').map((tag) => tag.trim()).filter(Boolean);
   }
   return [];
+}
+
+// Mirror of src/markdown.js calculateReadingTime so the manifest carries a
+// ready-to-show "N min read" for list views (~200 wpm).
+function readingTimeOf(body) {
+  const wordCount = body.trim().split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(wordCount / 200))} min read`;
 }
 
 function extractDescription(body) {

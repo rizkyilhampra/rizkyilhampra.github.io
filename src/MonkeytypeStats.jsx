@@ -1,3 +1,4 @@
+import { SectionHeading } from "./SectionHeading";
 import { formatTimeAgo } from "./utils";
 import { useCachedJson } from "./useCachedJson";
 
@@ -7,56 +8,27 @@ export default function MonkeytypeStats() {
   const { data, error, loading, lastUpdated } = useCachedJson(MONKEYTYPE_URL);
 
   return (
-    <section aria-labelledby="typing-stats-title" className="mt-16 md:mt-20">
-      <div className="text-center mb-8">
-        <h2 id="typing-stats-title" className="text-3xl md:text-4xl font-header font-semibold tracking-tight mb-2">
-          Typing Stats
-          {/* {data?.profile?.data?.name && ( */}
-          {/*   <> */}
-          {/*     {' — '} */}
-          {/*     <a */}
-          {/*       href={`https://monkeytype.com/profile/${data.profile.data.name}`} */}
-          {/*       target="_blank" */}
-          {/*       rel="noopener noreferrer" */}
-          {/*       className="text-primary hover:underline" */}
-          {/*     > */}
-          {/*       @{data.profile.data.name} */}
-          {/*     </a> */}
-          {/*   </> */}
-          {/* )} */}
-        </h2>
-        <div className="w-16 h-1 bg-gradient-primary mx-auto rounded-full mb-4" />
-        {/* {data?.profile?.data?.name && ( */}
-        {/*   <p className="text-sm text-muted-foreground mb-1"> */}
-        {/*     <a  */}
-        {/*       href={`https://monkeytype.com/profile/${data.profile.data.name}`} */}
-        {/*       target="_blank"  */}
-        {/*       rel="noopener noreferrer" */}
-        {/*       className="text-primary hover:underline" */}
-        {/*     > */}
-        {/*       @{data.profile.data.name} */}
-        {/*     </a> */}
-        {/*   </p> */}
-        {/* )} */}
-        <p className="text-sm text-muted-foreground">
-          Powered by{' '}
-          <a
-            href="https://monkeytype.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            MonkeyType
-          </a>
-        </p>
+    <section aria-labelledby="typing-stats-title">
+      <SectionHeading
+        eyebrow="~/typing"
+        title="Typing Stats"
+        id="typing-stats-title"
+      >
+        Powered by{' '}
+        <a
+          href="https://monkeytype.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 transition-colors hover:text-primary"
+        >
+          MonkeyType
+        </a>
         {lastUpdated && (
-          <p className="text-xs text-muted-foreground mt-1">
-            Updated {formatTimeAgo(lastUpdated)} • Updates every 12 hours
-          </p>
+          <span> · updated {formatTimeAgo(lastUpdated)} · every 12 hours</span>
         )}
-      </div>
+      </SectionHeading>
 
-      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {loading && (
           <SkeletonCard title="Best 60s WPM" />
         )}
@@ -92,10 +64,10 @@ export default function MonkeytypeStats() {
               label="Avg WPM (last 20)"
               value={avgWpm(data?.recent) ?? "—"}
               sub={`${fmtAcc(avgAcc(data?.recent))} acc`}
-              meta={<DeltaBadge delta={delta} title={tooltip} />}
             >
-              <span title={tooltip} tabIndex={0} className="outline-none focus:ring-2 focus:ring-primary/40 rounded-sm">
+              <span title={tooltip} tabIndex={0} className="relative block h-full w-full rounded-sm outline-none focus:ring-2 focus:ring-primary/40">
                 <Sparkline points={wpmPoints} min={domain?.[0]} max={domain?.[1]} />
+                <DeltaBadge delta={delta} title={tooltip} className="absolute -top-1 right-0" />
               </span>
             </StatCard>
               );
@@ -112,32 +84,31 @@ export default function MonkeytypeStats() {
   );
 }
 
-function StatCard({ label, value, sub, children, meta }) {
+function StatCard({ label, value, sub, children }) {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg shadow-sm">
-      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">{label}</div>
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 min-w-0">
-          <div className="text-3xl md:text-4xl font-semibold">{value}</div>
-          {meta}
+    <div className="border-t border-border pt-3">
+      <div className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</div>
+      <div className="flex items-center gap-3">
+        <div className="flex shrink-0 items-baseline gap-1.5">
+          <div className="font-header text-3xl font-semibold tabular-nums leading-none text-foreground">{value}</div>
         </div>
         {children && (
-          <div className="ml-2 shrink-0" aria-hidden>
+          <div className="relative flex h-8 min-w-0 flex-1 items-center">
             {children}
           </div>
         )}
       </div>
-      {sub && <div className="text-sm text-muted-foreground mt-1">{sub}</div>}
+      {sub && <div className="mt-1.5 text-xs text-muted-foreground">{sub}</div>}
     </div>
   );
 }
 
 function SkeletonCard({ title = "Loading" }) {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg animate-pulse">
-      <div className="h-3 w-24 bg-muted rounded mb-2" aria-hidden />
-      <div className="h-8 w-16 bg-muted rounded" aria-hidden />
-      <div className="h-3 w-20 bg-muted rounded mt-2" aria-hidden />
+    <div className="animate-pulse border-t border-border pt-3">
+      <div className="mb-2 h-3 w-24 rounded bg-secondary" aria-hidden />
+      <div className="h-9 w-16 rounded bg-secondary" aria-hidden />
+      <div className="mt-2 h-3 w-20 rounded bg-secondary" aria-hidden />
       <span className="sr-only">{title}</span>
     </div>
   );
@@ -145,12 +116,10 @@ function SkeletonCard({ title = "Loading" }) {
 
 function ConnectCard() {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg">
-      <div className="text-sm mb-2">Connect your Monkeytype account</div>
-      <p className="text-sm text-muted-foreground">
-        Add a GitHub Action to fetch stats into <code>monkeytype.json</code> using a secret API key. See project README for setup.
-      </p>
-    </div>
+    <p className="text-sm text-muted-foreground">
+      Connect a Monkeytype account via a GitHub Action to fetch stats into{" "}
+      <code>monkeytype.json</code>. See the project README for setup.
+    </p>
   );
 }
 
@@ -228,9 +197,8 @@ function Sparkline({ points = [], min: forcedMin, max: forcedMax }) {
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      width={width}
-      height={height}
-      className="text-primary"
+      preserveAspectRatio="none"
+      className="h-full w-full max-w-[160px] text-primary/80"
       focusable="false"
       aria-hidden="true"
     >
@@ -240,20 +208,20 @@ function Sparkline({ points = [], min: forcedMin, max: forcedMax }) {
   );
 }
 
-function DeltaBadge({ delta, title }) {
+function DeltaBadge({ delta, title, className = "" }) {
   if (delta == null || Number.isNaN(delta) || delta === 0) return null;
   const positive = delta > 0;
-  const color = positive
-    ? "bg-green-500/10 text-green-700 dark:text-green-400"
-    : "bg-red-500/10 text-red-700 dark:text-red-400";
-  const arrow = positive ? "▲" : "▼";
   return (
     <span
-      className={`inline-flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-full ${color}`}
+      className={`inline-flex items-center gap-0.5 rounded-md border bg-background/85 px-1.5 py-0.5 text-[11px] font-medium leading-none backdrop-blur-[1px] ${
+        positive
+          ? "border-primary/40 text-primary"
+          : "border-destructive/40 text-destructive"
+      } ${className}`}
       title={title}
     >
-      <span aria-hidden>{arrow}</span>
-      <span>{fmtDelta(delta)}</span>
+      <span aria-hidden>{positive ? "▲" : "▼"}</span>
+      <span>{Math.abs(Math.round(delta))}</span>
       <span className="sr-only"> {positive ? "increase" : "decrease"} vs average</span>
     </span>
   );

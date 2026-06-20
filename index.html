@@ -25,7 +25,18 @@
     <meta name="twitter:description" content="Rizky Ilham Pratama — Software Developer. Personal portfolio and landing page." />
 
     <!-- Theme color -->
-    <meta name="theme-color" content="#1e1e2e" />
+    <meta name="theme-color" content="#14161a" />
+
+    <!-- Apply saved theme before paint to avoid a flash -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("theme") === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- Structured Data -->
     <script type="application/ld+json">

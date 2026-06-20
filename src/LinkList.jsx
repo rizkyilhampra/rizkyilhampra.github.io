@@ -4,7 +4,7 @@ export default function LinkList({ href, children, className }) {
   return (
     <a
       className={clsx(
-        "text-primary underline hover:text-primary/80 transition-colors",
+        "underline underline-offset-2 transition-colors hover:text-primary",
         className
       )}
       href={href}

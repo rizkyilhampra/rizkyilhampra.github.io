@@ -15,6 +15,7 @@ export default {
       fontFamily: {
         sans: ["Plus Jakarta Sans", ...defaultTheme.fontFamily.sans],
         header: ["Iosevka", ...defaultTheme.fontFamily.sans],
+        mono: ["JetBrains Mono", ...defaultTheme.fontFamily.mono],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -51,11 +52,6 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         }
-      },
-      backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-secondary': 'var(--gradient-secondary)',
-        'gradient-glow': 'var(--gradient-glow)'
       },
       boxShadow: {
         'glow': 'var(--shadow-glow)',
@@ -303,9 +299,6 @@ export default {
     },
   },
   plugins: [
-    require("@catppuccin/tailwindcss")({
-      defaultFlavour: "latte",
-    }),
     require("tailwindcss-animate"),
   ],
 };

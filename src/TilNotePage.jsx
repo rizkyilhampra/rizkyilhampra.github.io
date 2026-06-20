@@ -39,29 +39,22 @@ export function TilNotePage({
   }
 
   return (
-    <PageShell mainClassName="relative z-10 container mx-auto px-6 py-16 md:py-20">
+    <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
       <article className={`mx-auto max-w-3xl ${entranceClass}`}>
         <InternalBackLink onBack={onBack} />
 
         <header className="border-b border-border pb-8">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-primary">
-            Today I Learned
-          </p>
+          <p className="mb-4 font-mono text-xs text-primary">~/til/{note.slug}</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             {note.title}
           </h1>
-          {note.description ? (
-            <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              {note.description}
-            </p>
-          ) : null}
-          <PostMeta post={note} />
-          <TagList
-            tags={note.tags}
-            size="md"
-            className="mt-5"
-            onNavigate={onNavigate}
-          />
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+            <PostMeta
+              post={note}
+              className="flex flex-wrap items-center gap-4"
+            />
+            <TagList tags={note.tags} size="md" onNavigate={onNavigate} />
+          </div>
         </header>
 
         <div className="mt-10 space-y-8">

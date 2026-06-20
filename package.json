@@ -23,7 +23,6 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@catppuccin/tailwindcss": "^0.1.6",
     "@farmfe/cli": "^1.0.5",
     "@farmfe/core": "^1.7.11",
     "@farmfe/js-plugin-postcss": "^1.12.0",

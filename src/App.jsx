@@ -9,7 +9,9 @@ import {
   Download,
 } from "lucide-react";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { SocialLink } from "./SocialLink";
+import { ProjectList } from "./SocialLink";
+import { SectionHeading } from "./SectionHeading";
+import { SocialIconRow } from "./SocialIconRow";
 import { TypewriterText } from "./TypewriterText";
 import Footer from "./Footer";
 import GitHubStats from "./GitHubStats";
@@ -229,21 +231,13 @@ export default function App() {
     );
   }
 
-  const socialLinks = [
-    {
-      href: "mailto:rizkyilhampra@rizkyilhampra.dev",
-      icon: Mail,
-      label: "Email",
-      description: "Get in touch directly",
-      ariaLabel: "Send an email to Rizky Ilham Pratama",
-      title: "Send an email to Rizky Ilham Pratama",
-    },
+  const projects = [
     {
       href: "https://spdhtc.rizkyilhampra.dev",
       icon: Globe,
       label: "SPDHTC",
       description:
-        "Expert system for chili diseases—fast diagnosis with step-by-step fixes",
+        "Expert system for chili diseases — fast diagnosis with step-by-step fixes.",
       ariaLabel:
         "Open SPDHTC — expert system for chili diseases; fast diagnosis with step-by-step fixes",
       title: "SPDHTC — expert system for chili diseases",
@@ -253,84 +247,73 @@ export default function App() {
       icon: Download,
       label: "TikTok Downloader",
       description:
-        "Grab TikTok videos in HD/FullHD—no ads, no watermark hassle, with batch concurrent downloads",
+        "Save TikTok videos in HD/FullHD — no ads, no watermark, batch downloads.",
       ariaLabel:
         "Open TikTok Downloader — save TikTok videos in HD/FullHD with no ads and batch downloads",
       title: "TikTok Downloader — HD/FullHD, no ads, batch downloads",
     },
     {
-      href: "https://instagram.com/apainilala",
-      icon: Instagram,
-      label: "Instagram · @apainilala",
-      description: "The muse behind many lines of code ❤️",
-      ariaLabel: "Open Instagram profile @apainilala (beloved person)",
-      title: "Instagram: @apainilala",
-    },
-    {
       href: "https://blog.rizkyilhampra.dev",
       icon: FileText,
       label: "Blog",
-      description: "Thoughts and tutorials",
+      description: "Longer-form thoughts and tutorials.",
       ariaLabel: "Read posts on Rizky Ilham Pratama’s blog",
       title: "Rizky Ilham Pratama — Blog",
+    },
+  ];
+
+  const socials = [
+    {
+      href: "mailto:rizkyilhampra@rizkyilhampra.dev",
+      icon: Mail,
+      label: "Email",
+      ariaLabel: "Send an email to Rizky Ilham Pratama",
+      title: "Email",
     },
     {
       href: "https://github.com/rizkyilhampra",
       icon: Github,
-      label: "GitHub · @rizkyilhampra",
-      description: "Open source projects and code",
+      label: "GitHub",
       ariaLabel: "Open GitHub profile @rizkyilhampra",
       title: "GitHub: @rizkyilhampra",
     },
     {
-      href: "https://instagram.com/rizkyilhampra",
-      icon: Instagram,
-      label: "Instagram · @rizkyilhampra",
-      description: "Life updates and moments",
-      ariaLabel: "Open Instagram profile @rizkyilhampra",
-      title: "Instagram: @rizkyilhampra",
-    },
-    {
       href: "https://x.com/rizkyilhampra",
       icon: Twitter,
-      label: "X · @rizkyilhampra",
-      description: "Quick thoughts and updates",
+      label: "X",
       ariaLabel: "Open X profile @rizkyilhampra",
       title: "X (Twitter): @rizkyilhampra",
     },
     {
       href: "https://www.linkedin.com/in/rizkyilhampra",
       icon: Linkedin,
-      label: "LinkedIn · rizkyilhampra",
-      description: "Professional network",
+      label: "LinkedIn",
       ariaLabel: "Open LinkedIn profile rizkyilhampra",
       title: "LinkedIn: rizkyilhampra",
     },
+    {
+      href: "https://instagram.com/rizkyilhampra",
+      icon: Instagram,
+      label: "Instagram",
+      ariaLabel: "Open Instagram profile @rizkyilhampra",
+      title: "Instagram: @rizkyilhampra",
+    },
   ];
 
-  return (
-    <PageShell>
-      {/* Hero Section */}
-      <div
-        className={`text-center mb-16 ${
-          entranceClass("animate-fade-in-up motion-reduce:animate-none")
-        }`}
-        style={{ animationFillMode: "both" }}
-      >
-        <div className="relative inline-block mb-8">
-          <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-glow" />
-        </div>
+  const reveal = (delay) => ({
+    className: entranceClass("animate-fade-in-up motion-reduce:animate-none"),
+    style: { animationDelay: delay, animationFillMode: "both" },
+  });
 
-        <h1
-          className={`text-6xl md:text-7xl font-header font-semibold bg-gradient-primary bg-clip-text text-transparent mb-6 ${
-            entranceClass("animate-scale-in motion-reduce:animate-none")
-          }`}
-          style={{ animationDelay: "0.1s", animationFillMode: "both" }}
-        >
+  return (
+    <PageShell onNavigate={navigate}>
+      {/* Hero */}
+      <section {...reveal("0s")}>
+        <h1 className="font-header text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
           Rizky Ilham Pratama
         </h1>
 
-        <div className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8 min-h-[4rem] sm:min-h-[3rem] md:min-h-[4rem] flex items-center justify-center">
+        <div className="mt-3 text-lg text-muted-foreground sm:text-xl">
           <TypewriterText
             texts={[
               "Developer, Creator, and Digital Enthusiast",
@@ -344,94 +327,69 @@ export default function App() {
           />
         </div>
 
-        <div
-          className={`w-24 h-1 bg-gradient-primary mx-auto rounded-full ${
-            entranceClass("animate-scale-in motion-reduce:animate-none")
-          }`}
-          style={{ animationDelay: "0.2s", animationFillMode: "both" }}
-        />
-      </div>
+        <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
+          Software developer building small, useful web tools and tending a
+          digital garden of notes. This is where my projects, writing, and
+          activity live.
+        </p>
 
-      {/* Links Grid */}
-      <div className="max-w-6xl mx-auto">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {socialLinks.map((link, index) => (
-            <div
-              key={link.href}
-              className={
-                entranceClass("animate-scale-in motion-reduce:animate-none")
-              }
-              style={{
-                animationDelay: `${
-                  0.3 + (index % 3) * 0.1 + Math.floor(index / 3) * 0.1
-                }s`,
-                animationFillMode: "both",
-              }}
-            >
-              <SocialLink {...link} />
-            </div>
-          ))}
-        </div>
-      </div>
+        <SocialIconRow items={socials} className="mt-6 -ml-2" />
+      </section>
+
+      <SectionDivider />
+
+      {/* Projects */}
+      <section {...reveal("0.05s")}>
+        <SectionHeading eyebrow="~/projects" title="Projects">
+          Things I’ve built and keep running.
+        </SectionHeading>
+        <ProjectList items={projects} />
+      </section>
+
+      <SectionDivider />
 
       {/* Today I Learned (digital garden) */}
-      <div
-        className={`max-w-6xl mx-auto ${
-          entranceClass("animate-fade-in-up motion-reduce:animate-none")
-        }`}
-        style={{ animationDelay: "0.9s", animationFillMode: "both" }}
-      >
+      <section {...reveal("0.1s")}>
         <TilListPreview onNavigate={navigate} />
-      </div>
+      </section>
 
-      {/* Spotify Stats */}
-      <div
-        className={`max-w-6xl mx-auto ${
-          entranceClass("animate-fade-in-up motion-reduce:animate-none")
-        }`}
-        style={{ animationDelay: "1.1s", animationFillMode: "both" }}
-      >
+      <SectionDivider />
+
+      {/* Listening */}
+      <section {...reveal("0.15s")}>
         <SpotifyStats />
-      </div>
+      </section>
 
-      {/* Typing Stats */}
-      <div
-        className={`max-w-6xl mx-auto ${
-          entranceClass("animate-fade-in-up motion-reduce:animate-none")
-        }`}
-        style={{ animationDelay: "1.4s", animationFillMode: "both" }}
-      >
+      <SectionDivider />
+
+      {/* Typing */}
+      <section {...reveal("0.2s")}>
         <MonkeytypeStats />
-      </div>
+      </section>
 
-      {/* Activity Stats */}
-      <div
-        className={`max-w-6xl mx-auto ${
-          entranceClass("animate-fade-in-up motion-reduce:animate-none")
-        }`}
-        style={{ animationDelay: "1.7s", animationFillMode: "both" }}
-      >
-        <div className="mt-16 md:mt-20 grid gap-x-6 gap-y-16 md:gap-y-20 lg:gap-y-6 lg:grid-cols-2 items-stretch">
-          <div className="min-w-0 flex">
-            <GitHubStats className="mt-0 h-full flex flex-col w-full" />
-          </div>
-          <div className="min-w-0 flex">
-            <WakatimeStats className="mt-0 h-full flex flex-col w-full" />
-          </div>
-        </div>
-      </div>
+      <SectionDivider />
 
-      {/* Footer */}
-      <div
-        className={`text-center mt-20 ${
-          entranceClass("animate-fade-in-up motion-reduce:animate-none")
-        }`}
-        style={{ animationDelay: "2.0s", animationFillMode: "both" }}
-      >
-        <Footer />
-      </div>
+      {/* GitHub */}
+      <section {...reveal("0.25s")}>
+        <GitHubStats className="" />
+      </section>
+
+      <SectionDivider />
+
+      {/* Coding */}
+      <section {...reveal("0.3s")}>
+        <WakatimeStats className="" />
+      </section>
+
+      <SectionDivider />
+
+      <Footer />
     </PageShell>
   );
+}
+
+function SectionDivider() {
+  return <hr className="my-12 border-border sm:my-14" />;
 }
 
 function normalizePath(path) {

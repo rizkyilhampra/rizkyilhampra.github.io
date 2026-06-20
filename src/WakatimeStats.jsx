@@ -1,3 +1,4 @@
+import { SectionHeading } from "./SectionHeading";
 import { formatTimeAgo } from "./utils";
 import { useCachedJson } from "./useCachedJson";
 
@@ -9,43 +10,34 @@ export default function WakatimeStats({ className = "mt-16 md:mt-20" }) {
 
   return (
     <section aria-labelledby="wakatime-stats-title" className={className}>
-      <div className="text-center mb-8">
-        <h2
-          id="wakatime-stats-title"
-          className="text-3xl md:text-4xl font-header font-semibold tracking-tight mb-2"
+      <SectionHeading
+        eyebrow="~/coding"
+        title="Coding Activity"
+        id="wakatime-stats-title"
+      >
+        Powered by{" "}
+        <a
+          href="https://wakatime.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 transition-colors hover:text-primary"
         >
-          Coding Activity
-        </h2>
-        <div className="w-16 h-1 bg-gradient-primary mx-auto rounded-full mb-4" />
-        <p className="text-sm text-muted-foreground">
-          Powered by{" "}
-          <a
-            href="https://wakatime.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            WakaTime
-          </a>
-        </p>
+          WakaTime
+        </a>
         {lastUpdated && (
-          <p className="text-xs text-muted-foreground mt-1">
-            Updated {formatTimeAgo(lastUpdated)} • Updates every 12 hours
-          </p>
+          <span> · updated {formatTimeAgo(lastUpdated)} · every 12 hours</span>
         )}
-      </div>
+      </SectionHeading>
 
       {loading && <WakatimeSkeleton />}
       {!loading && error && <ConnectCard />}
       {!loading && !error && data && (
-        <div className="p-4 bg-card border border-border rounded-lg shadow-sm flex-1">
-          <div className="flex items-center justify-between mb-3">
-            <div className="text-xs uppercase tracking-wide text-muted-foreground">
+        <div className="flex-1">
+          <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
+            <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               Languages
             </div>
-            <div className="text-xs text-muted-foreground/60 bg-muted/50 px-2 py-0.5 rounded-full">
-              last 7 days
-            </div>
+            <div className="text-xs text-muted-foreground/70">last 7 days</div>
           </div>
           {languages.length === 0 && (
             <p className="text-sm text-muted-foreground">No data</p>
@@ -89,16 +81,16 @@ function BarRow({ item }) {
 
 function WakatimeSkeleton() {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg animate-pulse flex-1">
-      <div className="h-3 w-20 bg-muted rounded mb-3" aria-hidden="true" />
+    <div className="flex-1 animate-pulse">
+      <div className="mb-3 h-3 w-20 rounded bg-secondary" aria-hidden="true" />
       <div className="space-y-3">
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i}>
-            <div className="flex justify-between mb-1">
-              <div className="h-3 w-24 bg-muted rounded" aria-hidden="true" />
-              <div className="h-3 w-12 bg-muted rounded" aria-hidden="true" />
+            <div className="mb-1 flex justify-between">
+              <div className="h-3 w-24 rounded bg-secondary" aria-hidden="true" />
+              <div className="h-3 w-12 rounded bg-secondary" aria-hidden="true" />
             </div>
-            <div className="h-1.5 w-full bg-muted rounded-full" aria-hidden="true" />
+            <div className="h-1.5 w-full rounded-full bg-secondary" aria-hidden="true" />
           </div>
         ))}
       </div>
@@ -108,12 +100,9 @@ function WakatimeSkeleton() {
 
 function ConnectCard() {
   return (
-    <div className="p-4 bg-card border border-border rounded-lg flex-1">
-      <div className="text-sm font-medium mb-2">WakaTime data unavailable</div>
-      <p className="text-sm text-muted-foreground">
-        Add a <code className="text-primary">WAKATIME_API_KEY</code> secret to
-        GitHub Actions to enable live coding activity stats.
-      </p>
-    </div>
+    <p className="flex-1 text-sm text-muted-foreground">
+      Add a <code className="text-primary">WAKATIME_API_KEY</code> secret to GitHub
+      Actions to enable live coding activity stats.
+    </p>
   );
 }

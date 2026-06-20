@@ -13,11 +13,9 @@ export function NotFoundPage({
     : "animate-fade-in-up motion-reduce:animate-none";
 
   return (
-    <PageShell mainClassName="relative z-10 container mx-auto flex min-h-screen items-center justify-center px-6 py-20">
+    <PageShell mainClassName="mx-auto flex max-w-3xl items-center justify-center px-6 py-24 sm:py-32">
       <section className={`max-w-xl text-center ${entranceClass}`}>
-        <p className="mb-4 text-xs font-semibold uppercase tracking-wide text-primary">
-          {code}
-        </p>
+        <p className="mb-4 font-mono text-xs text-primary">~/{code}</p>
         <h1 className="font-header text-4xl font-semibold text-foreground sm:text-5xl">
           {title}
         </h1>

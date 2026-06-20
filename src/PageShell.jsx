@@ -1,18 +1,13 @@
-import { FloatingElements } from "./FloatingElements";
-import { ThemeToggle } from "./ThemeToggle";
+import { SiteNav } from "./SiteNav";
 
 export function PageShell({
   children,
-  mainClassName = "relative z-10 container mx-auto px-6 py-20",
+  onNavigate,
+  mainClassName = "mx-auto max-w-3xl px-6 py-12 sm:py-16",
 }) {
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      <FloatingElements />
-
-      <div className="absolute top-6 right-6 z-20">
-        <ThemeToggle />
-      </div>
-
+    <div className="min-h-screen bg-background">
+      <SiteNav onNavigate={onNavigate} />
       <main className={mainClassName}>{children}</main>
     </div>
   );
