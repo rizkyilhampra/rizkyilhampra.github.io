@@ -54,9 +54,11 @@ for (const [name, definition] of Object.entries(languages)) {
   SyntaxHighlighter.registerLanguage(name, definition);
 }
 
-const catppuccinSyntaxTheme = {
+// Botanical-ink Prism theme: maps each scope onto the garden-ink `--code-*`
+// dye tokens (defined in style.css) so highlighting tracks the light/dark theme.
+const gardenInkSyntaxTheme = {
   'code[class*="language-"]': {
-    color: "var(--syntax-text)",
+    color: "var(--code-text)",
     background: "transparent",
     fontFamily: '"JetBrains Mono", ui-monospace, SFMono-Regular, monospace',
     fontSize: "0.875rem",
@@ -65,7 +67,7 @@ const catppuccinSyntaxTheme = {
     whiteSpace: "pre",
   },
   'pre[class*="language-"]': {
-    color: "var(--syntax-text)",
+    color: "var(--code-text)",
     background: "transparent",
     fontFamily: '"JetBrains Mono", ui-monospace, SFMono-Regular, monospace',
     fontSize: "0.875rem",
@@ -74,37 +76,37 @@ const catppuccinSyntaxTheme = {
     padding: "1rem",
     textShadow: "none",
   },
-  comment: { color: "var(--syntax-comment)", fontStyle: "italic" },
-  prolog: { color: "var(--syntax-comment)" },
-  doctype: { color: "var(--syntax-comment)" },
-  cdata: { color: "var(--syntax-comment)" },
-  punctuation: { color: "var(--syntax-punctuation)" },
-  property: { color: "var(--syntax-red)" },
-  tag: { color: "var(--syntax-red)" },
-  boolean: { color: "var(--syntax-peach)" },
-  number: { color: "var(--syntax-peach)" },
-  constant: { color: "var(--syntax-peach)" },
-  symbol: { color: "var(--syntax-yellow)" },
-  selector: { color: "var(--syntax-green)" },
-  "attr-name": { color: "var(--syntax-yellow)" },
-  string: { color: "var(--syntax-green)" },
-  char: { color: "var(--syntax-green)" },
-  builtin: { color: "var(--syntax-yellow)" },
-  inserted: { color: "var(--syntax-green)" },
-  operator: { color: "var(--syntax-sky)" },
-  entity: { color: "var(--syntax-sky)" },
-  url: { color: "var(--syntax-sky)" },
-  variable: { color: "var(--syntax-text)" },
-  atrule: { color: "var(--syntax-mauve)" },
-  "attr-value": { color: "var(--syntax-green)" },
-  function: { color: "var(--syntax-blue)" },
-  "class-name": { color: "var(--syntax-yellow)" },
-  keyword: { color: "var(--syntax-mauve)" },
-  regex: { color: "var(--syntax-peach)" },
-  important: { color: "var(--syntax-red)", fontWeight: "600" },
+  comment: { color: "var(--code-comment)", fontStyle: "italic" },
+  prolog: { color: "var(--code-comment)" },
+  doctype: { color: "var(--code-comment)" },
+  cdata: { color: "var(--code-comment)" },
+  punctuation: { color: "var(--code-punctuation)" },
+  property: { color: "var(--code-tag)" },
+  tag: { color: "var(--code-tag)" },
+  boolean: { color: "var(--code-number)" },
+  number: { color: "var(--code-number)" },
+  constant: { color: "var(--code-number)" },
+  symbol: { color: "var(--code-type)" },
+  selector: { color: "var(--code-string)" },
+  "attr-name": { color: "var(--code-type)" },
+  string: { color: "var(--code-string)" },
+  char: { color: "var(--code-string)" },
+  builtin: { color: "var(--code-type)" },
+  inserted: { color: "var(--code-string)" },
+  operator: { color: "var(--code-operator)" },
+  entity: { color: "var(--code-operator)" },
+  url: { color: "var(--code-operator)" },
+  variable: { color: "var(--code-text)" },
+  atrule: { color: "var(--code-special)" },
+  "attr-value": { color: "var(--code-string)" },
+  function: { color: "var(--code-function)" },
+  "class-name": { color: "var(--code-type)" },
+  keyword: { color: "var(--code-keyword)" },
+  regex: { color: "var(--code-special)" },
+  important: { color: "var(--code-tag)", fontWeight: "600" },
   bold: { fontWeight: "600" },
   italic: { fontStyle: "italic" },
-  deleted: { color: "var(--syntax-red)" },
+  deleted: { color: "var(--code-tag)" },
 };
 
 const HEADING_CLASS = {
@@ -339,15 +341,15 @@ function CodeBlock({ code, language }) {
   };
 
   return (
-    <figure className="overflow-hidden rounded-lg border border-[var(--syntax-border)] bg-[var(--syntax-bg)] shadow-card">
-      <figcaption className="flex items-center justify-between gap-3 border-b border-[var(--syntax-border)] bg-[var(--syntax-header)] px-4 py-3 text-xs text-[var(--syntax-muted)]">
-        <p className="font-['JetBrains_Mono'] font-medium uppercase tracking-wide text-[var(--syntax-muted)]">
+    <figure className="overflow-hidden rounded-lg border border-border bg-secondary/50">
+      <figcaption className="flex items-center justify-between gap-3 border-b border-border bg-secondary/80 px-4 py-3 text-xs text-muted-foreground">
+        <p className="font-['JetBrains_Mono'] font-medium uppercase tracking-wide text-muted-foreground">
           {language}
         </p>
         <button
           type="button"
           onClick={copyCode}
-          className="inline-flex min-w-[5.75rem] items-center justify-center gap-1.5 rounded-md border border-[var(--syntax-button-border)] bg-[var(--syntax-button-bg)] px-3 py-1.5 font-['JetBrains_Mono'] font-medium text-[var(--syntax-button-text)] transition-colors duration-200 hover:border-[var(--syntax-mauve)] hover:text-[var(--syntax-button-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--syntax-mauve)]"
+          className="inline-flex min-w-[5.75rem] items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 font-['JetBrains_Mono'] font-medium text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           {copied ? (
             <Check className="h-3.5 w-3.5" aria-hidden="true" />
@@ -363,7 +365,7 @@ function CodeBlock({ code, language }) {
       <div className="overflow-x-auto">
         <SyntaxHighlighter
           language={language}
-          style={catppuccinSyntaxTheme}
+          style={gardenInkSyntaxTheme}
           wrapLongLines={false}
           customStyle={{
             margin: 0,

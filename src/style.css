@@ -43,25 +43,19 @@
     --shadow-card: 0 1px 2px hsl(150 6% 12% / 0.05);
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --syntax-bg: #eff1f5;
-    --syntax-header: #e6e9ef;
-    --syntax-border: #bcc0cc;
-    --syntax-muted: #6c6f85;
-    --syntax-button-bg: #dce0e8;
-    --syntax-button-border: #acb0be;
-    --syntax-button-text: #4c4f69;
-    --syntax-button-hover: #11111b;
-    --syntax-text: #4c4f69;
-    --syntax-comment: #9ca0b0;
-    --syntax-punctuation: #7c7f93;
-    --syntax-red: #d20f39;
-    --syntax-peach: #fe640b;
-    --syntax-yellow: #df8e1d;
-    --syntax-green: #40a02b;
-    --syntax-sky: #179299;
-    --syntax-mauve: #8839ef;
-    --syntax-blue: #1e66f5;
-    
+    /* Botanical ink — natural-dye accents on paper. Keyword green echoes
+       the evergreen site accent; the rest are weld/woad/madder/iris dyes. */
+    --code-text: #3c423c; /* ink */
+    --code-comment: #82897c; /* sage-grey, italic */
+    --code-punctuation: #6a716a;
+    --code-keyword: #2f7d54; /* pine — site accent family */
+    --code-string: #6f7a2e; /* weld olive */
+    --code-function: #357a72; /* woad teal */
+    --code-operator: #357a72;
+    --code-number: #b0801f; /* amber */
+    --code-type: #9c6b22; /* deep ochre */
+    --code-tag: #a8472f; /* madder */
+    --code-special: #7d5e96; /* iris */
   }
 
   .dark {
@@ -99,25 +93,19 @@
     --shadow-glow: 0 1px 2px hsl(0 0% 0% / 0.4);
     --shadow-card: 0 1px 2px hsl(0 0% 0% / 0.3);
 
-    --syntax-bg: #1e1e2e;
-    --syntax-header: #181825;
-    --syntax-border: #45475a;
-    --syntax-muted: #a6adc8;
-    --syntax-button-bg: #313244;
-    --syntax-button-border: #585b70;
-    --syntax-button-text: #cdd6f4;
-    --syntax-button-hover: #ffffff;
-    --syntax-text: #cdd6f4;
-    --syntax-comment: #6c7086;
-    --syntax-punctuation: #9399b2;
-    --syntax-red: #f38ba8;
-    --syntax-peach: #fab387;
-    --syntax-yellow: #f9e2af;
-    --syntax-green: #a6e3a1;
-    --syntax-sky: #89dceb;
-    --syntax-mauve: #cba6f7;
-    --syntax-blue: #89b4fa;
-    
+    /* Botanical ink — softened dyes on charcoal; keyword sage matches the
+       dark site accent. */
+    --code-text: #d4d6cd;
+    --code-comment: #717a70; /* italic */
+    --code-punctuation: #98a098;
+    --code-keyword: #7fbd9b; /* sage — dark site accent family */
+    --code-string: #b9c08a; /* soft weld */
+    --code-function: #79b8b0; /* soft woad teal */
+    --code-operator: #79b8b0;
+    --code-number: #d9b066; /* honey */
+    --code-type: #cdab6a; /* gold */
+    --code-tag: #d98a76; /* soft madder */
+    --code-special: #b89bc4; /* iris */
   }
 }
 
