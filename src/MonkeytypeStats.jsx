@@ -65,9 +65,11 @@ export default function MonkeytypeStats() {
               value={avgWpm(data?.recent) ?? "—"}
               sub={`${fmtAcc(avgAcc(data?.recent))} acc`}
             >
-              <span title={tooltip} tabIndex={0} className="relative block h-full w-full rounded-sm outline-none focus:ring-2 focus:ring-primary/40">
-                <Sparkline points={wpmPoints} min={domain?.[0]} max={domain?.[1]} />
-                <DeltaBadge delta={delta} title={tooltip} className="absolute -top-1 right-0" />
+              <span title={tooltip} tabIndex={0} className="relative flex h-full w-full max-w-[160px] flex-col justify-end rounded-sm outline-none focus:ring-2 focus:ring-primary/40">
+                <DeltaBadge delta={delta} title={tooltip} className="absolute top-0 right-0" />
+                <span className="block h-8 w-full">
+                  <Sparkline points={wpmPoints} min={domain?.[0]} max={domain?.[1]} />
+                </span>
               </span>
             </StatCard>
               );
@@ -88,17 +90,17 @@ function StatCard({ label, value, sub, children }) {
   return (
     <div className="border-t border-border pt-3">
       <div className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</div>
-      <div className="flex items-center gap-3">
-        <div className="flex shrink-0 items-baseline gap-1.5">
+      <div className="flex items-stretch gap-3">
+        <div className="min-w-0">
           <div className="font-header text-3xl font-semibold tabular-nums leading-none text-foreground">{value}</div>
+          {sub && <div className="mt-1.5 text-xs text-muted-foreground">{sub}</div>}
         </div>
         {children && (
-          <div className="relative flex h-8 min-w-0 flex-1 items-center">
+          <div className="relative flex min-w-0 flex-1 justify-end">
             {children}
           </div>
         )}
       </div>
-      {sub && <div className="mt-1.5 text-xs text-muted-foreground">{sub}</div>}
     </div>
   );
 }
@@ -198,7 +200,7 @@ function Sparkline({ points = [], min: forcedMin, max: forcedMax }) {
     <svg
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="none"
-      className="h-full w-full max-w-[160px] text-primary/80"
+      className="h-full w-full text-primary/80"
       focusable="false"
       aria-hidden="true"
     >
