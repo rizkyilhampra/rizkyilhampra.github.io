@@ -13,6 +13,7 @@ import { ProjectList } from "./SocialLink";
 import { SectionHeading } from "./SectionHeading";
 import { SocialIconRow } from "./SocialIconRow";
 import { TypewriterText } from "./TypewriterText";
+import { SecretHeart } from "./SecretHeart";
 import Footer from "./Footer";
 import GitHubStats from "./GitHubStats";
 import MonkeytypeStats from "./MonkeytypeStats";
@@ -327,13 +328,11 @@ export default function App() {
           />
         </div>
 
-        <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-          Software developer building small, useful web tools and tending a
-          digital garden of notes. This is where my projects, writing, and
-          activity live.
-        </p>
-
-        <SocialIconRow items={socials} className="mt-6 -ml-2" />
+        <SocialIconRow
+          items={socials}
+          trailing={<SecretHeart />}
+          className="mt-6 -ml-2"
+        />
       </section>
 
       <SectionDivider />

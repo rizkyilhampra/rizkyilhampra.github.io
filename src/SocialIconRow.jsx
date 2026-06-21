@@ -1,6 +1,6 @@
 // Compact inline row of icon-only links, AstroPaper "Social Links:" style.
 // Used in the hero and the footer.
-export function SocialIconRow({ items, className = "" }) {
+export function SocialIconRow({ items, trailing = null, className = "" }) {
   return (
     <div className={`flex flex-wrap items-center gap-x-4 gap-y-2 ${className}`}>
       <ul className="flex flex-wrap items-center gap-1">
@@ -20,6 +20,7 @@ export function SocialIconRow({ items, className = "" }) {
           </li>
         ))}
       </ul>
+      {trailing ? <div className="ml-auto">{trailing}</div> : null}
     </div>
   );
 }

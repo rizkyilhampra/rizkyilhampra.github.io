@@ -14,15 +14,9 @@ export function SiteNav({ onNavigate }) {
           href="/"
           onClick={go("/")}
           aria-label="Home"
-          className="rounded-sm font-mono text-sm font-medium text-foreground outline-none transition-colors hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+          className="rounded-sm font-mono text-sm font-medium text-primary outline-none transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
         >
-          ~/rizkyilhampra
-          <span
-            className="ml-px text-primary animate-cursor-blink motion-reduce:animate-none"
-            aria-hidden="true"
-          >
-            ▌
-          </span>
+          /home/rizkyilhampra
         </a>
 
         <div className="flex items-center gap-5 text-sm">
