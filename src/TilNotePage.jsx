@@ -66,7 +66,7 @@ export function TilNotePage({
         <hr className="mt-12 border-border" />
       </article>
 
-      <div className={`mx-auto mt-20 max-w-3xl text-center ${entranceClass}`}>
+      <div className={`mt-20 ${entranceClass}`}>
         <Footer />
       </div>
     </PageShell>

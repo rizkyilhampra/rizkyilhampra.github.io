@@ -14,7 +14,7 @@ export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <div className={`mx-auto max-w-5xl ${entranceClass}`}>
+      <div className={entranceClass}>
         <InternalBackLink onBack={onBack} />
 
         <header className="border-b border-border pb-8">
@@ -48,10 +48,10 @@ export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
                   key={tag}
                   href={href}
                   onClick={go(href)}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-card outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
                   <span>#{tag}</span>
-                  <span className="rounded-full bg-secondary/60 px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+                  <span className="rounded-full bg-background px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
                     {count}
                   </span>
                 </a>
@@ -61,7 +61,7 @@ export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
         )}
       </div>
 
-      <div className={`mx-auto mt-20 max-w-5xl text-center ${entranceClass}`}>
+      <div className={`mt-20 ${entranceClass}`}>
         <Footer />
       </div>
     </PageShell>

@@ -2,7 +2,7 @@ import { use, useMemo } from "react";
 import { InternalBackLink } from "./InternalBackLink";
 import { loadTilManifest } from "./tilNotes";
 import { PageShell } from "./PageShell";
-import { TilCard } from "./TilCard";
+import { TilNoteList } from "./TilNoteList";
 import { navHandler } from "./utils";
 import Footer from "./Footer";
 
@@ -23,7 +23,7 @@ export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <div className={`mx-auto max-w-5xl ${entranceClass}`}>
+      <div className={entranceClass}>
         <InternalBackLink onBack={onBack} />
 
         <header className="border-b border-border pb-8">
@@ -57,15 +57,13 @@ export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
             .
           </p>
         ) : (
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {matches.map((note) => (
-              <TilCard key={note.slug} note={note} onNavigate={onNavigate} showDate />
-            ))}
+          <div className="mt-10">
+            <TilNoteList notes={matches} onNavigate={onNavigate} />
           </div>
         )}
       </div>
 
-      <div className={`mx-auto mt-20 max-w-5xl text-center ${entranceClass}`}>
+      <div className={`mt-20 ${entranceClass}`}>
         <Footer />
       </div>
     </PageShell>

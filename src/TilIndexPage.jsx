@@ -3,7 +3,7 @@ import { ChevronDown, Search, X } from "lucide-react";
 import { InternalBackLink } from "./InternalBackLink";
 import { loadTilManifest, loadTilTags } from "./tilNotes";
 import { PageShell } from "./PageShell";
-import { TilCard } from "./TilCard";
+import { TilNoteList } from "./TilNoteList";
 import { navHandler } from "./utils";
 import Footer from "./Footer";
 
@@ -63,7 +63,7 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <div className={`mx-auto max-w-5xl ${entranceClass}`}>
+      <div className={entranceClass}>
         <InternalBackLink onBack={onBack} />
 
         <header className="border-b border-border pb-8">
@@ -174,20 +174,11 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
                 {groups.map(([year, groupNotes]) => (
                   <section key={year || "results"}>
                     {year ? (
-                      <h2 className="mb-5 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                         {year}
                       </h2>
                     ) : null}
-                    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                      {groupNotes.map((note) => (
-                        <TilCard
-                          key={note.slug}
-                          note={note}
-                          onNavigate={onNavigate}
-                          showDate
-                        />
-                      ))}
-                    </div>
+                    <TilNoteList notes={groupNotes} onNavigate={onNavigate} />
                   </section>
                 ))}
               </div>
@@ -196,7 +187,7 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
         )}
       </div>
 
-      <div className={`mx-auto mt-20 max-w-5xl text-center ${entranceClass}`}>
+      <div className={`mt-20 ${entranceClass}`}>
         <Footer />
       </div>
     </PageShell>
