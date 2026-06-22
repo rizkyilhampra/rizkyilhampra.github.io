@@ -6,7 +6,7 @@ const WAKATIME_URL = "/wakatime.json";
 
 export default function WakatimeStats({ className = "mt-16 md:mt-20" }) {
   const { data, error, loading, lastUpdated } = useCachedJson(WAKATIME_URL);
-  const languages = (data?.languages ?? []).slice(0, 5);
+  const languages = data?.languages ?? [];
 
   return (
     <section aria-labelledby="wakatime-stats-title" className={className}>
