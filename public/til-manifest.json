@@ -122,7 +122,7 @@
       "tags": [
         "proxmox"
       ],
-      "description": "Go to storage on main node or node you are working on. In my case it's local (server). > server is the node.",
+      "description": "Download the GParted ISO.",
       "readingTime": "2 min read",
       "backlinks": []
     },
@@ -178,7 +178,7 @@
         "cloudflare",
         "blocking"
       ],
-      "description": "[!NOTE] > In my case I didn't use systemd-resolved so do I now enable and start those service",
+      "description": "I was tried Glance , one of the widget is Reddit which do call of the reserved IP's from reddit for getting list of top of content of subreddit. I notice my…",
       "readingTime": "2 min read",
       "backlinks": []
     },

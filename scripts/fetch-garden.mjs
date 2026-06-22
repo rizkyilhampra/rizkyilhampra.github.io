@@ -18,6 +18,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { extractDescription } from './garden-text.mjs';
 
 const SOURCE_DIR = process.env.GARDEN_SOURCE_DIR;
 const OUT_DIR = process.env.GARDEN_OUT_DIR || 'public';
@@ -321,29 +322,5 @@ function readingTimeOf(body) {
   return `${Math.max(1, Math.ceil(wordCount / 200))} min read`;
 }
 
-function extractDescription(body) {
-  const paragraph = body
-    .split(/\n\s*\n/)
-    .map((block) => block.trim())
-    .find((block) => block && !block.startsWith('#') && !block.startsWith('```'));
-
-  if (!paragraph) return '';
-
-  const text = toPlainText(paragraph).replace(/\s+/g, ' ').trim();
-  if (text.length <= 160) return text;
-
-  const cutoff = text.lastIndexOf(' ', 160);
-  return text.slice(0, cutoff > 0 ? cutoff : 160) + '…';
-}
-
-// Strip the markdown syntax most likely to appear in a first paragraph so the
-// description reads as plain text.
-function toPlainText(text) {
-  return text
-    .replace(/`([^`]+)`/g, '$1') // inline code
-    .replace(/\*\*([^*]+)\*\*/g, '$1') // bold
-    .replace(/\*([^*]+)\*/g, '$1') // italic
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links -> text
-    .replace(/^\s*[#>]+\s*/, '') // leading heading / quote markers only
-    .trim();
-}
+// extractDescription / toPlainText live in ./garden-text.mjs (shared with the
+// local description regenerator).

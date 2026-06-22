@@ -3,7 +3,7 @@ slug: steps-i-do-when-extending-or-resizing-a-vm-disk-in-proxmox
 title: Steps I do when extending or resizing a VM disk in Proxmox
 date: 2025-11-07
 tags: proxmox
-description: Go to storage on main node or node you are working on. In my case it's local (server). > server is the node.
+description: Download the GParted ISO.
 ---
 ## Preq
 Download the [GParted ISO](https://sourceforge.net/projects/gparted/).

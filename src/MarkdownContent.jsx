@@ -1,4 +1,12 @@
-import { Check, Copy } from "lucide-react";
+import {
+  Check,
+  Copy,
+  Info,
+  Lightbulb,
+  MessageSquareWarning,
+  OctagonAlert,
+  TriangleAlert,
+} from "lucide-react";
 import {
   createContext,
   Fragment,
@@ -119,6 +127,83 @@ const HEADING_CLASS = {
 const NavigateContext = createContext(null);
 const EXTERNAL_HREF = /^https?:\/\//;
 
+// GitHub-flavored alert blockquotes (`> [!NOTE]` etc). Each type maps to an icon
+// and a GitHub-matching accent color (light/dark variants tracked via Tailwind).
+const ALERT_MARKER = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*\n?/i;
+const ALERT_CONFIG = {
+  note: {
+    label: "Note",
+    Icon: Info,
+    border: "border-blue-500/70",
+    accent: "text-blue-600 dark:text-blue-400",
+    tint: "bg-blue-500/5",
+  },
+  tip: {
+    label: "Tip",
+    Icon: Lightbulb,
+    border: "border-emerald-500/70",
+    accent: "text-emerald-600 dark:text-emerald-400",
+    tint: "bg-emerald-500/5",
+  },
+  important: {
+    label: "Important",
+    Icon: MessageSquareWarning,
+    border: "border-purple-500/70",
+    accent: "text-purple-600 dark:text-purple-400",
+    tint: "bg-purple-500/5",
+  },
+  warning: {
+    label: "Warning",
+    Icon: TriangleAlert,
+    border: "border-amber-500/70",
+    accent: "text-amber-600 dark:text-amber-400",
+    tint: "bg-amber-500/5",
+  },
+  caution: {
+    label: "Caution",
+    Icon: OctagonAlert,
+    border: "border-red-500/70",
+    accent: "text-red-600 dark:text-red-400",
+    tint: "bg-red-500/5",
+  },
+};
+
+// Detects a GitHub alert blockquote. Returns null for plain blockquotes; on a
+// match returns the alert `type` plus the blockquote's content tokens with the
+// `[!TYPE]` marker stripped from the first paragraph (dropping it if now empty).
+function parseAlert(token) {
+  const [first, ...rest] = token.tokens ?? [];
+  if (!first || first.type !== "paragraph") return null;
+  const match = first.text?.match(ALERT_MARKER);
+  if (!match) return null;
+
+  const type = match[1].toLowerCase();
+  const [firstInline, ...restInline] = first.tokens ?? [];
+  // A paragraph whose text matched the anchored marker always starts with a
+  // `text` inline token; bail to a plain blockquote if marked ever says otherwise.
+  if (firstInline?.type !== "text") return null;
+
+  const text = firstInline.text.replace(ALERT_MARKER, "");
+  const inline = text ? [{ ...firstInline, text }, ...restInline] : restInline;
+  const tokens = inline.length ? [{ ...first, tokens: inline }, ...rest] : rest;
+  return { type, tokens };
+}
+
+function Alert({ type, tokens }) {
+  const { label, Icon, border, accent, tint } = ALERT_CONFIG[type];
+  return (
+    <div className={`rounded-r border-l-4 ${border} ${tint} py-3 pl-4 pr-3`}>
+      <div className={`mb-1 flex items-center gap-2 font-header text-sm font-medium ${accent}`}>
+        <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+        {label}
+      </div>
+      <div className="space-y-3 text-base leading-8 text-muted-foreground">
+        <Blocks tokens={tokens} />
+      </div>
+    </div>
+  );
+}
+
 // Renders a marked token list (from parseMarkdown) to React. Pass `onNavigate`
 // so internal /til/ links use the SPA router instead of a full reload.
 export function MarkdownContent({ tokens, onNavigate = null }) {
@@ -155,12 +240,15 @@ function Block({ token }) {
     case "code":
       return <CodeBlock code={token.text} language={token.lang || "text"} />;
 
-    case "blockquote":
+    case "blockquote": {
+      const alert = parseAlert(token);
+      if (alert) return <Alert type={alert.type} tokens={alert.tokens} />;
       return (
         <blockquote className="border-l-2 border-primary/60 pl-4 text-base italic leading-8 text-muted-foreground">
           <Blocks tokens={token.tokens} />
         </blockquote>
       );
+    }
 
     case "list": {
       const ListTag = token.ordered ? "ol" : "ul";

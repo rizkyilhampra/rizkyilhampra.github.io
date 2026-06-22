@@ -3,7 +3,7 @@ slug: setting-up-dns-on-my-arch-linux
 title: Setting Up DNS on My Arch Linux
 date: 2025-03-19
 tags: linux, dns, cloudflare, blocking
-description: [!NOTE] > In my case I didn't use systemd-resolved so do I now enable and start those service
+description: I was tried Glance , one of the widget is Reddit which do call of the reserved IP's from reddit for getting list of top of content of subreddit. I notice my…
 ---
 ## Why
 I was tried [Glance](https://github.com/glanceapp/glance) , one of the widget is [Reddit](https://www.reddit.com) which do call of the reserved IP's from reddit for getting list of top of content of subreddit. I notice my host unable to call those IP's, so that's cause I live in the country that one of the ISP blocked access to reddit. Commonly I still able connect to reddit when using browser which do through use Cloudflare as an DNS. But now I need my network host do able connect to reddit too. So this is my writing how I was able to connect to reddit but not only those thing, but I able to change and use other DNS provider.
