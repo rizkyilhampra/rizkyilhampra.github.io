@@ -26,6 +26,7 @@ import { TilTagPage } from "./TilTagPage";
 import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
+import { createReveal } from "./entrance";
 
 const MAX_STORED_SCROLL_POSITIONS = 20;
 
@@ -140,8 +141,7 @@ export default function App() {
   // route so they aren't mistaken for a note slug.
   const tilSlug = isTilTagsIndex || tilTag ? null : getTilSlug(path);
   const isTilIndex = path === "/til";
-  const entranceClass = (className) =>
-    skipEntranceAnimation ? "" : className;
+  const reveal = createReveal(skipEntranceAnimation);
 
   useEffect(() => {
     if (path === "/") {
@@ -301,15 +301,10 @@ export default function App() {
     },
   ];
 
-  const reveal = (delay) => ({
-    className: entranceClass("animate-fade-in-up motion-reduce:animate-none"),
-    style: { animationDelay: delay, animationFillMode: "both" },
-  });
-
   return (
     <PageShell onNavigate={navigate}>
       {/* Hero */}
-      <section {...reveal("0s")}>
+      <section {...reveal(0)}>
         <h1 className="font-header text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
           Rizky Ilham Pratama
         </h1>
@@ -338,7 +333,7 @@ export default function App() {
       <SectionDivider />
 
       {/* Projects */}
-      <section {...reveal("0.05s")}>
+      <section {...reveal(1)}>
         <SectionHeading eyebrow="~/projects" title="Projects">
           Things I’ve built and keep running.
         </SectionHeading>
@@ -348,35 +343,35 @@ export default function App() {
       <SectionDivider />
 
       {/* Today I Learned (digital garden) */}
-      <section {...reveal("0.1s")}>
+      <section {...reveal(2)}>
         <TilListPreview onNavigate={navigate} />
       </section>
 
       <SectionDivider />
 
       {/* Listening */}
-      <section {...reveal("0.15s")}>
+      <section {...reveal(3)}>
         <SpotifyStats />
       </section>
 
       <SectionDivider />
 
       {/* Typing */}
-      <section {...reveal("0.2s")}>
+      <section {...reveal(4)}>
         <MonkeytypeStats />
       </section>
 
       <SectionDivider />
 
       {/* GitHub */}
-      <section {...reveal("0.25s")}>
+      <section {...reveal(5)}>
         <GitHubStats className="" />
       </section>
 
       <SectionDivider />
 
       {/* Coding */}
-      <section {...reveal("0.3s")}>
+      <section {...reveal(6)}>
         <WakatimeStats className="" />
       </section>
 

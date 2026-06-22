@@ -4,13 +4,12 @@ import { loadTilManifest } from "./tilNotes";
 import { PageShell } from "./PageShell";
 import { TilNoteList } from "./TilNoteList";
 import { navHandler } from "./utils";
+import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
 export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
   const notes = use(loadTilManifest());
-  const entranceClass = skipEntranceAnimation
-    ? ""
-    : "animate-fade-in-up motion-reduce:animate-none";
+  const reveal = createReveal(skipEntranceAnimation);
 
   const matches = useMemo(() => {
     const wanted = tag.toLowerCase();
@@ -23,11 +22,10 @@ export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <div className={entranceClass}>
-        <InternalBackLink onBack={onBack} />
+      <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
 
-        <header className="border-b border-border pb-8">
-          <p className="mb-4 font-mono text-xs text-primary">~/til/tags/{tag}</p>
+      <header {...reveal(1, "border-b border-border pb-8")}>
+        <p className="mb-4 font-mono text-xs text-primary">~/til/tags/{tag}</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             #{tag}
           </h1>
@@ -42,8 +40,9 @@ export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
               All tags
             </a>
           </p>
-        </header>
+      </header>
 
+      <div {...reveal(2)}>
         {matches.length === 0 ? (
           <p className="mt-10 text-sm text-muted-foreground">
             No notes carry this tag.{" "}
@@ -63,7 +62,7 @@ export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
         )}
       </div>
 
-      <div className={`mt-20 ${entranceClass}`}>
+      <div {...reveal(3, "mt-20")}>
         <Footer />
       </div>
     </PageShell>

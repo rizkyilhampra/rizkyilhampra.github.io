@@ -5,6 +5,7 @@ import { loadTilManifest, loadTilTags } from "./tilNotes";
 import { PageShell } from "./PageShell";
 import { TilNoteList } from "./TilNoteList";
 import { navHandler } from "./utils";
+import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
 function noteMatchesQuery(note, query) {
@@ -36,9 +37,7 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
   const [activeTag, setActiveTag] = useState(null);
   const [sort, setSort] = useState("newest"); // manifest is already newest-first
 
-  const entranceClass = skipEntranceAnimation
-    ? ""
-    : "animate-fade-in-up motion-reduce:animate-none";
+  const reveal = createReveal(skipEntranceAnimation);
   const go = navHandler(onNavigate);
 
   const filtered = useMemo(() => {
@@ -63,11 +62,10 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <div className={entranceClass}>
-        <InternalBackLink onBack={onBack} />
+      <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
 
-        <header className="border-b border-border pb-8">
-          <p className="mb-4 font-mono text-xs text-primary">~/til</p>
+      <header {...reveal(1, "border-b border-border pb-8")}>
+        <p className="mb-4 font-mono text-xs text-primary">~/til</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             Today I Learned
           </h1>
@@ -82,8 +80,9 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
               Browse by tag →
             </a>
           </p>
-        </header>
+      </header>
 
+      <div {...reveal(2)}>
         {notes.length === 0 ? (
           <p className="mt-10 text-sm text-muted-foreground">
             No notes published yet — check back soon.
@@ -187,7 +186,7 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
         )}
       </div>
 
-      <div className={`mt-20 ${entranceClass}`}>
+      <div {...reveal(3, "mt-20")}>
         <Footer />
       </div>
     </PageShell>

@@ -3,22 +3,20 @@ import { InternalBackLink } from "./InternalBackLink";
 import { loadTilTags } from "./tilNotes";
 import { PageShell } from "./PageShell";
 import { navHandler } from "./utils";
+import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
 export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
   const tags = use(loadTilTags());
-  const entranceClass = skipEntranceAnimation
-    ? ""
-    : "animate-fade-in-up motion-reduce:animate-none";
+  const reveal = createReveal(skipEntranceAnimation);
   const go = navHandler(onNavigate);
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <div className={entranceClass}>
-        <InternalBackLink onBack={onBack} />
+      <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
 
-        <header className="border-b border-border pb-8">
-          <p className="mb-4 font-mono text-xs text-primary">~/til/tags</p>
+      <header {...reveal(1, "border-b border-border pb-8")}>
+        <p className="mb-4 font-mono text-xs text-primary">~/til/tags</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             Browse by tag
           </h1>
@@ -33,8 +31,9 @@ export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
             </a>
             .
           </p>
-        </header>
+      </header>
 
+      <div {...reveal(2)}>
         {tags.length === 0 ? (
           <p className="mt-10 text-sm text-muted-foreground">
             No tags yet — check back soon.
@@ -61,7 +60,7 @@ export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
         )}
       </div>
 
-      <div className={`mt-20 ${entranceClass}`}>
+      <div {...reveal(3, "mt-20")}>
         <Footer />
       </div>
     </PageShell>

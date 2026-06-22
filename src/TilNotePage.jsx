@@ -7,6 +7,7 @@ import { PageShell } from "./PageShell";
 import { PostMeta } from "./PostMeta";
 import { TagList } from "./TagList";
 import { NoteConnections } from "./NoteConnections";
+import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
 export function TilNotePage({
@@ -17,9 +18,7 @@ export function TilNotePage({
 }) {
   const note = use(loadTilBySlug(slug));
   const manifest = use(loadTilManifest());
-  const entranceClass = skipEntranceAnimation
-    ? ""
-    : "animate-fade-in-up motion-reduce:animate-none";
+  const reveal = createReveal(skipEntranceAnimation);
 
   useEffect(() => {
     document.title = note
@@ -40,10 +39,10 @@ export function TilNotePage({
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <article className={`mx-auto max-w-3xl ${entranceClass}`}>
-        <InternalBackLink onBack={onBack} />
+      <article className="mx-auto max-w-3xl">
+        <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
 
-        <header className="border-b border-border pb-8">
+        <header {...reveal(1, "border-b border-border pb-8")}>
           <p className="mb-4 font-mono text-xs text-primary">~/til/{note.slug}</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             {note.title}
@@ -57,16 +56,17 @@ export function TilNotePage({
           </div>
         </header>
 
-        <div className="mt-10 space-y-8">
+        <div {...reveal(2, "mt-10 space-y-8")}>
           <MarkdownContent tokens={note.content} onNavigate={onNavigate} />
         </div>
 
-        <NoteConnections slug={slug} manifest={manifest} onNavigate={onNavigate} />
-
-        <hr className="mt-12 border-border" />
+        <div {...reveal(3)}>
+          <NoteConnections slug={slug} manifest={manifest} onNavigate={onNavigate} />
+          <hr className="mt-12 border-border" />
+        </div>
       </article>
 
-      <div className={`mt-20 ${entranceClass}`}>
+      <div {...reveal(4, "mt-20")}>
         <Footer />
       </div>
     </PageShell>
