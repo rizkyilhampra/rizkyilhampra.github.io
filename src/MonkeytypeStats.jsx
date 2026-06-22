@@ -65,7 +65,7 @@ export default function MonkeytypeStats() {
               value={avgWpm(data?.recent) ?? "—"}
               sub={`${fmtAcc(avgAcc(data?.recent))} acc`}
             >
-              <span title={tooltip} tabIndex={0} className="relative flex h-full w-full max-w-[160px] flex-col justify-end rounded-sm outline-none focus:ring-2 focus:ring-primary/40">
+              <span title={tooltip} className="relative flex h-full w-full max-w-[160px] flex-col justify-end rounded-sm">
                 <DeltaBadge delta={delta} title={tooltip} className="absolute top-0 right-0" />
                 <span className="block h-8 w-full">
                   <Sparkline points={wpmPoints} min={domain?.[0]} max={domain?.[1]} />
