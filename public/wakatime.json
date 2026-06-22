@@ -1,34 +1,34 @@
 {
-  "fetchedAt": "2026-06-21T12:38:54.672Z",
+  "fetchedAt": "2026-06-22T00:43:53.100Z",
   "languages": [
     {
+      "name": "JavaScript",
+      "percent": 40.1,
+      "text": "4 hrs 35 mins"
+    },
+    {
       "name": "TypeScript",
-      "percent": 37.2,
+      "percent": 29.4,
       "text": "3 hrs 22 mins"
     },
     {
-      "name": "JavaScript",
-      "percent": 26.2,
-      "text": "2 hrs 22 mins"
-    },
-    {
       "name": "Markdown",
-      "percent": 16,
-      "text": "1 hr 27 mins"
+      "percent": 13.8,
+      "text": "1 hr 35 mins"
     },
     {
       "name": "Lua",
-      "percent": 4,
+      "percent": 3.1,
       "text": "21 mins"
     },
     {
       "name": "PHP",
-      "percent": 3.5,
+      "percent": 2.8,
       "text": "19 mins"
     },
     {
       "name": "JSON",
-      "percent": 3.5,
+      "percent": 2.8,
       "text": "19 mins"
     }
   ]
