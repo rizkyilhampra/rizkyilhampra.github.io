@@ -18,7 +18,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { extractDescription } from './garden-text.mjs';
+import { extractDescription, toPlainText } from './garden-text.mjs';
 
 const SOURCE_DIR = process.env.GARDEN_SOURCE_DIR;
 const OUT_DIR = process.env.GARDEN_OUT_DIR || 'public';
