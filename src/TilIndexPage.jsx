@@ -78,6 +78,13 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
               className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
             >
               Browse by tag →
+            </a>{" "}
+            <a
+              href="/til/graph"
+              onClick={go("/til/graph")}
+              className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
+            >
+              View graph →
             </a>
           </p>
       </header>

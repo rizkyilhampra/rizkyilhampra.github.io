@@ -7,6 +7,7 @@ import { PageShell } from "./PageShell";
 import { PostMeta } from "./PostMeta";
 import { TagList } from "./TagList";
 import { NoteConnections } from "./NoteConnections";
+import { LocalGraph } from "./LocalGraph";
 import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
@@ -61,6 +62,7 @@ export function TilNotePage({
         </div>
 
         <div {...reveal(3)}>
+          <LocalGraph slug={slug} manifest={manifest} onNavigate={onNavigate} />
           <NoteConnections slug={slug} manifest={manifest} onNavigate={onNavigate} />
           <hr className="mt-12 border-border" />
         </div>
