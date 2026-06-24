@@ -295,19 +295,19 @@ export function GraphView({
       for (let i = 0; i < 250; i++) simulation.tick();
       resize();
     } else {
-      // Warm up off-screen so we have real positions to frame (resize() fits
-      // them), then continue a gentle animated settle. The warm-up means the
-      // initial fit is already close, so we only re-frame once on settle rather
-      // than rescanning bounds every tick.
+      // Warm up off-screen so we have real positions to frame, then run a gentle
+      // animated settle. Re-fit on every tick (until the viewer takes over) so
+      // the camera tracks the layout as it keeps spreading — otherwise the frame
+      // stays frozen at the warm-up positions and visibly jumps when we re-fit at
+      // the end. The garden is tiny, so rescanning bounds per tick is negligible.
       simulation.stop();
       for (let i = 0; i < 80; i++) simulation.tick();
-      simulation.on("tick", draw);
-      simulation.on("end", () => {
-        if (!userInteracted) {
-          fitView();
-          draw();
-        }
-      });
+      const tick = () => {
+        if (!userInteracted) fitView();
+        draw();
+      };
+      simulation.on("tick", tick);
+      simulation.on("end", tick);
       resize();
       simulation.alpha(0.3).restart();
     }
