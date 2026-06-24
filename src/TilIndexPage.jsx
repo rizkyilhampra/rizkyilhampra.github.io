@@ -5,6 +5,7 @@ import { loadTilManifest, loadTilTags } from "./tilNotes";
 import { PageShell } from "./PageShell";
 import { TilNoteList } from "./TilNoteList";
 import { navHandler } from "./utils";
+import { useGraphModal } from "./GraphModalContext";
 import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
@@ -39,6 +40,7 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
 
   const reveal = createReveal(skipEntranceAnimation);
   const go = navHandler(onNavigate);
+  const openGraph = useGraphModal();
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -79,13 +81,13 @@ export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
             >
               Browse by tag →
             </a>{" "}
-            <a
-              href="/til/graph"
-              onClick={go("/til/graph")}
-              className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
+            <button
+              type="button"
+              onClick={openGraph}
+              className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
             >
               View graph →
-            </a>
+            </button>
           </p>
       </header>
 

@@ -2,6 +2,9 @@ import { ArrowRight } from "lucide-react";
 import { Suspense, use } from "react";
 import { SectionHeading } from "./SectionHeading";
 import { TilNoteList, TilNoteListSkeleton } from "./TilNoteList";
+import { GraphView } from "./GraphView";
+import { ExpandGraphButton } from "./ExpandGraphButton";
+import { fullGraph } from "./graphData";
 import { loadTilManifest } from "./tilNotes";
 import { navHandler } from "./utils";
 
@@ -10,6 +13,7 @@ const MAX_NOTES = 4;
 function TilNotes({ onNavigate }) {
   const allNotes = use(loadTilManifest());
   const notes = allNotes.slice(0, MAX_NOTES);
+  const graph = fullGraph(allNotes);
   const go = navHandler(onNavigate);
 
   if (notes.length === 0) {
@@ -36,6 +40,21 @@ function TilNotes({ onNavigate }) {
             aria-hidden="true"
           />
         </a>
+      ) : null}
+
+      {/* The garden as a constellation, closing out the section. Half-width on
+          desktop, full on mobile. Needs a couple of connections before it's
+          worth showing — a lone dot says nothing. */}
+      {graph.links.length > 0 ? (
+        <div className="relative mt-8 w-full overflow-hidden rounded-lg border border-border bg-card/50 md:w-1/2">
+          <ExpandGraphButton />
+          <GraphView
+            nodes={graph.nodes}
+            links={graph.links}
+            onNavigate={onNavigate}
+            height={300}
+          />
+        </div>
       ) : null}
     </>
   );

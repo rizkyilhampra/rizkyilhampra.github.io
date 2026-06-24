@@ -19,14 +19,15 @@ import { isTagNode } from "./graphData";
 //   nodes, links  — from buildGraph()/localGraph() in graphData.js
 //   focusId       — node id to emphasize (the current note on a local graph)
 //   onNavigate    — SPA navigator; note nodes -> /til/<slug>, tags -> /til/tags/<tag>
-//   height        — canvas height in px (width is responsive)
+//   height        — fixed canvas height in px; omit to fill the wrapper's height
+//                   (let CSS/`className` size it) — width is always responsive
 //   className     — wrapper classes
 export function GraphView({
   nodes: rawNodes,
   links: rawLinks,
   focusId = null,
   onNavigate,
-  height = 260,
+  height: heightProp = null,
   className = "",
 }) {
   const containerRef = useRef(null);
@@ -58,6 +59,10 @@ export function GraphView({
     ).matches;
 
     let width = container.clientWidth || 320;
+    // Fixed height when given; otherwise track the wrapper so a fluid-height
+    // container (e.g. a vh-sized modal panel) drives the canvas — no caller
+    // needs to measure and feed a pixel number back in.
+    let height = heightProp ?? container.clientHeight ?? 260;
     const transform = { x: 0, y: 0, k: 1 };
     let hoverId = null;
     let theme = readTheme(container);
@@ -161,6 +166,7 @@ export function GraphView({
     // Keep the bitmap matched to CSS size * DPR for crisp lines.
     const resize = () => {
       width = container.clientWidth || width;
+      if (heightProp == null) height = container.clientHeight || height;
       const dpr = window.devicePixelRatio || 1;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
@@ -168,6 +174,7 @@ export function GraphView({
       canvas.style.height = `${height}px`;
       simulation.force("center", forceCenter(width / 2, height / 2));
       simulation.force("x", forceX(width / 2).strength(0.05));
+      simulation.force("y", forceY(height / 2).strength(0.05));
       draw();
     };
 
@@ -303,13 +310,13 @@ export function GraphView({
       resizeObserver.disconnect();
       themeObserver.disconnect();
     };
-  }, [rawNodes, rawLinks, focusId, height, onNavigate]);
+  }, [rawNodes, rawLinks, focusId, heightProp, onNavigate]);
 
   return (
     <div
       ref={containerRef}
       className={`relative w-full overflow-hidden ${className}`}
-      style={{ height }}
+      style={heightProp == null ? undefined : { height: heightProp }}
     >
       <canvas ref={canvasRef} className="block touch-none select-none" />
     </div>

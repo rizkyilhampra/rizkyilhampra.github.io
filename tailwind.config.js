@@ -104,6 +104,10 @@ export default {
             transform: 'scale(1)'
           }
         },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
         'cursor-blink': {
           '0%, 50%': { opacity: '1' },
           '51%, 100%': { opacity: '0' }
@@ -288,6 +292,7 @@ export default {
         'glow': 'glow 3s ease-in-out infinite',
         'fade-in-up': 'fade-in-up 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
         'scale-in': 'scale-in 0.6s ease-out',
+        'fade-in': 'fade-in 0.25s ease-out',
         'cursor-blink': 'cursor-blink 1s ease-in-out infinite',
         'heartbeat': 'heartbeat 1.2s ease-in-out infinite',
         'heart-float': 'heart-float 1.2s ease-out infinite',
