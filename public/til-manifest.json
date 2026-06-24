@@ -1,6 +1,17 @@
 {
   "notes": [
     {
+      "slug": "baidu-unlimited-ocr",
+      "title": "Baidu Unlimited OCR",
+      "date": "2026-06-24",
+      "tags": [
+        "ocr"
+      ],
+      "description": "TLDR; Looks interesting to try when we do OCR of large PDF file that had 100+ pages. Researcher behind this OCR model it's had a way to handle large PDF by…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "command-code-ai",
       "title": "Command Code AI",
       "date": "2026-06-12",
@@ -267,6 +278,10 @@
       "count": 1
     },
     {
+      "tag": "ocr",
+      "count": 1
+    },
+    {
       "tag": "personal",
       "count": 1
     },
@@ -283,5 +298,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-06-24T00:40:32.807Z"
+  "fetchedAt": "2026-06-24T03:58:44.933Z"
 }
