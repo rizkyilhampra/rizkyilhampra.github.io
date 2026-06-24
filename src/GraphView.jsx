@@ -78,12 +78,17 @@ export function GraphView({
         "link",
         forceLink(links)
           .id((d) => d.id)
-          .distance((link) =>
-            isTagNode(nodeById.get(idOf(link.source))) ||
-            isTagNode(nodeById.get(idOf(link.target)))
-              ? 55
-              : 42
-          )
+          // Per-note graphs (focusId) spread neighbors wider so the always-on
+          // labels don't pile onto each other or the node — note titles are
+          // long, so a tight layout reads as cramped. The full garden keeps the
+          // compact spacing since labels there are hidden until hover/zoom.
+          .distance((link) => {
+            const isTag =
+              isTagNode(nodeById.get(idOf(link.source))) ||
+              isTagNode(nodeById.get(idOf(link.target)));
+            if (focusId) return isTag ? 110 : 95;
+            return isTag ? 55 : 42;
+          })
           .strength(0.4)
       )
       .force("charge", forceManyBody().strength(nodes.length > 60 ? -90 : -160))
@@ -196,8 +201,20 @@ export function GraphView({
       const pad = 24;
       const gw = Math.max(maxX - minX, 1);
       const gh = Math.max(maxY - minY, 1);
+      // Zoom that makes the cluster exactly fill the viewport (minus padding).
+      const fitK = Math.min((width - pad * 2) / gw, (height - pad * 2) / gh);
+
+      // Per-note graphs (focusId set) use a FIXED zoom so every note renders at
+      // the same scale — fit-to-bounds would couple the zoom to each note's
+      // neighbor count and layout shape, making the graph look more/less
+      // zoomed-in from note to note. The force layout already uses fixed link
+      // distances, so a constant zoom is visually consistent across notes; we
+      // only fall back to fitK (zoom out) if a rare large neighborhood would
+      // otherwise overflow. The full-garden views (no focusId) genuinely vary
+      // in size, so they keep fit-to-bounds with a slight margin.
+      const FOCUS_ZOOM = 1;
       const k = clamp(
-        Math.min((width - pad * 2) / gw, (height - pad * 2) / gh),
+        focusId ? Math.min(FOCUS_ZOOM, fitK) : fitK * 0.85,
         0.2,
         2
       );
