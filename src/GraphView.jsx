@@ -101,6 +101,13 @@ export function GraphView({
       const rect = canvas.getBoundingClientRect();
       return { px: event.clientX - rect.left, py: event.clientY - rect.top };
     };
+    // Scale to k while keeping graph point (gx, gy) pinned under screen point
+    // (sx, sy). Shared by wheel zoom and pinch zoom.
+    const zoomAround = (sx, sy, gx, gy, k) => {
+      transform.k = k;
+      transform.x = sx - gx * k;
+      transform.y = sy - gy * k;
+    };
 
     // --- rendering ----------------------------------------------------------
     const draw = () => {
@@ -163,6 +170,42 @@ export function GraphView({
       ctx.restore();
     };
 
+    // Until the viewer interacts, we auto-frame the layout so every node stays
+    // on screen — small containers (the homepage preview) otherwise show a
+    // cluster that spread well past the canvas, looking "zoomed in".
+    let userInteracted = false;
+
+    // Frame all nodes into the viewport with padding. The force layout keeps
+    // the centroid centered but never constrains the spread, so without this a
+    // tight container clips most of the graph.
+    const fitView = () => {
+      if (!nodes.length) return;
+      let minX = Infinity;
+      let minY = Infinity;
+      let maxX = -Infinity;
+      let maxY = -Infinity;
+      for (const node of nodes) {
+        if (!Number.isFinite(node.x) || !Number.isFinite(node.y)) continue;
+        const r = radiusOf(node);
+        minX = Math.min(minX, node.x - r);
+        maxX = Math.max(maxX, node.x + r);
+        minY = Math.min(minY, node.y - r);
+        maxY = Math.max(maxY, node.y + r);
+      }
+      if (!Number.isFinite(minX)) return;
+      const pad = 24;
+      const gw = Math.max(maxX - minX, 1);
+      const gh = Math.max(maxY - minY, 1);
+      const k = clamp(
+        Math.min((width - pad * 2) / gw, (height - pad * 2) / gh),
+        0.2,
+        2
+      );
+      transform.k = k;
+      transform.x = width / 2 - ((minX + maxX) / 2) * k;
+      transform.y = height / 2 - ((minY + maxY) / 2) * k;
+    };
+
     // Keep the bitmap matched to CSS size * DPR for crisp lines.
     const resize = () => {
       width = container.clientWidth || width;
@@ -175,6 +218,7 @@ export function GraphView({
       simulation.force("center", forceCenter(width / 2, height / 2));
       simulation.force("x", forceX(width / 2).strength(0.05));
       simulation.force("y", forceY(height / 2).strength(0.05));
+      if (!userInteracted) fitView();
       draw();
     };
 
@@ -184,8 +228,21 @@ export function GraphView({
       for (let i = 0; i < 250; i++) simulation.tick();
       resize();
     } else {
+      // Warm up off-screen so we have real positions to frame (resize() fits
+      // them), then continue a gentle animated settle. The warm-up means the
+      // initial fit is already close, so we only re-frame once on settle rather
+      // than rescanning bounds every tick.
+      simulation.stop();
+      for (let i = 0; i < 80; i++) simulation.tick();
       simulation.on("tick", draw);
+      simulation.on("end", () => {
+        if (!userInteracted) {
+          fitView();
+          draw();
+        }
+      });
       resize();
+      simulation.alpha(0.3).restart();
     }
 
     // --- interaction --------------------------------------------------------
@@ -193,6 +250,27 @@ export function GraphView({
     let panning = null;
     let downAt = null;
     let moved = false;
+    // Active pointers for multitouch pinch-zoom (mobile). One pointer pans or
+    // drags; two pointers pinch to zoom around their midpoint.
+    const pointers = new Map();
+    let pinch = null;
+
+    // From here on the user drives the view, so auto-framing stops.
+    const markUserControlled = () => {
+      userInteracted = true;
+    };
+
+    // Distance + midpoint of the two active pointers (the pinch geometry).
+    const pinchGeom = () => {
+      const it = pointers.values();
+      const a = it.next().value;
+      const b = it.next().value;
+      return {
+        dist: Math.hypot(a.px - b.px, a.py - b.py) || 1,
+        mx: (a.px + b.px) / 2,
+        my: (a.py + b.py) / 2,
+      };
+    };
 
     const findNode = (px, py) => {
       const { x, y } = toGraph(px, py);
@@ -200,19 +278,54 @@ export function GraphView({
       return simulation.find(x, y, 24 / transform.k) ?? null;
     };
 
+    // Build a pinch session: record the start distance and the graph point
+    // under the midpoint so we can keep it anchored while scaling.
+    const beginPinch = () => {
+      const { dist, mx, my } = pinchGeom();
+      const { x: gx, y: gy } = toGraph(mx, my);
+      pinch = { dist, k: transform.k, gx, gy };
+      // A pinch supersedes any pan/drag that a single finger started.
+      panning = null;
+      if (dragNode) {
+        if (!reduceMotion) simulation.alphaTarget(0);
+        dragNode.fx = null;
+        dragNode.fy = null;
+        dragNode = null;
+      }
+    };
+
     const onPointerMove = (event) => {
       const { px, py } = pointerPos(event);
+      if (pointers.has(event.pointerId)) {
+        pointers.set(event.pointerId, { px, py });
+      }
+
+      // Two fingers down → pinch zoom around the live midpoint.
+      if (pinch && pointers.size >= 2) {
+        const { dist, mx, my } = pinchGeom();
+        const k = clamp((pinch.k * dist) / pinch.dist, 0.3, 4);
+        zoomAround(mx, my, pinch.gx, pinch.gy, k);
+        markUserControlled();
+        moved = true;
+        draw();
+        return;
+      }
+
       if (dragNode) {
         const { x, y } = toGraph(px, py);
         dragNode.fx = x;
         dragNode.fy = y;
         moved = true;
+        // Manipulating a node counts as interaction; otherwise the settle-time
+        // auto-fit would rescale the whole view under the dragging finger.
+        markUserControlled();
         if (reduceMotion) draw();
         return;
       }
       if (panning) {
         transform.x = panning.tx + (px - panning.px);
         transform.y = panning.ty + (py - panning.py);
+        markUserControlled();
         moved = true;
         draw();
         return;
@@ -228,10 +341,19 @@ export function GraphView({
 
     const onPointerDown = (event) => {
       const { px, py } = pointerPos(event);
+      pointers.set(event.pointerId, { px, py });
+      canvas.setPointerCapture?.(event.pointerId);
+
+      // Second finger down → switch to a pinch and abandon pan/drag.
+      if (pointers.size === 2) {
+        beginPinch();
+        return;
+      }
+      if (pointers.size > 2) return;
+
       downAt = { px, py };
       moved = false;
       const hit = findNode(px, py);
-      canvas.setPointerCapture?.(event.pointerId);
       if (hit) {
         dragNode = hit;
         if (!reduceMotion) simulation.alphaTarget(0.2).restart();
@@ -244,36 +366,39 @@ export function GraphView({
       }
     };
 
-    const onPointerUp = (event) => {
+    const endPointer = (event) => {
       const { px, py } = pointerPos(event);
-      const isClick =
-        downAt &&
-        !moved &&
-        Math.hypot(px - downAt.px, py - downAt.py) < 5;
+      pointers.delete(event.pointerId);
+      canvas.releasePointerCapture?.(event.pointerId);
 
-      if (dragNode) {
-        const target = dragNode;
+      // Decide what this release meant — end a pinch, or finish a drag/click.
+      // A remaining finger after a pinch stays inert until re-pressed rather
+      // than jumping the view into a pan.
+      if (pinch) {
+        if (pointers.size < 2) pinch = null;
+      } else if (dragNode) {
+        const isClick =
+          downAt && !moved && Math.hypot(px - downAt.px, py - downAt.py) < 5;
         if (!reduceMotion) simulation.alphaTarget(0);
-        target.fx = null;
-        target.fy = null;
-        if (isClick) navigateTo(target);
+        dragNode.fx = null;
+        dragNode.fy = null;
+        if (isClick) navigateTo(dragNode);
         dragNode = null;
       }
+
+      // Shared teardown of transient pointer state.
       panning = null;
       downAt = null;
       canvas.style.cursor = "grab";
-      canvas.releasePointerCapture?.(event.pointerId);
     };
 
     const onWheel = (event) => {
       event.preventDefault();
       const { px, py } = pointerPos(event);
-      const factor = Math.exp(-event.deltaY * 0.001);
-      const k = clamp(transform.k * factor, 0.3, 4);
-      // keep the point under the cursor fixed
-      transform.x = px - ((px - transform.x) * k) / transform.k;
-      transform.y = py - ((py - transform.y) * k) / transform.k;
-      transform.k = k;
+      const { x: gx, y: gy } = toGraph(px, py);
+      const k = clamp(transform.k * Math.exp(-event.deltaY * 0.001), 0.3, 4);
+      zoomAround(px, py, gx, gy, k); // keep the point under the cursor fixed
+      markUserControlled();
       draw();
     };
 
@@ -285,7 +410,8 @@ export function GraphView({
 
     canvas.addEventListener("pointermove", onPointerMove);
     canvas.addEventListener("pointerdown", onPointerDown);
-    canvas.addEventListener("pointerup", onPointerUp);
+    canvas.addEventListener("pointerup", endPointer);
+    canvas.addEventListener("pointercancel", endPointer);
     canvas.addEventListener("wheel", onWheel, { passive: false });
 
     const resizeObserver = new ResizeObserver(resize);
@@ -305,7 +431,8 @@ export function GraphView({
       simulation.stop();
       canvas.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointerdown", onPointerDown);
-      canvas.removeEventListener("pointerup", onPointerUp);
+      canvas.removeEventListener("pointerup", endPointer);
+      canvas.removeEventListener("pointercancel", endPointer);
       canvas.removeEventListener("wheel", onWheel);
       resizeObserver.disconnect();
       themeObserver.disconnect();
