@@ -10,7 +10,7 @@ import { navHandler } from "./utils";
 
 const MAX_NOTES = 4;
 
-function TilNotes({ onNavigate }) {
+function TilNotes({ onNavigate, skipEntranceAnimation }) {
   const allNotes = use(loadTilManifest());
   const notes = allNotes.slice(0, MAX_NOTES);
   const graph = fullGraph(allNotes);
@@ -53,6 +53,7 @@ function TilNotes({ onNavigate }) {
             links={graph.links}
             onNavigate={onNavigate}
             height={300}
+            animate={!skipEntranceAnimation}
           />
         </div>
       ) : null}
@@ -60,7 +61,7 @@ function TilNotes({ onNavigate }) {
   );
 }
 
-export function TilListPreview({ onNavigate }) {
+export function TilListPreview({ onNavigate, skipEntranceAnimation }) {
   return (
     <section aria-labelledby="til-heading">
       <SectionHeading eyebrow="~/til" title="Today I Learned" id="til-heading">
@@ -68,7 +69,10 @@ export function TilListPreview({ onNavigate }) {
       </SectionHeading>
 
       <Suspense fallback={<TilNoteListSkeleton count={MAX_NOTES} />}>
-        <TilNotes onNavigate={onNavigate} />
+        <TilNotes
+          onNavigate={onNavigate}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
       </Suspense>
     </section>
   );

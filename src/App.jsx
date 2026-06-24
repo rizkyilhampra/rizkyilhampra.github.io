@@ -344,7 +344,10 @@ export default function App() {
 
       {/* Today I Learned (digital garden) */}
       <section {...reveal(2)}>
-        <TilListPreview onNavigate={navigate} />
+        <TilListPreview
+          onNavigate={navigate}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
       </section>
 
       <SectionDivider />

@@ -6,7 +6,13 @@ import { ExpandGraphButton } from "./ExpandGraphButton";
 // The per-note neighborhood graph shown on /til/<slug>, mirroring Quartz's
 // sidebar graph: the current note at the centre, its linked notes and tags one
 // hop out. The corner button expands to the full-garden graph overlay.
-export function LocalGraph({ slug, manifest, onNavigate, className = "" }) {
+export function LocalGraph({
+  slug,
+  manifest,
+  onNavigate,
+  className = "",
+  skipEntranceAnimation = false,
+}) {
   const graph = useMemo(() => {
     const full = buildGraph(manifest);
     return localGraph(full, slug, 1);
@@ -28,6 +34,7 @@ export function LocalGraph({ slug, manifest, onNavigate, className = "" }) {
           focusId={slug}
           onNavigate={onNavigate}
           height={240}
+          animate={!skipEntranceAnimation}
         />
       </div>
     </section>

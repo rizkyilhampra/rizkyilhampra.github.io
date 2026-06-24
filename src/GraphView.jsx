@@ -24,6 +24,10 @@ import {
 //   height        — fixed canvas height in px; omit to fill the wrapper's height
 //                   (let CSS/`className` size it) — width is always responsive
 //   className     — wrapper classes
+//   animate       — play the settle animation on mount (deferred until the graph
+//                   scrolls into view). Pass false to render the settled layout
+//                   statically — used on back/forward restore so the graph, like
+//                   the rest of the page entrance, doesn't replay.
 export function GraphView({
   nodes: rawNodes,
   links: rawLinks,
@@ -31,6 +35,7 @@ export function GraphView({
   onNavigate,
   height: heightProp = null,
   className = "",
+  animate = true,
 }) {
   // Slugs the reader has already opened — visited note nodes render brighter.
   // Read once per mount; new visits show on the next navigation's fresh graph.
@@ -289,8 +294,14 @@ export function GraphView({
       draw();
     };
 
-    if (reduceMotion) {
-      // Static layout: settle synchronously, then render once. No anim loop.
+    // Observes the container so the settle can start when the graph scrolls into
+    // view (assigned in the animated branch below; disconnected on cleanup).
+    let visibilityObserver = null;
+
+    if (reduceMotion || !animate) {
+      // Static layout: settle synchronously, then render once. No anim loop. Used
+      // for reduced-motion and for back/forward restore (animate === false), so
+      // the graph doesn't replay its entrance when the page entrance is skipped.
       simulation.stop();
       for (let i = 0; i < 250; i++) simulation.tick();
       resize();
@@ -309,7 +320,27 @@ export function GraphView({
       simulation.on("tick", tick);
       simulation.on("end", tick);
       resize();
-      simulation.alpha(0.3).restart();
+
+      // Defer the settle until the graph scrolls into view, so on the homepage
+      // (where this preview sits below the fold) the motion plays as an entrance
+      // the reader actually sees instead of finishing off-screen. Fires at once
+      // if the graph is already visible (e.g. a note page's local graph above the
+      // fold). Until then the warmed-up layout is shown statically by resize().
+      const startSettle = () => simulation.alpha(0.3).restart();
+      if (typeof IntersectionObserver === "function") {
+        visibilityObserver = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            visibilityObserver?.disconnect();
+            visibilityObserver = null;
+            startSettle();
+          },
+          { threshold: 0.2 }
+        );
+        visibilityObserver.observe(container);
+      } else {
+        startSettle();
+      }
     }
 
     // --- interaction --------------------------------------------------------
@@ -506,6 +537,7 @@ export function GraphView({
 
     return () => {
       simulation.stop();
+      visibilityObserver?.disconnect();
       if (highlightRaf != null) cancelAnimationFrame(highlightRaf);
       canvas.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointerdown", onPointerDown);
@@ -516,7 +548,7 @@ export function GraphView({
       resizeObserver.disconnect();
       themeObserver.disconnect();
     };
-  }, [rawNodes, rawLinks, focusId, heightProp, onNavigate, visited]);
+  }, [rawNodes, rawLinks, focusId, heightProp, onNavigate, visited, animate]);
 
   return (
     <div
