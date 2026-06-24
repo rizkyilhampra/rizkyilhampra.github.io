@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 // old glowing card grid. Used for the homepage "projects" section.
 export function ProjectList({ items }) {
   return (
-    <ul className="divide-y divide-border border-y border-border">
+    <ul className="divide-y divide-border border-t border-border">
       {items.map((item) => (
         <li key={item.href}>
           <ProjectRow {...item} />

@@ -333,14 +333,14 @@ export default function App() {
       <SectionDivider />
 
       {/* Projects */}
-      <section {...reveal(1)}>
-        <SectionHeading eyebrow="~/projects" title="Projects">
-          Things I’ve built and keep running.
-        </SectionHeading>
-        <ProjectList items={projects} />
-      </section>
-
-      <SectionDivider />
+      {/* <section {...reveal(1)}> */}
+      {/*   <SectionHeading eyebrow="~/projects" title="Projects"> */}
+      {/*     Things I’ve built and keep running. */}
+      {/*   </SectionHeading> */}
+      {/*   <ProjectList items={projects} /> */}
+      {/* </section> */}
+      {/**/}
+      {/* <SectionDivider /> */}
 
       {/* Today I Learned (digital garden) */}
       <section {...reveal(2)}>
