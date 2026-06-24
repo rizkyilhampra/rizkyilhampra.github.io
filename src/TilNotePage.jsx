@@ -8,6 +8,7 @@ import { PostMeta } from "./PostMeta";
 import { TagList } from "./TagList";
 import { NoteConnections } from "./NoteConnections";
 import { LocalGraph } from "./LocalGraph";
+import { markVisited } from "./visited";
 import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
@@ -25,6 +26,7 @@ export function TilNotePage({
     document.title = note
       ? `${note.title} | Rizky Ilham Pratama`
       : "Note not found | Rizky Ilham Pratama";
+    if (note) markVisited(note.slug);
   }, [note]);
 
   if (!note) {

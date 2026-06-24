@@ -1,14 +1,16 @@
-import { useEffect, useRef } from "react";
-import {
-  forceCenter,
-  forceCollide,
-  forceLink,
-  forceManyBody,
-  forceSimulation,
-  forceX,
-  forceY,
-} from "d3-force";
+import { useEffect, useMemo, useRef } from "react";
 import { isTagNode } from "./graphData";
+import { getVisited } from "./visited";
+import { createGraphSimulation, applyViewportForces } from "./graphSimulation";
+import {
+  clamp,
+  hsl,
+  idOf,
+  labelOf,
+  nodeFill,
+  nodeRadius,
+  readTheme,
+} from "./graphRender";
 
 // Self-contained force-directed graph rendered on a 2D canvas. Reverse-engineered
 // from Quartz's graph view but without pixi.js/WebGL — the garden is small enough
@@ -30,6 +32,9 @@ export function GraphView({
   height: heightProp = null,
   className = "",
 }) {
+  // Slugs the reader has already opened — visited note nodes render brighter.
+  // Read once per mount; new visits show on the next navigation's fresh graph.
+  const visited = useMemo(() => getVisited(), []);
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -67,52 +72,66 @@ export function GraphView({
     let hoverId = null;
     let theme = readTheme(container);
 
-    const radiusOf = (node) => {
-      const base = isTagNode(node) ? 3.2 : 4;
-      const grow = Math.sqrt(node.degree ?? 0) * 1.6;
-      return (node.focus || node.id === focusId ? 6 : base) + grow;
+    // Eased highlight factor for the hover dim/undim (A): 0 = resting (everything
+    // full opacity), 1 = a node is focused (non-neighbors dimmed). `activeId` is
+    // the highlighted node; it's retained while the dim animates *out* so the
+    // fade-back is smooth instead of snapping when the pointer leaves. A
+    // standalone ticker animates `highlight` toward `highlightTarget` so a settled
+    // graph — where the d3 simulation has stopped ticking draw() — still fades.
+    let activeId = focusId;
+    let highlight = focusId ? 1 : 0;
+    let highlightTarget = highlight;
+    let highlightRaf = null;
+    // Snap to a final value and redraw, releasing the retained node back to the
+    // focus once the dim has fully eased out. Shared by the RAF settle and the
+    // reduce-motion snap so the "release" rule lives in one place.
+    const settleHighlight = (value) => {
+      highlight = value;
+      if (value === 0) activeId = focusId; // release retained node
+      draw();
+    };
+    const stepHighlight = () => {
+      highlightRaf = null;
+      const delta = highlightTarget - highlight;
+      if (Math.abs(delta) < 0.01) {
+        settleHighlight(highlightTarget);
+        return;
+      }
+      highlight += delta * 0.2;
+      draw();
+      highlightRaf = requestAnimationFrame(stepHighlight);
+    };
+    const setHighlight = (target) => {
+      highlightTarget = target;
+      if (reduceMotion) {
+        settleHighlight(target);
+        return;
+      }
+      if (highlightRaf == null) highlightRaf = requestAnimationFrame(stepHighlight);
+    };
+    // Point the highlight at a node (or back to the focus/resting state).
+    const setActive = (id) => {
+      const next = id ?? focusId;
+      if (next != null) {
+        activeId = next;
+        setHighlight(1);
+      } else {
+        setHighlight(0); // keep activeId until the fade-out settles
+      }
     };
 
-    // The full-garden views (no focusId) mirror Quartz/Obsidian's global graph:
-    // gentle repulsion + short links + a radial force pull the nodes into a
-    // round, evenly-spread blob. The per-note graph (focusId) instead spreads
-    // neighbors wide so its always-on labels don't collide, and skips the
-    // radial force — a handful of nodes shouldn't be forced onto a ring.
-    const isLocal = Boolean(focusId);
+    const radiusOf = (node) => nodeRadius(node, focusId);
 
-    const simulation = forceSimulation(nodes)
-      .force(
-        "link",
-        forceLink(links)
-          .id((d) => d.id)
-          .distance((link) => {
-            const isTag =
-              isTagNode(nodeById.get(idOf(link.source))) ||
-              isTagNode(nodeById.get(idOf(link.target)));
-            if (isLocal) return isTag ? 110 : 95;
-            return isTag ? 35 : 30;
-          })
-          .strength(0.4)
-      )
-      // Quartz uses -100*repelForce (=-50); the strong -160 we had blew the
-      // garden apart. Keep the wider repulsion only for the small local graph.
-      .force("charge", forceManyBody().strength(isLocal ? -160 : -90))
-      .force(
-        "collide",
-        forceCollide()
-          .radius((d) => radiusOf(d) + 4)
-          .iterations(isLocal ? 1 : 3)
-      )
-      // Isotropic center gravity (equal X and Y pull) is what makes the full
-      // garden a FILLED circle: every node is drawn to the centre equally while
-      // charge pushes them apart equally, so they pack into a round disc at any
-      // node count. (Quartz's forceRadial only fills for hundreds of nodes —
-      // with our ~20 it just rings them onto the rim, hence center gravity
-      // instead.) The local graph keeps a softer pull so its few labelled nodes
-      // stay spread.
-      .force("x", forceX(width / 2).strength(isLocal ? 0.05 : 0.06))
-      .force("y", forceY(height / 2).strength(isLocal ? 0.05 : 0.06))
-      .force("center", forceCenter(width / 2, height / 2));
+    // Per-note graphs (focusId) get the wide-spread local tuning; the full garden
+    // gets the packed-disc global tuning. See graphSimulation.js for the forces.
+    const isLocal = Boolean(focusId);
+    const simulation = createGraphSimulation(nodes, links, {
+      isLocal,
+      width,
+      height,
+      radiusOf,
+      nodeById,
+    });
 
     // --- coordinate helpers -------------------------------------------------
     const toGraph = (px, py) => ({
@@ -132,6 +151,19 @@ export function GraphView({
     };
 
     // --- rendering ----------------------------------------------------------
+    // The active node's neighbor set only changes when `activeId` does, but the
+    // fade ticker redraws every frame — cache it so we don't rebuild an
+    // identical Set on each of those frames.
+    let activeSetId;
+    let activeSetCache = null;
+    const activeSetFor = (id) => {
+      if (id !== activeSetId) {
+        activeSetId = id;
+        activeSetCache = id ? new Set([id, ...(neighbors.get(id) ?? [])]) : null;
+      }
+      return activeSetCache;
+    };
+
     const draw = () => {
       const dpr = window.devicePixelRatio || 1;
       ctx.save();
@@ -140,10 +172,14 @@ export function GraphView({
       ctx.translate(transform.x, transform.y);
       ctx.scale(transform.k, transform.k);
 
-      const active = hoverId ?? focusId;
-      const activeSet = active
-        ? new Set([active, ...(neighbors.get(active) ?? [])])
-        : null;
+      const active = activeId;
+      const activeSet = activeSetFor(active);
+      // How strongly to dim/lift right now — `highlight` eases this 0↔1 so the
+      // hover focus fades rather than snapping (A). At 0 nothing is dimmed.
+      const dimAlpha = 1 - 0.65 * highlight; // non-neighbor node opacity: 1 → 0.35
+      // Labels for non-focused nodes fade in gradually as you zoom in (B),
+      // replacing the old hard k>1.6 cutoff (Quartz uses max((scale-1)/3.75, 0)).
+      const zoomLabelAlpha = clamp(transform.k - 1.2, 0, 1);
 
       // edges
       ctx.lineWidth = 1 / transform.k;
@@ -154,8 +190,8 @@ export function GraphView({
         const lit =
           activeSet && (idOf(link.source) === active || idOf(link.target) === active);
         ctx.strokeStyle = lit
-          ? hsl(theme.primary, 0.7)
-          : hsl(theme.border, activeSet ? 0.25 : 0.5);
+          ? hsl(theme.primary, 0.5 + 0.2 * highlight)
+          : hsl(theme.border, 0.5 - 0.25 * highlight);
         ctx.beginPath();
         ctx.moveTo(s.x, s.y);
         ctx.lineTo(t.x, t.y);
@@ -165,21 +201,20 @@ export function GraphView({
       // nodes
       for (const node of nodes) {
         const r = radiusOf(node);
-        const isActive = !activeSet || activeSet.has(node.id);
-        const fill = nodeFill(node, node.id === active, theme);
-        ctx.globalAlpha = isActive ? 1 : 0.35;
+        const inCluster = !activeSet || activeSet.has(node.id);
+        const fill = nodeFill(node, node.id === active, visited, theme);
+        ctx.globalAlpha = inCluster ? 1 : dimAlpha;
         ctx.beginPath();
         ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
         ctx.fillStyle = fill;
         ctx.fill();
 
-        // labels: focus + hovered cluster always; everyone once zoomed in.
-        const showLabel =
-          node.id === active ||
-          (activeSet && activeSet.has(node.id)) ||
-          transform.k > 1.6;
-        if (showLabel) {
-          ctx.globalAlpha = isActive ? 1 : 0.4;
+        // labels: focus + hovered cluster always full; everyone else fades in
+        // with zoom. Take the stronger of the two so a hovered node stays lit.
+        const clusterLabel = activeSet && activeSet.has(node.id) ? 1 : 0;
+        const labelAlpha = Math.max(clusterLabel, zoomLabelAlpha * (inCluster ? 1 : dimAlpha));
+        if (labelAlpha > 0.02) {
+          ctx.globalAlpha = labelAlpha;
           ctx.fillStyle = hsl(theme.foreground, 0.9);
           ctx.font = `${10 / transform.k + 1}px ui-sans-serif, system-ui, sans-serif`;
           ctx.textAlign = "center";
@@ -249,9 +284,7 @@ export function GraphView({
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      simulation.force("center", forceCenter(width / 2, height / 2));
-      simulation.force("x", forceX(width / 2).strength(isLocal ? 0.05 : 0.06));
-      simulation.force("y", forceY(height / 2).strength(isLocal ? 0.05 : 0.06));
+      applyViewportForces(simulation, { isLocal, width, height });
       if (!userInteracted) fitView();
       draw();
     };
@@ -369,7 +402,7 @@ export function GraphView({
       canvas.style.cursor = hit ? "pointer" : "grab";
       if (nextHover !== hoverId) {
         hoverId = nextHover;
-        draw();
+        setActive(nextHover); // eased dim/undim drives the redraw
       }
     };
 
@@ -442,10 +475,20 @@ export function GraphView({
       else onNavigate(`/til/${node.id}`);
     };
 
+    // Cursor left the canvas while hovering — release the highlight so the dim
+    // fades back out instead of staying stuck on the last node.
+    const onPointerLeave = () => {
+      if (hoverId !== null) {
+        hoverId = null;
+        setActive(null);
+      }
+    };
+
     canvas.addEventListener("pointermove", onPointerMove);
     canvas.addEventListener("pointerdown", onPointerDown);
     canvas.addEventListener("pointerup", endPointer);
     canvas.addEventListener("pointercancel", endPointer);
+    canvas.addEventListener("pointerleave", onPointerLeave);
     canvas.addEventListener("wheel", onWheel, { passive: false });
 
     const resizeObserver = new ResizeObserver(resize);
@@ -463,15 +506,17 @@ export function GraphView({
 
     return () => {
       simulation.stop();
+      if (highlightRaf != null) cancelAnimationFrame(highlightRaf);
       canvas.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointerdown", onPointerDown);
       canvas.removeEventListener("pointerup", endPointer);
       canvas.removeEventListener("pointercancel", endPointer);
+      canvas.removeEventListener("pointerleave", onPointerLeave);
       canvas.removeEventListener("wheel", onWheel);
       resizeObserver.disconnect();
       themeObserver.disconnect();
     };
-  }, [rawNodes, rawLinks, focusId, heightProp, onNavigate]);
+  }, [rawNodes, rawLinks, focusId, heightProp, onNavigate, visited]);
 
   return (
     <div
@@ -482,40 +527,4 @@ export function GraphView({
       <canvas ref={canvasRef} className="block touch-none select-none" />
     </div>
   );
-}
-
-function nodeFill(node, isActive, theme) {
-  if (node.focus || isActive) return hsl(theme.primary, 1);
-  if (isTagNode(node)) return hsl(theme.primary, 0.45);
-  return hsl(theme.mutedForeground, 0.85);
-}
-
-function labelOf(node) {
-  return isTagNode(node) ? `#${node.label}` : node.title ?? node.id;
-}
-
-function idOf(end) {
-  return typeof end === "object" && end !== null ? end.id : end;
-}
-
-function clamp(value, min, max) {
-  return Math.min(max, Math.max(min, value));
-}
-
-// CSS custom properties hold bare HSL components ("152 38% 33%"); wrap them so
-// canvas gets a valid color with optional alpha.
-function hsl(components, alpha = 1) {
-  return `hsl(${components} / ${alpha})`;
-}
-
-function readTheme(el) {
-  const style = getComputedStyle(el);
-  const read = (name) => style.getPropertyValue(name).trim();
-  return {
-    background: read("--background"),
-    foreground: read("--foreground"),
-    primary: read("--primary"),
-    mutedForeground: read("--muted-foreground"),
-    border: read("--border"),
-  };
 }
