@@ -7,7 +7,7 @@ const MAX_RELATED = 4;
 // (backlinks, computed at build time in the manifest) and "Related notes"
 // (other notes sharing at least one tag). Both are derived from the manifest
 // already loaded by the page, so no extra markdown fetches happen here.
-export function NoteConnections({ slug, manifest, onNavigate }) {
+export function NoteConnections({ slug, manifest, onNavigate, className = "" }) {
   const { backlinks, related } = useMemo(() => {
     const current = manifest.find((note) => note.slug === slug);
     if (!current) return { backlinks: [], related: [] };
@@ -39,7 +39,7 @@ export function NoteConnections({ slug, manifest, onNavigate }) {
   if (backlinks.length === 0 && related.length === 0) return null;
 
   return (
-    <div className="mt-12 space-y-8 border-t border-border pt-8">
+    <div className={`space-y-8 ${className}`}>
       <NoteLinkGroup
         title="Linked from"
         notes={backlinks}

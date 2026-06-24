@@ -23,6 +23,7 @@ import { TilListPreview } from "./TilListPreview";
 import { TilIndexPage } from "./TilIndexPage";
 import { TilTagsPage } from "./TilTagsPage";
 import { TilTagPage } from "./TilTagPage";
+import { TilGraphPage } from "./TilGraphPage";
 import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
@@ -136,10 +137,12 @@ export default function App() {
   };
 
   const isTilTagsIndex = path === "/til/tags";
+  const isTilGraph = path === "/til/graph";
   const tilTag = getTilTag(path);
-  // /til/tags and /til/tags/<tag> are matched before the generic /til/<slug> note
-  // route so they aren't mistaken for a note slug.
-  const tilSlug = isTilTagsIndex || tilTag ? null : getTilSlug(path);
+  // /til/tags, /til/tags/<tag> and /til/graph are matched before the generic
+  // /til/<slug> note route so they aren't mistaken for a note slug.
+  const tilSlug =
+    isTilTagsIndex || isTilGraph || tilTag ? null : getTilSlug(path);
   const isTilIndex = path === "/til";
   const reveal = createReveal(skipEntranceAnimation);
 
@@ -159,6 +162,11 @@ export default function App() {
       return;
     }
 
+    if (isTilGraph) {
+      document.title = "Garden graph | Rizky Ilham Pratama";
+      return;
+    }
+
     if (tilTag) {
       document.title = `#${tilTag} | Rizky Ilham Pratama`;
       return;
@@ -171,7 +179,7 @@ export default function App() {
     }
 
     document.title = "Page not found | Rizky Ilham Pratama";
-  }, [path, isTilIndex, isTilTagsIndex, tilTag, tilSlug]);
+  }, [path, isTilIndex, isTilTagsIndex, isTilGraph, tilTag, tilSlug]);
 
   if (isTilIndex) {
     return (
@@ -189,6 +197,18 @@ export default function App() {
     return (
       <Suspense fallback={null}>
         <TilTagsPage
+          onNavigate={navigate}
+          onBack={goBack}
+          skipEntranceAnimation={skipEntranceAnimation}
+        />
+      </Suspense>
+    );
+  }
+
+  if (isTilGraph) {
+    return (
+      <Suspense fallback={null}>
+        <TilGraphPage
           onNavigate={navigate}
           onBack={goBack}
           skipEntranceAnimation={skipEntranceAnimation}
