@@ -7,7 +7,7 @@ import { navHandler } from "./utils";
 // The per-note neighborhood graph shown on /til/<slug>, mirroring Quartz's
 // sidebar graph: the current note at the centre, its linked notes and tags one
 // hop out. The corner button expands to the full-garden graph at /til/graph.
-export function LocalGraph({ slug, manifest, onNavigate }) {
+export function LocalGraph({ slug, manifest, onNavigate, className = "" }) {
   const graph = useMemo(() => {
     const full = buildGraph(manifest);
     return localGraph(full, slug, 1);
@@ -19,7 +19,7 @@ export function LocalGraph({ slug, manifest, onNavigate }) {
   const go = navHandler(onNavigate);
 
   return (
-    <section className="mt-12">
+    <section className={className}>
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           Graph view

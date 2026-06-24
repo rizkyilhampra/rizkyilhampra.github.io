@@ -61,9 +61,24 @@ export function TilNotePage({
           <MarkdownContent tokens={note.content} onNavigate={onNavigate} />
         </div>
 
-        <div {...reveal(3)}>
-          <LocalGraph slug={slug} manifest={manifest} onNavigate={onNavigate} />
-          <NoteConnections slug={slug} manifest={manifest} onNavigate={onNavigate} />
+        <div {...reveal(3, "mt-12 border-t border-border pt-8")}>
+          {/* Graph on the left, the "Linked from"/"Related notes" lists on the
+              right; stacks to a single column on narrow screens. Either side can
+              be absent (flex lets the present one fill the row). */}
+          <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-10">
+            <LocalGraph
+              slug={slug}
+              manifest={manifest}
+              onNavigate={onNavigate}
+              className="md:min-w-0 md:flex-1"
+            />
+            <NoteConnections
+              slug={slug}
+              manifest={manifest}
+              onNavigate={onNavigate}
+              className="md:min-w-0 md:flex-1"
+            />
+          </div>
           <hr className="mt-12 border-border" />
         </div>
       </article>
