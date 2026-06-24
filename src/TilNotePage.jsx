@@ -70,7 +70,7 @@ export function TilNotePage({
               slug={slug}
               manifest={manifest}
               onNavigate={onNavigate}
-              className="order-last md:order-none md:min-w-0 md:flex-1"
+              className="order-last md:order-none md:min-w-0 md:flex-1 md:max-w-[calc(50%-1.25rem)]"
             />
             <NoteConnections
               slug={slug}
