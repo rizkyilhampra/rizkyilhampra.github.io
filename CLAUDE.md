@@ -43,6 +43,26 @@ keep tags clickable, keep notes interconnected, and keep everything navigable.
 - Responsive grid layout for social links (md:grid-cols-2 lg:grid-cols-3)
 - Don't need to test and run `bun run dev`
 
+## Deployment & Skipping CI
+
+The site is built and deployed to GitHub Pages by `.github/workflows/pages-deploy.yml`,
+which triggers on every `push` to `main` (plus manual `workflow_dispatch`).
+
+To skip the build/deploy run for a docs-only or other no-op commit, include one of
+GitHub's natively-supported skip markers anywhere in the commit message:
+
+- `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
+- or a trailer (after two blank lines): `skip-checks:true` / `skip-checks: true`
+
+Example: `docs: overhaul README [skip ci]`
+
+Notes:
+- Only affects `push` / `pull_request` events, so it covers this repo's deploy trigger.
+- Only skips the specific commit carrying the marker; the next normal commit deploys as usual.
+- Verified against GitHub docs: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
+- Do NOT skip CI for changes under `public/**` (including TIL notes `public/til/*.md`) —
+  those are build inputs and need a redeploy to go live.
+
 ## Architecture
 
 - **Build Tool**: Farm.js (modern Rust-based bundler)
