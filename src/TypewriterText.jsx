@@ -302,11 +302,11 @@ export function TypewriterText({
   }, [currentText, currentTextIndex, isDeleting, isPaused, typoState, texts, typingSpeed, deletingSpeed, pauseDuration, typoChance, correctionPause, loopSingle]);
 
   return (
-    <span className={`${className} inline-block min-h-[2.5rem] sm:min-h-[3rem] md:min-h-[3.5rem]`}>
+    <span className={`${className} block min-h-[3.5rem] sm:min-h-[3rem] md:min-h-[3.5rem]`}>
       <span className="sm:whitespace-nowrap">
         {currentText}
+        <span className={`animate-cursor-blink ${typoState.hasTypo || typoState.isCorrectingTypo || typoState.isWaitingCorrection ? 'text-red-400' : ''}`}>|</span>
       </span>
-      <span className={`animate-cursor-blink ${typoState.hasTypo || typoState.isCorrectingTypo || typoState.isWaitingCorrection ? 'text-red-400' : ''}`}>|</span>
     </span>
   );
 }
