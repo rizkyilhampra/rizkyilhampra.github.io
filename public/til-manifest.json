@@ -1,6 +1,19 @@
 {
   "notes": [
     {
+      "slug": "fixing-network-shared-folder-access-issues-in-windows-11",
+      "title": "Fixing Network Shared Folder Access Issues in Windows 11",
+      "date": "2026-06-30",
+      "tags": [
+        "it-support",
+        "network-sharing",
+        "windows11"
+      ],
+      "description": "Got bunch read some articles nothing that mark the issue solved. But exclude this…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "cetak-tabel-bengkok-atau-tidak-lurus",
       "title": "Cetak Tabel Bengkok atau Tidak Lurus",
       "date": "2026-06-25",
@@ -259,6 +272,10 @@
       "count": 3
     },
     {
+      "tag": "it-support",
+      "count": 2
+    },
+    {
       "tag": "work",
       "count": 2
     },
@@ -291,11 +308,11 @@
       "count": 1
     },
     {
-      "tag": "it-support",
+      "tag": "network",
       "count": 1
     },
     {
-      "tag": "network",
+      "tag": "network-sharing",
       "count": 1
     },
     {
@@ -321,7 +338,11 @@
     {
       "tag": "ssh",
       "count": 1
+    },
+    {
+      "tag": "windows11",
+      "count": 1
     }
   ],
-  "fetchedAt": "2026-06-30T12:42:43.664Z"
+  "fetchedAt": "2026-06-30T14:10:37.443Z"
 }
