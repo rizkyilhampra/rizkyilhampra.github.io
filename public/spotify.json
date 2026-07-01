@@ -1,8 +1,173 @@
 {
-  "fetchedAt": "2026-06-01T01:24:13.960Z",
+  "fetchedAt": "2026-07-01T01:19:35.059Z",
   "top": {
     "tracks": {
-      "medium_term": []
+      "medium_term": [
+        {
+          "id": "2mlNgAeIBnL78ZriXgrRHz",
+          "name": "Glimpse of Us",
+          "artists": [
+            {
+              "id": "3MZsBdqDrRTJihTHQrO6Dq",
+              "name": "Joji"
+            }
+          ],
+          "album": "SMITHEREENS",
+          "url": "https://open.spotify.com/track/2mlNgAeIBnL78ZriXgrRHz",
+          "image": "https://i.scdn.co/image/ab67616d0000b273cdd1a8a427b3f81f4f4f4f7d",
+          "durationMs": 233453
+        },
+        {
+          "id": "0OcCxECpHabGkma90OFULU",
+          "name": "Black Hole",
+          "artists": [
+            {
+              "id": "40jlY1amdIaVtPMKjdBj7x",
+              "name": "ciaffa"
+            },
+            {
+              "id": "0sfCfF62IjeupwxdvH7KM3",
+              "name": "fedo DJ"
+            },
+            {
+              "id": "6kQZyWgAMsM7U7vRlWLYd2",
+              "name": "surelynotsibi42"
+            }
+          ],
+          "album": "Black Hole",
+          "url": "https://open.spotify.com/track/0OcCxECpHabGkma90OFULU",
+          "image": "https://i.scdn.co/image/ab67616d0000b273eb2517e110652a5963fd951c",
+          "durationMs": 364634
+        },
+        {
+          "id": "10pK13X1wty80C3uQY0Bea",
+          "name": "Suatu Malam Tepat Di Hari Sebelum Keberangkatanmu Menuju Kota Yang Kau Cintai Lebih Dari Aku",
+          "artists": [
+            {
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
+            }
+          ],
+          "album": "Merayakan Sepi",
+          "url": "https://open.spotify.com/track/10pK13X1wty80C3uQY0Bea",
+          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
+          "durationMs": 159458
+        },
+        {
+          "id": "425WCwiGSRE77b0MT9uC1z",
+          "name": "Your Side",
+          "artists": [
+            {
+              "id": "5B4kCOhcqTywB9YwXPfFtJ",
+              "name": "Weird Genius"
+            },
+            {
+              "id": "6eK6JN4xhNFMfe2QHLwrx9",
+              "name": "Novia Bachmid"
+            }
+          ],
+          "album": "Your Side",
+          "url": "https://open.spotify.com/track/425WCwiGSRE77b0MT9uC1z",
+          "image": "https://i.scdn.co/image/ab67616d0000b27323f35e140075f67c6b8d0b18",
+          "durationMs": 264513
+        },
+        {
+          "id": "0MMyJUC3WNnFS1lit5pTjk",
+          "name": "jealousy, jealousy",
+          "artists": [
+            {
+              "id": "1McMsnEElThX1knmY4oliG",
+              "name": "Olivia Rodrigo"
+            }
+          ],
+          "album": "SOUR",
+          "url": "https://open.spotify.com/track/0MMyJUC3WNnFS1lit5pTjk",
+          "image": "https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a",
+          "durationMs": 173160
+        },
+        {
+          "id": "1w1ukaafTgIthY4lHKCarE",
+          "name": "Bulan Di Margonda",
+          "artists": [
+            {
+              "id": "1EShbEntXfxV95IUszrW8Y",
+              "name": "Elegi"
+            }
+          ],
+          "album": "Merayakan Sepi",
+          "url": "https://open.spotify.com/track/1w1ukaafTgIthY4lHKCarE",
+          "image": "https://i.scdn.co/image/ab67616d0000b27335583f6f8eca5b400b2832fd",
+          "durationMs": 244304
+        },
+        {
+          "id": "3Z66xZFmxsKp2hreKTbhgm",
+          "name": "Symphony No. 5 in C Minor Op. 67, Pt. 1",
+          "artists": [
+            {
+              "id": "2wOqMjp9TyABvtHdOSOTUS",
+              "name": "Ludwig van Beethoven"
+            },
+            {
+              "id": "5AExgoflIOxDFT5QYI8zI0",
+              "name": "Radio Orchestra Berlin"
+            },
+            {
+              "id": "4nCaqm6X1APzKxh71TmZME",
+              "name": "St. Martin’s Symphony of London"
+            },
+            {
+              "id": "3QyU1fkxw1jcYIy3V8Rn2e",
+              "name": "Franz Xaver Richter"
+            }
+          ],
+          "album": "Beethoven Through the Ages",
+          "url": "https://open.spotify.com/track/3Z66xZFmxsKp2hreKTbhgm",
+          "image": "https://i.scdn.co/image/ab67616d0000b273d6439026b681566826edb72f",
+          "durationMs": 485293
+        },
+        {
+          "id": "3hUxzQpSfdDqwM3ZTFQY0K",
+          "name": "august",
+          "artists": [
+            {
+              "id": "06HL4z0CvFAxyc27GXpf02",
+              "name": "Taylor Swift"
+            }
+          ],
+          "album": "folklore",
+          "url": "https://open.spotify.com/track/3hUxzQpSfdDqwM3ZTFQY0K",
+          "image": "https://i.scdn.co/image/ab67616d0000b27395f754318336a07e85ec59bc",
+          "durationMs": 261922
+        },
+        {
+          "id": "3nsfB1vus2qaloUdcBZvDu",
+          "name": "All Too Well (Taylor's Version)",
+          "artists": [
+            {
+              "id": "06HL4z0CvFAxyc27GXpf02",
+              "name": "Taylor Swift"
+            }
+          ],
+          "album": "Red (Taylor's Version)",
+          "url": "https://open.spotify.com/track/3nsfB1vus2qaloUdcBZvDu",
+          "image": "https://i.scdn.co/image/ab67616d0000b273318443aab3531a0558e79a4d",
+          "durationMs": 329160
+        },
+        {
+          "id": "4kX7xkopoXZCfE1D6fNwl2",
+          "name": "honeybee",
+          "artists": [
+            {
+              "id": "1McMsnEElThX1knmY4oliG",
+              "name": "Olivia Rodrigo"
+            }
+          ],
+          "album": "you seem pretty sad for a girl so in love",
+          "url": "https://open.spotify.com/track/4kX7xkopoXZCfE1D6fNwl2",
+          "image": "https://i.scdn.co/image/ab67616d0000b2736949b83f85d782b21ce70583",
+          "durationMs": 223013
+        }
+      ]
     },
     "artists": {
       "medium_term": [
@@ -21,6 +186,62 @@
           "genres": [
             "indonesian indie"
           ]
+        },
+        {
+          "id": "1McMsnEElThX1knmY4oliG",
+          "name": "Olivia Rodrigo",
+          "url": "https://open.spotify.com/artist/1McMsnEElThX1knmY4oliG",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb14eb4dcfd2f3858bed06e44",
+          "genres": []
+        },
+        {
+          "id": "10sVj1A1tQkzJ9VvQjaEF2",
+          "name": "Luca Armone",
+          "url": "https://open.spotify.com/artist/10sVj1A1tQkzJ9VvQjaEF2",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb6553733c5e38230ba3d959d",
+          "genres": []
+        },
+        {
+          "id": "2O2JMN24QaUJRR2UlnjULK",
+          "name": "Hveiti Brauo",
+          "url": "https://open.spotify.com/artist/2O2JMN24QaUJRR2UlnjULK",
+          "image": "https://i.scdn.co/image/ab67616d0000b273c7f1e06df325c9129ae02eaf",
+          "genres": []
+        },
+        {
+          "id": "2WWIVn4Edfmjx7pD5t4kPt",
+          "name": "Ilse Fisher",
+          "url": "https://open.spotify.com/artist/2WWIVn4Edfmjx7pD5t4kPt",
+          "image": "https://i.scdn.co/image/ab67616d0000b2734a7e7b3114e5c8c031dd1192",
+          "genres": []
+        },
+        {
+          "id": "3MNxyFDnHn81hQcpwsJlAb",
+          "name": "Portiere Woodtar",
+          "url": "https://open.spotify.com/artist/3MNxyFDnHn81hQcpwsJlAb",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebf326f8a4e9f11f82a065ce0a",
+          "genres": []
+        },
+        {
+          "id": "3Vhd8Gg0oT6hpsl8bnxZ2Y",
+          "name": "Carl Dwight",
+          "url": "https://open.spotify.com/artist/3Vhd8Gg0oT6hpsl8bnxZ2Y",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb2f9312e2a7d0a5e11ea0bb44",
+          "genres": []
+        },
+        {
+          "id": "4DdsTxB7WLBe0AyRkAr2Fc",
+          "name": "Grant Ellery",
+          "url": "https://open.spotify.com/artist/4DdsTxB7WLBe0AyRkAr2Fc",
+          "image": "https://i.scdn.co/image/ab67616d0000b273ab4e395f450af62f290170f7",
+          "genres": []
+        },
+        {
+          "id": "4im1JHdAIz4yOsjizlGZzt",
+          "name": "Rhys Wells",
+          "url": "https://open.spotify.com/artist/4im1JHdAIz4yOsjizlGZzt",
+          "image": "https://i.scdn.co/image/ab67616d0000b2736838b77a0bae051a49967c04",
+          "genres": []
         }
       ]
     }
