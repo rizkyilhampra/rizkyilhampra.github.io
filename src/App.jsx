@@ -8,7 +8,7 @@ import {
   Mail,
   Download,
 } from "lucide-react";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ProjectList } from "./SocialLink";
 import { SectionHeading } from "./SectionHeading";
 import { SocialIconRow } from "./SocialIconRow";
@@ -19,7 +19,6 @@ import GitHubStats from "./GitHubStats";
 import MonkeytypeStats from "./MonkeytypeStats";
 import SpotifyStats from "./SpotifyStats";
 import WakatimeStats from "./WakatimeStats";
-import LocationMap from "./LocationMap";
 import { TilListPreview } from "./TilListPreview";
 import { TilIndexPage } from "./TilIndexPage";
 import { TilTagsPage } from "./TilTagsPage";
@@ -28,6 +27,8 @@ import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
 import { createReveal } from "./entrance";
+
+const LocationMap = lazy(() => import("./LocationMap"));
 
 const MAX_STORED_SCROLL_POSITIONS = 20;
 
@@ -330,7 +331,9 @@ export default function App() {
           className="mt-6 -ml-2"
         />
 
-        <LocationMap />
+        <Suspense fallback={null}>
+          <LocationMap />
+        </Suspense>
       </section>
 
       <SectionDivider />

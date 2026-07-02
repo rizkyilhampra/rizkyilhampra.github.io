@@ -10,7 +10,7 @@ export default function LocationMap() {
         <MapMarker longitude={BANJARMASIN[0]} latitude={BANJARMASIN[1]}>
           <MarkerContent />
         </MapMarker>
-        <MapControls showZoom position="bottom-right" />
+        <MapControls position="bottom-right" />
       </Map>
     </div>
   );

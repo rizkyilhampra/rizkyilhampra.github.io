@@ -13,8 +13,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { Minus, Plus } from "lucide-react";
-
-import { cn } from "./cn";
+import clsx from "clsx";
 
 const defaultStyles = {
   dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
@@ -29,26 +28,19 @@ function getDocumentTheme() {
   return "light";
 }
 
-function useResolvedTheme(themeProp) {
-  const [detectedTheme, setDetectedTheme] = useState(
-    () => themeProp ?? getDocumentTheme()
-  );
+function useResolvedTheme() {
+  const [theme, setTheme] = useState(getDocumentTheme);
 
   useEffect(() => {
-    if (themeProp) return;
-
-    const observer = new MutationObserver(() => {
-      setDetectedTheme(getDocumentTheme());
-    });
+    const observer = new MutationObserver(() => setTheme(getDocumentTheme()));
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
     });
-
     return () => observer.disconnect();
-  }, [themeProp]);
+  }, []);
 
-  return themeProp ?? detectedTheme;
+  return theme;
 }
 
 const MapContext = createContext(null);
@@ -61,59 +53,26 @@ function useMap() {
   return context;
 }
 
-function DefaultLoader() {
-  return (
-    <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/50 backdrop-blur-xs">
-      <div className="flex gap-1">
-        <span className="size-1.5 animate-pulse rounded-full bg-muted-foreground/60" />
-        <span className="size-1.5 animate-pulse rounded-full bg-muted-foreground/60 [animation-delay:150ms]" />
-        <span className="size-1.5 animate-pulse rounded-full bg-muted-foreground/60 [animation-delay:300ms]" />
-      </div>
-    </div>
-  );
-}
-
 /**
  * MapLibre-powered map container. Trimmed port of mapcn's registry `Map`
  * (https://www.mapcn.dev) adapted to plain JSX for this project (no
  * TypeScript, no `@/` alias, no shadcn CLI). Theme (light/dark basemap)
  * follows the `dark` class on <html>, same mechanism as ThemeToggle.jsx.
  */
-const Map = forwardRef(function Map(
-  { children, className, theme: themeProp, styles, loading = false, ...props },
-  ref
-) {
+const Map = forwardRef(function Map({ children, className, ...props }, ref) {
   const containerRef = useRef(null);
   const [mapInstance, setMapInstance] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isStyleLoaded, setIsStyleLoaded] = useState(false);
   const currentStyleRef = useRef(null);
-  const styleTimeoutRef = useRef(null);
-  const resolvedTheme = useResolvedTheme(themeProp);
-
-  const mapStyles = useMemo(
-    () => ({
-      dark: styles?.dark ?? defaultStyles.dark,
-      light: styles?.light ?? defaultStyles.light,
-    }),
-    [styles]
-  );
+  const resolvedTheme = useResolvedTheme();
 
   useImperativeHandle(ref, () => mapInstance, [mapInstance]);
-
-  const clearStyleTimeout = useCallback(() => {
-    if (styleTimeoutRef.current) {
-      clearTimeout(styleTimeoutRef.current);
-      styleTimeoutRef.current = null;
-    }
-  }, []);
 
   // Initialize the map once on mount.
   useEffect(() => {
     if (!containerRef.current) return;
 
     const initialStyle =
-      resolvedTheme === "dark" ? mapStyles.dark : mapStyles.light;
+      resolvedTheme === "dark" ? defaultStyles.dark : defaultStyles.light;
     currentStyleRef.current = initialStyle;
 
     const map = new MapLibreGL.Map({
@@ -124,23 +83,10 @@ const Map = forwardRef(function Map(
       ...props,
     });
 
-    const styleDataHandler = () => {
-      clearStyleTimeout();
-      styleTimeoutRef.current = setTimeout(() => setIsStyleLoaded(true), 100);
-    };
-    const loadHandler = () => setIsLoaded(true);
-
-    map.on("load", loadHandler);
-    map.on("styledata", styleDataHandler);
     setMapInstance(map);
 
     return () => {
-      clearStyleTimeout();
-      map.off("load", loadHandler);
-      map.off("styledata", styleDataHandler);
       map.remove();
-      setIsLoaded(false);
-      setIsStyleLoaded(false);
       setMapInstance(null);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,32 +97,22 @@ const Map = forwardRef(function Map(
     if (!mapInstance || !resolvedTheme) return;
 
     const newStyle =
-      resolvedTheme === "dark" ? mapStyles.dark : mapStyles.light;
+      resolvedTheme === "dark" ? defaultStyles.dark : defaultStyles.light;
 
     if (currentStyleRef.current === newStyle) return;
 
-    clearStyleTimeout();
     currentStyleRef.current = newStyle;
-    setIsStyleLoaded(false);
     mapInstance.setStyle(newStyle, { diff: true });
-  }, [mapInstance, resolvedTheme, mapStyles, clearStyleTimeout]);
+  }, [mapInstance, resolvedTheme]);
 
-  const contextValue = useMemo(
-    () => ({
-      map: mapInstance,
-      isLoaded: isLoaded && isStyleLoaded,
-      resolvedTheme,
-    }),
-    [mapInstance, isLoaded, isStyleLoaded, resolvedTheme]
-  );
+  const contextValue = useMemo(() => ({ map: mapInstance }), [mapInstance]);
 
   return (
     <MapContext.Provider value={contextValue}>
       <div
         ref={containerRef}
-        className={cn("relative h-full w-full", className)}
+        className={clsx("relative h-full w-full", className)}
       >
-        {(!isLoaded || loading) && <DefaultLoader />}
         {mapInstance && children}
       </div>
     </MapContext.Provider>
@@ -193,14 +129,7 @@ function useMarkerContext() {
   return context;
 }
 
-function MapMarker({
-  longitude,
-  latitude,
-  children,
-  onClick,
-  draggable = false,
-  ...markerOptions
-}) {
+function MapMarker({ longitude, latitude, children, onClick }) {
   const { map } = useMap();
 
   const callbacksRef = useRef({ onClick });
@@ -208,9 +137,7 @@ function MapMarker({
 
   const marker = useMemo(() => {
     const markerInstance = new MapLibreGL.Marker({
-      ...markerOptions,
       element: document.createElement("div"),
-      draggable,
     }).setLngLat([longitude, latitude]);
 
     const handleClick = (e) => callbacksRef.current.onClick?.(e);
@@ -254,64 +181,10 @@ function MarkerContent({ children, className }) {
   const { marker } = useMarkerContext();
 
   return createPortal(
-    <div className={cn("relative cursor-pointer", className)}>
+    <div className={clsx("relative cursor-pointer", className)}>
       {children || <DefaultMarkerIcon />}
     </div>,
     marker.getElement()
-  );
-}
-
-function MarkerTooltip({ children, className, ...popupOptions }) {
-  const { marker, map } = useMarkerContext();
-  const container = useMemo(() => document.createElement("div"), []);
-  const { offset } = popupOptions;
-
-  const tooltip = useMemo(() => {
-    return new MapLibreGL.Popup({
-      offset: 16,
-      ...popupOptions,
-      closeOnClick: true,
-      closeButton: false,
-    }).setMaxWidth("none");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (!map) return;
-
-    tooltip.setDOMContent(container);
-
-    const handleMouseEnter = () => {
-      tooltip.setLngLat(marker.getLngLat()).addTo(map);
-    };
-    const handleMouseLeave = () => tooltip.remove();
-
-    marker.getElement()?.addEventListener("mouseenter", handleMouseEnter);
-    marker.getElement()?.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      marker.getElement()?.removeEventListener("mouseenter", handleMouseEnter);
-      marker.getElement()?.removeEventListener("mouseleave", handleMouseLeave);
-      tooltip.remove();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map]);
-
-  useEffect(() => {
-    tooltip.setOffset(offset ?? 16);
-  }, [tooltip, offset]);
-
-  return createPortal(
-    <div
-      className={cn(
-        "pointer-events-none rounded-md bg-foreground px-2 py-1 text-xs text-balance text-background shadow-md",
-        "animate-in fade-in-0 zoom-in-95 duration-200 ease-out",
-        className
-      )}
-    >
-      {children}
-    </div>,
-    container
   );
 }
 
@@ -343,7 +216,7 @@ function ControlButton({ onClick, label, children }) {
   );
 }
 
-function MapControls({ position = "bottom-right", showZoom = true, className }) {
+function MapControls({ position = "bottom-right", className }) {
   const { map } = useMap();
 
   const handleZoomIn = useCallback(() => {
@@ -354,11 +227,9 @@ function MapControls({ position = "bottom-right", showZoom = true, className }) 
     map?.zoomTo(map.getZoom() - 1, { duration: 300 });
   }, [map]);
 
-  if (!showZoom) return null;
-
   return (
     <div
-      className={cn(
+      className={clsx(
         "absolute z-10 flex flex-col gap-1.5",
         positionClasses[position],
         className
@@ -376,4 +247,4 @@ function MapControls({ position = "bottom-right", showZoom = true, className }) 
   );
 }
 
-export { Map, MapMarker, MarkerContent, MarkerTooltip, MapControls };
+export { Map, MapMarker, MarkerContent, MapControls };
