@@ -19,6 +19,7 @@ import GitHubStats from "./GitHubStats";
 import MonkeytypeStats from "./MonkeytypeStats";
 import SpotifyStats from "./SpotifyStats";
 import WakatimeStats from "./WakatimeStats";
+import LocationMap from "./LocationMap";
 import { TilListPreview } from "./TilListPreview";
 import { TilIndexPage } from "./TilIndexPage";
 import { TilTagsPage } from "./TilTagsPage";
@@ -328,6 +329,8 @@ export default function App() {
           trailing={<SecretHeart />}
           className="mt-6 -ml-2"
         />
+
+        <LocationMap />
       </section>
 
       <SectionDivider />
