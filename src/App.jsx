@@ -331,7 +331,11 @@ export default function App() {
           className="mt-6 -ml-2"
         />
 
-        <Suspense fallback={null}>
+        <Suspense
+          fallback={
+            <div className="mt-6 h-40 w-full animate-pulse rounded-lg border border-border bg-secondary sm:h-44 md:w-1/2" />
+          }
+        >
           <LocationMap />
         </Suspense>
       </section>

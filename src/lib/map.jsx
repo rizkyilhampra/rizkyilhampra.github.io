@@ -59,11 +59,16 @@ function useMap() {
  * TypeScript, no `@/` alias, no shadcn CLI). Theme (light/dark basemap)
  * follows the `dark` class on <html>, same mechanism as ThemeToggle.jsx.
  */
-const Map = forwardRef(function Map({ children, className, ...props }, ref) {
+const Map = forwardRef(function Map(
+  { children, className, onLoad, ...props },
+  ref
+) {
   const containerRef = useRef(null);
   const [mapInstance, setMapInstance] = useState(null);
   const currentStyleRef = useRef(null);
   const resolvedTheme = useResolvedTheme();
+  const onLoadRef = useRef(onLoad);
+  onLoadRef.current = onLoad;
 
   useImperativeHandle(ref, () => mapInstance, [mapInstance]);
 
@@ -83,9 +88,12 @@ const Map = forwardRef(function Map({ children, className, ...props }, ref) {
       ...props,
     });
 
+    const loadHandler = () => onLoadRef.current?.();
+    map.on("load", loadHandler);
     setMapInstance(map);
 
     return () => {
+      map.off("load", loadHandler);
       map.remove();
       setMapInstance(null);
     };
