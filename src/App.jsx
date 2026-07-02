@@ -13,6 +13,7 @@ import { ProjectList } from "./SocialLink";
 import { SectionHeading } from "./SectionHeading";
 import { SocialIconRow } from "./SocialIconRow";
 import { TypewriterText } from "./TypewriterText";
+import { ScrambleText } from "./ScrambleText";
 import { SecretHeart } from "./SecretHeart";
 import Footer from "./Footer";
 import GitHubStats from "./GitHubStats";
@@ -308,7 +309,10 @@ export default function App() {
       {/* Hero */}
       <section {...reveal(0)}>
         <h1 className="font-header text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Rizky Ilham Pratama
+          <ScrambleText
+            text="Rizky Ilham Pratama"
+            skip={skipEntranceAnimation}
+          />
         </h1>
 
         <div className="mt-3 text-lg text-muted-foreground sm:text-xl">
