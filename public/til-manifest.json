@@ -1,6 +1,29 @@
 {
   "notes": [
     {
+      "slug": "dotto-ui",
+      "title": "Dotto UI",
+      "date": "2026-07-08",
+      "tags": [
+        "react",
+        "frontend",
+        "design-system",
+        "shadcn"
+      ],
+      "description": "An pixel art React UI component, build on top of shadcn/ui.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
+      "slug": "mapcn",
+      "title": "mapcn",
+      "date": "2026-07-08",
+      "tags": [],
+      "description": "An 'map' component library for React.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "fixing-network-shared-folder-access-issues-in-windows-11",
       "title": "Fixing Network Shared Folder Access Issues in Windows 11",
       "date": "2026-06-30",
@@ -272,7 +295,15 @@
       "count": 3
     },
     {
+      "tag": "frontend",
+      "count": 2
+    },
+    {
       "tag": "it-support",
+      "count": 2
+    },
+    {
+      "tag": "react",
       "count": 2
     },
     {
@@ -292,15 +323,15 @@
       "count": 1
     },
     {
+      "tag": "design-system",
+      "count": 1
+    },
+    {
       "tag": "dns",
       "count": 1
     },
     {
       "tag": "epson-l3250",
-      "count": 1
-    },
-    {
-      "tag": "frontend",
       "count": 1
     },
     {
@@ -332,7 +363,7 @@
       "count": 1
     },
     {
-      "tag": "react",
+      "tag": "shadcn",
       "count": 1
     },
     {
@@ -344,5 +375,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-08T02:23:00.241Z"
+  "fetchedAt": "2026-07-08T13:54:43.129Z"
 }
