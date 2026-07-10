@@ -10,7 +10,7 @@
         "animation",
         "ai"
       ],
-      "description": "Github Web Bunch of collection like animation component and also skill for agents.",
+      "description": "Bunch of collection like animation component and also skill for agents.",
       "readingTime": "1 min read",
       "backlinks": []
     },
@@ -24,9 +24,25 @@
         "animation",
         "shadcn"
       ],
-      "description": "Live. The one of component basically from Compontry Inspired by Linear on linear.app/next logo animation and this X post as well.",
+      "description": "The one of component from Componentry Inspired by Linear on linear.app/next logo animation and this X post as well.",
       "readingTime": "1 min read",
       "backlinks": []
+    },
+    {
+      "slug": "componentry",
+      "title": "Componentry",
+      "date": "2026-07-10",
+      "tags": [
+        "react",
+        "frontend",
+        "shadcn",
+        "design-system"
+      ],
+      "description": "Another ones of maybe shadcn/ui blocks or registry or bunch of collection UI component library.",
+      "readingTime": "1 min read",
+      "backlinks": [
+        "componentry-dithered-logo"
+      ]
     },
     {
       "slug": "dotto-ui",
@@ -325,22 +341,26 @@
     },
     {
       "tag": "frontend",
-      "count": 5
+      "count": 6
     },
     {
       "tag": "react",
-      "count": 5
+      "count": 6
+    },
+    {
+      "tag": "shadcn",
+      "count": 4
     },
     {
       "tag": "linux",
       "count": 3
     },
     {
-      "tag": "shadcn",
-      "count": 3
+      "tag": "animation",
+      "count": 2
     },
     {
-      "tag": "animation",
+      "tag": "design-system",
       "count": 2
     },
     {
@@ -361,10 +381,6 @@
     },
     {
       "tag": "cloudflare",
-      "count": 1
-    },
-    {
-      "tag": "design-system",
       "count": 1
     },
     {
@@ -416,5 +432,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-10T04:46:51.503Z"
+  "fetchedAt": "2026-07-10T05:44:21.641Z"
 }

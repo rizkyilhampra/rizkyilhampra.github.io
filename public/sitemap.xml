@@ -37,19 +37,25 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://rizkyilhampra.dev/til/tags/linux</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://rizkyilhampra.dev/til/tags/shadcn</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://rizkyilhampra.dev/til/tags/linux</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://rizkyilhampra.dev/til/tags/animation</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://rizkyilhampra.dev/til/tags/design-system</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -80,12 +86,6 @@
   </url>
   <url>
     <loc>https://rizkyilhampra.dev/til/tags/cloudflare</loc>
-    <lastmod>2026-07-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://rizkyilhampra.dev/til/tags/design-system</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -170,6 +170,12 @@
   </url>
   <url>
     <loc>https://rizkyilhampra.dev/til/componentry-dithered-logo</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://rizkyilhampra.dev/til/componentry</loc>
     <lastmod>2026-07-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
