@@ -1,6 +1,34 @@
 {
   "notes": [
     {
+      "slug": "transitionsdev",
+      "title": "Transitions.dev",
+      "date": "2026-07-10",
+      "tags": [
+        "react",
+        "frontend",
+        "animation",
+        "ai"
+      ],
+      "description": "Github Web Bunch of collection like animation component and also skill for agents.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
+      "slug": "componentry-dithered-logo",
+      "title": "Componentry Dithered Logo",
+      "date": "2026-07-10",
+      "tags": [
+        "react",
+        "frontend",
+        "animation",
+        "shadcn"
+      ],
+      "description": "Live. The one of component basically from Compontry Inspired by Linear on linear.app/next logo animation and this X post as well.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "dotto-ui",
       "title": "Dotto UI",
       "date": "2026-07-08",
@@ -18,8 +46,13 @@
       "slug": "mapcn",
       "title": "mapcn",
       "date": "2026-07-08",
-      "tags": [],
-      "description": "An 'map' component library for React.",
+      "tags": [
+        "react",
+        "frontend",
+        "map",
+        "shadcn"
+      ],
+      "description": "An 'map' component library for React, built on top of shadn/ui or one of registry shadcn/ui.",
       "readingTime": "1 min read",
       "backlinks": []
     },
@@ -288,6 +321,14 @@
   "tags": [
     {
       "tag": "ai",
+      "count": 6
+    },
+    {
+      "tag": "frontend",
+      "count": 5
+    },
+    {
+      "tag": "react",
       "count": 5
     },
     {
@@ -295,15 +336,15 @@
       "count": 3
     },
     {
-      "tag": "frontend",
+      "tag": "shadcn",
+      "count": 3
+    },
+    {
+      "tag": "animation",
       "count": 2
     },
     {
       "tag": "it-support",
-      "count": 2
-    },
-    {
-      "tag": "react",
       "count": 2
     },
     {
@@ -339,6 +380,10 @@
       "count": 1
     },
     {
+      "tag": "map",
+      "count": 1
+    },
+    {
       "tag": "network",
       "count": 1
     },
@@ -363,10 +408,6 @@
       "count": 1
     },
     {
-      "tag": "shadcn",
-      "count": 1
-    },
-    {
       "tag": "ssh",
       "count": 1
     },
@@ -375,5 +416,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-10T02:38:47.118Z"
+  "fetchedAt": "2026-07-10T04:46:51.503Z"
 }
