@@ -1,6 +1,32 @@
 {
   "notes": [
     {
+      "slug": "emilkowalski-skill",
+      "title": "Emilkowalski Skill",
+      "date": "2026-07-13",
+      "tags": [
+        "agent-skills",
+        "ui-ux",
+        "frontend"
+      ],
+      "description": "An AI agent skill from Emil Kowalski, a UI/UX designer at Linear (previously Vercel).",
+      "readingTime": "1 min read",
+      "backlinks": [
+        "agent-skills"
+      ]
+    },
+    {
+      "slug": "agent-skills",
+      "title": "Agent Skills",
+      "date": "2026-07-13",
+      "tags": [
+        "agent-skills"
+      ],
+      "description": "A hub for everything related to SKILL.md packages — the agent-skill manifest spec that teaches AI agents specialized workflows, taste, and domain expertise.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "transitionsdev",
       "title": "Transitions.dev",
       "date": "2026-07-10",
@@ -336,11 +362,11 @@
   ],
   "tags": [
     {
-      "tag": "ai",
-      "count": 6
+      "tag": "frontend",
+      "count": 7
     },
     {
-      "tag": "frontend",
+      "tag": "ai",
       "count": 6
     },
     {
@@ -354,6 +380,10 @@
     {
       "tag": "linux",
       "count": 3
+    },
+    {
+      "tag": "agent-skills",
+      "count": 2
     },
     {
       "tag": "animation",
@@ -428,9 +458,13 @@
       "count": 1
     },
     {
+      "tag": "ui-ux",
+      "count": 1
+    },
+    {
       "tag": "windows11",
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-13T02:26:23.729Z"
+  "fetchedAt": "2026-07-13T14:25:29.599Z"
 }
