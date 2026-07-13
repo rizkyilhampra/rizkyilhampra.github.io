@@ -3,8 +3,11 @@ slug: claude-code-using-kiro-api
 title: Claude Code using Kiro API
 date: 2026-06-08
 tags: work
-description: Shout out who writing this post https://dev.to/aws-heroes/the-aws-dev-setup-nobody-told-you-about-claude-code-kiro-pro-and-agent-plugins-1c3p by Vivok V. But…
+description: Tried with Pro account, not using Free tier.
 ---
+> [!NOTE]
+> Tried with Pro account, not using Free tier.
+
 Shout out who writing this post https://dev.to/aws-heroes/the-aws-dev-setup-nobody-told-you-about-claude-code-kiro-pro-and-agent-plugins-1c3p by [Vivok V](https://dev.to/vivek-aws). But why not using the actual Kiro CLI? Well the agents and skills and convinience it's on Claude Code, I don't want like change the habbits. 
 
 Here is what would i do at today.  

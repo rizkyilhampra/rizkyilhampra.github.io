@@ -27,6 +27,18 @@
       "backlinks": []
     },
     {
+      "slug": "poster-ai",
+      "title": "Poster AI",
+      "date": "2026-07-13",
+      "tags": [
+        "personal",
+        "daily-notes"
+      ],
+      "description": "Ke-trigger setelah melihat salah satu postingan di Threads ada yang membahas atau menyampaikan keresahan mengapa banyak sekolah menggunakan poster AI. Teringat…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "transitionsdev",
       "title": "Transitions.dev",
       "date": "2026-07-10",
@@ -203,7 +215,7 @@
       "tags": [
         "work"
       ],
-      "description": "Shout out who writing this post https://dev.to/aws-heroes/the-aws-dev-setup-nobody-told-you-about-claude-code-kiro-pro-and-agent-plugins-1c3p by Vivok V. But…",
+      "description": "Tried with Pro account, not using Free tier.",
       "readingTime": "1 min read",
       "backlinks": []
     },
@@ -398,6 +410,10 @@
       "count": 2
     },
     {
+      "tag": "personal",
+      "count": 2
+    },
+    {
       "tag": "work",
       "count": 2
     },
@@ -411,6 +427,10 @@
     },
     {
       "tag": "cloudflare",
+      "count": 1
+    },
+    {
+      "tag": "daily-notes",
       "count": 1
     },
     {
@@ -442,10 +462,6 @@
       "count": 1
     },
     {
-      "tag": "personal",
-      "count": 1
-    },
-    {
       "tag": "printer",
       "count": 1
     },
@@ -466,5 +482,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-13T14:25:29.599Z"
+  "fetchedAt": "2026-07-13T15:07:19.751Z"
 }
