@@ -10,6 +10,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { createPortal } from "react-dom";
 import { Minus, Plus } from "lucide-react";
@@ -20,27 +21,95 @@ const defaultStyles = {
   light: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
 };
 
-// Check document class for theme — matches ThemeToggle.jsx, which toggles a
-// `dark` class on <html> and persists the choice to localStorage.
-function getDocumentTheme() {
-  if (typeof document === "undefined") return null;
-  if (document.documentElement.classList.contains("dark")) return "dark";
-  return "light";
+// Pre-allocate the WebGL context + web worker once so the map initializes
+// near-instantly on (re)mount — e.g. when returning to the home route.
+MapLibreGL.prewarm();
+
+/**
+ * Mount-time external system setup. The only sanctioned wrapper around
+ * `useEffect` for one-time side effects; reusable custom hook so components
+ * never call `useEffect` directly.
+ */
+function useMountEffect(effect) {
+  /* eslint-disable react-hooks/exhaustive-deps, no-restricted-syntax */
+  useEffect(effect, []);
 }
 
+// --- Theme (external store, not an effect) ---------------------------------
+
+function subscribeDocumentTheme(callback) {
+  if (typeof document === "undefined") return () => {};
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+}
+
+function getDocumentThemeSnapshot() {
+  if (typeof document === "undefined") return "light";
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+// Follows the `dark` class on <html> (same mechanism as ThemeToggle.jsx).
+// Implemented with useSyncExternalStore — subscribing to an external store,
+// not a useEffect subscription.
 function useResolvedTheme() {
-  const [theme, setTheme] = useState(getDocumentTheme);
+  return useSyncExternalStore(
+    subscribeDocumentTheme,
+    getDocumentThemeSnapshot,
+    () => "light"
+  );
+}
+
+// --- Map instance -----------------------------------------------------------
+
+function useMapLibre(containerRef, { initialStyle, onLoad, options }) {
+  const [map, setMap] = useState(null);
+  const onLoadRef = useRef(onLoad);
+  onLoadRef.current = onLoad;
+
+  useMountEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const instance = new MapLibreGL.Map({
+      container,
+      style: initialStyle,
+      renderWorldCopies: false,
+      attributionControl: { compact: true },
+      ...options,
+    });
+
+    const loadHandler = () => onLoadRef.current?.();
+    instance.on("load", loadHandler);
+    setMap(instance);
+
+    return () => {
+      instance.off("load", loadHandler);
+      instance.remove();
+      setMap(null);
+    };
+  });
+
+  return map;
+}
+
+// Swap the basemap style when the resolved theme changes. Isolated in a
+// reusable hook (syncing an external system to a changing value).
+function useBasemapStyle(map, theme, initialStyle) {
+  const currentStyleRef = useRef(initialStyle);
 
   useEffect(() => {
-    const observer = new MutationObserver(() => setTheme(getDocumentTheme()));
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
+    if (!map || !theme) return;
 
-  return theme;
+    const next = theme === "dark" ? defaultStyles.dark : defaultStyles.light;
+    if (currentStyleRef.current === next) return;
+
+    currentStyleRef.current = next;
+    map.setStyle(next, { diff: false });
+  }, [map, theme]);
 }
 
 const MapContext = createContext(null);
@@ -58,62 +127,29 @@ function useMap() {
  * (https://www.mapcn.dev) adapted to plain JSX for this project (no
  * TypeScript, no `@/` alias, no shadcn CLI). Theme (light/dark basemap)
  * follows the `dark` class on <html>, same mechanism as ThemeToggle.jsx.
+ *
+ * Components here never call `useEffect` directly — all side effects live in
+ * the `useMapLibre` / `useBasemapStyle` / `useMapMarker` hooks above.
  */
 const Map = forwardRef(function Map(
   { children, className, onLoad, ...props },
   ref
 ) {
   const containerRef = useRef(null);
-  const [mapInstance, setMapInstance] = useState(null);
-  const currentStyleRef = useRef(null);
   const resolvedTheme = useResolvedTheme();
-  const onLoadRef = useRef(onLoad);
-  onLoadRef.current = onLoad;
+  const initialStyle =
+    resolvedTheme === "dark" ? defaultStyles.dark : defaultStyles.light;
 
-  useImperativeHandle(ref, () => mapInstance, [mapInstance]);
+  const map = useMapLibre(containerRef, {
+    initialStyle,
+    onLoad,
+    options: props,
+  });
+  useBasemapStyle(map, resolvedTheme, initialStyle);
 
-  // Initialize the map once on mount.
-  useEffect(() => {
-    if (!containerRef.current) return;
+  useImperativeHandle(ref, () => map, [map]);
 
-    const initialStyle =
-      resolvedTheme === "dark" ? defaultStyles.dark : defaultStyles.light;
-    currentStyleRef.current = initialStyle;
-
-    const map = new MapLibreGL.Map({
-      container: containerRef.current,
-      style: initialStyle,
-      renderWorldCopies: false,
-      attributionControl: { compact: true },
-      ...props,
-    });
-
-    const loadHandler = () => onLoadRef.current?.();
-    map.on("load", loadHandler);
-    setMapInstance(map);
-
-    return () => {
-      map.off("load", loadHandler);
-      map.remove();
-      setMapInstance(null);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Swap the basemap style when the resolved theme changes.
-  useEffect(() => {
-    if (!mapInstance || !resolvedTheme) return;
-
-    const newStyle =
-      resolvedTheme === "dark" ? defaultStyles.dark : defaultStyles.light;
-
-    if (currentStyleRef.current === newStyle) return;
-
-    currentStyleRef.current = newStyle;
-    mapInstance.setStyle(newStyle, { diff: true });
-  }, [mapInstance, resolvedTheme]);
-
-  const contextValue = useMemo(() => ({ map: mapInstance }), [mapInstance]);
+  const contextValue = useMemo(() => ({ map }), [map]);
 
   return (
     <MapContext.Provider value={contextValue}>
@@ -121,7 +157,7 @@ const Map = forwardRef(function Map(
         ref={containerRef}
         className={clsx("relative h-full w-full", className)}
       >
-        {mapInstance && children}
+        {map && children}
       </div>
     </MapContext.Provider>
   );
@@ -137,41 +173,48 @@ function useMarkerContext() {
   return context;
 }
 
-function MapMarker({ longitude, latitude, children, onClick }) {
-  const { map } = useMap();
-
+// Create a MapLibre marker once and keep its instance in state so children
+// (MarkerContent) can portal into it. Callbacks are read through a ref so the
+// marker is not recreated when the handler identity changes (ref isolated in
+// this hook, not the component).
+function useMapMarker(map, { longitude, latitude, onClick }) {
+  const [marker, setMarker] = useState(null);
   const callbacksRef = useRef({ onClick });
   callbacksRef.current = { onClick };
 
-  const marker = useMemo(() => {
+  useMountEffect(() => {
     const markerInstance = new MapLibreGL.Marker({
       element: document.createElement("div"),
-    }).setLngLat([longitude, latitude]);
+    });
 
     const handleClick = (e) => callbacksRef.current.onClick?.(e);
     markerInstance.getElement()?.addEventListener("click", handleClick);
+    setMarker(markerInstance);
 
-    return markerInstance;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      markerInstance.getElement()?.removeEventListener("click", handleClick);
+      markerInstance.remove();
+      setMarker(null);
+    };
+  });
 
   useEffect(() => {
-    if (!map) return;
+    if (!map || !marker) return;
+    marker.setLngLat([longitude, latitude]);
     marker.addTo(map);
     return () => marker.remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map]);
+  }, [map, marker, longitude, latitude]);
 
-  useEffect(() => {
-    const current = marker.getLngLat();
-    if (current.lng !== longitude || current.lat !== latitude) {
-      marker.setLngLat([longitude, latitude]);
-    }
-  }, [marker, longitude, latitude]);
+  return marker;
+}
+
+function MapMarker({ longitude, latitude, children, onClick }) {
+  const { map } = useMap();
+  const marker = useMapMarker(map, { longitude, latitude, onClick });
 
   return (
     <MarkerContext.Provider value={{ marker, map }}>
-      {children}
+      {marker ? children : null}
     </MarkerContext.Provider>
   );
 }
