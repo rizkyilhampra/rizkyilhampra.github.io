@@ -32,7 +32,7 @@
       "date": "2026-07-13",
       "tags": [
         "personal",
-        "daily-notes"
+        "rants"
       ],
       "description": "Ke-trigger setelah melihat salah satu postingan di Threads ada yang membahas atau menyampaikan keresahan mengapa banyak sekolah menggunakan poster AI. Teringat…",
       "readingTime": "1 min read",
@@ -263,6 +263,18 @@
       "backlinks": []
     },
     {
+      "slug": "site-reliability-engineering-sre",
+      "title": "Site Reliability Engineering (SRE)",
+      "date": "2025-11-25",
+      "tags": [
+        "devops",
+        "observability"
+      ],
+      "description": "By Amazon (AWS), SRE is the practice of using software tools to automate IT infrastructure tasks such as system management and application monitoring.[^aws]…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "steps-i-do-when-extending-or-resizing-a-vm-disk-in-proxmox",
       "title": "Steps I do when extending or resizing a VM disk in Proxmox",
       "date": "2025-11-07",
@@ -430,7 +442,7 @@
       "count": 1
     },
     {
-      "tag": "daily-notes",
+      "tag": "devops",
       "count": 1
     },
     {
@@ -458,6 +470,10 @@
       "count": 1
     },
     {
+      "tag": "observability",
+      "count": 1
+    },
+    {
       "tag": "ocr",
       "count": 1
     },
@@ -467,6 +483,10 @@
     },
     {
       "tag": "proxmox",
+      "count": 1
+    },
+    {
+      "tag": "rants",
       "count": 1
     },
     {
@@ -482,5 +502,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-14T13:27:25.535Z"
+  "fetchedAt": "2026-07-14T15:15:55.632Z"
 }
