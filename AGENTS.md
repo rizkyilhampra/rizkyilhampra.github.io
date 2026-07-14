@@ -1,39 +1,130 @@
-# Repository Guidelines
+# AGENTS.md
 
-## Project Structure & Module Organization
+This file provides guidance to AI agents when working with code in this repository.
 
-This is a React portfolio site built with Farm and Tailwind CSS. Application code lives in `src/`, with `src/index.jsx` mounting the app and `src/App.jsx` composing the page. Reusable UI components use PascalCase filenames such as `ThemeToggle.jsx` and `GitHubStats.jsx`; shared helpers live in `src/utils.js`. Global styles are in `src/style.css`.
+## Project Overview
 
-Static and generated public assets live in `public/`, including stats JSON consumed by the UI. Data-fetching scripts are in `scripts/`, GitHub Actions workflows are in `.github/workflows/`, and production output is generated into `dist/`.
+This is a personal portfolio/landing page built with React and Farm.js, deployed to GitHub Pages. It features a modern, animated design with floating elements, theme switching, and enhanced visual effects inspired by canvas-transform-lab.
 
-## Build, Test, and Development Commands
+## Product Vision — TIL is a Digital Garden
 
-Use Bun for dependency and script execution.
+The "Today I Learned" (TIL) section is a public **digital garden** with an Obsidian
+Publish / wiki feel: notes are short, interlinked (via `[[wikilinks]]` resolved to
+internal `/til/<slug>` links at build time), fully browsable through the UI, and
+**explorable by tags**. Notes are synced from a separate Obsidian vault by
+`scripts/fetch-garden.mjs` into `public/til/*.md` + `public/til-manifest.json`.
 
-- `bun install`: install dependencies from `package.json` and `bun.lockb`.
-- `bun run dev` or `bun run start`: start the Farm development server.
-- `bun run build`: create a production build in `dist/`; use this as the main verification command.
-- `bun run preview`: serve the built app locally for final inspection.
-- `bun run clean`: remove Farm build cache/output.
+Key garden surfaces:
+- `/til` — index of all notes with search, sort, tag filtering, and date grouping.
+- `/til/tags` — browse all tags (tag cloud with counts).
+- `/til/tags/<tag>` — all notes carrying a tag.
+- `/til/<slug>` — a note, with clickable tags plus "Linked from" (backlinks) and
+  "Related notes" (shared-tag) interconnections.
 
-Stats can be refreshed with scripts such as `bun scripts/fetch-github.mjs` or `bun scripts/fetch-spotify.mjs` when required environment variables are available.
+When adding features in this area, preserve the browsing-and-linking experience:
+keep tags clickable, keep notes interconnected, and keep everything navigable.
 
-## Coding Style & Naming Conventions
+## Development Commands
 
-Follow `.editorconfig`: UTF-8, LF endings, final newline, two-space indentation, and trimmed trailing whitespace. Write React components as functional components and name component files in PascalCase. Keep utility modules camelCase, for example `utils.js`. Prefer Tailwind utilities and existing Catppuccin theme tokens over custom CSS. Use `lucide-react` for icons.
+- **Install dependencies**: `bun install`
+- **Start development server**: `bun run dev` or `bun run start`
+- **Build for production**: `bun run build`
+- **Preview production build**: `bun run preview`
+- **Clean build artifacts**: `bun run clean`
 
-ESLint configuration exists in `.eslintrc.json`; unused variables are warnings when prefixed with `_` for intentional ignores.
+## Development Notes
 
-## Testing Guidelines
+- Uses modern ES modules (`type: "module"` in package.json)
+- React components use function syntax with modern hooks patterns
+- Tailwind classes follow responsive design patterns (sm:, md:, lg:)
+- Enhanced design system with CSS custom properties for theming
+- Animation system with staggered delays and proper fill modes
+- Theme persistence using localStorage
+- Responsive grid layout for social links (md:grid-cols-2 lg:grid-cols-3)
+- Don't need to test and run `bun run dev`
 
-No automated test suite is currently configured. For changes, run `bun run build` and manually inspect important states with `bun run dev` or `bun run preview`. When editing stats components, test populated JSON and missing/empty data paths where practical.
+## Deployment & Skipping CI
 
-## Commit & Pull Request Guidelines
+The site is built and deployed to GitHub Pages by `.github/workflows/pages-deploy.yml`,
+which triggers on every `push` to `main` (plus manual `workflow_dispatch`).
 
-Recent history uses concise conventional-style messages, especially `chore(scope): summary` and `build: summary`, for example `chore(github): update contributions (all years)`. Keep commits focused and imperative.
+To skip the build/deploy run for a docs-only or other no-op commit, include one of
+GitHub's natively-supported skip markers anywhere in the commit message:
 
-Pull requests should include a short description, verification commands, linked issues when applicable, and screenshots or recordings for visible UI changes. Note generated files under `public/` and any environment variables needed to reproduce data fetching.
+- `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, `[actions skip]`
+- or a trailer (after two blank lines): `skip-checks:true` / `skip-checks: true`
 
-## Security & Configuration Tips
+Example: `docs: overhaul README [skip ci]`
 
-Do not commit private tokens or local `.env` values. Use the sample files such as `spotify.sample.json` and `monkeytype.sample.json` for data shape references, and store production credentials in GitHub Secrets used by the scheduled workflows.
+Notes:
+- Only affects `push` / `pull_request` events, so it covers this repo's deploy trigger.
+- Only skips the specific commit carrying the marker; the next normal commit deploys as usual.
+- Verified against GitHub docs: https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/skipping-workflow-runs
+- Do NOT skip CI for changes under `public/**` (including TIL notes `public/til/*.md`) —
+  those are build inputs and need a redeploy to go live.
+
+## Architecture
+
+- **Build Tool**: Farm.js (modern Rust-based bundler)
+- **Framework**: React 18 with JSX
+- **Styling**: Tailwind CSS with enhanced Catppuccin theme (light/dark mode support)
+- **Icons**: Lucide React for modern iconography
+- **Typography**: Inter (body text) and Iosevka (headers) loaded via @fontsource
+- **Structure**: Modern component-based architecture with animations
+  - `App.jsx`: Main component with animated layout and social links
+  - `SocialLink.jsx`: Enhanced link cards with icons and hover effects
+  - `FloatingElements.jsx`: Animated background elements
+  - `ThemeToggle.jsx`: Dark/light mode switcher
+  - `LinkList.jsx`: Reusable link component with design system colors
+  - `Footer.jsx`: Footer component with themed links
+  - `index.jsx`: React app entry point
+
+## Dependencies
+
+- **lucide-react**: Modern icon library
+- **tailwindcss-animate**: Enhanced animations and transitions
+- **clsx**: Conditional class management utility
+- **@fontsource/inter**: Inter font for body text (weights: 300, 400, 500)
+- **@fontsource/iosevka**: Iosevka font for headers (weights: 500, 600)
+
+## Key Configuration
+
+- **Farm.js**: Configured with PostCSS plugin and React plugin with automatic runtime
+- **Tailwind**: Enhanced with custom animations, design tokens, typography, and dark mode support
+  - Custom animations: float, glow, fade-in-up, scale-in
+  - Design system colors with CSS custom properties
+  - Catppuccin color palette for both light (latte) and dark (mocha) themes
+  - Font families: `font-sans` (Inter for body), `font-header` (Iosevka for headers)
+- **PostCSS**: Configured with Autoprefixer for CSS compatibility
+- **Theme System**: CSS custom properties with light/dark mode switching
+
+## Design System Colors
+
+### Light Mode (Latte)
+- Primary: `hsl(266 85% 58%)` (mauve)
+- Background: `hsl(220 23% 95%)` (base)
+- Foreground: `hsl(234 16% 35%)` (text)
+
+### Dark Mode (Mocha)  
+- Primary: `hsl(267 84% 81%)` (mauve)
+- Background: `hsl(240 21% 15%)` (base)
+- Foreground: `hsl(226 64% 88%)` (text)
+
+## Implementation Notes
+
+- **Typography Strategy**: 
+  - Header Font: Iosevka (main name "Rizky Ilham Pratama" uses `font-header` class)
+  - Body Font: Inter (all other text elements use default `font-sans`)
+  - Weight hierarchy: Light (300), Regular (400), Medium (500), SemiBold (600)
+- **LinkList component**: Uses `text-primary` for theme-aware link colors instead of hardcoded blue
+- **Animation delays**: Use `animationFillMode: 'both'` to prevent flickering during staggered animations
+- **Theme toggle**: Manually manages theme state and DOM classes for Farm.js compatibility
+- **Floating elements**: Enhanced animation system with organic movement and mobile optimization
+  - **Organic animations**: Custom `float-organic-1/2/3` keyframes with subtle rotation (1-3deg) and multi-directional movement
+  - **Responsive scaling**: Elements scale down on mobile (`w-8 sm:w-12`, `blur-sm sm:blur-md`) for better performance
+  - **Reduced opacity on mobile**: Lower opacity values on small screens to reduce visual weight
+  - **Motion-reduce compliance**: All animations disabled with `motion-reduce:animate-none` for accessibility
+  - **Nested div architecture**: Separates entrance animations (outer) from continuous movement (inner) to prevent CSS conflicts
+  - **Flicker-free loops**: Only seamless infinite animations used, avoiding position jumps at keyframe boundaries
+  - **Performance optimized**: Uses CSS transforms and opacity for hardware acceleration, no layout thrashing
+
