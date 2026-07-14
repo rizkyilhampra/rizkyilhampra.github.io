@@ -8,7 +8,7 @@ import {
   Mail,
   Download,
 } from "lucide-react";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { ProjectList } from "./SocialLink";
 import { SectionHeading } from "./SectionHeading";
 import { SocialIconRow } from "./SocialIconRow";
@@ -28,6 +28,8 @@ import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
 import { createReveal } from "./entrance";
+
+const LocationMap = lazy(() => import("./LocationMap"));
 
 const MAX_STORED_SCROLL_POSITIONS = 20;
 
@@ -332,6 +334,14 @@ export default function App() {
           trailing={<SecretHeart />}
           className="mt-6 -ml-2"
         />
+
+        <Suspense
+          fallback={
+            <div className="mt-6 h-40 w-full animate-pulse rounded-lg border border-border bg-secondary sm:h-44 md:w-1/2" />
+          }
+        >
+          <LocationMap />
+        </Suspense>
       </section>
 
       <SectionDivider />
