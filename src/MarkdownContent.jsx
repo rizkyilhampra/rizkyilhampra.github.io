@@ -6,6 +6,7 @@ import {
   MessageSquareWarning,
   OctagonAlert,
   TriangleAlert,
+  Undo2,
 } from "lucide-react";
 import {
   createContext,
@@ -29,6 +30,7 @@ import docker from "react-syntax-highlighter/dist/esm/languages/prism/docker";
 import nginx from "react-syntax-highlighter/dist/esm/languages/prism/nginx";
 import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
 import diff from "react-syntax-highlighter/dist/esm/languages/prism/diff";
+import { marked } from "marked";
 import { NoteLink } from "./NoteLink";
 
 // The TIL notes are mostly shell scripts (bash/sh/powershell) with the
@@ -125,7 +127,24 @@ const HEADING_CLASS = {
 };
 
 const NavigateContext = createContext(null);
+const FootnoteContext = createContext(null);
 const EXTERNAL_HREF = /^https?:\/\//;
+
+// Smoothly scrolls to a footnote anchor by id. The SPA sets
+// `history.scrollRestoration = "manual"` (see App.jsx) and only listens for
+// popstate, so native hash-link scrolling is unreliable; doing it explicitly
+// guarantees both the superscript → footnote and back-link → reference jumps
+// work. We replaceState the hash (no new history entry) so the URL stays
+// shareable without disturbing the SPA's scroll-position tracking.
+function scrollToFootnote(targetId, event) {
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  event.preventDefault();
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (window.history?.replaceState) {
+    window.history.replaceState(null, "", `#${targetId}`);
+  }
+}
 
 // GitHub-flavored alert blockquotes (`> [!NOTE]` etc). Each type maps to an icon
 // and a GitHub-matching accent color (light/dark variants tracked via Tailwind).
@@ -205,12 +224,58 @@ function Alert({ type, tokens }) {
 }
 
 // Renders a marked token list (from parseMarkdown) to React. Pass `onNavigate`
-// so internal /til/ links use the SPA router instead of a full reload.
-export function MarkdownContent({ tokens, onNavigate = null }) {
+// so internal /til/ links use the SPA router instead of a full reload. Pass
+// `footnotes` to append a References list and resolve `[^id]` citation markers.
+export function MarkdownContent({ tokens, onNavigate = null, footnotes = [] }) {
+  const numbers = new Map(footnotes.map((fn) => [fn.id, fn.number]));
+
   return (
     <NavigateContext.Provider value={onNavigate}>
-      <Blocks tokens={tokens} />
+      <FootnoteContext.Provider value={numbers}>
+        <Blocks tokens={tokens} />
+        {footnotes.length > 0 ? <References footnotes={footnotes} /> : null}
+      </FootnoteContext.Provider>
     </NavigateContext.Provider>
+  );
+}
+
+// The collected footnotes rendered as a tidy References list at the bottom of a
+// note. Each entry keeps its inline markdown (emphasis, autolinks) intact by
+// lexing the definition text and reusing the inline renderer.
+function References({ footnotes }) {
+  return (
+    <section
+      aria-label="References"
+      className="mt-12 border-t border-border pt-6"
+    >
+      <h2 className="mb-3 font-header text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+        References
+      </h2>
+      <ol className="space-y-3 text-sm leading-7 text-muted-foreground">
+        {footnotes.map((fn) => (
+          <li
+            key={fn.id}
+            id={`fn-${fn.id}`}
+            className="flex items-baseline gap-3 scroll-mt-24"
+          >
+            <span className="shrink-0 font-mono text-xs leading-7 tabular-nums text-primary">
+              {fn.number}.
+            </span>
+            <span className="min-w-0 flex-1">
+              <Inline tokens={marked.lexer(fn.text.trim())[0]?.tokens ?? []} />
+              <a
+                href={`#fnref-${fn.id}`}
+                onClick={(event) => scrollToFootnote(`fnref-${fn.id}`, event)}
+                className="ml-1 inline-flex cursor-pointer items-center text-primary transition-colors hover:text-foreground"
+                aria-label="Back to reference"
+              >
+                <Undo2 className="h-3 w-3" aria-hidden="true" />
+              </a>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
@@ -344,8 +409,22 @@ function Inline({ tokens }) {
                 <Inline tokens={token.tokens} />
               </Link>
             );
-          case "br":
-            return <br key={key} />;
+          case "footnoteRef": {
+            const number = useContext(FootnoteContext)?.get(token.id);
+            if (number == null) return <Fragment key={key}>{token.raw}</Fragment>;
+            return (
+              <sup key={key}>
+                <a
+                  id={`fnref-${token.id}`}
+                  href={`#fn-${token.id}`}
+                  onClick={(event) => scrollToFootnote(`fn-${token.id}`, event)}
+                  className="cursor-pointer text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
+                >
+                  {number}
+                </a>
+              </sup>
+            );
+          }
           default:
             return <Fragment key={key}>{token.text ?? ""}</Fragment>;
         }

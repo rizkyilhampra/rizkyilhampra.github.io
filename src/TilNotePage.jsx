@@ -60,7 +60,11 @@ export function TilNotePage({
         </header>
 
         <div {...reveal(2, "mt-10 space-y-8")}>
-          <MarkdownContent tokens={note.content} onNavigate={onNavigate} />
+          <MarkdownContent
+            tokens={note.content}
+            footnotes={note.footnotes}
+            onNavigate={onNavigate}
+          />
         </div>
 
         <div {...reveal(3, "mt-12 border-t border-border pt-8")}>

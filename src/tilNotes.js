@@ -61,7 +61,7 @@ export function loadTilBySlug(slug) {
       if (markdown === null) return null;
 
       const { data, body } = parseFrontmatter(markdown);
-      const content = parseMarkdown(body);
+      const { tokens, footnotes } = parseMarkdown(body);
 
       return {
         slug,
@@ -73,7 +73,8 @@ export function loadTilBySlug(slug) {
               .map((tag) => tag.trim())
               .filter(Boolean)
           : [],
-        content,
+        content: tokens,
+        footnotes,
         readingTime: calculateReadingTime(body),
         description: data.description ?? "",
       };
