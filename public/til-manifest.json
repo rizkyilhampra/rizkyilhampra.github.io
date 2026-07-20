@@ -1,6 +1,61 @@
 {
   "notes": [
     {
+      "slug": "vps-benchmark-scripts",
+      "title": "VPS Benchmark Scripts",
+      "date": "2026-07-20",
+      "tags": [
+        "vps",
+        "devops",
+        "cheatsheets"
+      ],
+      "description": "One-liner scripts to benchmark a freshly provisioned VPS — verifying CPU, disk I/O, and network performance against what the provider advertised.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
+      "slug": "yabs-yet-another-bench-script",
+      "title": "YABS (Yet Another Bench Script)",
+      "date": "2026-07-20",
+      "tags": [
+        "vps",
+        "devops",
+        "cheatsheets"
+      ],
+      "description": "YABS (Yet Another Bench Script), written by Mason Rowe, is a popular one-liner for benchmarking a freshly provisioned VPS. Run it with:",
+      "readingTime": "1 min read",
+      "backlinks": [
+        "vps-benchmark-scripts"
+      ]
+    },
+    {
+      "slug": "bench-sh-vps-benchmark-script",
+      "title": "bench.sh (Teddysun VPS Benchmark)",
+      "date": "2026-07-20",
+      "tags": [
+        "vps",
+        "devops",
+        "cheatsheets"
+      ],
+      "description": "bench.sh is a long-standing VPS benchmark script by Teddysun. Run it with:",
+      "readingTime": "1 min read",
+      "backlinks": [
+        "vps-benchmark-scripts"
+      ]
+    },
+    {
+      "slug": "deepsec-agent-powered-vulnerability-scanner",
+      "title": "deepsec — Agent-Powered Vulnerability Scanner",
+      "date": "2026-07-20",
+      "tags": [
+        "security",
+        "ai"
+      ],
+      "description": "deepsec is Vercel's open-source, agent-powered vulnerability scanner. It points coding agents at large existing repos to surface hard-to-find issues that static…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "emilkowalski-skill",
       "title": "Emilkowalski Skill",
       "date": "2026-07-13",
@@ -192,6 +247,7 @@
       "description": "An way to leverage Claude models to do something (mainly vibe coding) on your host.",
       "readingTime": "1 min read",
       "backlinks": [
+        "deepsec-agent-powered-vulnerability-scanner",
         "alishahryar1-free-claude-code"
       ]
     },
@@ -386,16 +442,24 @@
   ],
   "tags": [
     {
+      "tag": "ai",
+      "count": 7
+    },
+    {
       "tag": "frontend",
       "count": 7
     },
     {
-      "tag": "ai",
+      "tag": "react",
       "count": 6
     },
     {
-      "tag": "react",
-      "count": 6
+      "tag": "cheatsheets",
+      "count": 4
+    },
+    {
+      "tag": "devops",
+      "count": 4
     },
     {
       "tag": "shadcn",
@@ -403,6 +467,10 @@
     },
     {
       "tag": "linux",
+      "count": 3
+    },
+    {
+      "tag": "vps",
       "count": 3
     },
     {
@@ -434,15 +502,7 @@
       "count": 1
     },
     {
-      "tag": "cheatsheets",
-      "count": 1
-    },
-    {
       "tag": "cloudflare",
-      "count": 1
-    },
-    {
-      "tag": "devops",
       "count": 1
     },
     {
@@ -490,6 +550,10 @@
       "count": 1
     },
     {
+      "tag": "security",
+      "count": 1
+    },
+    {
       "tag": "ssh",
       "count": 1
     },
@@ -502,5 +566,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-20T02:37:23.433Z"
+  "fetchedAt": "2026-07-20T13:57:56.923Z"
 }
