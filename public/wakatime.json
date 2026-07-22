@@ -1,35 +1,35 @@
 {
-  "fetchedAt": "2026-07-21T13:24:18.437Z",
+  "fetchedAt": "2026-07-22T02:02:40.534Z",
   "languages": [
     {
-      "name": "TypeScript",
-      "percent": 35.1,
-      "text": "3 hrs 6 mins"
-    },
-    {
       "name": "Markdown",
-      "percent": 24.5,
-      "text": "2 hrs 10 mins"
+      "percent": 38.2,
+      "text": "4 hrs 20 mins"
     },
     {
-      "name": "sh",
-      "percent": 15.6,
-      "text": "1 hr 22 mins"
+      "name": "TypeScript",
+      "percent": 25.4,
+      "text": "2 hrs 53 mins"
     },
     {
       "name": "JSON",
-      "percent": 6.5,
-      "text": "34 mins"
+      "percent": 7.2,
+      "text": "48 mins"
     },
     {
       "name": "CSS",
-      "percent": 6.1,
-      "text": "32 mins"
+      "percent": 4,
+      "text": "26 mins"
     },
     {
-      "name": "Docker",
+      "name": "PHP",
+      "percent": 3.8,
+      "text": "26 mins"
+    },
+    {
+      "name": "JavaScript",
       "percent": 3.2,
-      "text": "17 mins"
+      "text": "21 mins"
     }
   ]
 }
