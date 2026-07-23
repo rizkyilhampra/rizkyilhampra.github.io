@@ -6,8 +6,13 @@ import { navHandler } from "./utils";
 import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
-export function TilTagsPage({ onNavigate, onBack, skipEntranceAnimation }) {
-  const tags = use(loadTilTags());
+export function TilTagsPage({
+  onNavigate,
+  onBack,
+  skipEntranceAnimation,
+  tags: preloadedTags,
+}) {
+  const tags = preloadedTags ?? use(loadTilTags());
   const reveal = createReveal(skipEntranceAnimation);
   const go = navHandler(onNavigate);
 

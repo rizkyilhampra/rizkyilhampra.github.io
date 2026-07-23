@@ -31,9 +31,15 @@ function groupByYear(notes) {
   return [...groups.entries()];
 }
 
-export function TilIndexPage({ onNavigate, onBack, skipEntranceAnimation }) {
-  const notes = use(loadTilManifest());
-  const allTags = use(loadTilTags());
+export function TilIndexPage({
+  onNavigate,
+  onBack,
+  skipEntranceAnimation,
+  notes: preloadedNotes,
+  tags: preloadedTags,
+}) {
+  const notes = preloadedNotes ?? use(loadTilManifest());
+  const allTags = preloadedTags ?? use(loadTilTags());
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState(null);
   const [sort, setSort] = useState("newest"); // manifest is already newest-first

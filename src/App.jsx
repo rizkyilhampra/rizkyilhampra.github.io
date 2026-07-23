@@ -8,7 +8,8 @@ import {
   Mail,
   Download,
 } from "lucide-react";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
+import { useMountEffect } from "./useMountEffect";
 import { ProjectList } from "./SocialLink";
 import { SectionHeading } from "./SectionHeading";
 import { SocialIconRow } from "./SocialIconRow";
@@ -27,28 +28,49 @@ import { TilTagPage } from "./TilTagPage";
 import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
+import { TilNotePage as PrerenderedTilNotePage } from "./TilNotePage";
+import { loadTilManifest } from "./tilNotes";
+import {
+  applyRouteMetadata,
+  getRouteMetadata,
+  normalizePath,
+  resolveRoute,
+} from "./routeMetadata";
 import { createReveal } from "./entrance";
 
 const LocationMap = lazy(() => import("./LocationMap"));
 
 const MAX_STORED_SCROLL_POSITIONS = 20;
 
-export default function App() {
+function useStaticRender(prerender) {
+  const [hydrated, setHydrated] = useState(false);
+  useMountEffect(() => {
+    setHydrated(true);
+  });
+  return prerender && !hydrated;
+}
+
+export default function App({ initialPath, routeData, prerender = false } = {}) {
+  const isStaticRender = useStaticRender(prerender);
   const [path, setPath] = useState(() =>
-    normalizePath(window.location.pathname || "/")
+    normalizePath(initialPath ?? window.location.pathname ?? "/")
   );
   const [skipEntranceAnimation, setSkipEntranceAnimation] = useState(false);
   const currentPathRef = useRef(path);
+  const prerenderedPathRef = useRef(
+    routeData?.path ? normalizePath(routeData.path) : null
+  );
+  const activeRouteData =
+    routeData && path === prerenderedPathRef.current ? routeData : undefined;
   const scrollPositionsRef = useRef(new Map());
   // Tracks how deep we are in this app's own history stack so the back button
   // knows whether going back stays in-app (vs leaving the site on a deep link).
   const historyIndexRef = useRef(0);
 
-  useEffect(() => {
+  useMountEffect(() => {
     const originalScrollRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
 
-    // Seed the current entry with an index so back navigation can be detected.
     if (window.history.state?.index == null) {
       window.history.replaceState(
         { ...window.history.state, index: 0 },
@@ -71,6 +93,7 @@ export default function App() {
       setSkipEntranceAnimation(hasSavedPosition);
       setPath(nextPath);
       restoreScroll(nextPath);
+      applyRouteForPath(nextPath, routeData);
     };
 
     window.addEventListener("popstate", handlePopState);
@@ -78,15 +101,14 @@ export default function App() {
       window.history.scrollRestoration = originalScrollRestoration;
       window.removeEventListener("popstate", handlePopState);
     };
-  }, []);
+  });
 
-  // Warm the TilNotePage chunk during idle time so opening a note is instant.
-  useEffect(() => {
+  useMountEffect(() => {
     const schedule = window.requestIdleCallback ?? ((cb) => window.setTimeout(cb, 1));
     const cancel = window.cancelIdleCallback ?? window.clearTimeout;
     const handle = schedule(() => prefetchTilNotePage());
     return () => cancel(handle);
-  }, []);
+  });
 
   const restoreScroll = (to, fallbackTop = 0) => {
     const savedPosition = scrollPositionsRef.current.get(to);
@@ -117,6 +139,7 @@ export default function App() {
     setSkipEntranceAnimation(Boolean(options.skipEntranceAnimation));
     setPath(nextPath);
     restoreScroll(nextPath, options.restoreScroll ? undefined : 0);
+    applyRouteForPath(nextPath, routeData);
   };
 
   const navigateHome = () => {
@@ -138,43 +161,39 @@ export default function App() {
     }
   };
 
-  const isTilTagsIndex = path === "/til/tags";
-  const tilTag = getTilTag(path);
-  // /til/tags and /til/tags/<tag> are matched before the generic /til/<slug>
-  // note route so they aren't mistaken for a note slug.
-  const tilSlug = isTilTagsIndex || tilTag ? null : getTilSlug(path);
-  const isTilIndex = path === "/til";
+  const route = resolveRoute(path);
+  const isTilIndex = route.type === "til-index";
+  const isTilTagsIndex = route.type === "tags-index";
+  const tilTag = route.type === "tag" ? route.tag : null;
+  const tilSlug = route.type === "note" ? route.slug : null;
   const reveal = createReveal(skipEntranceAnimation);
 
-  useEffect(() => {
-    if (path === "/") {
-      document.title = "Rizky Ilham Pratama";
-      return;
-    }
+  const applyRouteForPath = (routePath, rdata) => {
+    const resolved = resolveRoute(routePath);
+    const notes = rdata?.notes ?? [];
+    const tags = rdata?.tags ?? [];
+    let note = rdata?.note;
+    if (note && note.slug !== resolved.slug) note = undefined;
 
-    if (isTilIndex) {
-      document.title = "Today I Learned | Rizky Ilham Pratama";
-      return;
-    }
+    const setMetadata = (allNotes) => {
+      if (!note && resolved.type === "note" && resolved.slug) {
+        note = allNotes.find((n) => n.slug === resolved.slug);
+      }
+      applyRouteMetadata(
+        getRouteMetadata(routePath, { notes: allNotes, tags, note })
+      );
+    };
 
-    if (isTilTagsIndex) {
-      document.title = "Browse by tag | Rizky Ilham Pratama";
-      return;
-    }
+    setMetadata(notes);
 
-    if (tilTag) {
-      document.title = `#${tilTag} | Rizky Ilham Pratama`;
-      return;
+    if (resolved.type === "note" && resolved.slug && !note) {
+      loadTilManifest().then(setMetadata).catch(() => {});
     }
+  };
 
-    // TilNotePage sets its own title once the note resolves (title isn't known
-    // synchronously here), so leave the title alone for /til/<slug> routes.
-    if (tilSlug) {
-      return;
-    }
-
-    document.title = "Page not found | Rizky Ilham Pratama";
-  }, [path, isTilIndex, isTilTagsIndex, tilTag, tilSlug]);
+  useMountEffect(() => {
+    applyRouteForPath(path, routeData);
+  });
 
   if (isTilIndex) {
     return (
@@ -183,6 +202,8 @@ export default function App() {
           onNavigate={navigate}
           onBack={goBack}
           skipEntranceAnimation={skipEntranceAnimation}
+          notes={activeRouteData?.notes}
+          tags={activeRouteData?.tags}
         />
       </Suspense>
     );
@@ -195,6 +216,7 @@ export default function App() {
           onNavigate={navigate}
           onBack={goBack}
           skipEntranceAnimation={skipEntranceAnimation}
+          tags={activeRouteData?.tags}
         />
       </Suspense>
     );
@@ -208,20 +230,34 @@ export default function App() {
           onNavigate={navigate}
           onBack={goBack}
           skipEntranceAnimation={skipEntranceAnimation}
+          notes={activeRouteData?.notes}
         />
       </Suspense>
     );
   }
 
   if (tilSlug) {
+    const noteProps = {
+      slug: tilSlug,
+      onNavigate: navigate,
+      onBack: goBack,
+      skipEntranceAnimation,
+    };
+
+    if (activeRouteData?.note) {
+      return (
+        <PrerenderedTilNotePage
+          key={tilSlug}
+          {...noteProps}
+          note={activeRouteData.note}
+          notes={activeRouteData.notes}
+        />
+      );
+    }
+
     return (
       <Suspense fallback={null}>
-        <TilNotePage
-          slug={tilSlug}
-          onNavigate={navigate}
-          onBack={goBack}
-          skipEntranceAnimation={skipEntranceAnimation}
-        />
+        <TilNotePage key={tilSlug} {...noteProps} />
       </Suspense>
     );
   }
@@ -335,13 +371,20 @@ export default function App() {
           className="mt-6 -ml-2"
         />
 
-        <Suspense
-          fallback={
-            <div className="mt-6 h-40 w-full animate-pulse rounded-lg border border-border bg-secondary sm:h-44 md:w-1/2" />
-          }
-        >
-          <LocationMap />
-        </Suspense>
+        {isStaticRender ? (
+          <div
+            className="mt-6 h-40 w-full rounded-lg border border-border bg-secondary/40 sm:h-44 md:w-1/2"
+            aria-label="Location map available after the page loads"
+          />
+        ) : (
+          <Suspense
+            fallback={
+              <div className="mt-6 h-40 w-full animate-pulse rounded-lg border border-border bg-secondary sm:h-44 md:w-1/2" />
+            }
+          >
+            <LocationMap />
+          </Suspense>
+        )}
       </section>
 
       <SectionDivider />
@@ -361,6 +404,7 @@ export default function App() {
         <TilListPreview
           onNavigate={navigate}
           skipEntranceAnimation={skipEntranceAnimation}
+          notes={activeRouteData?.notes}
         />
       </section>
 
@@ -401,25 +445,6 @@ export default function App() {
 
 function SectionDivider() {
   return <hr className="my-12 border-border sm:my-14" />;
-}
-
-function normalizePath(path) {
-  return path.length > 1 && path.endsWith("/") ? path.slice(0, -1) : path;
-}
-
-function getTilSlug(path) {
-  return path.startsWith("/til/") ? path.slice("/til/".length) : null;
-}
-
-function getTilTag(path) {
-  if (!path.startsWith("/til/tags/")) return null;
-  const raw = path.slice("/til/tags/".length);
-  if (!raw) return null;
-  try {
-    return decodeURIComponent(raw);
-  } catch {
-    return raw;
-  }
 }
 
 function rememberScrollPosition(scrollPositions, path, position) {

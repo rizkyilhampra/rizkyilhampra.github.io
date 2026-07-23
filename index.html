@@ -3,29 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Rizky Ilham Pratama</title>
-
-    <!-- SEO Meta -->
-    <meta name="description" content="Rizky Ilham Pratama — Software Developer. Personal portfolio and landing page." />
+    <!-- SEO:START -->
+    <title>Developer &amp; Creator — Rizky Ilham Pratama</title>
+    <meta name="description" content="Rizky Ilham Pratama is a software developer and creator building practical web tools, digital experiences, and open-source projects." />
     <meta name="author" content="Rizky Ilham Pratama" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://rizkyilhampra.dev/" />
-
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://rizkyilhampra.dev/" />
-    <meta property="og:title" content="Rizky Ilham Pratama — Software Developer" />
-    <meta property="og:description" content="Rizky Ilham Pratama — Software Developer. Personal portfolio and landing page." />
+    <meta property="og:title" content="Developer &amp; Creator — Rizky Ilham Pratama" />
+    <meta property="og:description" content="Rizky Ilham Pratama is a software developer and creator building practical web tools, digital experiences, and open-source projects." />
     <meta property="og:site_name" content="Rizky Ilham Pratama" />
     <meta property="og:locale" content="en_US" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Rizky Ilham Pratama — Software Developer" />
-    <meta name="twitter:description" content="Rizky Ilham Pratama — Software Developer. Personal portfolio and landing page." />
-
-    <!-- Theme color -->
-    <meta name="theme-color" content="#14161a" />
+    <meta property="og:image" content="https://rizkyilhampra.dev/social-preview.svg" />
+    <meta property="og:image:alt" content="Rizky Ilham Pratama — developer and creator" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rizkyilhampra" />
+    <meta name="twitter:creator" content="@rizkyilhampra" />
+    <meta name="twitter:title" content="Developer &amp; Creator — Rizky Ilham Pratama" />
+    <meta name="twitter:description" content="Rizky Ilham Pratama is a software developer and creator building practical web tools, digital experiences, and open-source projects." />
+    <meta name="twitter:image" content="https://rizkyilhampra.dev/social-preview.svg" />
+    <script id="route-structured-data" type="application/ld+json">[{"@context":"https://schema.org","@type":"Person","name":"Rizky Ilham Pratama","url":"https://rizkyilhampra.dev/","jobTitle":"Software Developer"}]</script>
+    <!-- SEO:END -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#1e1e2e" />
 
     <!-- Apply saved theme before paint to avoid a flash -->
     <script>
@@ -36,17 +39,6 @@
           }
         } catch (e) {}
       })();
-    </script>
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Rizky Ilham Pratama",
-      "url": "https://rizkyilhampra.dev/",
-      "jobTitle": "Software Developer"
-    }
     </script>
 
     <!-- Umami Analytics -->
@@ -66,12 +58,23 @@
     <div id="root"></div>
     <script>
       (function () {
-        var redirect = sessionStorage.getItem("spa-redirect");
+        var params = new URLSearchParams(location.search);
+        var redirect = params.get("spa-redirect");
+        if (!redirect) return;
 
-        if (redirect) {
-          sessionStorage.removeItem("spa-redirect");
-          history.replaceState(null, "", redirect);
-        }
+        try {
+          var url = new URL(redirect, location.origin);
+          var pathname = url.pathname.replace(/\/+$/, "") || "/";
+          var isGardenRoute =
+            pathname === "/til" ||
+            /^\/til\/[^/.]+$/.test(pathname) ||
+            pathname === "/til/tags" ||
+            /^\/til\/tags\/[^/.]+$/.test(pathname);
+
+          if (url.origin === location.origin && isGardenRoute) {
+            history.replaceState(null, "", url.pathname + url.search + url.hash);
+          }
+        } catch (error) {}
       })();
     </script>
     <script src="./src/index.jsx"></script>

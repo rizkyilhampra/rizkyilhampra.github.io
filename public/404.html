@@ -3,15 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting...</title>
+    <title>Page not found</title>
+    <meta name="robots" content="noindex, follow" />
   </head>
   <body>
+    <main>
+      <h1>Page not found</h1>
+      <p>The requested page could not be found.</p>
+    </main>
     <script>
-      sessionStorage.setItem(
-        "spa-redirect",
-        location.pathname + location.search + location.hash
-      );
-      location.replace("/");
+      (function () {
+        var pathname = location.pathname.replace(/\/+$/, "") || "/";
+        var isGardenRoute =
+          pathname === "/til" ||
+          /^\/til\/[^/.]+$/.test(pathname) ||
+          pathname === "/til/tags" ||
+          /^\/til\/tags\/[^/.]+$/.test(pathname);
+
+        if (!isGardenRoute) return;
+
+        var requestedUrl = pathname + location.search + location.hash;
+        location.replace("/?spa-redirect=" + encodeURIComponent(requestedUrl));
+      })();
     </script>
   </body>
 </html>

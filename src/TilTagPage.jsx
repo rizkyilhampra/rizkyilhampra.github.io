@@ -7,8 +7,14 @@ import { navHandler } from "./utils";
 import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
-export function TilTagPage({ tag, onNavigate, onBack, skipEntranceAnimation }) {
-  const notes = use(loadTilManifest());
+export function TilTagPage({
+  tag,
+  onNavigate,
+  onBack,
+  skipEntranceAnimation,
+  notes: preloadedNotes,
+}) {
+  const notes = preloadedNotes ?? use(loadTilManifest());
   const reveal = createReveal(skipEntranceAnimation);
 
   const matches = useMemo(() => {

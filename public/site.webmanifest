@@ -1,0 +1,15 @@
+{
+  "name": "Rizky Ilham Pratama",
+  "short_name": "Rizky Ilham",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#1e1e2e",
+  "background_color": "#1e1e2e",
+  "display": "standalone"
+}

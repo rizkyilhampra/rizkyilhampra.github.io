@@ -32,6 +32,7 @@ import sql from "react-syntax-highlighter/dist/esm/languages/prism/sql";
 import diff from "react-syntax-highlighter/dist/esm/languages/prism/diff";
 import { marked } from "marked";
 import { NoteLink } from "./NoteLink";
+import { resolveRoute } from "./routeMetadata";
 
 // The TIL notes are mostly shell scripts (bash/sh/powershell) with the
 // occasional jsx/json/yaml/docker block, so register that set. Aliases map the
@@ -435,22 +436,38 @@ function Inline({ tokens }) {
 
 function Link({ href = "", children }) {
   const onNavigate = useContext(NavigateContext);
+  const route = resolveRoute(href);
 
-  if (href.startsWith("/til/")) {
+  if (route.type === "note") {
     return (
-      <NoteLink
-        href={href}
-        slug={href.slice("/til/".length)}
-        onNavigate={onNavigate}
-      >
+      <NoteLink href={href} slug={route.slug} onNavigate={onNavigate}>
         {children}
       </NoteLink>
     );
   }
 
+  const isGardenRoute = ["til-index", "tags-index", "tag"].includes(route.type);
+  const handleClick = (event) => {
+    if (
+      !onNavigate ||
+      !isGardenRoute ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+    onNavigate(route.path);
+  };
+
   return (
     <a
       href={href}
+      onClick={handleClick}
       className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
       {...(EXTERNAL_HREF.test(href)
         ? { target: "_blank", rel: "noreferrer noopener" }

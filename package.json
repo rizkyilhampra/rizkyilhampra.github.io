@@ -4,7 +4,12 @@
   "scripts": {
     "dev": "farm",
     "start": "farm",
-    "build": "farm build",
+    "build": "bun run build:client && bun run build:server && bun run prerender && bun run prepare:pages && bun run validate:prerender",
+    "build:client": "farm build",
+    "build:server": "farm build --config farm.config.server.js",
+    "prerender": "node scripts/prerender.mjs",
+    "prepare:pages": "node scripts/prepare-pages.mjs",
+    "validate:prerender": "node scripts/validate-prerender.mjs",
     "preview": "farm preview",
     "clean": "farm clean"
   },

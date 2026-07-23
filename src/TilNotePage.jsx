@@ -1,4 +1,5 @@
-import { use, useEffect } from "react";
+import { use } from "react";
+import { useMountEffect } from "./useMountEffect";
 import { InternalBackLink } from "./InternalBackLink";
 import { loadTilBySlug, loadTilManifest } from "./tilNotes";
 import { MarkdownContent } from "./MarkdownContent";
@@ -17,17 +18,16 @@ export function TilNotePage({
   onNavigate,
   onBack,
   skipEntranceAnimation,
+  note: preloadedNote,
+  notes: preloadedNotes,
 }) {
-  const note = use(loadTilBySlug(slug));
-  const manifest = use(loadTilManifest());
+  const note = preloadedNote ?? use(loadTilBySlug(slug));
+  const manifest = preloadedNotes ?? use(loadTilManifest());
   const reveal = createReveal(skipEntranceAnimation);
 
-  useEffect(() => {
-    document.title = note
-      ? `${note.title} | Rizky Ilham Pratama`
-      : "Note not found | Rizky Ilham Pratama";
+  useMountEffect(() => {
     if (note) markVisited(note.slug);
-  }, [note]);
+  });
 
   if (!note) {
     return (
