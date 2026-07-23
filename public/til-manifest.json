@@ -1,6 +1,28 @@
 {
   "notes": [
     {
+      "slug": "graphify",
+      "title": "Graphify",
+      "date": "2026-07-22",
+      "tags": [
+        "ai"
+      ],
+      "description": "It's not an vector thingy but instead it's create an wiki thingy, so AI Agents can able query and finding based on like actual following like LSP reference and…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
+      "slug": "blume",
+      "title": "Blume",
+      "date": "2026-07-22",
+      "tags": [
+        "ai"
+      ],
+      "description": "An like template or starter for building docs but with had MCP and llms.txt (AI ready). It's had already template for Changelog docs and API docs as well, also…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "vps-benchmark-scripts",
       "title": "VPS Benchmark Scripts",
       "date": "2026-07-20",
@@ -44,14 +66,14 @@
       ]
     },
     {
-      "slug": "deepsec-agent-powered-vulnerability-scanner",
-      "title": "deepsec — Agent-Powered Vulnerability Scanner",
+      "slug": "vercel-labs-deepsec",
+      "title": "vercel-labs/deepsec",
       "date": "2026-07-20",
       "tags": [
         "security",
         "ai"
       ],
-      "description": "deepsec is Vercel's open-source, agent-powered vulnerability scanner. It points coding agents at large existing repos to surface hard-to-find issues that static…",
+      "description": "An like AI agent skill that produce security audit. Seems good to try with pairing like Claude Code to like scan an codebase that needs security compliance.",
       "readingTime": "1 min read",
       "backlinks": []
     },
@@ -147,7 +169,7 @@
         "design-system",
         "shadcn"
       ],
-      "description": "An pixel art React UI component, build on top of shadcn/ui.",
+      "description": "An pixel art React UI component, build on top of shadcn/ui. Looks good to see or as reference for creating pixel art UI.",
       "readingTime": "1 min read",
       "backlinks": []
     },
@@ -247,7 +269,7 @@
       "description": "An way to leverage Claude models to do something (mainly vibe coding) on your host.",
       "readingTime": "1 min read",
       "backlinks": [
-        "deepsec-agent-powered-vulnerability-scanner",
+        "vercel-labs-deepsec",
         "alishahryar1-free-claude-code"
       ]
     },
@@ -443,7 +465,7 @@
   "tags": [
     {
       "tag": "ai",
-      "count": 7
+      "count": 9
     },
     {
       "tag": "frontend",
@@ -566,5 +588,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-22T13:42:49.610Z"
+  "fetchedAt": "2026-07-23T02:24:53.355Z"
 }
