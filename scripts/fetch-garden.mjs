@@ -20,10 +20,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { extractDescription, toPlainText } from './garden-text.mjs';
 
+import { SITE } from '../src/siteConfig.js';
+
 const SOURCE_DIR = process.env.GARDEN_SOURCE_DIR;
 const OUT_DIR = process.env.GARDEN_OUT_DIR || 'public';
 const TIL_DIR = path.join(OUT_DIR, 'til');
-const SITE_URL = 'https://rizkyilhampra.dev';
 
 if (!SOURCE_DIR) {
   console.error('GARDEN_SOURCE_DIR is required (path to the til/ notes directory)');
@@ -164,17 +165,17 @@ async function writeSitemap(noteList, tagList = []) {
   const latest = noteList[0]?.date || new Date().toISOString().slice(0, 10);
 
   const urls = [
-    { loc: `${SITE_URL}/`, lastmod: latest, changefreq: 'monthly', priority: '1.0' },
-    { loc: `${SITE_URL}/til`, lastmod: latest, changefreq: 'weekly', priority: '0.8' },
-    { loc: `${SITE_URL}/til/tags`, lastmod: latest, changefreq: 'weekly', priority: '0.5' },
+    { loc: `${SITE.url}/`, lastmod: latest, changefreq: 'monthly', priority: '1.0' },
+    { loc: `${SITE.url}/til`, lastmod: latest, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${SITE.url}/til/tags`, lastmod: latest, changefreq: 'weekly', priority: '0.5' },
     ...tagList.map(({ tag }) => ({
-      loc: `${SITE_URL}/til/tags/${encodeURIComponent(tag)}`,
+      loc: `${SITE.url}/til/tags/${encodeURIComponent(tag)}`,
       lastmod: latest,
       changefreq: 'weekly',
       priority: '0.5',
     })),
     ...noteList.map((note) => ({
-      loc: `${SITE_URL}/til/${note.slug}`,
+      loc: `${SITE.url}/til/${note.slug}`,
       lastmod: note.date || latest,
       changefreq: 'monthly',
       priority: '0.6',

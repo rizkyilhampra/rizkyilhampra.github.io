@@ -37,6 +37,7 @@ import {
   resolveRoute,
 } from "./routeMetadata";
 import { createReveal } from "./entrance";
+import { SITE } from "./siteConfig.js";
 
 const LocationMap = lazy(() => import("./LocationMap"));
 
@@ -353,12 +354,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
 
         <div className="mt-3 text-lg text-muted-foreground sm:text-xl">
           <TypewriterText
-            texts={[
-              "Developer, Creator, and Digital Enthusiast",
-              "Building digital experiences with passion and precision",
-              "Turning ideas into interactive solutions",
-              "Use VIM and Arch Linux BTW",
-            ]}
+            texts={SITE.typewriterTexts}
             typingSpeed={100}
             deletingSpeed={60}
             pauseDuration={3000}

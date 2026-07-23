@@ -1,13 +1,11 @@
-export const SITE_URL = "https://rizkyilhampra.dev";
-export const SITE_NAME = "Rizky Ilham Pratama";
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/social-preview.svg`;
+import { SITE } from "./siteConfig.js";
 
 const PERSON_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: SITE_NAME,
-  url: `${SITE_URL}/`,
-  jobTitle: "Software Developer",
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  jobTitle: SITE.jobTitle,
 };
 
 export function normalizePath(pathname = "/") {
@@ -46,11 +44,11 @@ function decodeSegment(segment) {
 
 export function canonicalUrl(pathname) {
   const path = normalizePath(pathname);
-  return path === "/" ? `${SITE_URL}/` : `${SITE_URL}${path}`;
+  return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
 }
 
 function pageTitle(title) {
-  return `${title} — ${SITE_NAME}`;
+  return `${title} — ${SITE.name}`;
 }
 
 function collectionSchema({ title, description, canonical, notes = [] }) {
@@ -98,11 +96,11 @@ function noteSchema(note, canonical) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: note.title,
-    description: note.description || `A Today I Learned note by ${SITE_NAME}.`,
+    description: note.description || `A Today I Learned note by ${SITE.name}.`,
     author: {
       "@type": "Person",
-      name: SITE_NAME,
-      url: `${SITE_URL}/`,
+      name: SITE.name,
+      url: `${SITE.url}/`,
     },
     mainEntityOfPage: canonical,
     url: canonical,
@@ -119,27 +117,23 @@ export function getRouteMetadata(pathname, { notes = [], tags = [], note } = {})
   const base = {
     canonical,
     robots: "index, follow",
-    image: DEFAULT_OG_IMAGE,
-    imageAlt: "Rizky Ilham Pratama — developer and creator",
-    twitterCard: "summary_large_image",
+    image: SITE.ogImage,
+    imageAlt: SITE.ogImageAlt,
+    twitterCard: SITE.twitterCard,
     ogType: "website",
   };
 
   if (route.type === "home") {
-    const description =
-      "Rizky Ilham Pratama is a software developer and creator building practical web tools, digital experiences, and open-source projects.";
     return {
       ...base,
-      title: pageTitle("Developer & Creator"),
-      description,
+      title: pageTitle(SITE.routes.home.title),
+      description: SITE.routes.home.description,
       schemas: [PERSON_SCHEMA],
     };
   }
 
   if (route.type === "til-index") {
-    const title = "Today I Learned";
-    const description =
-      "Short, interconnected notes by Rizky Ilham Pratama on Linux, self-hosting, developer tooling, and things learned along the way.";
+    const { title, description } = SITE.routes.tilIndex;
     return {
       ...base,
       title: pageTitle(title),
@@ -149,9 +143,7 @@ export function getRouteMetadata(pathname, { notes = [], tags = [], note } = {})
   }
 
   if (route.type === "tags-index") {
-    const title = "Browse TIL notes by tag";
-    const description =
-      "Explore Rizky Ilham Pratama's Today I Learned digital garden by topic and tag.";
+    const { title, description } = SITE.routes.tagsIndex;
     return {
       ...base,
       title: pageTitle(title),
@@ -178,7 +170,7 @@ export function getRouteMetadata(pathname, { notes = [], tags = [], note } = {})
     return {
       ...base,
       title: pageTitle(note.title),
-      description: note.description || `A Today I Learned note by ${SITE_NAME}.`,
+      description: note.description || `A Today I Learned note by ${SITE.name}.`,
       ogType: "article",
       schemas: [noteSchema(note, canonical)],
     };
@@ -186,8 +178,8 @@ export function getRouteMetadata(pathname, { notes = [], tags = [], note } = {})
 
   return {
     ...base,
-    title: pageTitle("Page not found"),
-    description: "This page does not exist on rizkyilhampra.dev.",
+    title: pageTitle(SITE.routes.notFound.title),
+    description: SITE.routes.notFound.description,
     robots: "noindex, follow",
     schemas: [],
   };

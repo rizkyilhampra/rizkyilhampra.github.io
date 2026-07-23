@@ -13,6 +13,7 @@ import {
   normalizePath,
   resolveRoute,
 } from "../src/routeMetadata.js";
+import { SITE } from "../src/siteConfig.js";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(rootDir, "dist");
@@ -138,12 +139,12 @@ function buildSeoBlock(metadata) {
   return `<!-- SEO:START -->
     <title>${escape(metadata.title)}</title>
     ${metaTags}
-    <meta name="author" content="Rizky Ilham Pratama" />
+    <meta name="author" content="${escape(SITE.author)}" />
     <link rel="canonical" href="${escape(metadata.canonical)}" />
-    <meta property="og:site_name" content="Rizky Ilham Pratama" />
-    <meta property="og:locale" content="en_US" />
-    <meta name="twitter:site" content="@rizkyilhampra" />
-    <meta name="twitter:creator" content="@rizkyilhampra" />
+    <meta property="og:site_name" content="${escape(SITE.name)}" />
+    <meta property="og:locale" content="${escape(SITE.locale)}" />
+    <meta name="twitter:site" content="${escape(SITE.twitterSite)}" />
+    <meta name="twitter:creator" content="${escape(SITE.twitterCreator)}" />
     <script id="route-structured-data" type="application/ld+json">${schema}</script>
     <!-- SEO:END -->`;
 }
