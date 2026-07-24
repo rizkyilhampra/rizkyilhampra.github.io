@@ -1,6 +1,18 @@
 {
   "notes": [
     {
+      "slug": "mengatasi-web-page-selalu-minta-translate-chrome",
+      "title": "Mengatasi Web Page Selalu Minta Translate (Chrome)",
+      "date": "2026-07-25",
+      "tags": [
+        "frontend",
+        "cheatsheets"
+      ],
+      "description": "Hal ini akan sangat mengganggu jika web page yang kita buat adalah untuk signage. Mungkin kita tidak menyadari terlebih jika AI agent atau model AI yang kita…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "graphify",
       "title": "Graphify",
       "date": "2026-07-22",
@@ -469,7 +481,7 @@
     },
     {
       "tag": "frontend",
-      "count": 7
+      "count": 8
     },
     {
       "tag": "react",
@@ -477,7 +489,7 @@
     },
     {
       "tag": "cheatsheets",
-      "count": 4
+      "count": 5
     },
     {
       "tag": "devops",
@@ -588,5 +600,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-24T13:28:11.746Z"
+  "fetchedAt": "2026-07-24T16:40:12.599Z"
 }

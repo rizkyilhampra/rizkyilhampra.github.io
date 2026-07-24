@@ -9,4 +9,4 @@ An like template or starter for building docs but with had MCP and `llms.txt` (A
 
 Looks good if it's can be pairing easiliy with AI agents to turns out any codebase into ready docs, like in example we are creating an library things.
 
-Source: [Github](https://github.com/haydenbleasel/blume)
+Source: [Github](https://github.com/haydenbleasel/blume), [Web](https://useblume.dev)
