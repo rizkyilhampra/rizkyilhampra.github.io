@@ -4,26 +4,26 @@ export const SITE = {
   url: "https://rizkyilhampra.dev",
   name: "Rizky Ilham Pratama",
   author: "Rizky Ilham Pratama",
-  jobTitle: "Software Developer",
+  jobTitle: "Software Engineer",
   locale: "en_US",
   ogImage: OG_IMAGE,
-  ogImageAlt: "Rizky Ilham Pratama — developer and creator",
+  ogImageAlt: "Rizky Ilham Pratama",
   twitterCard: "summary_large_image",
   twitterSite: "@rizkyilhampra",
   twitterCreator: "@rizkyilhampra",
 
   typewriterTexts: [
-    "Developer, Creator, and Digital Enthusiast",
-    "Building digital experiences with passion and precision",
-    "Turning ideas into interactive solutions",
-    "Use VIM and Arch Linux BTW",
+    "Software Engineer in support and infrastructure",
+    "Exploring technology and keeping things over-engineered",
+    "Using Vim and Arch Linux BTW",
+    "Sharing open-source projects and TIL notes",
   ],
 
   routes: {
     home: {
-      title: "Developer & Creator",
+      title: "",
       description:
-        "Rizky Ilham Pratama is a software developer and creator building practical web tools, digital experiences, and open-source projects.",
+        "Rizky Ilham Pratama — Software Engineer working in support and infrastructure. Passionate about Arch Linux, Vim, open-source development, and sharing TIL notes.",
     },
     tilIndex: {
       title: "Today I Learned",

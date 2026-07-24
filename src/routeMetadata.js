@@ -48,7 +48,7 @@ export function canonicalUrl(pathname) {
 }
 
 function pageTitle(title) {
-  return `${title} — ${SITE.name}`;
+  return title ? `${title} — ${SITE.name}` : SITE.name;
 }
 
 function collectionSchema({ title, description, canonical, notes = [] }) {

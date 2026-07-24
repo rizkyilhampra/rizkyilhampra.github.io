@@ -124,7 +124,7 @@ const generateTypoForWord = (word) => {
 };
 
 export function TypewriterText({ 
-  texts = ["Developer, Creator, and Digital Enthusiast"],
+  texts = ["Software Engineer in support and infrastructure"],
   typingSpeed = 100,
   deletingSpeed = 60,
   pauseDuration = 3000,
