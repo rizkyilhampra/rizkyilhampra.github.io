@@ -1,6 +1,45 @@
 {
   "notes": [
     {
+      "slug": "course-from-emil-kowalski-animationsdev",
+      "title": "Course from Emil Kowalski (animations.dev)",
+      "date": "2026-07-31",
+      "tags": [
+        "ui-ux",
+        "frontend",
+        "courses"
+      ],
+      "description": "Looks interesting when needs an course about frontend or UI/UX from who is Designer(?) at Linear. He is one of popular designer or talk about frontend or UI/UX…",
+      "readingTime": "1 min read",
+      "backlinks": [
+        "another-course-from-emil-kowalski-aiforuidev"
+      ]
+    },
+    {
+      "slug": "another-course-from-emil-kowalski-aiforuidev",
+      "title": "Another course from Emil Kowalski (aiforui.dev)",
+      "date": "2026-07-31",
+      "tags": [
+        "frontend",
+        "ui-ux",
+        "courses"
+      ],
+      "description": "The new course from previous ones Course from Emil Kowalski (animations.dev). Looks it's talk about how to leverage AI to build stunning frontend implementation…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
+      "slug": "tanstack-charts",
+      "title": "Tanstack Charts",
+      "date": "2026-07-31",
+      "tags": [
+        "frontend"
+      ],
+      "description": "Yes part of the Tanstack. It's framework agnostic library that able do build an charts. Sepak terjang Tanstack selama ini sampai Tanstack Start, sudah menjadi…",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "mengatasi-web-page-selalu-minta-translate-chrome",
       "title": "Mengatasi Web Page Selalu Minta Translate (Chrome)",
       "date": "2026-07-25",
@@ -101,6 +140,7 @@
       "description": "An AI agent skill from Emil Kowalski, a UI/UX designer at Linear (previously Vercel).",
       "readingTime": "1 min read",
       "backlinks": [
+        "course-from-emil-kowalski-animationsdev",
         "agent-skills"
       ]
     },
@@ -476,12 +516,12 @@
   ],
   "tags": [
     {
-      "tag": "ai",
-      "count": 9
+      "tag": "frontend",
+      "count": 11
     },
     {
-      "tag": "frontend",
-      "count": 8
+      "tag": "ai",
+      "count": 9
     },
     {
       "tag": "react",
@@ -504,6 +544,10 @@
       "count": 3
     },
     {
+      "tag": "ui-ux",
+      "count": 3
+    },
+    {
       "tag": "vps",
       "count": 3
     },
@@ -513,6 +557,10 @@
     },
     {
       "tag": "animation",
+      "count": 2
+    },
+    {
+      "tag": "courses",
       "count": 2
     },
     {
@@ -592,13 +640,9 @@
       "count": 1
     },
     {
-      "tag": "ui-ux",
-      "count": 1
-    },
-    {
       "tag": "windows11",
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-30T13:49:56.798Z"
+  "fetchedAt": "2026-07-30T17:22:34.808Z"
 }
