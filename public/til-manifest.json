@@ -40,6 +40,18 @@
       "backlinks": []
     },
     {
+      "slug": "codex-security",
+      "title": "Codex Security",
+      "date": "2026-07-31",
+      "tags": [
+        "security",
+        "ai"
+      ],
+      "description": "An like similar to vercel-labs/deepsec.",
+      "readingTime": "1 min read",
+      "backlinks": []
+    },
+    {
       "slug": "mengatasi-web-page-selalu-minta-translate-chrome",
       "title": "Mengatasi Web Page Selalu Minta Translate (Chrome)",
       "date": "2026-07-25",
@@ -126,7 +138,9 @@
       ],
       "description": "An like AI agent skill that produce security audit. Seems good to try with pairing like Claude Code to like scan an codebase that needs security compliance.",
       "readingTime": "1 min read",
-      "backlinks": []
+      "backlinks": [
+        "codex-security"
+      ]
     },
     {
       "slug": "emilkowalski-skill",
@@ -521,7 +535,7 @@
     },
     {
       "tag": "ai",
-      "count": 9
+      "count": 10
     },
     {
       "tag": "react",
@@ -573,6 +587,10 @@
     },
     {
       "tag": "personal",
+      "count": 2
+    },
+    {
+      "tag": "security",
       "count": 2
     },
     {
@@ -632,10 +650,6 @@
       "count": 1
     },
     {
-      "tag": "security",
-      "count": 1
-    },
-    {
       "tag": "ssh",
       "count": 1
     },
@@ -644,5 +658,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-07-31T02:27:27.092Z"
+  "fetchedAt": "2026-07-31T13:55:18.457Z"
 }
