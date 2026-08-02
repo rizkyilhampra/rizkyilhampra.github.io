@@ -121,9 +121,10 @@ const gardenInkSyntaxTheme = {
   deleted: { color: "var(--code-tag)" },
 };
 
-// scroll-mt-24 offsets anchored headings past the ~64px sticky nav, matching
-// the footnote anchors below.
-const HEADING_BASE = "scroll-mt-24 font-header font-semibold text-foreground";
+// scroll-mt-12 gives anchored headings a small cushion below the viewport top
+// (the site nav is not sticky, so there's nothing large to clear) and matches
+// the footnote anchors below plus the SPY_TOP_OFFSET in TableOfContents.jsx.
+const HEADING_BASE = "scroll-mt-12 font-header font-semibold text-foreground";
 const HEADING_SIZES = { 1: "text-3xl", 2: "text-2xl", 3: "text-xl", 4: "text-lg" };
 
 const NavigateContext = createContext(null);
@@ -240,7 +241,7 @@ function References({ footnotes }) {
           <li
             key={fn.id}
             id={`fn-${fn.id}`}
-            className="flex items-baseline gap-3 scroll-mt-24"
+            className="flex items-baseline gap-3 scroll-mt-12"
           >
             <span className="shrink-0 font-mono text-xs leading-7 tabular-nums text-primary">
               {fn.number}.

@@ -9,7 +9,12 @@ import { PostMeta } from "./PostMeta";
 import { TagList } from "./TagList";
 import { NoteConnections } from "./NoteConnections";
 import { LocalGraph } from "./LocalGraph";
-import { extractHeadings, MIN_HEADINGS_FOR_TOC, TableOfContents } from "./TableOfContents";
+import {
+  extractHeadings,
+  MIN_HEADINGS_FOR_TOC,
+  TableOfContents,
+  MobileTableOfContents,
+} from "./TableOfContents";
 import { markVisited } from "./visited";
 import { createReveal } from "./entrance";
 import Footer from "./Footer";
@@ -83,7 +88,13 @@ export function TilNotePage({
             </div>
           </header>
 
-          <div {...reveal(2, "mt-10 space-y-8")}>
+          {hasToc && (
+            <div {...reveal(2, "mt-8 lg:hidden")}>
+              <MobileTableOfContents headings={headings} />
+            </div>
+          )}
+
+          <div {...reveal(3, "mt-10 space-y-8")}>
             <MarkdownContent
               tokens={note.content}
               footnotes={note.footnotes}
@@ -91,7 +102,7 @@ export function TilNotePage({
             />
           </div>
 
-          <div {...reveal(3, "mt-12 border-t border-border pt-8")}>
+          <div {...reveal(4, "mt-12 border-t border-border pt-8")}>
             {/* Graph on the left, the "Linked from"/"Related notes" lists on the
                 right; stacks to a single column on narrow screens. Either side can
                 be absent (flex lets the present one fill the row). */}
@@ -115,13 +126,13 @@ export function TilNotePage({
         </article>
 
         {hasToc && (
-          <aside {...reveal(3, "hidden lg:block")}>
+          <aside {...reveal(4, "hidden lg:block")}>
             <TableOfContents headings={headings} />
           </aside>
         )}
       </div>
 
-      <div {...reveal(4, "mt-20")}>
+      <div {...reveal(5, "mt-20")}>
         <Footer />
       </div>
     </PageShell>
