@@ -27,6 +27,9 @@ export function TilNotePage({
   const reveal = createReveal(skipEntranceAnimation);
   // TOC entries; anchor ids already live on the tokens (see markdown.js).
   const headings = useMemo(() => extractHeadings(note?.content), [note?.content]);
+  // Gates BOTH the rail and the two-column grid — mounting the grid template
+  // without the aside would leave a phantom 13rem column of empty space.
+  const hasToc = headings.length >= MIN_HEADINGS_FOR_TOC;
 
   useMountEffect(() => {
     if (note) markVisited(note.slug);
@@ -46,8 +49,13 @@ export function TilNotePage({
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-6xl px-6 py-12 sm:py-16">
       {/* On wide screens the sticky TOC takes a right-hand rail; below `lg`
-          the grid collapses and the article reverts to its single column. */}
-      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:gap-12">
+          (or when there's no TOC) the grid collapses and the article reverts
+          to its single column. */}
+      <div
+        className={
+          hasToc ? "lg:grid lg:grid-cols-[minmax(0,1fr)_13rem] lg:gap-12" : undefined
+        }
+      >
         <article className="mx-auto w-full max-w-3xl">
           <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
 
@@ -96,7 +104,7 @@ export function TilNotePage({
           </div>
         </article>
 
-        {headings.length >= MIN_HEADINGS_FOR_TOC && (
+        {hasToc && (
           <aside {...reveal(3, "hidden lg:block")}>
             <TableOfContents headings={headings} />
           </aside>
