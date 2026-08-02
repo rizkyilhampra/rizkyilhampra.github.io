@@ -47,7 +47,17 @@ export function TilNotePage({
   }
 
   return (
-    <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-6xl px-6 py-12 sm:py-16">
+    <PageShell
+      onNavigate={onNavigate}
+      mainClassName={
+        // Only widen the page shell to fit the TOC rail when there actually is
+        // one — otherwise the footer (which sits outside the grid below) would
+        // stretch to the full 6xl width while the article stays centered at 3xl.
+        hasToc
+          ? "mx-auto max-w-6xl px-6 py-12 sm:py-16"
+          : "mx-auto max-w-3xl px-6 py-12 sm:py-16"
+      }
+    >
       {/* On wide screens the sticky TOC takes a right-hand rail; below `lg`
           (or when there's no TOC) the grid collapses and the article reverts
           to its single column. */}
