@@ -33,6 +33,7 @@ import diff from "react-syntax-highlighter/dist/esm/languages/prism/diff";
 import { marked } from "marked";
 import { NoteLink } from "./NoteLink";
 import { resolveRoute } from "./routeMetadata";
+import { scrollToId } from "./scrollToId";
 
 // The TIL notes are mostly shell scripts (bash/sh/powershell) with the
 // occasional jsx/json/yaml/docker block, so register that set. Aliases map the
@@ -120,32 +121,14 @@ const gardenInkSyntaxTheme = {
   deleted: { color: "var(--code-tag)" },
 };
 
-const HEADING_CLASS = {
-  1: "font-header text-3xl font-semibold text-foreground",
-  2: "font-header text-2xl font-semibold text-foreground",
-  3: "font-header text-xl font-semibold text-foreground",
-  4: "font-header text-lg font-semibold text-foreground",
-};
+// scroll-mt-24 offsets anchored headings past the ~64px sticky nav, matching
+// the footnote anchors below.
+const HEADING_BASE = "scroll-mt-24 font-header font-semibold text-foreground";
+const HEADING_SIZES = { 1: "text-3xl", 2: "text-2xl", 3: "text-xl", 4: "text-lg" };
 
 const NavigateContext = createContext(null);
 const FootnoteContext = createContext(null);
 const EXTERNAL_HREF = /^https?:\/\//;
-
-// Smoothly scrolls to a footnote anchor by id. The SPA sets
-// `history.scrollRestoration = "manual"` (see App.jsx) and only listens for
-// popstate, so native hash-link scrolling is unreliable; doing it explicitly
-// guarantees both the superscript → footnote and back-link → reference jumps
-// work. We replaceState the hash (no new history entry) so the URL stays
-// shareable without disturbing the SPA's scroll-position tracking.
-function scrollToFootnote(targetId, event) {
-  const el = document.getElementById(targetId);
-  if (!el) return;
-  event.preventDefault();
-  el.scrollIntoView({ behavior: "smooth", block: "start" });
-  if (window.history?.replaceState) {
-    window.history.replaceState(null, "", `#${targetId}`);
-  }
-}
 
 // GitHub-flavored alert blockquotes (`> [!NOTE]` etc). Each type maps to an icon
 // and a GitHub-matching accent color (light/dark variants tracked via Tailwind).
@@ -266,7 +249,7 @@ function References({ footnotes }) {
               <Inline tokens={marked.lexer(fn.text.trim())[0]?.tokens ?? []} />
               <a
                 href={`#fnref-${fn.id}`}
-                onClick={(event) => scrollToFootnote(`fnref-${fn.id}`, event)}
+                onClick={(event) => scrollToId(`fnref-${fn.id}`, event)}
                 className="ml-1 inline-flex cursor-pointer items-center text-primary transition-colors hover:text-foreground"
                 aria-label="Back to reference"
               >
@@ -297,7 +280,10 @@ function Block({ token }) {
     case "heading": {
       const Tag = `h${Math.min(token.depth, 4)}`;
       return (
-        <Tag className={HEADING_CLASS[token.depth] ?? HEADING_CLASS[4]}>
+        <Tag
+          id={token.id}
+          className={`${HEADING_BASE} ${HEADING_SIZES[token.depth] ?? HEADING_SIZES[4]}`}
+        >
           <Inline tokens={token.tokens} />
         </Tag>
       );
@@ -418,7 +404,7 @@ function Inline({ tokens }) {
                 <a
                   id={`fnref-${token.id}`}
                   href={`#fn-${token.id}`}
-                  onClick={(event) => scrollToFootnote(`fn-${token.id}`, event)}
+                  onClick={(event) => scrollToId(`fn-${token.id}`, event)}
                   className="cursor-pointer text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
                 >
                   {number}

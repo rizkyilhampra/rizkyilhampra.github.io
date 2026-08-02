@@ -109,12 +109,48 @@ export function parseFrontmatter(raw) {
   return { data, body: match[2] };
 }
 
+// Flattens a token's inline children to plain text (emphasis, code spans,
+// links… all reduce to their text content).
+export function inlineText(tokens) {
+  let out = "";
+  for (const token of tokens ?? []) {
+    out += token.tokens ? inlineText(token.tokens) : (token.text ?? token.content ?? "");
+  }
+  return out;
+}
+
+function slugifyHeading(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/[\s-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// Stamps a GitHub-style anchor `id` onto every heading token at parse time,
+// deduping repeated headings with `-2`/`-3` suffixes. Owning the ids here (not
+// in a UI component) means the renderer, the TOC, and any future consumer all
+// read the same stable anchors straight off the tokens.
+function assignHeadingIds(tokens, seen = new Map()) {
+  for (const token of tokens ?? []) {
+    if (token.type === "heading") {
+      const base = slugifyHeading(inlineText(token.tokens)) || "section";
+      const count = seen.get(base) ?? 0;
+      seen.set(base, count + 1);
+      token.id = count === 0 ? base : `${base}-${count + 1}`;
+    }
+    if (token.tokens && token.type !== "heading") assignHeadingIds(token.tokens, seen);
+  }
+  return tokens;
+}
+
 // Returns marked's top-level token list plus the extracted footnotes.
 // MarkdownContent renders the tokens directly and appends the footnotes as a
 // References list.
 export function parseMarkdown(body) {
   const { cleanBody, definitions, order } = splitFootnotes(body);
-  const tokens = marked.lexer(cleanBody.trim());
+  const tokens = assignHeadingIds(marked.lexer(cleanBody.trim()));
   const footnotes = order.map((id, index) => ({
     id,
     number: index + 1,
