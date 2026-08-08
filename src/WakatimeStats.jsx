@@ -82,13 +82,13 @@ function BarRow({ item }) {
 function WakatimeSkeleton() {
   return (
     <div className="flex-1 animate-pulse">
-      <div className="mb-3 h-3 w-20 rounded bg-secondary" aria-hidden="true" />
+      <div className="mb-3 h-3 w-20 rounded-sm bg-secondary" aria-hidden="true" />
       <div className="space-y-3">
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i}>
             <div className="mb-1 flex justify-between">
-              <div className="h-3 w-24 rounded bg-secondary" aria-hidden="true" />
-              <div className="h-3 w-12 rounded bg-secondary" aria-hidden="true" />
+              <div className="h-3 w-24 rounded-sm bg-secondary" aria-hidden="true" />
+              <div className="h-3 w-12 rounded-sm bg-secondary" aria-hidden="true" />
             </div>
             <div className="h-1.5 w-full rounded-full bg-secondary" aria-hidden="true" />
           </div>

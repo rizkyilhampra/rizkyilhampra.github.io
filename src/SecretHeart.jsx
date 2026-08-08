@@ -22,7 +22,7 @@ export function SecretHeart() {
       rel="noopener noreferrer"
       aria-label="Open Instagram profile @apainilala"
       title="Instagram: @apainilala"
-      className="group relative flex h-9 w-9 items-center justify-center rounded-md text-rose-400 outline-none transition-colors hover:text-rose-500 focus-visible:text-rose-500 focus-visible:ring-2 focus-visible:ring-ring"
+      className="group relative flex h-9 w-9 items-center justify-center rounded-md text-rose-400 outline-hidden transition-colors hover:text-rose-500 focus-visible:text-rose-500 focus-visible:ring-2 focus-visible:ring-ring"
     >
       {/* Little hearts drift up around the icon on hover/focus. */}
       <span className="pointer-events-none absolute inset-x-0 bottom-5 block h-6 motion-reduce:hidden" aria-hidden="true">

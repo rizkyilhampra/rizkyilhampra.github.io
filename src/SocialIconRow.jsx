@@ -12,7 +12,7 @@ export function SocialIconRow({ items, trailing = null, className = "" }) {
               rel="noopener noreferrer"
               aria-label={ariaLabel || itemLabel}
               title={title || ariaLabel || itemLabel}
-              className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground outline-none transition-colors hover:bg-secondary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground outline-hidden transition-colors hover:bg-secondary hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Icon className="h-[1.15rem] w-[1.15rem]" aria-hidden="true" />
               <span className="sr-only">{itemLabel}</span>

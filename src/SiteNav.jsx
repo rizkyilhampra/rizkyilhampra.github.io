@@ -14,7 +14,7 @@ export function SiteNav({ onNavigate }) {
           href="/"
           onClick={go("/")}
           aria-label="Home"
-          className="rounded-sm font-mono text-sm font-medium text-primary outline-none transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+          className="rounded-sm font-mono text-sm font-medium text-primary outline-hidden transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
         >
           /home/rizkyilhampra
         </a>
@@ -34,4 +34,4 @@ export function SiteNav({ onNavigate }) {
 }
 
 const navLinkClass =
-  "rounded-sm text-muted-foreground outline-none transition-colors hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background";
+  "rounded-sm text-muted-foreground outline-hidden transition-colors hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background";

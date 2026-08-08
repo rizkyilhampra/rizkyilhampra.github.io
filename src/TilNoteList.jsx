@@ -48,7 +48,7 @@ function TilListItem({ note, onNavigate }) {
         onMouseEnter={prefetchTilNotePage}
         onFocus={prefetchTilNotePage}
         onTouchStart={prefetchTilNotePage}
-        className="group block rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        className="group block rounded-sm outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <h3 className="font-header text-lg font-semibold leading-snug text-foreground underline-offset-4 transition-colors duration-200 group-hover:text-primary group-hover:underline group-focus-visible:text-primary">
           {note.title}
@@ -67,7 +67,7 @@ function TilListItem({ note, onNavigate }) {
           href={href}
           onClick={go(href)}
           tabIndex={-1}
-          className="mt-1.5 block outline-none"
+          className="mt-1.5 block outline-hidden"
         >
           <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">
             {note.description}

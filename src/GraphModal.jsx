@@ -61,7 +61,7 @@ export function GraphModal({ onClose, onNavigate }) {
         tabIndex={-1}
         aria-hidden="true"
         onClick={onClose}
-        className="absolute inset-0 cursor-default bg-background/80 backdrop-blur-sm animate-fade-in motion-reduce:animate-none"
+        className="absolute inset-0 cursor-default bg-background/80 backdrop-blur-xs animate-fade-in motion-reduce:animate-none"
       />
 
       <div
@@ -73,7 +73,7 @@ export function GraphModal({ onClose, onNavigate }) {
           type="button"
           onClick={onClose}
           aria-label="Close graph"
-          className="absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card/80 text-muted-foreground backdrop-blur-sm transition-colors hover:border-primary hover:text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+          className="absolute right-3 top-3 z-10 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card/80 text-muted-foreground backdrop-blur-xs transition-colors hover:border-primary hover:text-primary outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-card"
         >
           <X className="h-4 w-4" aria-hidden="true" />
         </button>
@@ -116,7 +116,7 @@ function GraphModalBody({ onNavigate }) {
         />
       </div>
 
-      <p className="pointer-events-none absolute bottom-3 left-3 right-3 w-fit max-w-[calc(100%-1.5rem)] rounded-md bg-card/80 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur-sm">
+      <p className="pointer-events-none absolute bottom-3 left-3 right-3 w-fit max-w-[calc(100%-1.5rem)] rounded-md bg-card/80 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur-xs">
         {noteCount} note{noteCount === 1 ? "" : "s"} · {graph.links.length}{" "}
         connection{graph.links.length === 1 ? "" : "s"} — drag to rearrange,
         scroll to zoom, click a node to open it.

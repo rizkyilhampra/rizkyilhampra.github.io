@@ -108,9 +108,9 @@ function StatCard({ label, value, sub, children }) {
 function SkeletonCard({ title = "Loading" }) {
   return (
     <div className="animate-pulse border-t border-border pt-3">
-      <div className="mb-2 h-3 w-24 rounded bg-secondary" aria-hidden />
-      <div className="h-9 w-16 rounded bg-secondary" aria-hidden />
-      <div className="mt-2 h-3 w-20 rounded bg-secondary" aria-hidden />
+      <div className="mb-2 h-3 w-24 rounded-sm bg-secondary" aria-hidden />
+      <div className="h-9 w-16 rounded-sm bg-secondary" aria-hidden />
+      <div className="mt-2 h-3 w-20 rounded-sm bg-secondary" aria-hidden />
       <span className="sr-only">{title}</span>
     </div>
   );

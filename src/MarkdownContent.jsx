@@ -520,7 +520,7 @@ function CodeBlock({ code, language }) {
         <button
           type="button"
           onClick={copyCode}
-          className="inline-flex min-w-[5.75rem] items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 font-['JetBrains_Mono'] font-medium text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="inline-flex min-w-23 items-center justify-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 font-['JetBrains_Mono'] font-medium text-muted-foreground transition-colors duration-200 hover:border-primary hover:text-primary focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary"
         >
           {copied ? (
             <Check className="h-3.5 w-3.5" aria-hidden="true" />

@@ -22,7 +22,7 @@ function ProjectRow({ href, icon: Icon, label, description, ariaLabel, title }) 
       rel="noopener noreferrer"
       aria-label={ariaLabel || label}
       title={title || ariaLabel || label}
-      className="group flex items-start gap-3 py-3.5 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      className="group flex items-start gap-3 py-3.5 outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
     >
       {Icon ? (
         <Icon

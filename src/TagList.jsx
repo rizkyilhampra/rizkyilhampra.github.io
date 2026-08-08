@@ -48,7 +48,7 @@ export function TagList({
             key={tag}
             href={tagHref(tag)}
             onClick={go(tagHref(tag))}
-            className={`${pillClass} transition-colors duration-200 hover:border-primary hover:text-primary outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
+            className={`${pillClass} transition-colors duration-200 hover:border-primary hover:text-primary outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
           >
             #{tag}
           </a>

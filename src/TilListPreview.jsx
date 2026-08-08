@@ -32,7 +32,7 @@ function TilNotes({ onNavigate, skipEntranceAnimation, notes: preloadedNotes }) 
         <a
           href="/til"
           onClick={go("/til")}
-          className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground outline-none transition-colors hover:text-primary hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground outline-hidden transition-colors hover:text-primary hover:underline underline-offset-4 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           Explore all {allNotes.length} notes
           <ArrowRight

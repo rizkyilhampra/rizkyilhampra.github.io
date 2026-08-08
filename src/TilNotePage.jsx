@@ -112,7 +112,7 @@ export function TilNotePage({
                 manifest={manifest}
                 onNavigate={onNavigate}
                 skipEntranceAnimation={skipEntranceAnimation}
-                className="order-last md:order-none md:min-w-0 md:flex-1 md:max-w-[calc(50%-1.25rem)]"
+                className="order-last md:order-0 md:min-w-0 md:flex-1 md:max-w-[calc(50%-1.25rem)]"
               />
               <NoteConnections
                 slug={slug}

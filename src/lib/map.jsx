@@ -248,7 +248,7 @@ const positionClasses = {
 
 function ControlGroup({ children }) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-md border border-border bg-background shadow-sm [&>button:not(:last-child)]:border-b [&>button:not(:last-child)]:border-border">
+    <div className="flex flex-col overflow-hidden rounded-md border border-border bg-background shadow-xs [&>button:not(:last-child)]:border-b [&>button:not(:last-child)]:border-border">
       {children}
     </div>
   );
@@ -260,7 +260,7 @@ function ControlButton({ onClick, label, children }) {
       onClick={onClick}
       aria-label={label}
       type="button"
-      className="flex size-8 items-center justify-center transition-all first:rounded-t-md last:rounded-b-md hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:hover:bg-accent/40"
+      className="flex size-8 items-center justify-center transition-all first:rounded-t-md last:rounded-b-md hover:bg-accent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring dark:hover:bg-accent/40"
     >
       {children}
     </button>

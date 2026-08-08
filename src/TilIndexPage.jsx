@@ -90,7 +90,7 @@ export function TilIndexPage({
             <button
               type="button"
               onClick={openGraph}
-              className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
+              className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-sm"
             >
               View graph →
             </button>
@@ -118,7 +118,7 @@ export function TilIndexPage({
                     onChange={(event) => setQuery(event.target.value)}
                     placeholder="Search notes…"
                     aria-label="Search notes"
-                    className="w-full rounded-lg border border-border bg-card py-2.5 pl-10 pr-4 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/40"
+                    className="w-full rounded-lg border border-border bg-card py-2.5 pl-10 pr-4 text-sm text-foreground outline-hidden transition-colors placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/40"
                   />
                 </div>
                 <div className="relative">
@@ -129,7 +129,7 @@ export function TilIndexPage({
                     id="til-sort"
                     value={sort}
                     onChange={(event) => setSort(event.target.value)}
-                    className="w-full appearance-none rounded-lg border border-border bg-card py-2.5 pl-3 pr-9 text-sm text-foreground outline-none transition-colors focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
+                    className="w-full appearance-none rounded-lg border border-border bg-card py-2.5 pl-3 pr-9 text-sm text-foreground outline-hidden transition-colors focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
                   >
                     <option value="newest">Newest first</option>
                     <option value="oldest">Oldest first</option>
@@ -151,7 +151,7 @@ export function TilIndexPage({
                         type="button"
                         aria-pressed={isActive}
                         onClick={() => setActiveTag(isActive ? null : tag)}
-                        className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
+                        className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors duration-200 outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
                           isActive
                             ? "border-primary bg-primary/15 text-primary"
                             : "border-border bg-secondary/50 text-muted-foreground hover:border-primary hover:text-primary"

@@ -124,7 +124,7 @@ function TocLinks({ headings, activeId, onItemClick }) {
               aria-current={active ? "location" : undefined}
               className={[
                 "-ml-px block border-l-2 py-1 pr-2 leading-snug transition-colors duration-200 motion-reduce:transition-none",
-                "outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                "outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 heading.depth >= 3 ? "pl-6" : "pl-3",
                 active
                   ? "border-primary font-medium text-primary"
@@ -150,7 +150,7 @@ export function MobileTableOfContents({ headings }) {
 
   return (
     <details className="group rounded-lg border border-border bg-secondary/50 lg:hidden">
-      <summary className="flex cursor-pointer select-none items-center gap-2 px-4 py-3 font-mono text-xs text-primary outline-none [&::-webkit-details-marker]:hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+      <summary className="flex cursor-pointer select-none items-center gap-2 px-4 py-3 font-mono text-xs text-primary outline-hidden [&::-webkit-details-marker]:hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
         <List className="h-3.5 w-3.5" aria-hidden="true" />
         <span>on-this-page</span>
         <span className="rounded-full border border-border px-1.5 py-px text-[10px] tabular-nums text-muted-foreground">

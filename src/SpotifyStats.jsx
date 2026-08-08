@@ -86,7 +86,7 @@ function RankItem({ rank, image, title, subtitle, href }) {
       <span className="w-4 shrink-0 text-right font-mono text-xs tabular-nums text-muted-foreground">
         {rank}
       </span>
-      <div className="h-10 w-10 shrink-0 overflow-hidden rounded bg-muted">
+      <div className="h-10 w-10 shrink-0 overflow-hidden rounded-sm bg-muted">
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={image} alt="" className="h-full w-full object-cover" loading="lazy" />
@@ -107,14 +107,14 @@ function DualSkeleton() {
     <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
       {[0,1].map((col) => (
         <div key={col} className="min-w-0 animate-pulse">
-          <div className="mb-3 h-3 w-28 rounded bg-secondary" />
+          <div className="mb-3 h-3 w-28 rounded-sm bg-secondary" />
           <div className="space-y-3">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="flex items-center gap-3 min-w-0">
-                <div className="h-10 w-10 shrink-0 rounded bg-secondary" />
+                <div className="h-10 w-10 shrink-0 rounded-sm bg-secondary" />
                 <div className="min-w-0 flex-1">
-                  <div className="h-3 w-3/4 rounded bg-secondary" />
-                  <div className="mt-2 h-3 w-1/2 rounded bg-secondary" />
+                  <div className="h-3 w-3/4 rounded-sm bg-secondary" />
+                  <div className="mt-2 h-3 w-1/2 rounded-sm bg-secondary" />
                 </div>
               </div>
             ))}
