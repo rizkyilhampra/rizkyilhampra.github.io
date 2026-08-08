@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Shell(bun:*)"
+      "Shell(bun:*)",
+      "Shell(node --version)",
+      "Shell(sed:*)",
+      "Shell(grep:*)",
+      "Shell(for:*)",
+      "Shell(do:*)",
+      "Shell(done:*)",
+      "Shell(cd /home/aquila/Projects/rizkyilhampra.github.io && bun run build 2>&1 | tail -8 && echo \"=== emitted checks ===\" && CSS=$(ls -t dist/index_*.css | head -1) && echo \"CSS: $CSS\" && echo \"--- rounded-sm util ---\" && grep -c \"\\.rounded-sm\" \"$CSS\" && echo \"--- rounded-full util ---\" && grep -c \"\\.rounded-full\" \"$CSS\" && echo \"--- rounded-md util ---\" && grep -c \"\\.rounded-md\" \"$CSS\" && echo \"--- dark variant ---\" && grep -o \":where(.dark, .dark \\*)\" \"$CSS\" | head -1)",
+      "Shell(cd /home/aquila/Projects/rizkyilhampra.github.io && ls -lt dist/index_*.css && echo \"=== rounded-sm in newest ===\" && grep -c \"rounded-sm\" dist/index_797a.c3a78cf8.css; echo \"=== which file has rounded-sm ===\" && for f in dist/index_*.css; do echo \"$f: $(grep -c 'rounded-sm' $f)\"; done)",
+      "Shell(cd:*)"
     ],
     "deny": [],
     "defaultMode": "default"
