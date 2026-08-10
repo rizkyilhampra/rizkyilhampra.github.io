@@ -18,3 +18,7 @@
 # workflow
 - Check available skills and MCP tools before diving into solutions or research. Confidence: 0.70
 
+# communication
+- Prefers explanations in Bahasa Indonesia when asking for elaboration on technical work. Confidence: 0.90
+- Wants the "why" behind changes explained in depth — root causes, the reasoning, and the purpose of each change — not just a summary of what was done. Confidence: 0.75
+

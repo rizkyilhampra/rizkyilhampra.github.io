@@ -12,4 +12,4 @@ description: - Arch Wiki - Github Issue
 
 ## Workaround
 
-Following [this comment](https://github.com/hyprwm/Hyprland/issues/8930#issuecomment-2613358236), it's say that we need to [downgrade](/til/downgrade-arch-linux-installed-package) to `mesa=24.2.7`, `vulkan-radeon=24.2.7` and `llvm-libs=18.1.8-5`.
+Following [this comment](https://github.com/hyprwm/Hyprland/issues/8930#issuecomment-2613358236), it's say that we need to [downgrade](/til/downgrade-arch-linux-installed-package/) to `mesa=24.2.7`, `vulkan-radeon=24.2.7` and `llvm-libs=18.1.8-5`.

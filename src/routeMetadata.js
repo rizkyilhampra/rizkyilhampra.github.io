@@ -11,22 +11,22 @@ const PERSON_SCHEMA = {
 export function normalizePath(pathname = "/") {
   const path = pathname.split("?")[0].split("#")[0] || "/";
   if (path === "/") return path;
-  return path.replace(/\/+$/, "") || "/";
+  return path.replace(/\/+$/, "") + "/";
 }
 
 export function resolveRoute(pathname) {
   const path = normalizePath(pathname);
 
   if (path === "/") return { type: "home", path };
-  if (path === "/til") return { type: "til-index", path };
-  if (path === "/til/tags") return { type: "tags-index", path };
+  if (path === "/til/") return { type: "til-index", path };
+  if (path === "/til/tags/") return { type: "tags-index", path };
 
-  const tagMatch = path.match(/^\/til\/tags\/([^/]+)$/);
+  const tagMatch = path.match(/^\/til\/tags\/([^/]+)\/$/);
   if (tagMatch) {
     return { type: "tag", path, tag: decodeSegment(tagMatch[1]) };
   }
 
-  const noteMatch = path.match(/^\/til\/([^/]+)$/);
+  const noteMatch = path.match(/^\/til\/([^/]+)\/$/);
   if (noteMatch) {
     return { type: "note", path, slug: decodeSegment(noteMatch[1]) };
   }
@@ -43,8 +43,7 @@ function decodeSegment(segment) {
 }
 
 export function canonicalUrl(pathname) {
-  const path = normalizePath(pathname);
-  return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
+  return `${SITE.url}${normalizePath(pathname)}`;
 }
 
 function pageTitle(title) {

@@ -10,10 +10,10 @@ const manifest = JSON.parse(
 
 const routes = [
   "/",
-  "/til",
-  "/til/tags",
-  ...(manifest.tags ?? []).map(({ tag }) => `/til/tags/${encodeURIComponent(tag)}`),
-  ...(manifest.notes ?? []).map(({ slug }) => `/til/${slug}`),
+  "/til/",
+  "/til/tags/",
+  ...(manifest.tags ?? []).map(({ tag }) => `/til/tags/${encodeURIComponent(tag)}/`),
+  ...(manifest.notes ?? []).map(({ slug }) => `/til/${slug}/`),
 ];
 
 for (const requiredFile of [
@@ -43,7 +43,7 @@ for (const route of routes) {
     throw new Error(`Prerender payload path mismatch for ${route}: ${routeData.path}`);
   }
 
-  const noteMatch = route.match(/^\/til\/([^/]+)$/);
+  const noteMatch = route.match(/^\/til\/([^/]+)\/$/);
   if (noteMatch && noteMatch[1] !== "tags" && routeData.note?.slug !== noteMatch[1]) {
     throw new Error(`Note preload mismatch for ${route}`);
   }

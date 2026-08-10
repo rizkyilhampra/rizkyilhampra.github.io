@@ -20,10 +20,10 @@ export function SiteNav({ onNavigate }) {
         </a>
 
         <div className="flex items-center gap-5 text-sm">
-          <a href="/til" onClick={go("/til")} className={navLinkClass}>
+          <a href="/til/" onClick={go("/til/")} className={navLinkClass}>
             TIL
           </a>
-          <a href="/til/tags" onClick={go("/til/tags")} className={navLinkClass}>
+          <a href="/til/tags/" onClick={go("/til/tags/")} className={navLinkClass}>
             Tags
           </a>
           <ThemeToggle />

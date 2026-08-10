@@ -13,7 +13,7 @@ A `SKILL.md` file is a manifest (name + description + instructions) that an agen
 
 ## Skills
 
-- [Emilkowalski Skill](/til/emilkowalski-skill) — design-engineering & animation taste from a Linear/Vercel designer.
+- [Emilkowalski Skill](/til/emilkowalski-skill/) — design-engineering & animation taste from a Linear/Vercel designer.
 
 ## Resources
 

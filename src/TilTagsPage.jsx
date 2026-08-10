@@ -28,8 +28,8 @@ export function TilTagsPage({
           <p className="mt-5 text-base leading-8 text-muted-foreground">
             {tags.length} tag{tags.length === 1 ? "" : "s"} across the notes.{" "}
             <a
-              href="/til"
-              onClick={go("/til")}
+              href="/til/"
+              onClick={go("/til/")}
               className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
             >
               View all notes
@@ -46,7 +46,7 @@ export function TilTagsPage({
         ) : (
           <div className="mt-10 flex flex-wrap gap-3">
             {tags.map(({ tag, count }) => {
-              const href = `/til/tags/${encodeURIComponent(tag)}`;
+              const href = `/til/tags/${encodeURIComponent(tag)}/`;
               return (
                 <a
                   key={tag}

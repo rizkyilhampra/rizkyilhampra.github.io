@@ -166,16 +166,16 @@ async function writeSitemap(noteList, tagList = []) {
 
   const urls = [
     { loc: `${SITE.url}/`, lastmod: latest, changefreq: 'monthly', priority: '1.0' },
-    { loc: `${SITE.url}/til`, lastmod: latest, changefreq: 'weekly', priority: '0.8' },
-    { loc: `${SITE.url}/til/tags`, lastmod: latest, changefreq: 'weekly', priority: '0.5' },
+    { loc: `${SITE.url}/til/`, lastmod: latest, changefreq: 'weekly', priority: '0.8' },
+    { loc: `${SITE.url}/til/tags/`, lastmod: latest, changefreq: 'weekly', priority: '0.5' },
     ...tagList.map(({ tag }) => ({
-      loc: `${SITE.url}/til/tags/${encodeURIComponent(tag)}`,
+      loc: `${SITE.url}/til/tags/${encodeURIComponent(tag)}/`,
       lastmod: latest,
       changefreq: 'weekly',
       priority: '0.5',
     })),
     ...noteList.map((note) => ({
-      loc: `${SITE.url}/til/${note.slug}`,
+      loc: `${SITE.url}/til/${note.slug}/`,
       lastmod: note.date || latest,
       changefreq: 'monthly',
       priority: '0.6',
@@ -275,7 +275,7 @@ function resolveWikilinks(body) {
     const text = (label ?? target.split('/').pop().replace(/^\d+-/, '')).trim();
     const slug = linkTargets.get(normalizeRef(target));
 
-    return slug ? `[${text}](/til/${slug})` : text;
+    return slug ? `[${text}](/til/${slug}/)` : text;
   });
 }
 

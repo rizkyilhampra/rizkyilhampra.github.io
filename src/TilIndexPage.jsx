@@ -81,8 +81,8 @@ export function TilIndexPage({
             {notes.length} short note{notes.length === 1 ? "" : "s"} on things I
             picked up — mostly Linux, self-hosting, and dev tooling.{" "}
             <a
-              href="/til/tags"
-              onClick={go("/til/tags")}
+              href="/til/tags/"
+              onClick={go("/til/tags/")}
               className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
             >
               Browse by tag →

@@ -22,7 +22,10 @@
 
         if (!isGardenRoute) return;
 
-        var requestedUrl = pathname + location.search + location.hash;
+        var requestedUrl =
+          (pathname === "/" ? "/" : pathname + "/") +
+          location.search +
+          location.hash;
         location.replace("/?spa-redirect=" + encodeURIComponent(requestedUrl));
       })();
     </script>

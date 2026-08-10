@@ -37,7 +37,7 @@ export function TilNoteListSkeleton({ count = 4 }) {
 }
 
 function TilListItem({ note, onNavigate }) {
-  const href = `/til/${note.slug}`;
+  const href = `/til/${note.slug}/`;
   const go = navHandler(onNavigate);
 
   return (

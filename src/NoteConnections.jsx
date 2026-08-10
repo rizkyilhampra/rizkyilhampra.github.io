@@ -68,7 +68,7 @@ function NoteLinkGroup({ title, notes, onNavigate }) {
         {notes.map((note) => (
           <li key={note.slug}>
             <NoteLink
-              href={`/til/${note.slug}`}
+              href={`/til/${note.slug}/`}
               slug={note.slug}
               onNavigate={onNavigate}
             >

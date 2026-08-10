@@ -39,8 +39,8 @@ export function TilTagPage({
             {matches.length} note{matches.length === 1 ? "" : "s"} tagged{" "}
             <span className="font-medium text-foreground">#{tag}</span>.{" "}
             <a
-              href="/til/tags"
-              onClick={go("/til/tags")}
+              href="/til/tags/"
+              onClick={go("/til/tags/")}
               className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
             >
               All tags
@@ -53,8 +53,8 @@ export function TilTagPage({
           <p className="mt-10 text-sm text-muted-foreground">
             No notes carry this tag.{" "}
             <a
-              href="/til"
-              onClick={go("/til")}
+              href="/til/"
+              onClick={go("/til/")}
               className="font-medium text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary"
             >
               Browse all notes

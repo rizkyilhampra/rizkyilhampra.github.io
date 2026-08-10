@@ -7,5 +7,5 @@ description: One-liner scripts to benchmark a freshly provisioned VPS — verify
 ---
 One-liner scripts to benchmark a freshly provisioned VPS — verifying CPU, disk I/O, and network performance against what the provider advertised.
 
-- [YABS (Yet Another Bench Script)](/til/yabs-yet-another-bench-script)
-- [bench.sh](/til/bench-sh-vps-benchmark-script)
+- [YABS (Yet Another Bench Script)](/til/yabs-yet-another-bench-script/)
+- [bench.sh](/til/bench-sh-vps-benchmark-script/)

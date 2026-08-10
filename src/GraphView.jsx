@@ -502,8 +502,8 @@ export function GraphView({
 
     const navigateTo = (node) => {
       if (!onNavigate) return;
-      if (isTagNode(node)) onNavigate(`/til/tags/${encodeURIComponent(node.label)}`);
-      else onNavigate(`/til/${node.id}`);
+      if (isTagNode(node)) onNavigate(`/til/tags/${encodeURIComponent(node.label)}/`);
+      else onNavigate(`/til/${node.id}/`);
     };
 
     // Cursor left the canvas while hovering — release the highlight so the dim

@@ -11,7 +11,7 @@ const SIZES = {
 };
 
 function tagHref(tag) {
-  return `/til/tags/${encodeURIComponent(tag)}`;
+  return `/til/tags/${encodeURIComponent(tag)}/`;
 }
 
 export function TagList({
