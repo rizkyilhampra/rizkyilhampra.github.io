@@ -10,9 +10,7 @@
       ],
       "description": "An provider or like organization that produce many libraries for frontend world. Similar like in Laravel world we have Spatie. If you had question like, how…",
       "readingTime": "1 min read",
-      "backlinks": [
-        "tanstack-charts"
-      ]
+      "backlinks": []
     },
     {
       "slug": "course-from-emil-kowalski-animationsdev",
@@ -25,9 +23,7 @@
       ],
       "description": "Looks interesting when needs an course about frontend or UI/UX from who is Designer(?) at Linear. He is one of popular designer or talk about frontend or UI/UX…",
       "readingTime": "1 min read",
-      "backlinks": [
-        "another-course-from-emil-kowalski-aiforuidev"
-      ]
+      "backlinks": []
     },
     {
       "slug": "another-course-from-emil-kowalski-aiforuidev",
@@ -123,9 +119,7 @@
       ],
       "description": "YABS (Yet Another Bench Script), written by Mason Rowe, is a popular one-liner for benchmarking a freshly provisioned VPS. Run it with:",
       "readingTime": "1 min read",
-      "backlinks": [
-        "vps-benchmark-scripts"
-      ]
+      "backlinks": []
     },
     {
       "slug": "bench-sh-vps-benchmark-script",
@@ -138,9 +132,7 @@
       ],
       "description": "bench.sh is a long-standing VPS benchmark script by Teddysun. Run it with:",
       "readingTime": "1 min read",
-      "backlinks": [
-        "vps-benchmark-scripts"
-      ]
+      "backlinks": []
     },
     {
       "slug": "vercel-labs-deepsec",
@@ -152,9 +144,7 @@
       ],
       "description": "An like AI agent skill that produce security audit. Seems good to try with pairing like Claude Code to like scan an codebase that needs security compliance.",
       "readingTime": "1 min read",
-      "backlinks": [
-        "codex-security"
-      ]
+      "backlinks": []
     },
     {
       "slug": "emilkowalski-skill",
@@ -167,10 +157,7 @@
       ],
       "description": "An AI agent skill from Emil Kowalski, a UI/UX designer at Linear (previously Vercel).",
       "readingTime": "1 min read",
-      "backlinks": [
-        "course-from-emil-kowalski-animationsdev",
-        "agent-skills"
-      ]
+      "backlinks": []
     },
     {
       "slug": "agent-skills",
@@ -235,9 +222,7 @@
       ],
       "description": "Another ones of maybe shadcn/ui blocks or registry or bunch of collection UI component library.",
       "readingTime": "1 min read",
-      "backlinks": [
-        "componentry-dithered-logo"
-      ]
+      "backlinks": []
     },
     {
       "slug": "dotto-ui",
@@ -324,9 +309,7 @@
       ],
       "description": "The most popular ones. It's include fucking almost every AI models in the world. So basically you are being top up, then you can use the API key on everything.",
       "readingTime": "1 min read",
-      "backlinks": [
-        "command-code-ai"
-      ]
+      "backlinks": []
     },
     {
       "slug": "alishahryar1-free-claude-code",
@@ -348,10 +331,7 @@
       ],
       "description": "An way to leverage Claude models to do something (mainly vibe coding) on your host.",
       "readingTime": "1 min read",
-      "backlinks": [
-        "vercel-labs-deepsec",
-        "alishahryar1-free-claude-code"
-      ]
+      "backlinks": []
     },
     {
       "slug": "claude",
@@ -362,9 +342,7 @@
       ],
       "description": "An LLM provider that's mainly produce or build sort of this model, Sonnet, Opus, Haiku.",
       "readingTime": "1 min read",
-      "backlinks": [
-        "claude-code"
-      ]
+      "backlinks": []
     },
     {
       "slug": "claude-code-using-kiro-api",
@@ -508,9 +486,7 @@
       ],
       "description": "Ex, downgrade mesa to 24.2.7",
       "readingTime": "1 min read",
-      "backlinks": [
-        "freeze-or-hang-randomly-on-arch-linux-with-hyprland"
-      ]
+      "backlinks": []
     },
     {
       "slug": "freeze-or-hang-randomly-on-arch-linux-with-hyprland",
@@ -672,5 +648,5 @@
       "count": 1
     }
   ],
-  "fetchedAt": "2026-08-10T01:23:09.091Z"
+  "fetchedAt": "2026-08-10T12:58:19.508Z"
 }
