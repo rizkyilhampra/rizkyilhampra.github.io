@@ -11,7 +11,7 @@ export default function SpotifyStats() {
   const artists = data?.top?.artists?.medium_term || [];
 
   return (
-    <section aria-labelledby="spotify-stats-title">
+    <section aria-labelledby="spotify-stats-title" data-nosnippet>
       <SectionHeading
         eyebrow="~/listening"
         title="Listening Highlights"
@@ -140,4 +140,3 @@ function fmtArtists(list) {
   if (!Array.isArray(list) || list.length === 0) return 'Unknown';
   return list.map(a => a.name).join(', ');
 }
-
