@@ -1,4 +1,35 @@
 {
-  "fetchedAt": "2026-08-22T12:24:55.694Z",
-  "languages": []
+  "fetchedAt": "2026-08-23T00:56:37.438Z",
+  "languages": [
+    {
+      "name": "PHP",
+      "percent": 55.7,
+      "text": "4 mins"
+    },
+    {
+      "name": "Image (png)",
+      "percent": 32.8,
+      "text": "2 mins"
+    },
+    {
+      "name": "JSON",
+      "percent": 7,
+      "text": "34 secs"
+    },
+    {
+      "name": "HTML",
+      "percent": 2.5,
+      "text": "12 secs"
+    },
+    {
+      "name": "JavaScript",
+      "percent": 1.2,
+      "text": "6 secs"
+    },
+    {
+      "name": "Bash",
+      "percent": 0.8,
+      "text": "4 secs"
+    }
+  ]
 }
