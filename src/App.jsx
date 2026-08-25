@@ -347,7 +347,6 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
       {/* Hero */}
       <section {...reveal(0)}>
         <div className="flex flex-col gap-8 md:flex-row md:items-center">
-          <AsciiPortrait />
 
           <div className="min-w-0 flex-1">
             <div>
@@ -374,22 +373,23 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
               className="mt-6 -ml-2 flex-end"
             />
           </div>
+          <AsciiPortrait className="order-first md:order-none" />
         </div>
 
-        {isStaticRender ? (
-          <div
-            className="mt-6 h-40 w-full rounded-lg border border-border bg-secondary/40 sm:h-44 md:w-1/2"
-            aria-label="Location map available after the page loads"
-          />
-        ) : (
-          <Suspense
-            fallback={
-              <div className="mt-6 h-40 w-full animate-pulse rounded-lg border border-border bg-secondary sm:h-44 md:w-1/2" />
-            }
-          >
-            <LocationMap />
-          </Suspense>
-        )}
+        {/* {isStaticRender ? ( */}
+        {/*   <div */}
+        {/*     className="mt-6 h-40 w-full rounded-lg border border-border bg-secondary/40 sm:h-44 md:w-1/2" */}
+        {/*     aria-label="Location map available after the page loads" */}
+        {/*   /> */}
+        {/* ) : ( */}
+        {/*   <Suspense */}
+        {/*     fallback={ */}
+        {/*       <div className="mt-6 h-40 w-full animate-pulse rounded-lg border border-border bg-secondary sm:h-44 md:w-1/2" /> */}
+        {/*     } */}
+        {/*   > */}
+        {/*     <LocationMap /> */}
+        {/*   </Suspense> */}
+        {/* )} */}
       </section>
 
       <SectionDivider />
