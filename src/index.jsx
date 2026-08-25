@@ -3,6 +3,7 @@ import "@fontsource/plus-jakarta-sans/600.css";
 import "@fontsource/plus-jakarta-sans/700.css";
 import "@fontsource/plus-jakarta-sans/800.css";
 import "./assets/fonts/iosevka.css";
+import "./assets/fonts/iosevka-braille.css";
 import "@fontsource/jetbrains-mono/400.css";
 import "@fontsource/jetbrains-mono/500.css";
 import "./style.css";

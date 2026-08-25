@@ -38,6 +38,7 @@ import {
 } from "./routeMetadata";
 import { createReveal } from "./entrance";
 import { SITE } from "./siteConfig.js";
+import AsciiPortrait from "./AsciiPortrait";
 
 const LocationMap = lazy(() => import("./LocationMap"));
 
@@ -345,27 +346,35 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
     <PageShell onNavigate={navigate}>
       {/* Hero */}
       <section {...reveal(0)}>
-        <h1 className="font-header text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          <ScrambleText
-            text="Rizky Ilham Pratama"
-            skip={skipEntranceAnimation}
-          />
-        </h1>
+        <div className="flex flex-col gap-8 md:flex-row md:items-center">
+          <AsciiPortrait />
 
-        <div className="mt-3 text-lg text-muted-foreground sm:text-xl">
-          <TypewriterText
-            texts={SITE.typewriterTexts}
-            typingSpeed={100}
-            deletingSpeed={60}
-            pauseDuration={3000}
-          />
+          <div className="min-w-0 flex-1">
+            <div>
+              <h1 className="font-header text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+                <ScrambleText
+                  text="Rizky Ilham Pratama"
+                  skip={skipEntranceAnimation}
+                />
+              </h1>
+
+              <div className="mt-3 text-lg text-muted-foreground sm:text-xl">
+                <TypewriterText
+                  texts={SITE.typewriterTexts}
+                  typingSpeed={100}
+                  deletingSpeed={60}
+                  pauseDuration={3000}
+                />
+              </div>
+            </div>
+
+            <SocialIconRow
+              items={socials}
+              trailing={<SecretHeart />}
+              className="mt-6 -ml-2 flex-end"
+            />
+          </div>
         </div>
-
-        <SocialIconRow
-          items={socials}
-          trailing={<SecretHeart />}
-          className="mt-6 -ml-2"
-        />
 
         {isStaticRender ? (
           <div

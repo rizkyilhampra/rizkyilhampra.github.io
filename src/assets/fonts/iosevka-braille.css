@@ -1,0 +1,11 @@
+/* Braille-only Iosevka subset for the ASCII portrait. Generated from
+   @fontsource/iosevka — regenerated with the same subset-font approach as
+   scripts/subset-fonts.mjs. Covers the full U+2800–U+28FF braille block so
+   the art never falls back to an inconsistent system font. */
+@font-face {
+  font-family: 'Iosevka Braille';
+  font-style: normal;
+  font-display: block;
+  font-weight: 400;
+  src: url('./iosevka-braille.woff2') format('woff2');
+}
