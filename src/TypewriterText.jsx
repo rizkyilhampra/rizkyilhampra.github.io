@@ -303,7 +303,7 @@ export function TypewriterText({
 
   return (
     <span className={`${className} block min-h-14 sm:min-h-12 md:min-h-14`}>
-      <span className="sm:whitespace-nowrap">
+      <span>
         {currentText}
         <span className={`animate-cursor-blink ${typoState.hasTypo || typoState.isCorrectingTypo || typoState.isWaitingCorrection ? 'text-red-400' : ''}`}>|</span>
       </span>
