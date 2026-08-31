@@ -16,7 +16,6 @@ import {
   MobileTableOfContents,
 } from "./TableOfContents";
 import { markVisited } from "./visited";
-import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
 export function TilNotePage({
@@ -29,7 +28,6 @@ export function TilNotePage({
 }) {
   const note = preloadedNote ?? use(loadTilBySlug(slug));
   const manifest = preloadedNotes ?? use(loadTilManifest());
-  const reveal = createReveal(skipEntranceAnimation);
   // TOC entries; anchor ids already live on the tokens (see markdown.js).
   const headings = useMemo(() => extractHeadings(note?.content), [note?.content]);
   // Gates BOTH the rail and the two-column grid — mounting the grid template
@@ -44,7 +42,6 @@ export function TilNotePage({
     return (
       <NotFoundPage
         onBack={onBack}
-        skipEntranceAnimation={skipEntranceAnimation}
         title="Note not found"
         message="This TIL note does not exist (or has not been published yet)."
       />
@@ -72,9 +69,9 @@ export function TilNotePage({
         }
       >
         <article className="mx-auto w-full max-w-3xl">
-          <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
+          <InternalBackLink onBack={onBack} />
 
-          <header {...reveal(1, "border-b border-border pb-8")}>
+          <header className="border-b border-border pb-8">
             <p className="mb-4 font-mono text-xs text-primary">~/til/{note.slug}</p>
             <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
               {note.title}
@@ -89,12 +86,12 @@ export function TilNotePage({
           </header>
 
           {hasToc && (
-            <div {...reveal(2, "mt-8 lg:hidden")}>
+            <div className="mt-8 lg:hidden">
               <MobileTableOfContents headings={headings} />
             </div>
           )}
 
-          <div {...reveal(3, "mt-10 space-y-8")}>
+          <div className="mt-10 space-y-8">
             <MarkdownContent
               tokens={note.content}
               footnotes={note.footnotes}
@@ -102,7 +99,7 @@ export function TilNotePage({
             />
           </div>
 
-          <div {...reveal(4, "mt-12 border-t border-border pt-8")}>
+          <div className="mt-12 border-t border-border pt-8">
             {/* Graph on the left, the "Linked from"/"Related notes" lists on the
                 right; stacks to a single column on narrow screens. Either side can
                 be absent (flex lets the present one fill the row). */}
@@ -126,13 +123,13 @@ export function TilNotePage({
         </article>
 
         {hasToc && (
-          <aside {...reveal(4, "hidden lg:block")}>
+          <aside className="hidden lg:block">
             <TableOfContents headings={headings} />
           </aside>
         )}
       </div>
 
-      <div {...reveal(5, "mt-20")}>
+      <div className="mt-20">
         <Footer />
       </div>
     </PageShell>

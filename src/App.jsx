@@ -36,7 +36,6 @@ import {
   normalizePath,
   resolveRoute,
 } from "./routeMetadata";
-import { createReveal } from "./entrance";
 import { SITE } from "./siteConfig.js";
 import AsciiPortrait from "./AsciiPortrait";
 
@@ -168,7 +167,6 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
   const isTilTagsIndex = route.type === "tags-index";
   const tilTag = route.type === "tag" ? route.tag : null;
   const tilSlug = route.type === "note" ? route.slug : null;
-  const reveal = createReveal(skipEntranceAnimation);
 
   const applyRouteForPath = (routePath, rdata) => {
     const resolved = resolveRoute(routePath);
@@ -203,7 +201,6 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
         <TilIndexPage
           onNavigate={navigate}
           onBack={goBack}
-          skipEntranceAnimation={skipEntranceAnimation}
           notes={activeRouteData?.notes}
           tags={activeRouteData?.tags}
         />
@@ -217,7 +214,6 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
         <TilTagsPage
           onNavigate={navigate}
           onBack={goBack}
-          skipEntranceAnimation={skipEntranceAnimation}
           tags={activeRouteData?.tags}
         />
       </Suspense>
@@ -231,7 +227,6 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
           tag={tilTag}
           onNavigate={navigate}
           onBack={goBack}
-          skipEntranceAnimation={skipEntranceAnimation}
           notes={activeRouteData?.notes}
         />
       </Suspense>
@@ -267,7 +262,6 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
   if (path !== "/") {
     return (
       <NotFoundPage
-        skipEntranceAnimation={skipEntranceAnimation}
         onBack={goBack}
       />
     );
@@ -345,7 +339,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
   return (
     <PageShell onNavigate={navigate}>
       {/* Hero */}
-      <section {...reveal(0)}>
+      <section>
         <div className="flex flex-col gap-8 md:flex-row md:items-center">
 
           <div className="min-w-0 flex-1">
@@ -395,7 +389,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
       <SectionDivider />
 
       {/* Projects */}
-      {/* <section {...reveal(1)}> */}
+      {/* <section> */}
       {/*   <SectionHeading eyebrow="~/projects" title="Projects"> */}
       {/*     Things I’ve built and keep running. */}
       {/*   </SectionHeading> */}
@@ -405,7 +399,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
       {/* <SectionDivider /> */}
 
       {/* Today I Learned (digital garden) */}
-      <section {...reveal(2)}>
+      <section>
         <TilListPreview
           onNavigate={navigate}
           skipEntranceAnimation={skipEntranceAnimation}
@@ -416,28 +410,28 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
       <SectionDivider />
 
       {/* Listening */}
-      <section {...reveal(3)}>
+      <section>
         <SpotifyStats />
       </section>
 
       <SectionDivider />
 
       {/* Typing */}
-      <section {...reveal(4)}>
+      <section>
         <MonkeytypeStats />
       </section>
 
       <SectionDivider />
 
       {/* GitHub */}
-      <section {...reveal(5)}>
+      <section>
         <GitHubStats className="" />
       </section>
 
       <SectionDivider />
 
       {/* Coding */}
-      <section {...reveal(6)}>
+      <section>
         <WakatimeStats className="" />
       </section>
 

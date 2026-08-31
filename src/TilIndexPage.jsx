@@ -6,7 +6,6 @@ import { PageShell } from "./PageShell";
 import { TilNoteList } from "./TilNoteList";
 import { navHandler } from "./utils";
 import { useGraphModal } from "./GraphModalContext";
-import { createReveal } from "./entrance";
 import Footer from "./Footer";
 
 function noteMatchesQuery(note, query) {
@@ -34,7 +33,6 @@ function groupByYear(notes) {
 export function TilIndexPage({
   onNavigate,
   onBack,
-  skipEntranceAnimation,
   notes: preloadedNotes,
   tags: preloadedTags,
 }) {
@@ -44,7 +42,6 @@ export function TilIndexPage({
   const [activeTag, setActiveTag] = useState(null);
   const [sort, setSort] = useState("newest"); // manifest is already newest-first
 
-  const reveal = createReveal(skipEntranceAnimation);
   const go = navHandler(onNavigate);
   const openGraph = useGraphModal();
 
@@ -70,9 +67,9 @@ export function TilIndexPage({
 
   return (
     <PageShell onNavigate={onNavigate} mainClassName="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <InternalBackLink onBack={onBack} {...reveal(0, "mb-10")} />
+      <InternalBackLink onBack={onBack} />
 
-      <header {...reveal(1, "border-b border-border pb-8")}>
+      <header className="border-b border-border pb-8">
         <p className="mb-4 font-mono text-xs text-primary">~/til</p>
           <h1 className="font-header text-4xl font-semibold leading-tight text-foreground sm:text-5xl">
             Today I Learned
@@ -97,7 +94,7 @@ export function TilIndexPage({
           </p>
       </header>
 
-      <div {...reveal(2)}>
+      <div>
         {notes.length === 0 ? (
           <p className="mt-10 text-sm text-muted-foreground">
             No notes published yet — check back soon.
@@ -201,7 +198,7 @@ export function TilIndexPage({
         )}
       </div>
 
-      <div {...reveal(3, "mt-20")}>
+      <div className="mt-20">
         <Footer />
       </div>
     </PageShell>
