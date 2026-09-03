@@ -26,7 +26,7 @@ export function TilNoteListSkeleton({ count = 4 }) {
   return (
     <div className={LIST_SHELL_CLASS}>
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="animate-pulse py-4">
+        <div key={i} className="animate-pulse py-4 motion-reduce:animate-none">
           <div className="h-5 w-2/3 rounded-md bg-secondary" />
           <div className="mt-2 h-3 w-24 rounded-md bg-secondary" />
           <div className="mt-2 h-3 w-full rounded-md bg-secondary" />

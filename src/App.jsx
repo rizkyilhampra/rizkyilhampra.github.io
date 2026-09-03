@@ -29,6 +29,12 @@ import { NotFoundPage } from "./NotFoundPage";
 import { PageShell } from "./PageShell";
 import { TilNotePage, prefetchTilNotePage } from "./tilNotePageLoader";
 import { TilNotePage as PrerenderedTilNotePage } from "./TilNotePage";
+import {
+  NotePageSkeleton,
+  TilIndexPageSkeleton,
+  TilTagsPageSkeleton,
+  TilTagPageSkeleton,
+} from "./TilSkeletons";
 import { loadTilManifest } from "./tilNotes";
 import {
   applyRouteMetadata,
@@ -197,7 +203,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
 
   if (isTilIndex) {
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<TilIndexPageSkeleton />}>
         <TilIndexPage
           onNavigate={navigate}
           onBack={goBack}
@@ -210,7 +216,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
 
   if (isTilTagsIndex) {
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<TilTagsPageSkeleton />}>
         <TilTagsPage
           onNavigate={navigate}
           onBack={goBack}
@@ -222,7 +228,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
 
   if (tilTag) {
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<TilTagPageSkeleton />}>
         <TilTagPage
           tag={tilTag}
           onNavigate={navigate}
@@ -253,7 +259,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
     }
 
     return (
-      <Suspense fallback={null}>
+      <Suspense fallback={<NotePageSkeleton />}>
         <TilNotePage key={tilSlug} {...noteProps} />
       </Suspense>
     );
