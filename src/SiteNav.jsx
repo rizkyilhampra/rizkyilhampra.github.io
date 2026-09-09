@@ -8,8 +8,8 @@ export function SiteNav({ onNavigate }) {
   const go = onNavigate ? navHandler(onNavigate) : () => undefined;
 
   return (
-    <header className="border-b border-border">
-      <nav className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
+    <header>
+      <nav className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
         <a
           href="/"
           onClick={go("/")}

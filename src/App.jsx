@@ -343,10 +343,13 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
   ];
 
   return (
-    <PageShell onNavigate={navigate}>
+    <PageShell
+      onNavigate={navigate}
+      mainClassName="mx-auto max-w-3xl px-6 pb-12 sm:pb-16"
+    >
       {/* Hero */}
-      <section>
-        <div className="flex flex-col gap-8 md:flex-row md:items-center">
+      <section className="flex min-h-[calc(100svh-4rem)] items-center">
+        <div className="flex w-full flex-col gap-8 md:flex-row md:items-center">
 
           <div className="min-w-0 flex-1">
             <div>
