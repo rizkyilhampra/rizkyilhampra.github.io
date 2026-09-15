@@ -1,354 +1,41 @@
 {
   "profile": {
-    "message": "Profile retrieved",
-    "data": {
-      "name": "rizkyilhamp",
-      "addedAt": 1674524399596,
-      "typingStats": {
-        "completedTests": 1345,
-        "startedTests": 2617,
-        "timeTyping": 44385.589999999866
-      },
-      "personalBests": {
-        "time": {
-          "15": [
-            {
-              "acc": 96.71,
-              "consistency": 83.15,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 121.4,
-              "wpm": 115.8,
-              "timestamp": 1718059034009,
-              "numbers": false
-            }
-          ],
-          "30": [
-            {
-              "acc": 97.3,
-              "consistency": 85.49,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 117.16,
-              "wpm": 114.36,
-              "timestamp": 1784000791469,
-              "numbers": false
-            },
-            {
-              "acc": 94.04,
-              "consistency": 74.88,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "english",
-              "punctuation": false,
-              "raw": 92.8,
-              "wpm": 84.4,
-              "timestamp": 1742394164889,
-              "numbers": false
-            },
-            {
-              "acc": 94.42,
-              "consistency": 64.04,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian_1k",
-              "punctuation": false,
-              "raw": 74.79,
-              "wpm": 71.59,
-              "timestamp": 1706864178924
-            }
-          ],
-          "60": [
-            {
-              "acc": 98.21,
-              "consistency": 78.9,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 100.39,
-              "wpm": 95.6,
-              "timestamp": 1728429131864,
-              "numbers": false
-            }
-          ],
-          "120": [
-            {
-              "acc": 90.6,
-              "consistency": 73.75,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 86.59,
-              "wpm": 74.89,
-              "timestamp": 1707935473899
-            }
-          ]
-        },
-        "words": {
-          "10": [
-            {
-              "acc": 100,
-              "consistency": 81.3,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 114.34,
-              "wpm": 114.34,
-              "timestamp": 1717538388774,
-              "numbers": false
-            }
-          ],
-          "25": [
-            {
-              "acc": 91.61,
-              "consistency": 80.42,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 98.45,
-              "wpm": 86.87,
-              "timestamp": 1707935597688
-            }
-          ],
-          "50": [
-            {
-              "acc": 96.06,
-              "consistency": 71.6,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "english",
-              "punctuation": false,
-              "raw": 73.41,
-              "wpm": 70.72,
-              "timestamp": 1706924839473
-            },
-            {
-              "acc": 97.17,
-              "consistency": 77.49,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 102.36,
-              "wpm": 98.18,
-              "timestamp": 1749435505855,
-              "numbers": false
-            }
-          ],
-          "100": [
-            {
-              "acc": 94.02,
-              "consistency": 74.94,
-              "difficulty": "normal",
-              "lazyMode": false,
-              "language": "indonesian",
-              "punctuation": false,
-              "raw": 83.92,
-              "wpm": 77.01,
-              "timestamp": 1716741792925,
-              "numbers": false
-            }
-          ]
-        }
-      },
-      "xp": 345152,
-      "streak": 1,
-      "maxStreak": 15,
-      "isPremium": false,
-      "allTimeLbs": {
-        "time": {
-          "15": {},
-          "60": {}
-        }
-      },
-      "uid": "4QNCwIN3Naf0MvGoM7CJDgSn6uI3"
-    }
+    "name": "your-username",
+    "id": "user-id"
   },
   "summary": {
-    "tests": 1345,
-    "timeTyping": 44385.589999999866
+    "tests": 1234,
+    "timeTyping": 456789
   },
   "pbs": {
-    "time15": {
-      "wpm": 116,
-      "acc": 0.9671,
-      "timestamp": 1718059034009
-    },
-    "time60": {
-      "wpm": 96,
-      "acc": 0.9821,
-      "timestamp": 1728429131864
-    }
+    "time15": null,
+    "time60": null
   },
   "recent": [
     {
-      "wpm": 102,
-      "acc": 0.9922,
+      "wpm": 136,
+      "acc": 0.972,
       "mode": "time",
       "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789370152000
+      "language": "english",
+      "timestamp": "2024-12-20T10:00:00Z"
     },
     {
-      "wpm": 90,
-      "acc": 0.9578,
+      "wpm": 141,
+      "acc": 0.965,
       "mode": "time",
       "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789367336000
+      "language": "english",
+      "timestamp": "2024-12-20T09:30:00Z"
     },
     {
-      "wpm": 86,
-      "acc": 0.9437000000000001,
+      "wpm": 138,
+      "acc": 0.971,
       "mode": "time",
       "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789367000000
-    },
-    {
-      "wpm": 103,
-      "acc": 0.9739,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789366815000
-    },
-    {
-      "wpm": 98,
-      "acc": 0.9842,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789366736000
-    },
-    {
-      "wpm": 100,
-      "acc": 0.9811,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789366701000
-    },
-    {
-      "wpm": 88,
-      "acc": 0.956,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789190011000
-    },
-    {
-      "wpm": 102,
-      "acc": 0.9886,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789189970000
-    },
-    {
-      "wpm": 98,
-      "acc": 0.9670000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789189852000
-    },
-    {
-      "wpm": 104,
-      "acc": 0.9852,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789188788000
-    },
-    {
-      "wpm": 97,
-      "acc": 0.9575,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789188580000
-    },
-    {
-      "wpm": 95,
-      "acc": 0.9637,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789186706000
-    },
-    {
-      "wpm": 94,
-      "acc": 0.9478,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789186675000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.9288,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1789186458000
-    },
-    {
-      "wpm": 93,
-      "acc": 0.9711,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788941973000
-    },
-    {
-      "wpm": 100,
-      "acc": 0.9806999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788941941000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.95,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788415811000
-    },
-    {
-      "wpm": 108,
-      "acc": 0.9853000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788415591000
-    },
-    {
-      "wpm": 93,
-      "acc": 0.9592,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788415225000
-    },
-    {
-      "wpm": 101,
-      "acc": 0.9701000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788414173000
+      "language": "english",
+      "timestamp": "2024-12-20T08:50:00Z"
     }
   ],
-  "fetchedAt": "2026-09-14T17:36:56.439Z"
+  "fetchedAt": "2026-09-15T03:16:13.317Z"
 }
