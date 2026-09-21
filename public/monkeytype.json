@@ -5,9 +5,9 @@
       "name": "rizkyilhamp",
       "addedAt": 1674524399596,
       "typingStats": {
-        "completedTests": 1346,
-        "startedTests": 2619,
-        "timeTyping": 44441.689999999864
+        "completedTests": 1350,
+        "startedTests": 2633,
+        "timeTyping": 44631.71999999987
       },
       "personalBests": {
         "time": {
@@ -159,7 +159,7 @@
           ]
         }
       },
-      "xp": 346249,
+      "xp": 347552,
       "streak": 1,
       "maxStreak": 15,
       "isPremium": false,
@@ -173,8 +173,8 @@
     }
   },
   "summary": {
-    "tests": 1346,
-    "timeTyping": 44441.689999999864
+    "tests": 1350,
+    "timeTyping": 44631.71999999987
   },
   "pbs": {
     "time15": {
@@ -189,6 +189,38 @@
     }
   },
   "recent": [
+    {
+      "wpm": 100,
+      "acc": 0.9843999999999999,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1789976211000
+    },
+    {
+      "wpm": 94,
+      "acc": 0.9875,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1789976012000
+    },
+    {
+      "wpm": 102,
+      "acc": 0.9811,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1789975762000
+    },
+    {
+      "wpm": 93,
+      "acc": 0.9490000000000001,
+      "mode": "time",
+      "time": 60,
+      "language": "indonesian",
+      "timestamp": 1789974888000
+    },
     {
       "wpm": 103,
       "acc": 0.9772,
@@ -316,39 +348,7 @@
       "time": 60,
       "language": "indonesian",
       "timestamp": 1788941973000
-    },
-    {
-      "wpm": 100,
-      "acc": 0.9806999999999999,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788941941000
-    },
-    {
-      "wpm": 96,
-      "acc": 0.95,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788415811000
-    },
-    {
-      "wpm": 108,
-      "acc": 0.9853000000000001,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788415591000
-    },
-    {
-      "wpm": 93,
-      "acc": 0.9592,
-      "mode": "time",
-      "time": 60,
-      "language": "indonesian",
-      "timestamp": 1788415225000
     }
   ],
-  "fetchedAt": "2026-09-21T03:11:23.406Z"
+  "fetchedAt": "2026-09-21T17:49:36.169Z"
 }
