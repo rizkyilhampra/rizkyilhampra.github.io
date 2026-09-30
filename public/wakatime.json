@@ -1,35 +1,20 @@
 {
-  "fetchedAt": "2026-09-29T17:27:29.995Z",
+  "fetchedAt": "2026-09-30T03:30:44.368Z",
   "languages": [
     {
-      "name": "TypeScript",
-      "percent": 45.3,
-      "text": "5 mins"
+      "name": "Apache Config",
+      "percent": 82.3,
+      "text": "28 secs"
     },
     {
-      "name": "Image (svg)",
-      "percent": 15.6,
-      "text": "1 min"
-    },
-    {
-      "name": "Git Config",
-      "percent": 9.7,
-      "text": "1 min"
-    },
-    {
-      "name": "Markdown",
-      "percent": 9.4,
-      "text": "1 min"
+      "name": "gitignore",
+      "percent": 14.7,
+      "text": "5 secs"
     },
     {
       "name": "JSON",
-      "percent": 7.7,
-      "text": "55 secs"
-    },
-    {
-      "name": "CSS",
-      "percent": 5,
-      "text": "36 secs"
+      "percent": 2.9,
+      "text": "1 sec"
     }
   ]
 }
