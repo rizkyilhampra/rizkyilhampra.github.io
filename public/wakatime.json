@@ -1,20 +1,4 @@
 {
-  "fetchedAt": "2026-09-30T17:25:08.049Z",
-  "languages": [
-    {
-      "name": "Apache Config",
-      "percent": 82.3,
-      "text": "28 secs"
-    },
-    {
-      "name": "gitignore",
-      "percent": 14.7,
-      "text": "5 secs"
-    },
-    {
-      "name": "JSON",
-      "percent": 2.9,
-      "text": "1 sec"
-    }
-  ]
+  "fetchedAt": "2026-10-01T03:35:39.435Z",
+  "languages": []
 }
