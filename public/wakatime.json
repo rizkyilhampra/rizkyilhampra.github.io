@@ -1,4 +1,20 @@
 {
-  "fetchedAt": "2026-10-03T15:33:27.227Z",
-  "languages": []
+  "fetchedAt": "2026-10-04T03:47:45.639Z",
+  "languages": [
+    {
+      "name": "YAML",
+      "percent": 76.5,
+      "text": "32 mins"
+    },
+    {
+      "name": "TypeScript",
+      "percent": 21.1,
+      "text": "8 mins"
+    },
+    {
+      "name": "Markdown",
+      "percent": 2.4,
+      "text": "1 min"
+    }
+  ]
 }
