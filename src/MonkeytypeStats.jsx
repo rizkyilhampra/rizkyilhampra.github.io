@@ -88,7 +88,7 @@ export default function MonkeytypeStats() {
 
 function StatCard({ label, value, sub, children }) {
   return (
-    <div className="border-t border-border pt-3">
+    <div className="pt-3">
       <div className="mb-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</div>
       <div className="flex items-stretch gap-3">
         <div className="min-w-0">
@@ -107,7 +107,7 @@ function StatCard({ label, value, sub, children }) {
 
 function SkeletonCard({ title = "Loading" }) {
   return (
-    <div className="animate-pulse border-t border-border pt-3">
+    <div className="animate-pulse pt-3">
       <div className="mb-2 h-3 w-24 rounded-sm bg-secondary" aria-hidden />
       <div className="h-9 w-16 rounded-sm bg-secondary" aria-hidden />
       <div className="mt-2 h-3 w-20 rounded-sm bg-secondary" aria-hidden />

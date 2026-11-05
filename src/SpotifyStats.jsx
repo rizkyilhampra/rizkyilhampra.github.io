@@ -69,7 +69,7 @@ export default function SpotifyStats() {
 function RankColumn({ heading, isEmpty, children }) {
   return (
     <div className="min-w-0">
-      <h3 className="mb-3 border-b border-border pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+      <h3 className="mb-3 pb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
         {heading}
       </h3>
       <ol className="space-y-3">

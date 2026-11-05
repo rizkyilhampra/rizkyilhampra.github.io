@@ -452,7 +452,7 @@ export default function App({ initialPath, routeData, prerender = false } = {}) 
 }
 
 function SectionDivider() {
-  return <hr className="my-12 border-border sm:my-14" />;
+  return <div aria-hidden="true" className="my-12 sm:my-14" />;
 }
 
 function rememberScrollPosition(scrollPositions, path, position) {

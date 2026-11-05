@@ -11,9 +11,9 @@ const LIST_SHELL_CLASS = "divide-y divide-border border-y border-border";
 // Shared note list used by the homepage preview, the TIL index, and tag pages so
 // every note row gets the same ink-on-paper treatment: an Iosevka title, a
 // date + reading-time meta line, clickable tags, and a clamped description.
-export function TilNoteList({ notes, onNavigate }) {
+export function TilNoteList({ notes, onNavigate, rules = true }) {
   return (
-    <ul className={LIST_SHELL_CLASS}>
+    <ul className={rules ? LIST_SHELL_CLASS : undefined}>
       {notes.map((note) => (
         <TilListItem key={note.slug} note={note} onNavigate={onNavigate} />
       ))}
@@ -22,9 +22,9 @@ export function TilNoteList({ notes, onNavigate }) {
 }
 
 // Loading placeholder that mirrors the list shell and row rhythm above.
-export function TilNoteListSkeleton({ count = 4 }) {
+export function TilNoteListSkeleton({ count = 4, rules = true }) {
   return (
-    <div className={LIST_SHELL_CLASS}>
+    <div className={rules ? LIST_SHELL_CLASS : undefined}>
       {Array.from({ length: count }).map((_, i) => (
         <div key={i} className="animate-pulse py-4 motion-reduce:animate-none">
           <div className="h-5 w-2/3 rounded-md bg-secondary" />

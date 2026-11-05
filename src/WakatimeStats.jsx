@@ -33,7 +33,7 @@ export default function WakatimeStats({ className = "mt-16 md:mt-20" }) {
       {!loading && error && <ConnectCard />}
       {!loading && !error && data && (
         <div className="flex-1">
-          <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
+          <div className="mb-3 flex items-center justify-between pb-2">
             <div className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
               Languages
             </div>

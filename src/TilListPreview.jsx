@@ -26,7 +26,7 @@ function TilNotes({ onNavigate, skipEntranceAnimation, notes: preloadedNotes }) 
 
   return (
     <>
-      <TilNoteList notes={notes} onNavigate={onNavigate} />
+      <TilNoteList notes={notes} onNavigate={onNavigate} rules={false} />
 
       {allNotes.length > MAX_NOTES ? (
         <a
@@ -68,7 +68,7 @@ export function TilListPreview({ onNavigate, skipEntranceAnimation, notes }) {
         Short notes from a digital garden.
       </SectionHeading>
 
-      <Suspense fallback={<TilNoteListSkeleton count={MAX_NOTES} />}>
+      <Suspense fallback={<TilNoteListSkeleton count={MAX_NOTES} rules={false} />}>
         <TilNotes
           onNavigate={onNavigate}
           skipEntranceAnimation={skipEntranceAnimation}
